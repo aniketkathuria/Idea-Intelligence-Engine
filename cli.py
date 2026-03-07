@@ -1,6 +1,7 @@
 from core.storage import initialize_storage, save_idea
 from core.evaluator import evaluate_idea
 from core.parser import parse_json_with_repair
+from config import DEFAULT_QUERY_COUNT, SEARCH_DEPTH
 
 
 

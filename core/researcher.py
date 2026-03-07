@@ -4,17 +4,18 @@ from config import DEFAULT_QUERY_COUNT, SEARCH_DEPTH
 
 def generate_search_queries(idea, llm_client):
     prompt = f"""
-        Generate {DEFAULT_QUERY_COUNT} search queries to research the following idea.
+Generate {DEFAULT_QUERY_COUNT} search queries to research the following idea.
 
-        Return ONLY a JSON array of queries.
+Return ONLY a JSON array of queries.
 
-        Idea:
-        {idea}
-        """
+Idea:
+{idea}
+"""
 
     response = llm_client.chat.completions.create(
         model="gpt-4o-mini",
-        messages=[{"role": "user", "content": prompt}]
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0
     )
 
     import json
@@ -25,16 +26,22 @@ def search_duckduckgo(queries, depth="balanced"):
     results_limit = SEARCH_DEPTH.get(depth, 10)
 
     collected_results = []
+    seen_links = set()
 
     with DDGS() as ddgs:
         for query in queries:
             results = ddgs.text(query, max_results=results_limit)
 
             for r in results:
-                collected_results.append({
-                    "title": r.get("title"),
-                    "link": r.get("href"),
-                    "snippet": r.get("body")
-                })
+                link = r.get("href")
+
+                if link and link not in seen_links:
+                    seen_links.add(link)
+
+                    collected_results.append({
+                        "title": r.get("title"),
+                        "link": link,
+                        "snippet": r.get("body")
+                    })
 
     return collected_results
