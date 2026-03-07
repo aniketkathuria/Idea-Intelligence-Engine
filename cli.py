@@ -27,7 +27,6 @@ def main():
         "2": "balanced",
         "3": "deep"
     }
-    print(depth_map)
     depth = depth_map.get(depth_choice, "balanced")
 
     print("\nGenerating queries...")
@@ -35,7 +34,6 @@ def main():
 
     print("Searching web...")
     research_results = search_duckduckgo(queries, depth)
-    print(research_results)
     if not research_results:
         print("⚠ Warning: No research results found.")
     print("Evaluating idea...")
@@ -59,7 +57,7 @@ def main():
     for direction in analysis["improvement_directions"]:
         print(f"- {direction}")
 
-    print(f"Brutal Truth: {analysis['brutal_truth']}")
+    print(f"\nBrutal Truth: {analysis['brutal_truth']}")
 
     save_idea(raw_idea, {
         "research": research_results,
@@ -68,8 +66,11 @@ def main():
 
     print("\nSaved to Spark Vault.")
 
-
 if __name__ == "__main__":
-    true = input("Hey, let's Start writing ideas(Y/N):")
-    main()
-    true = input("Have a Great and Imaginative Day :)")
+    choice = input("Hey, let's Start writing ideas (Y/N): ").strip().lower()
+
+    if choice == "y":
+        main()
+        input("Have a Great and Imaginative Day :)")
+    else:
+        input("Alright. Come back with better ideas.") 

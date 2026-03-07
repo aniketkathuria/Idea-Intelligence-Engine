@@ -15,7 +15,7 @@ def parse_json_with_repair(raw_response):
         return json.loads(raw_response)
 
     except json.JSONDecodeError:
-        print("\n⚠ JSON parsing failed. Entering repair mode...\n")
+        print("----Parsing-----")
 
         repair_prompt = f"""
 You are a JSON formatting assistant.

@@ -1,0 +1,5 @@
+ai_projects/
+__pycache__/
+*.xlsx
+*.log
+core/testing.py

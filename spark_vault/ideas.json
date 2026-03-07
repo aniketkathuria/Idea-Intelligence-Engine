@@ -371,5 +371,572 @@
                 "brutal_truth": "The idea lacks novelty since triangular waffle cones are not a new concept, and without a compelling reason for consumers to choose them over traditional cones, it may struggle to gain traction in a competitive market."
             }
         }
+    },
+    {
+        "id": 12,
+        "timestamp": "2026-03-07T12:02:54.417343",
+        "raw_idea": "What if I create an app, which lets people connect to each other and talk, call or video call.",
+        "analysis": {
+            "research": [
+                {
+                    "title": "Android Social Networking App Development - 04/08/2024 05:54",
+                    "link": "https://www.freelancer.com/projects/android/android-social-networking-app-38417682",
+                    "snippet": "I'm lookingforan experienced mobileappdeveloperto createadynamicsocialnetworkingappforthe Android platform."
+                },
+                {
+                    "title": "Social Networking iOS App Development | Freelancer",
+                    "link": "https://www.freelancer.com/projects/iphone-app-development/social-networking-ios-app-development-38571406",
+                    "snippet": "I have seen your project postasyou need ****SocialNetworkingMobile Applications **** .According to your needs, I can able to make your ..."
+                },
+                {
+                    "title": "Mobile Social Networking App Development | Freelancer",
+                    "link": "https://www.freelancer.com/projects/mysql/mobile-social-networking-app-development",
+                    "snippet": "... experience in mobileappdevelopment, my team at CnELIndia possesses the exact skills and know-how you seekforyoursocialnetworkingappproject."
+                },
+                {
+                    "title": "Social Networking App for Multiple OS | Freelancer",
+                    "link": "https://www.freelancer.com/projects/iphone-app-development/social-networking-app-for-multiple",
+                    "snippet": "... Experience inappdevelopmentforiOS, Android, and Windows - Proficiency insocialnetworkingappdesigning - Strong understanding ofbestpractices..."
+                },
+                {
+                    "title": "6 Best Social Networking App Builders to Build Your Own Social",
+                    "link": "https://www.worldlistmania.com/6-best-social-networking-app-builders-to-build-your-own-social-app/",
+                    "snippet": "You won \u2019 t need to employ anappdeveloperif you use AppMachine to createanativesocialmedia applicationforthe iOS and Android platforms."
+                },
+                {
+                    "title": "Five best practices of Enterprise Social Networking app for",
+                    "link": "https://collavate.com/five-best-practices-of-enterprise/",
+                    "snippet": "An EnterpriseSocialNetworkingapplication is essentialforbusinesses and organizations to have effective team communication and promote the ..."
+                },
+                {
+                    "title": "Create The Social Network App Effectively",
+                    "link": "https://www.developers.dev/tech-talk/create-your-social-network-app-fast.html",
+                    "snippet": "...anewSocialMediaAppDevelopment when these platforms are already in place? Its no secret that people are losing love withsocialmedianetworks, ..."
+                },
+                {
+                    "title": "Social Networking App Development Company | QalbIT",
+                    "link": "https://qalbit.com/industries/social-networking/",
+                    "snippet": "QalbIT actsasyoursocialnetworkingappdevelopment company \u2013 from defining your community model and engagement loops to shipping production ..."
+                },
+                {
+                    "title": "Social Networking App Development In 2024? How To Guide",
+                    "link": "https://savvycomsoftware.com/blog/app-solutions-101-social-networking-app-development/",
+                    "snippet": "This article servesasacomprehensive guide tosocialnetworkingappdevelopment, providing insights andbestpracticesforcreatingathriving ..."
+                },
+                {
+                    "title": "Top Guidelines Of what are the best social apps",
+                    "link": "https://appleapppixidust87008.aboutyoublog.com/36965843/top-guidelines-of-what-are-the-best-social-apps",
+                    "snippet": "...appscan be several of the most rewarding of them all! They simply launched their free manufacturer package generator that can help firmsdevelop..."
+                },
+                {
+                    "title": "AgoraVideoCallingin Android:ImplementationGuide",
+                    "link": "https://www.aubergine.co/insights/a-step-by-step-guide-to-implementing-agora-video-calling-on-android",
+                    "snippet": "Learnhowyou can seamlessly integrate Agora's powerfulvideocallingcapabilities into your Androidappwith this step-by-stepimplementationguide.A step-by-step guidetoimplementingAgoravideocallingon Android."
+                },
+                {
+                    "title": "ImplementingVideoCallingin Flutter Using GetStream",
+                    "link": "https://www.linkedin.com/pulse/implementing-video-calling-flutter-using-getstream-zolatte-e2v2f",
+                    "snippet": "Videocallinghas become an essentialfeatureinmodernapps, whether for teleconsultations, remote meetings, or social interactions.In our Flutterapp, we explored multiplevideocallingSDKs and ultimately chose GetStream for its seamless integration and lightweight design."
+                },
+                {
+                    "title": "VideoCallingIntegration Using Agora IO And... | Medium | Geek Culture",
+                    "link": "https://medium.com/geekculture/video-calling-integration-using-agora-io-and-socket-io-in-flutter-66b5731c07e",
+                    "snippet": "Recently, while diving into one of my project tasks that stands forVideoCallingIntegration in the Flutterapp, I went through the Agora io dashboard. After doing some research, I made my mind to publish an article onhowtoimplementvideocallingin Flutter with socket io."
+                },
+                {
+                    "title": "React NativeVideoCallImplementationGuide - VideoSDK",
+                    "link": "https://www.videosdk.live/developer-hub/media-server/react-native-video-call-comprehensive-guide",
+                    "snippet": "DiscoverhowtobuildvideocallingfeaturesinReact Nativeappsusing WebRTC, Agora.io, VideoSDK and other popular tools with practical code examples.Toimplementvideocallingin React Native, yourapplicationwill need to handle: Real-time audio andvideostreaming."
+                },
+                {
+                    "title": "ios - React Native - Show incomingvideocallscreen... - Stack Overflow",
+                    "link": "https://stackoverflow.com/questions/53006539/react-native-show-incoming-video-call-screen-in-android-voip-app",
+                    "snippet": "I am tryingtoimplementvideocallingfeatureinreact nativeapp. I have used React native twiliovideowebrtc. I haveimplementedthe same and got it working. I don't exactly know the flow ofVideocallinginmobileapps."
+                },
+                {
+                    "title": "HowtoIntegrate RTMP Live Stream in FlutterVideoCallApp?",
+                    "link": "https://videosdk.hashnode.dev/integrate-rtmp-live-stream-in-flutter-video-call-app",
+                    "snippet": "ImplementingRTMP in your Flutterappensures smooth and efficient live streaming, enhancing the overall quality ofvideocalls.Update /android/app/src/main/AndroidManifest.xml for the permissions we will be usingtoimplementthe audio andvideofeatures."
+                },
+                {
+                    "title": "GitHub - nakulkundaliya/ionic-3-video-calling-using-webrtc: This is...",
+                    "link": "https://github.com/nakulkundaliya/ionic-3-video-calling-using-webrtc",
+                    "snippet": "This is demo code ofhowtoimplementvideocallingin ionic 3 using webrtc.To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the StarterAppBase."
+                },
+                {
+                    "title": "HowtoUse Discord\u2019s Screen Share andVideoCallFeatures",
+                    "link": "https://www.geeksforgeeks.org/websites-apps/how-to-use-discords-screen-share-and-video-call-features/",
+                    "snippet": "HowtoUseVideoCallFeatureinDiscord onMobile. Conclusion.While thevideocallis running you perform some functions such as mute audio, mutevideo, screen share, etc. After you are done with making thevideocallthen click on the \"EndCall\" icon to end thevideocall."
+                },
+                {
+                    "title": "Videoand AudioCallingin DatingApps| Complete Guide",
+                    "link": "https://www.ongraph.com/video-and-audio-calling-in-dating-apps/",
+                    "snippet": "Q.Howcan datingappsimplementvideocallingsafely? To ensure safety,callsshould only be enabled between matched users. Addfeatureslike mutual consent beforecallinitiation,callduration limits, reporting tools, and block functionalities."
+                },
+                {
+                    "title": "Howtoimplementvideocallingwithin a flutterflowapplication?",
+                    "link": "https://community.flutterflow.io/database-and-apis/post/how-to-implement-video-calling-within-a-flutterflow-application-cylBhp59VFXVHps",
+                    "snippet": "I needtoimplementvideocallsin anapplicationthat will be built on Flutterflow. The livestream mux is not useful. I need something external to integrate within FF, as the user must make thevideocallwithin theapp."
+                },
+                {
+                    "title": "10 Best User Engagement Strategies for Success in 2025 |",
+                    "link": "https://www.userflow.com/blog/10-effective-user-engagement-strategies-in-2024",
+                    "snippet": "If auseris inactivefora while, an in-appmessage can re-engage them and bring them back into the fold. ... or in-applive chat optionsforusers..."
+                },
+                {
+                    "title": "Developing Mobile App Engagement Among Your Community - Mobile",
+                    "link": "https://www.14oranges.com/2019/08/make-your-mobile-app-popular-engagement-tool/",
+                    "snippet": "... will work in both ways: as the recommendationsformembers who do not use theappand as a kind ofengagementforpeople who are the activeappusers..."
+                },
+                {
+                    "title": "10 Best Mobile App Engagement Strategy Of 2024",
+                    "link": "https://www.octaldigital.com/blogs/mobile-app-engagement-strategy/",
+                    "snippet": "There are several mega brands that are making MobileAppEngagementStrategyof 2024fortheir customers. ...userbehavior, and that is why they are ..."
+                },
+                {
+                    "title": "3 Successful App Integration Strategies for Associations -",
+                    "link": "https://www.techdotmatrix.com/2024/06/3-successful-app-integration-strategies-for-associations/",
+                    "snippet": "By implementing theseappintegrationstrategies, you can create a robust anduser-friendly mobile experienceforyour association."
+                },
+                {
+                    "title": "3 Successful App Integration Strategies for Associations |",
+                    "link": "https://insiderapps.com/content/3-successful-app-integration-strategies-associations",
+                    "snippet": "By implementing theseappintegrationstrategies, you can create a robust anduser-friendly mobile experienceforyour association."
+                },
+                {
+                    "title": "Mobile App Engagement Strategy for New App Builders",
+                    "link": "https://www.pushengage.com/mobile-app-engagement-strategy/",
+                    "snippet": "Check out our article on automated push notificationsforsome really creative ideas to refine your mobileappengagementstrategy."
+                },
+                {
+                    "title": "Maximizing Workplace Productivity with Employee Engagement",
+                    "link": "https://www.microsoft.com/en-us/microsoft-365/business-insights-ideas/resources/what-is-employee-engagement-software",
+                    "snippet": "Smartphones are the universal toolforcommunicationandengagementappsare an easy way to distribute information by written word, audio, and video."
+                },
+                {
+                    "title": "Increase App Engagement With These 8 Strategies",
+                    "link": "https://www.appclonescript.com/increase-app-engagement-with-these-strategies/",
+                    "snippet": "...strategiesforincreasingengagementis to integrate native in-appmessaging and chat capabilities with an easy-to-use community section anduser..."
+                },
+                {
+                    "title": "The Best App for Communication: Streamlining Your Connections -",
+                    "link": "https://www.hubengage.com/employee-communications/best-app-for-communication/",
+                    "snippet": "By eliminating any complexities or learning curves,userscan quickly adapt to theappand start communicating effectively right from the start."
+                },
+                {
+                    "title": "What Are Successful Customer Engagement Communication",
+                    "link": "https://fusionresults.com/effective-communication-strategies-for-customer-engagement/",
+                    "snippet": "Why not amplify your customerengagementby deploying multi-channelcommunicationstrategiesToday s digital landscape offers myriad avenues through ..."
+                },
+                {
+                    "title": "Secure Video Conferencing: 5 Apps and Best Practices | Dialpad",
+                    "link": "https://www.dialpad.com/blog/secure-video-conferencing/",
+                    "snippet": "Dialpad is a complete communications platform that includes not onlyvideocallsbut also messaging, phonecalls,andconferencecalling."
+                },
+                {
+                    "title": "10 Best Secure Private Video Chat Apps in 2025",
+                    "link": "https://www.contus.com/blog/best-secure-video-chat-apps/",
+                    "snippet": "Viber is one of the best apps knownforsecurevideocallingfeatures that use VoIP technology to transmit voicechatsandvideocallsover the ..."
+                },
+                {
+                    "title": "Add advanced security to video chats with the Daily API",
+                    "link": "https://www.daily.co/blog/add-advanced-security-features-to-video-chats-with-the-daily-api/",
+                    "snippet": "If you create a new roomforeveryvideocall, you minimize the amount of time any room name is active,and, therefore, the amount of time a ..."
+                },
+                {
+                    "title": "Video Call Security - Why It's Important | Crewdle",
+                    "link": "https://crewdle.com/blog/video-call-security-why-its-important",
+                    "snippet": "To keep yourvideocallsprivateandsecure, only use trustedapplicationsthat encrypt your data. ...forvirtual meetingsandvideoconference ..."
+                },
+                {
+                    "title": "Video Calls May Not Be Safe, Researchers Say",
+                    "link": "https://www.lifewire.com/video-calls-may-not-be-safe-researchers-say-5112953",
+                    "snippet": "The SDK, provided by the software firm Agora.io , can be used byapplicationsforvoiceandvideocommunication across many platforms, such as mobile ..."
+                },
+                {
+                    "title": "Which Video Chat Apps Offer the Best Privacy and Encryption? |",
+                    "link": "https://lifehacker.com/which-video-chat-apps-offer-the-best-privacy-and-encryp-1843886613",
+                    "snippet": "... by-side comparisons of 28 of the most-usedvideochatappsandcovers features, limitations,securityandpricing information (where applicable)for..."
+                },
+                {
+                    "title": "Leading Random Video Chat with Strangers Video Resolution",
+                    "link": "https://www.capmannews.com/1079/leading-random-video-chat-with-strangers-video-resolution-options-in-2025/",
+                    "snippet": "... you ever wondered how technology is transforming the manner we interact with people? Voiceandvideochatapps are no longer simply mechanismsfor..."
+                },
+                {
+                    "title": "Common Issues And Solutions When Using A Video Chat SDK |",
+                    "link": "https://voxvalley.com/common-issues-and-solutions-when-using-a-video-chat-sdk/",
+                    "snippet": "Solution: When using avideochatSDK, it \u2019 s crucial to pick a platform that has end-to-end encryptionandothersecuritymeasuresto assure ..."
+                },
+                {
+                    "title": "Ensuring Your Safety on Video Calls: A Comprehensive Guide",
+                    "link": "https://www.internetsafetystatistics.com/safety-on-video-calls-guide/",
+                    "snippet": "...forvideocallsafety, you can ensure your online ... End-to-end encryption is crucialforensuring that yourvideocallsremain privateandsecure."
+                },
+                {
+                    "title": "Premier Random Video Chat App Security Features Explained for",
+                    "link": "https://bestseos.net/1031/premier-random-video-chat-app-security-features-explained-for-2025/",
+                    "snippet": "Brace yourself to discover the premier randomchatvideofor2025 services, focusing on client satisfactionandprivacy."
+                },
+                {
+                    "title": "Mobile Messaging Apps Market Size, Competitive Assessment ...",
+                    "link": "https://www.verifiedmarketreports.com/product/mobile-messaging-apps-market-size-and-forecast/",
+                    "snippet": "Access detailed insights on the Mobile MessagingAppsMarket, forecasted to rise from 80 billion USD in 2024 to 120 billion USD by 2033, at a CAGR of 5.5%. The report examines criticalmarkettrends, key segments, and growth dynamics."
+                },
+                {
+                    "title": "Messaging Apps Forecast and Market Tracker Omdia",
+                    "link": "https://omdia.tech.informa.com/collections/messaging-apps-forecast-and-market-tracker",
+                    "snippet": "Jan 6, 2025 \u00b7This research collection providesmarketforecasts which predict growth trends in total service revenue and ARPU, mobile and fixed users, and annual messaging traffic in eight regions and 67 countries."
+                },
+                {
+                    "title": "Mobile Messaging Market | Global Market Analysis Report - 2035",
+                    "link": "https://www.futuremarketinsights.com/reports/mobile-messaging-market",
+                    "snippet": "Sep 9, 2025 \u00b7The mobile messagingmarketis experiencing robust growth as consumers and enterprises increasingly rely on instantcommunicationplatforms for both personal and professional interactions."
+                },
+                {
+                    "title": "Communication Software Market Share & Size 2031 Outlook",
+                    "link": "https://www.mordorintelligence.com/industry-reports/communication-software-market",
+                    "snippet": "Jan 21, 2026 \u00b7Comparemarketsize and growth ofCommunicationSoftwareMarketwith othermarketsin Technology, Media and Telecom Industry"
+                },
+                {
+                    "title": "Mobile Messaging Apps Market Size, Dynamics, Insights and ...",
+                    "link": "https://www.marketresearchintellect.com/product/mobile-messaging-apps-market/",
+                    "snippet": "The Mobile MessagingAppsMarketreport provides a comprehensive and meticulously structuredanalysis, delivering an in-depth evaluation of the industry and its projected evolution from 2026 to 2033."
+                },
+                {
+                    "title": "Global Mobile Messaging Apps Market 2025-2033: Trends ...",
+                    "link": "https://www.linkedin.com/pulse/global-mobile-messaging-apps-market-2025-2033-trends-erhhe/",
+                    "snippet": "Sep 18, 2025 \u00b7This report on the Global Mobile MessagingAppsMarketstands out by delivering a comprehensive, forward-lookinganalysisthat goes beyond surface-level insights."
+                },
+                {
+                    "title": "MarketResearch for Startup - OSSystem Blog about IT news...",
+                    "link": "https://os-system.com/blog/mobile-app-market-research-full-guide/",
+                    "snippet": "Marketingresearch stages for mobileapplications.Marketanalysisassists you in determining exactly what it is that your buyers desire from you. You\u2019d be able to come up with viable solutions for yourappafter you understand the expectations of your consumers."
+                },
+                {
+                    "title": "TopCommunicationAppsRanking - Most Popular... | Similarweb",
+                    "link": "https://www.similarweb.com/top-apps/google/germany/communication/",
+                    "snippet": "TopCommunicationAndroidAppsRanking in Germany. See the full list of Germany AndroidCommunicationappsfor February 24, and read the fullanalysisbelow."
+                },
+                {
+                    "title": "Near FieldCommunicationTesterMarket:AnalysisofMarketEntry...",
+                    "link": "https://www.linkedin.com/pulse/near-field-communication-tester-market-analysis-a6ylf",
+                    "snippet": "The demand for Near FieldCommunication(NFC) testers is primarily driven by the rapid adoption of contactless payment systems, mobile devices, and IoTapplications.Comprehensive SegmentationAnalysisofthe Near FieldCommunicationTesterMarket."
+                },
+                {
+                    "title": "Search listening tool formarket, customer... - AnswerThePublic",
+                    "link": "https://answerthepublic.com/",
+                    "snippet": "Strategiccommunicationfor perception.Focus areas. Data Analytics & Insights. Gain a deeper understanding of your customers andmarketingperformance through forecasting, full-funnel exploration, and campaign impactanalyses. Dashboard Development."
+                }
+            ],
+            "evaluation": {
+                "idea_summary": "An app that allows users to connect with each other through text, voice, and video calls.",
+                "category": "Social Networking",
+                "similar_existing_concepts": [
+                    "WhatsApp",
+                    "Skype",
+                    "Zoom",
+                    "Facebook Messenger",
+                    "Discord"
+                ],
+                "novelty_score": 2,
+                "feasibility_score": 5,
+                "core_flaws": [
+                    "The market is saturated with similar apps, making it difficult to stand out.",
+                    "Users may not see the need for another app when existing solutions are already widely used.",
+                    "Monetization strategies are unclear; many existing apps offer free services."
+                ],
+                "hidden_assumptions": [
+                    "Users are looking for yet another platform for communication.",
+                    "The app will attract a significant user base without a unique selling proposition.",
+                    "Users will be willing to switch from their current preferred apps."
+                ],
+                "improvement_directions": [
+                    "Identify a niche or unique feature that differentiates the app from competitors.",
+                    "Consider integrating additional functionalities, such as social networking features or community-building tools.",
+                    "Explore partnerships or integrations with existing platforms to leverage their user base."
+                ],
+                "brutal_truth": "Creating a new communication app in a crowded market is highly challenging and requires a unique angle or feature to attract users. Without a clear differentiation, this idea is unlikely to gain traction."
+            }
+        }
+    },
+    {
+        "id": 13,
+        "timestamp": "2026-03-07T12:06:28.223820",
+        "raw_idea": "Am thinking of Unique cafe in bangalore, where there will be pottery experience with cafe. People and create through pottery for them and enjoy the cafe",
+        "analysis": {
+            "research": [
+                {
+                    "title": "Klayworkz Barista-KlayBar Art Cafe | Bangalore\u2019s Best Caf\u00e9 ...",
+                    "link": "https://www.klaybar.net/",
+                    "snippet": "Located in JP Nagar,Bengaluru, we offer auniqueexperience that blends gourmet dining with hands-onpotteryand ceramic painting. Whether you're here to savor handcrafted pizzas, fresh hydroponic produce, or unwind with apotterysession, KlayBar is the perfect spot to eat, create, and connect."
+                },
+                {
+                    "title": "Pottery Cafe Bangalore - Instagram",
+                    "link": "https://www.instagram.com/popular/pottery-cafe-bangalore/",
+                    "snippet": "Watch short videos aboutpotterycafebangalorefrom people around the world.CafesBangalore,CafeBangalore, Bangalor And More..."
+                },
+                {
+                    "title": "Bistro Claytopia | Bangalore - FacebookKlayworkz Barista Art Cafe, Jp-nagar, Bengaluru - Hogr'Sakkath' experiences in Bangalore to make you see the city ...",
+                    "link": "https://www.facebook.com/bistroclaytopia/",
+                    "snippet": "Bangalore's first paint-your-ownpotterystudio and bistro! A place where you can eat while you painYou can enjoy delicious food and drinks, explore your artistic side with ceramic painting andpottery, or simply relax and soak in the atmosphere. They also host regular events, making it a fun and lively spot for all ages.Sep 4, 2025 \u00b7Bangalorehas a lot more to offer than bars, breweries, darshinis, and great year-round weather. Here\u2019s our list of fun experiences to sign up for: think karting tracks, cultural hubs,potterycafes, craft spirit labs, and more."
+                },
+                {
+                    "title": "Klayworkz Barista Art Cafe, Jp-nagar, Bengaluru - Hogr",
+                    "link": "https://hogr.app/bengaluru/klayworkz-barista-art-cafe/jp-nagar",
+                    "snippet": "You can enjoy delicious food and drinks, explore your artistic side with ceramic painting andpottery, or simply relax and soak in the atmosphere. They also host regular events, making it a fun and lively spot for all ages."
+                },
+                {
+                    "title": "'Sakkath' experiences in Bangalore to make you see the city ...",
+                    "link": "https://www.lifestyleasia.com/ind/travel/india/unique-interesting-experiences-in-bangalore-food-national-park-culture-art/",
+                    "snippet": "Sep 4, 2025 \u00b7Bangalorehas a lot more to offer than bars, breweries, darshinis, and great year-round weather. Here\u2019s our list of fun experiences to sign up for: think karting tracks, cultural hubs,potterycafes, craft spirit labs, and more."
+                },
+                {
+                    "title": "Menu ofCafeConcepts, Bommanahalli,Bangalore",
+                    "link": "https://www.zomato.com/or/bangalore/cafe-concepts-bommanahalli-bangalore/menu",
+                    "snippet": "Menu - Check out the Menu ofCafeConceptsBommanahalli,Bangaloreat Zomato for Delivery, Dine-out or Takeaway."
+                },
+                {
+                    "title": "HarryPotterCafeCaledon | TikTok",
+                    "link": "https://www.tiktok.com/discover/harry-potter-cafe-caledon",
+                    "snippet": "RoyaltyCafeHarryPotterexperience, magicalcaf\u00e9sin my city,uniquethemes coffee shops, visit Hogwarts-inspiredcaf\u00e9, travel tips forcafelovers, best romantic getaways with a theme, Hogwarts house comments, how to find HarryPottercafes, enchanting coffee experiences for fans..."
+                },
+                {
+                    "title": "89CaffeConceptsideas to save today |cafedesign,cafeinterior...",
+                    "link": "https://www.pinterest.com/cortezk28/caffe-concepts/",
+                    "snippet": "CaffeConcepts. 89 Pins. \u00b7 1y.Restaurant interior. Whitecafe. We think you\u2019ll love these."
+                },
+                {
+                    "title": "PotteryCaf\u00e9\u2013 London's OriginalPotteryCaf\u00e9",
+                    "link": "https://pottery-cafe.com/",
+                    "snippet": "PotteryCaf\u00e9London - the originalPotteryCaf\u00e9based in Fulham and Battersea."
+                },
+                {
+                    "title": "Todays Gold RateinBangalore, 18, 22 & 24 Carat Gold... - Goodreturns",
+                    "link": "https://www.goodreturns.in/gold-rates/bangalore.html",
+                    "snippet": "Gold RateinBangaloreToday (7 March 2026): Get 18K, 22 Carat & 24 Karat gold rate in Bengaluru & last 10 days gold price based on rupees per gram from GoodReturns."
+                },
+                {
+                    "title": "PotteryWorkshopAt Mud Effects Studio | LBB,Bangalore",
+                    "link": "https://lbb.in/bangalore/pottery-workshop-at-mud-effects-pottery-studio/",
+                    "snippet": "This weekend, sign up for Mud EffectsPotteryStudio'sworkshoponpotteryusing hand-building techniques such as slab, cutting, coil and pinching."
+                },
+                {
+                    "title": "Rainy-Day Fun: Safe & Exciting Things to DoinBangaloreWhen It...",
+                    "link": "https://acouriertracking.com/rainy-day-fun-safe-exciting-things-to-do-in-bangalore-when-it-rains/",
+                    "snippet": "Many studios acrossBangaloreoffer weekendworkshopsin painting,pottery, clay art, and simple crafts for kids and families. Theseworkshopsallow children to focus, create, and explore their imagination while staying warm and dry indoors."
+                },
+                {
+                    "title": "10 Unusual Date Ideas to TryinBangalore",
+                    "link": "https://supertravelr.com/en/trip/india/10-unusual-date-ideas-to-try-in-bangalore-06B8FC5BFA/",
+                    "snippet": "This list toys with outlandish date ideas to tryinBangaloreto reignite the much-needed spark in affairs of the heart. Make no mistake, this list has little to do with fancycaf\u00e9sand more to do with giving thosecaf\u00e9sa run for their money."
+                },
+                {
+                    "title": "POTTERYSTUDIO &CAFEBY ANDRIANI, Lithakia... - Tripadvisor",
+                    "link": "https://www.tripadvisor.com/Restaurant_Review-g775846-d3191306-Reviews-Pottery_Studio_Cafe_by_Andriani-Lithakia_Zakynthos_Ionian_Islands.html",
+                    "snippet": "A greatpotteryshopanda wonderful lady that owns it with her sister with thecafeside. We had a demonstration and information about her life inpottery, very talented.Very chiccafewith ceramicworkshopandshop. Staff were lovely as was the coffee, yogurt, fruit and honey."
+                },
+                {
+                    "title": "PaintingPotteryand Tea in Duluth | TikTok",
+                    "link": "https://www.tiktok.com/discover/painting-pottery-and-tea-in-duluth",
+                    "snippet": "Check out Polar Art Studio forpotteryworkshopsandceramic painting. cutest littlepotterydate with an ariiiii in gloomy weather lol @Arya Patel #fyp #sama28 @ClayCaf\u00e9CutePotteryDate at ClayCaf\u00e9inGloomy Weather."
+                },
+                {
+                    "title": "MITTICAFE|cafesinBangalore|cafes|mitti foundation|Banashankari...",
+                    "link": "https://www.youtube.com/watch?v=tpUidp_wkjc",
+                    "snippet": "A Day Out with Friends | Laughter, Treats & Good Vibes! \u041e\u0421\u0415\u0427\u041a\u0418\u041d: \"\u041e\u043d\u0438 \u0433\u043e\u0442\u043e\u0432\u044f\u0442 \u0447\u0442\u043e-\u0442\u043e \u0441\u0435\u0440\u044c\u0435\u0437\u043d\u043e\u0435\": \u0432\u0431\u0440\u043e\u0441 \u043e\u0442 \u0421\u0412\u0420, \u0447\u0442\u043e \u0432\u0441\u043a\u0440\u044b\u043b\u043e\u0441\u044c \u043f\u0440\u043e \u0424\u0421\u0418\u041d \u0438 \u0424\u0421\u0411, \u041f\u041b\u0415\u041d\u041d\u042b\u0415 Bengaluru Street Food With MARK WIENS! Egg Rice, Avarebele Dosae, Akki Rotti & More..."
+                },
+                {
+                    "title": "Home - LA MERIDIANA",
+                    "link": "https://lameridiana.fi.it/",
+                    "snippet": "Since 1981 La Meridiana offers residential Ceramic Courses andPotteryWorkshopsof one or two weeks for beginners, advanced and professionalpotters."
+                },
+                {
+                    "title": "Art of Living International Center",
+                    "link": "https://bangaloreashram.org/",
+                    "snippet": "our programs art of livingbangaloreashram.advanced meditation programBangaloreashram. Children and Teens. children in a course session."
+                },
+                {
+                    "title": "funworldblr.com",
+                    "link": "https://www.funworldblr.com/",
+                    "snippet": "Application error: a client-side exception has occurred (see the browser console for more information)."
+                },
+                {
+                    "title": "Google",
+                    "link": "https://www.google.com/",
+                    "snippet": "\u041f\u043e\u0438\u0441\u043a \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438 \u0432 \u0438\u043d\u0442\u0435\u0440\u043d\u0435\u0442\u0435: \u0432\u0435\u0431 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u044b, \u043a\u0430\u0440\u0442\u0438\u043d\u043a\u0438, \u0432\u0438\u0434\u0435\u043e \u0438 \u043c\u043d\u043e\u0433\u043e\u0435 \u0434\u0440\u0443\u0433\u043e\u0435."
+                },
+                {
+                    "title": "Sims 4 SmallBusinessIdeas",
+                    "link": "https://ru.pinterest.com/ideas/sims-4-small-business-ideas/929865560801/",
+                    "snippet": "15 SmallBusinessIdeasforyour Sims! Book ShopCafe.PotteryHomeBusinessThe Sims 4Businessesand Hobbies | Sims, Sims building, Sims house. \u041f\u043e\u0441\u0442\u0440\u043e\u0439\u043a\u0438 \u0412 \u0421\u0438\u043c\u0441 4."
+                },
+                {
+                    "title": "10 unusual SmallBusinessideasforThe Sims 4:Businessesand...",
+                    "link": "https://www.destructoid.com/10-unusual-small-business-ideas-for-the-sims-4-businesses-and-hobbies/",
+                    "snippet": "Here are 10 more unusualideasforSmallBusinessesin The Sims 4:Businessesand Hobbies , along with whatbusinessactivities work best for thebusinessidea. All activities mentioned are base game activities, unless otherwise stated."
+                },
+                {
+                    "title": "Best smallbusinessesyou can make with The Sims 4Businesses...",
+                    "link": "https://dotesports.com/the-sims/news/best-small-businesses-you-can-make-with-the-sims-4-businesses-hobbies",
+                    "snippet": "List of smallbusinessideasforThe Sims 4Businesses& Hobbies.With any smallbusinessyou make, you can also mix and match between separateideasas desired. For example, the first smallbusinessI created was a tattoo parlor andpotterystudio with a mini-caf\u00e9."
+                },
+                {
+                    "title": "VerandaPotteryandCafe| TikTok",
+                    "link": "https://www.tiktok.com/discover/veranda-pottery-and-cafe",
+                    "snippet": "Discover videos related to VerandaPotteryandCafeon TikTok. See more videos about Coffee Corner,Pottery,PotteryInspirationIdeas,PotteryPainting, Barista, Cottage Core."
+                },
+                {
+                    "title": "CafeVlog Mini Coffee Shop Cat Bar Kopi Barista Dream... - YouTube",
+                    "link": "https://www.youtube.com/watch?v=MwoBWmFh1Sw",
+                    "snippet": "Thailand , Bangkok StreetInspiration for everyone Minimal Take-away Coffee Concepts Inspire YouDream come to a coffee shopHow to start a small coffee sho..."
+                },
+                {
+                    "title": "214 SmallBusinessIdeasin Morocco to Start This Year - Today Africa",
+                    "link": "https://todayafrica.co/small-business-ideas-in-morocco/",
+                    "snippet": "Easybusinessesyou can start in Morocco today. This blog post will explore 213 smallbusinessideasin Morocco that can thrive. Whether you\u2019re a local looking to start a new venture or an expat seeking opportunities, theseideascan help you navigate the Moroccan market."
+                },
+                {
+                    "title": "PotteryPaintingIdeasForAesthetics & Creativity",
+                    "link": "https://armenianceramics.com/blog/pottery-painting-ideas/",
+                    "snippet": "#image_title.PotteryPaintingIdeas: Creative and Aesthetic Designs for YourPotteryProjects.Potterypainting is more than just a fun hobby. It\u2019s a creative, therapeutic activity that allows you to transform simplepotterypieces into unique works of art."
+                },
+                {
+                    "title": "Google Translate",
+                    "link": "https://translate.google.uz/",
+                    "snippet": "Google's service, offered free of charge, instantly translates words, phrases, and web pages between English and over 100 other languages."
+                },
+                {
+                    "title": "\u0418\u0434\u0435\u0438 \u043d\u0430 \u0442\u0435\u043c\u0443 \u00ab\u041a\u043e\u0444\u0435\u0439\u043d\u0438\u00bb (24) \u0432 2023 \u0433 | \u043a\u043e\u0444\u0435\u0439\u043d\u044f, \u043a\u0430\u0444\u0435, \u0438\u043d\u0442\u0435\u0440\u044c\u0435\u0440\u044b...",
+                    "link": "https://www.pinterest.co.uk/angelasaintp/\u043a\u043e\u0444\u0435\u0439\u043d\u0438/",
+                    "snippet": "CafeInterior, White Interior, Interior Design, White Coffee, Coffee Bar, Yar, Dining Table, Mirror, Studio.Coffee Shot, Coffee Tree, Coffee Drink Recipes, Coffee Drinks, Coffee Barista Photography, Coffee Instagram, Coffee Crafts,BusinessHairstyles, Chutney Recipes."
+                },
+                {
+                    "title": "Google Gemini",
+                    "link": "https://gemini.google.com/app",
+                    "snippet": "Meet Gemini, Google\u2019s AI assistant. Get help with writing, planning, brainstorming, and more. Experience the power of generative AI."
+                },
+                {
+                    "title": "Notoriety: A PAYDAYExperienceCodes (February 2026) - RoCodes",
+                    "link": "https://rocodes.gg/codes/notoriety-a-payday-experience",
+                    "snippet": "Find and redeem the best Roblox Notoriety: A PAYDAYExperiencecodes for February 2026. Redeem 19 working promo codes with RoCodes.Notoriety: A PAYDAYExperienceis a Robloxexperiencecreated by Moonstone Games on January 29, 2010."
+                },
+                {
+                    "title": "MittiCafe: an NGO inBangaloremaking a difference!",
+                    "link": "https://give.do/blog/mitti-cafe-an-ngo-in-bangalore-making-a-difference/",
+                    "snippet": "MittiCafeis an NGO inBangaloreand other areas with its mission to empower the disabled and care for the elderly with food and nutrition."
+                },
+                {
+                    "title": "PharmEasy \u2013 Online Pharmacy & Medical Store with Healthcare...",
+                    "link": "https://pharmeasy.in/",
+                    "snippet": "Get genuine products, great discounts, and fast doorstep delivery. Used by 50 lakhs+customersin India in 1200+ cities likeBangalore, Delhi, Mumbai, Kolkata, Hyderabad, Gurgaon, Noida, Pune, etc."
+                },
+                {
+                    "title": "Ulysses | ThePoetryFoundation",
+                    "link": "https://www.poetryfoundation.org/poems/45392/ulysses",
+                    "snippet": "Poems&Poets.Yet allexperienceis an arch wherethro'. Gleams that untravell'd world whose margin fades. For ever and forever when I move. How dull it is to pause, to make an end, To rust unburnish'd, not to shine in use! As tho' to breathe were life! Life piled on life."
+                },
+                {
+                    "title": "trustpilot.com",
+                    "link": "https://www.trustpilot.com/",
+                    "snippet": "CustomerFrom 2000+ ratings."
+                },
+                {
+                    "title": "More than just food: 5 artcaf\u00e9sin Bengaluru you ought to try",
+                    "link": "https://www.cntraveller.in/story/more-than-just-food-5-art-cafes-in-bengaluru-you-ought-to-try/",
+                    "snippet": "artcafesin bengaluru. Food is not just about flavour. It is about sight, smell, texture and the entireexperienceof satiating the senses. Then why shouldn\u2019t ambience play a major role in your culinary expeditions?"
+                },
+                {
+                    "title": "The AI workspace that works for you. | Notion",
+                    "link": "https://www.notion.com/",
+                    "snippet": "Discover. What's New.Customerstories."
+                },
+                {
+                    "title": "Cursor: The best way to code with AI",
+                    "link": "https://cursor.com/home?from=agents",
+                    "snippet": "\u201cIt's definitely becoming more fun to be a programmer. We are at the 1% of what's possible, and it's in interactiveexperienceslike Cursor where models like GPT-5 shine brightest.\u201d Greg Brockman President, OpenAI."
+                },
+                {
+                    "title": "\u2018When infrastructure is well maintained\u2019: Flyer praises smooth road to...",
+                    "link": "https://www.hindustantimes.com/trending/when-infrastructure-is-well-maintained-flyer-praises-smooth-road-to-bengaluru-airport-s-terminal-2-101772517052476.html",
+                    "snippet": "Thecustomer, who visited an outlet of The RameshwaramCafeat Bengaluru\u2019s Kempegowda International Airport, expressed shock at the pricing, noting that the meal cost nearly four times its usual rate outside the terminal."
+                },
+                {
+                    "title": "Best New Restaurants And Cafes To Try In Bangalore In 2025",
+                    "link": "https://www.travelandleisureasia.com/in/dining/food/new-restaurants-and-cafes-in-bangalore-2025/",
+                    "snippet": "Image Credit: Royal China New Restaurants andCafesinBangalore: From the flagship space of a beloved coffee institution to a vegetarian destination that deals in nostalgic ingredients, a slew of new restaurants andcafesinBangalorepromises to make August 2025 fun. Here's a look at a few that we think are worth their salt. Comforting P\u00e3o De Queijo, rich Tonkotsu Ramen, spicy Pork Chilli ..."
+                },
+                {
+                    "title": "Top New Cafes And Restaurants In Bengaluru You Must Not Miss",
+                    "link": "https://www.slurrp.com/article/top-new-cafes-and-restaurants-in-bengaluru-you-must-not-miss-1726827043426",
+                    "snippet": "From unmatched street food joints with regional specialities to high-endcafes, bars, and restaurants that offer global cuisines, Bengaluru is not just a tech hub but also a haven for foodies. If you want to try new eateries in the city, here are some of the best ones you should not miss."
+                },
+                {
+                    "title": "Top 20 Best Cafes in Bangalore: The Ultimate Guide for 2025",
+                    "link": "https://bestofbengaluru.com/food/top-20-best-cafes-in-bangalore/",
+                    "snippet": "DiscoverBangalore'stop 20cafesfor 2025! From cozy work spots to lively hangouts, find the best coffee, food, and vibes in the city."
+                },
+                {
+                    "title": "15 Hidden Cafes in Bengaluru You Must Visit",
+                    "link": "https://secretattractions.com/bengaluru-hidden-cafes",
+                    "snippet": "Explore Bengaluru's hiddencafes, from cozy bookshops to artsy havens, and experience the city's vibrant culinary culture like never before."
+                },
+                {
+                    "title": "Top New Cafes And Restaurants In Bengaluru You Must Not Miss - MSN",
+                    "link": "https://www.msn.com/en-in/foodanddrink/other/top-new-cafes-and-restaurants-in-bengaluru-you-must-not-miss/ar-AA1qTPJv",
+                    "snippet": "From unmatched street food joints with regional specialities to high-endcafes, bars, and restaurants that offer global cuisines, Bengaluru is not just a tech hub but also a haven for foodies."
+                },
+                {
+                    "title": "25 Best Cafes in Bangalore - 2026 (Photos & Reviews) - Thrillophilia",
+                    "link": "https://www.thrillophilia.com/the-finest-cafes-of-bangalore",
+                    "snippet": "CafesinBangalore: List ofBangalorecafesinclude Dyu ArtCafe, The Hole In The WallCafe, Om MadeCafe, Matteo Coffea, MarzipanCafe& many more."
+                },
+                {
+                    "title": "New cafes in Bangalore for the best steaming cup of 'Joe this December",
+                    "link": "https://www.lifestyleasia.com/ind/dining/food/best-new-cafes-in-bangalore/",
+                    "snippet": "French viennoiserie to caffeinated creations \u2014Bangalore'scafeshave some of the best menus in India. Here's what's popping."
+                },
+                {
+                    "title": "Best Cafes in Bangalore 2025 - Specialty Coffee & Instagrammable Spots ...",
+                    "link": "https://www.explorebangalore.com/cafes",
+                    "snippet": "DiscoverBangalore's50 bestcafesranked by reviews \u2014 from Lazy Suzy and The Kind Roastery in Indiranagar to Third Wave Coffee and Dyu ArtCafeinKoramangala. Find specialty coffee, artisan bakeries, and work-friendly spaces with ratings, prices, and travel times."
+                },
+                {
+                    "title": "Experiential cafes serve coffee along with spaces to unwind",
+                    "link": "https://timesofindia.indiatimes.com/city/bengaluru/experiential-cafes-serve-coffee-along-with-spaces-to-unwind/articleshow/111325883.cms",
+                    "snippet": "Bengaluru: Known for its vibrantcafeculture and love for aromatic coffee, the city thrives on unique and aestheticcaf\u00e9s."
+                },
+                {
+                    "title": "ThrivingAt13: We pick out 13 new caf\u00e9s in Bengaluru",
+                    "link": "https://www.indulgexpress.com/food/food-bengaluru/2023/Dec/28/thriving-at-13we-pick-out-13-new-cafeacutes-in-bengaluruthat-opened-doors-this-year-56358.html",
+                    "snippet": "Bengaluru, where the aroma of freshly ground coffee mingles with the city's entrepreneurial spirit, is home to acaf\u00e9 culture as diverse as the city itself. From French viennoiseries to caffeinated concoctions, thesecaf\u00e9sredefine the culinary landscape. Imagine acaf\u00e9 not only as a place for casual rendezvous but contemporary go-to spots for work meetings and friendly get-togethers ..."
+                }
+            ],
+            "evaluation": {
+                "idea_summary": "A unique cafe in Bangalore that combines pottery experiences with a cafe setting, allowing customers to create pottery while enjoying food and drinks.",
+                "category": "Cafe and Art Experience",
+                "similar_existing_concepts": [
+                    "Klayworkz Barista-KlayBar Art Cafe",
+                    "Bistro Claytopia",
+                    "Pottery Cafe Bangalore"
+                ],
+                "novelty_score": 3,
+                "feasibility_score": 6,
+                "core_flaws": [
+                    "The concept is not unique as there are already established pottery cafes in Bangalore.",
+                    "The market may be saturated with similar offerings, making it hard to stand out."
+                ],
+                "hidden_assumptions": [
+                    "Customers will be interested in both pottery and cafe experiences simultaneously.",
+                    "There is sufficient demand for a combined pottery and cafe experience in Bangalore."
+                ],
+                "improvement_directions": [
+                    "Focus on a unique theme or niche within the pottery experience (e.g., specific pottery styles, collaborations with local artists).",
+                    "Consider offering workshops or events that differentiate your cafe from existing ones.",
+                    "Explore partnerships with local artists or pottery experts to enhance credibility and attract customers."
+                ],
+                "brutal_truth": "Your idea lacks originality in a market that already has several similar concepts. To succeed, you need to find a unique angle or experience that sets your cafe apart from the competition."
+            }
+        }
     }
 ]
