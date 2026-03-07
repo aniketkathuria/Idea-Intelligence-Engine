@@ -1,0 +1,27 @@
+[
+    {
+        "idea_ids": [
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+        ],
+        "core_shared_theme": "Waffle-shaped ice cream cones",
+        "merged_super_idea_summary": "The concept of a waffle-shaped ice cream cone, which combines the traditional waffle cone's shape and texture with the functionality of an ice cream cone, potentially offering unique flavor experiences.",
+        "overlap_analysis": {
+            "Idea ID 10": "Similar concept, focuses on unique texture and flavor experience.",
+            "Idea ID 11": "Directly aligns with the new idea, emphasizing the combination of shape and functionality.",
+            "Idea ID 12": "Reiterates the design aspect of the waffle-shaped cone.",
+            "Idea ID 13": "Expresses the intent to create a waffle-shaped cone, similar to the new idea.",
+            "Idea ID 14": "Combines the textures and flavors of ice cream and waffle, closely related to the new idea.",
+            "Idea ID 15": "Acknowledges the established nature of the concept, similar to the new idea."
+        },
+        "strategic_recommendation": "Consider developing a marketing strategy that highlights the unique textures and flavors of the waffle-shaped ice cream cone to differentiate it from traditional cones.",
+        "conversational_reflection": "The ideas presented are variations on a common theme, showcasing different aspects of the waffle-shaped ice cream cone. They reflect a consistent interest in merging the characteristics of waffles and ice cream cones.",
+        "cluster_id": 1,
+        "created_at": "2026-03-07T18:07:16.219070+00:00"
+    }
+]
