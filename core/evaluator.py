@@ -3,9 +3,24 @@ from openai import OpenAI
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
+def evaluate_idea(raw_text, research_results):
+    formatted_research = ""
 
-SYSTEM_PROMPT = """
+    for item in research_results[:15]:  # limit context
+        formatted_research += f"""
+Title: {item['title']}
+Snippet: {item['snippet']}
+Link: {item['link']}
+"""
+
+    prompt = f"""
 You are a brutally honest idea evaluator.
+
+User Idea:
+{raw_text}
+
+Web Research Findings:
+{formatted_research}
 
 Rules:
 - Be direct.
@@ -14,10 +29,11 @@ Rules:
 - Rate novelty from 0-10.
 - Rate feasibility from 0-10.
 - Do NOT sugarcoat.
-- Do NOT insult the person.
+- Do NOT insult.
 - Always provide improvement direction.
+- Return ONLY valid JSON.
 
-Return structured JSON with keys:
+Return JSON with keys:
 idea_summary
 category
 similar_existing_concepts
@@ -29,14 +45,9 @@ improvement_directions
 brutal_truth
 """
 
-
-def evaluate_idea(raw_text):
     response = client.chat.completions.create(
         model="gpt-4o-mini",
-        messages=[
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": raw_text}
-        ],
+        messages=[{"role": "user", "content": prompt}],
         temperature=0.4
     )
 

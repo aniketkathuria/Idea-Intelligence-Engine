@@ -112,5 +112,264 @@
             ],
             "brutal_truth": "This idea is not novel enough to stand out in a crowded market, and the feasibility is questionable due to safety and engagement issues. You need to rethink the concept to provide a unique angle or additional value that existing apps do not offer."
         }
+    },
+    {
+        "id": 8,
+        "timestamp": "2026-03-07T11:39:55.049972",
+        "raw_idea": "Icrecream cone in shape of Waffle",
+        "analysis": {
+            "research": [],
+            "evaluation": {
+                "idea_summary": "Ice cream cone designed to resemble a waffle, potentially combining the textures and flavors of both.",
+                "category": "Food & Beverage",
+                "similar_existing_concepts": [
+                    "Waffle cones",
+                    "Ice cream served in waffle bowls",
+                    "Waffle sandwiches with ice cream"
+                ],
+                "novelty_score": 4,
+                "feasibility_score": 6,
+                "core_flaws": [
+                    "Waffle cones already exist, making the idea less novel.",
+                    "The structural integrity of a waffle may not hold up well when filled with ice cream, leading to a mess.",
+                    "Waffles typically have a different texture and flavor profile compared to traditional cones, which may not be appealing to all consumers."
+                ],
+                "hidden_assumptions": [
+                    "Consumers will prefer a waffle-shaped cone over traditional cones.",
+                    "The texture of a waffle will enhance the ice cream experience rather than detract from it.",
+                    "There is a market demand for a new type of cone that resembles a waffle."
+                ],
+                "improvement_directions": [
+                    "Experiment with hybrid textures that maintain structural integrity while mimicking a waffle's appearance.",
+                    "Conduct market research to gauge consumer interest in a waffle-shaped cone versus existing options.",
+                    "Consider flavor pairings that complement the waffle texture, potentially enhancing the overall experience."
+                ],
+                "brutal_truth": "This idea lacks originality since waffle cones are already a popular product. To stand out, you need to innovate beyond just the shape and consider how to improve the overall eating experience."
+            }
+        }
+    },
+    {
+        "id": 9,
+        "timestamp": "2026-03-07T11:47:29.923510",
+        "raw_idea": "Idea is to make icecream cones in form of traingular waffle",
+        "analysis": {
+            "research": [],
+            "evaluation": {
+                "idea_summary": "Creating ice cream cones in the shape of triangular waffles.",
+                "category": "Food & Beverage",
+                "similar_existing_concepts": [
+                    "Waffle cones",
+                    "Triangular-shaped cookies",
+                    "Ice cream served in waffle bowls"
+                ],
+                "novelty_score": 4,
+                "feasibility_score": 6,
+                "core_flaws": [
+                    "Triangular shape may not hold ice cream as effectively as traditional cones.",
+                    "Waffle texture could lead to structural integrity issues when filled with ice cream.",
+                    "Market saturation with existing cone types may limit consumer interest."
+                ],
+                "hidden_assumptions": [
+                    "Consumers will prefer a triangular shape over traditional cone shapes.",
+                    "The production process for triangular waffles will be cost-effective.",
+                    "There is a significant demand for new cone shapes in the ice cream market."
+                ],
+                "improvement_directions": [
+                    "Conduct market research to gauge consumer interest in triangular cones.",
+                    "Experiment with different waffle recipes to enhance structural integrity.",
+                    "Consider unique flavor infusions or toppings that could differentiate the product."
+                ],
+                "brutal_truth": "The idea lacks originality and faces practical challenges in execution. Without a clear unique selling proposition or consumer demand, it risks being just another novelty item that may not succeed in a crowded market."
+            }
+        }
+    },
+    {
+        "id": 10,
+        "timestamp": "2026-03-07T11:51:16.356712",
+        "raw_idea": "Idea is to make icecream cones in form of traingular waffle",
+        "analysis": {
+            "research": [],
+            "evaluation": {
+                "idea_summary": "Creating ice cream cones in the shape of triangular waffles.",
+                "category": "Food & Beverage",
+                "similar_existing_concepts": [
+                    "Waffle cones",
+                    "Triangular-shaped pastries",
+                    "Ice cream served in various edible containers"
+                ],
+                "novelty_score": 4,
+                "feasibility_score": 6,
+                "core_flaws": [
+                    "Triangular waffle cones may not hold ice cream as well as traditional cones.",
+                    "The shape may complicate production and increase costs.",
+                    "Consumers may not see a significant value in the shape change."
+                ],
+                "hidden_assumptions": [
+                    "Consumers prefer novelty in ice cream presentation over functionality.",
+                    "The triangular shape will enhance the eating experience.",
+                    "Production processes can easily adapt to create this new shape."
+                ],
+                "improvement_directions": [
+                    "Conduct market research to assess consumer interest in the triangular shape.",
+                    "Prototype the cone to test its structural integrity and usability.",
+                    "Consider flavor variations or additional features (e.g., filled cones) to enhance appeal."
+                ],
+                "brutal_truth": "The idea lacks strong novelty and may face practical challenges in production and consumer acceptance. Focus on improving functionality and market fit."
+            }
+        }
+    },
+    {
+        "id": 11,
+        "timestamp": "2026-03-07T11:57:29.476133",
+        "raw_idea": "Idea is to make icecream cones in form of traingular waffle",
+        "analysis": {
+            "research": [
+                {
+                    "title": "Homemade Waffle Cones Recipe | King Arthur Baking",
+                    "link": "https://www.kingarthurbaking.com/recipes/homemade-waffle-cones-recipe",
+                    "snippet": "This is therecipethat Jeni Britton Bauer developed for theconesat her Jeni's SplendidIceCreamshops. She says, \"My homemadewaffleconesrecipeis the best out there."
+                },
+                {
+                    "title": "Ice Cream Cones Recipe (Homemade always-crispy waffle cones)",
+                    "link": "https://msshiandmrhe.com/ice-cream-cones/",
+                    "snippet": "With this easy-to-followrecipe, whether it's a scorching summer or a chilling winter day, you can enjoy crispy and delicious homemadeicecreamconespaired with your favoriteicecreamflavors."
+                },
+                {
+                    "title": "How to Make Waffle Cones - Everyday Pie",
+                    "link": "https://everydaypie.com/how-to-make-waffle-cones/",
+                    "snippet": "Create crispy, goldenwaffleconesat home that add a touch of magic to youricecream. ThisWaffleConeRecipeGuide will walk you through the simple process, including the equipment you need, tips for success, and how to store them."
+                },
+                {
+                    "title": "Waffle Cone Recipe: 7 Proven Steps to Crispy Perfection!",
+                    "link": "https://yummyandeasy.com/waffle-cone-recipe/",
+                    "snippet": "Learn how to make the perfect crispywaffleconesat home with this easywaffleconerecipe. Step-by-step guide, tips, and flavor variations!"
+                },
+                {
+                    "title": "Homemade Waffle Cone Recipe - Chef Billy Parisi",
+                    "link": "https://www.billyparisi.com/homemade-waffle-cones/",
+                    "snippet": "This fun homemadeicewaffleconerecipecomes together in minutes and perfectly accompanies your favoriteicecream."
+                },
+                {
+                    "title": "Ice Cream Cone",
+                    "link": "https://www.thespruceeats.com/ice-cream-cone-4688894",
+                    "snippet": "Then, while the cookies are still warm and pliable, they re wrapped around acone-shaped moldtoform the classicicecreamconetriangularshape."
+                },
+                {
+                    "title": "Waffle Cone Sleeves | Waffle Cone Jackets - Boxes Xpert Hub",
+                    "link": "https://boxesxperthub.us/markets/food-and-beverages-boxes/waffle-cone-sleeves/",
+                    "snippet": "...toour clients; elegantly customized ... Its smooth surface offers a sleek touchtoyouricecreamconejackets andmakesit look more demanding."
+                },
+                {
+                    "title": "The 5 Best Commercial Waffle Cone Makers in 2025",
+                    "link": "https://thekitchenarian.com/best-commercial-waffle-cone-maker/",
+                    "snippet": "Doublewaffleconemakers are perfectforsatisfying the demand ofconesin a busyicecreamparlor. ...Tomakecrispyicecreamcones, the two ..."
+                },
+                {
+                    "title": "coffee - waffle cones for serving lattes - Seasoned Advice",
+                    "link": "https://cooking.stackexchange.com/questions/90587/waffle-cones-for-serving-lattes",
+                    "snippet": "have you ever seen this done successfully ? Using the lattetomakeanicecream/custard/yogurt might get the flavor profile you are lookingfor"
+                },
+                {
+                    "title": "Mini Ice Cream Cones - Pizzazzerie",
+                    "link": "https://pizzazzerie.com/recipes/mini-ice-cream-cones/",
+                    "snippet": "... popcorn in San Diego canmakehomemade miniaturewaffleconesfor$1 each and can ship most anywhere: http://www.crunchtimepopcorn.com/ice-cream..."
+                },
+                {
+                    "title": "Best Ice Cream Cone Maker In 2025 {Buying Guide} - Welding FAQ",
+                    "link": "https://weldingfaq.com/best-ice-cream-cone-maker/",
+                    "snippet": "Non-stick WaffleConeMachine- Theicecreamegg rollmoldmade of high-quality stainless steel, sturdy and durable, The waffleconemaker has a non ..."
+                },
+                {
+                    "title": "Ice cream stuff - Artcop",
+                    "link": "https://artcop.eu/gb/99-ice-cream-stuff",
+                    "snippet": "PS02-30x20 container, waffleconedispenser foricecreamconeholder ... Magazine dispenser foricecreamcones, container, cover - model PS03."
+                },
+                {
+                    "title": "Vintage Ice Cream Scoop Identification and Value Guide",
+                    "link": "https://www.txantiquemall.com/vintage-ice-cream-scoop/",
+                    "snippet": "...icecreamscoops were perfect for a dish orcone...Triangularvintageicecreamscoops \u2013 These created the ideal shape for topping a pie slice."
+                },
+                {
+                    "title": "All \u2013 Tagged \"category_sushi-molds\" \u2013",
+                    "link": "https://edenrestaurantsupply.com/collections/all/category_sushi-molds",
+                    "snippet": "...IceCreamBowls ... egg-molds...ice-cream-bowls"
+                },
+                {
+                    "title": "How do you put ice cream in a cone on ice cream dash? - Answers",
+                    "link": "https://www.answers.com/food-ec/How_do_you_put_ice_cream_in_a_cone_on_ice_cream_dash",
+                    "snippet": "They were reusable but with no running water in mosticecreamstalls the glassconeswere often not washed. ...ofthe order and sizeoftheice..."
+                },
+                {
+                    "title": "[Top 10] Best Commercial Waffle Makers With Buyer Reviews Of",
+                    "link": "https://www.annisarestaurant.com/best-commercial-waffle-makers/",
+                    "snippet": "Four rubber feet attached to the bottomofthisicecreamconemaker can enhance the stabilityofour machine, keeping it still during operation."
+                },
+                {
+                    "title": "Ice Cream and Fruit Salad - Summer rocks step by step \u2013",
+                    "link": "https://www.lifeofcolourproducts.com/blogs/rock-painting/summer-rock-painting-ideas-to-inspire-you",
+                    "snippet": "Draw youricecreamsusing a pencil, you\u2019ll need to make theconewith awaffletexture and theicecreamballs - you can plan the toppings at this ..."
+                },
+                {
+                    "title": "Custom Cone Sleeves: A Complete Guide by CustomBoxesMarket",
+                    "link": "https://customboxesmarket.com/custom-cone-sleeves-a-complete-guide-by-customboxesmarket/",
+                    "snippet": "We hope it was a bit easierforyou to understand why alloftheicecreambusinesses need high-standardconesleeves."
+                },
+                {
+                    "title": "describe a cone",
+                    "link": "https://unitywebgl.playtcubed.com/1mkxl/describe-a-cone.html",
+                    "snippet": "If you re like most kids, you knowofaconeas the thing you puticecreamin, but it s so much more than just partofa tasty treat."
+                },
+                {
+                    "title": "How to RotateIceCreamintoTriangleShape| TikTok",
+                    "link": "https://www.tiktok.com/discover/how-to-rotate-ice-cream-into-triangle-shape",
+                    "snippet": "Createyour own custom-shapedconeicecreamwith our easy-to-use machine! Perfect for adding acreativetwist to your treats."
+                },
+                {
+                    "title": "TriangleIceCreamConePattern",
+                    "link": "https://www.pinterest.com/pin/triangle-ice-cream-cone-pattern--36310340742645240/",
+                    "snippet": "Explore a fun tutorial tocreateatriangle-shapedicecreamconepattern. Perfect for card toppers and first birthdays!TransparentIceCreamConePNG Clipart transparent PNG Image, which you can use for differentdesignsand projects. Download Here."
+                },
+                {
+                    "title": "How to DrawIceCream",
+                    "link": "https://www.drawingforall.net/how-to-draw-an-ice-cream/",
+                    "snippet": "This tutorial demonstrates how to depict atriangularconewith a round scoop oficecreamon top, though both parts of this popular treat can vary quite a bit. For example, theicecreamon top may not be spherical \u2013 it can have a differentshapeif it was dispensed from a soft-serve machine."
+                },
+                {
+                    "title": "IceCream\u0418\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f: \u043f\u0440\u043e\u0441\u043c\u0430\u0442\u0440\u0438\u0432\u0430\u0439\u0442\u0435 \u0441\u0442\u043e\u043a\u043e\u0432\u044b\u0435... | Adobe Stock",
+                    "link": "https://stock.adobe.com/ru/search/images?k=ice+cream",
+                    "snippet": "Variety oficecreamcones.Icecreamscoop on waffleconeon transparent background cutout, PNG file. Many assorted different flavour Mockup template for artworkdesign."
+                },
+                {
+                    "title": "Product shooting for China's Nestl\u00e9 Drumstickicecreams:: Behance",
+                    "link": "https://www.behance.net/gallery/11781451/Nestl-Ice-Creams",
+                    "snippet": "icecreamconedrumstick china product nestle.Cut version of the differentconeflavours. Vanilla. Chocolate."
+                }
+            ],
+            "evaluation": {
+                "idea_summary": "The idea is to create ice cream cones in the shape of triangular waffles.",
+                "category": "Food & Beverage",
+                "similar_existing_concepts": [
+                    "Traditional waffle cones",
+                    "Triangular-shaped ice cream cones",
+                    "Homemade waffle cone recipes"
+                ],
+                "novelty_score": 3,
+                "feasibility_score": 7,
+                "core_flaws": [
+                    "Triangular waffle cones already exist in various forms, which diminishes the uniqueness of the idea.",
+                    "The practicality of producing triangular cones on a large scale may pose challenges compared to traditional cone shapes."
+                ],
+                "hidden_assumptions": [
+                    "Consumers are looking for a new shape of ice cream cone rather than just a new flavor or experience.",
+                    "The triangular shape will provide a significant advantage over existing cone shapes in terms of usability or aesthetics."
+                ],
+                "improvement_directions": [
+                    "Consider incorporating unique flavors or ingredients into the triangular waffle cones to differentiate them further.",
+                    "Explore innovative serving methods or pairing ideas that enhance the triangular cone experience.",
+                    "Conduct market research to determine consumer interest in triangular cones versus traditional options."
+                ],
+                "brutal_truth": "The idea lacks novelty since triangular waffle cones are not a new concept, and without a compelling reason for consumers to choose them over traditional cones, it may struggle to gain traction in a competitive market."
+            }
+        }
     }
 ]

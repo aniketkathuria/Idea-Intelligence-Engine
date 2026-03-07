@@ -1,30 +1,52 @@
 from core.storage import initialize_storage, save_idea
 from core.evaluator import evaluate_idea
+from core.researcher import generate_search_queries, search_duckduckgo
 from core.parser import parse_json_with_repair
-from config import DEFAULT_QUERY_COUNT, SEARCH_DEPTH
-
+from openai import OpenAI
+import os
 
 
 def main():
     initialize_storage()
 
+    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
     print("===== IDEA INTELLIGENCE ENGINE =====")
-    print("Enter your raw idea below:\n")
 
-    raw_idea = input("> ")
+    raw_idea = input("\nEnter your idea:\n> ")
 
-    print("\nAnalyzing...\n")
+    print("\nSelect research depth:")
+    print("1 Fast")
+    print("2 Balanced")
+    print("3 Deep")
 
-    raw_analysis = evaluate_idea(raw_idea)
+    depth_choice = input("> ")
+
+    depth_map = {
+        "1": "fast",
+        "2": "balanced",
+        "3": "deep"
+    }
+    print(depth_map)
+    depth = depth_map.get(depth_choice, "balanced")
+
+    print("\nGenerating queries...")
+    queries = generate_search_queries(raw_idea, client)
+
+    print("Searching web...")
+    research_results = search_duckduckgo(queries, depth)
+    print(research_results)
+    if not research_results:
+        print("⚠ Warning: No research results found.")
+    print("Evaluating idea...")
+    raw_analysis = evaluate_idea(raw_idea, research_results)
+
     analysis = parse_json_with_repair(raw_analysis)
 
-    print("===== IDEA REPORT =====\n")
-
-    print(f"Summary:\n{analysis['idea_summary']}\n")
-    print(f"Category: {analysis['category']}")
-    print(f"Novelty Score: {analysis['novelty_score']}/10")
-    print(f"Feasibility Score: {analysis['feasibility_score']}/10\n")
-
+    print("\n===== IDEA REPORT =====\n")
+    print(f"Summary: {analysis['idea_summary']}")
+    print(f"Novelty: {analysis['novelty_score']}/10")
+    print(f"Feasibility: {analysis['feasibility_score']}/10")
     print("Core Flaws:")
     for flaw in analysis["core_flaws"]:
         print(f"- {flaw}")
@@ -37,10 +59,14 @@ def main():
     for direction in analysis["improvement_directions"]:
         print(f"- {direction}")
 
-    print(f"\nBrutal Truth:\n{analysis['brutal_truth']}")
-    save_idea(raw_idea, analysis)
+    print(f"Brutal Truth: {analysis['brutal_truth']}")
 
-    print("\nIdea saved successfully.")
+    save_idea(raw_idea, {
+        "research": research_results,
+        "evaluation": analysis
+    })
+
+    print("\nSaved to Spark Vault.")
 
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-from duckduckgo_search import DDGS
+from ddgs import DDGS
 from config import DEFAULT_QUERY_COUNT, SEARCH_DEPTH
 
 
@@ -7,7 +7,7 @@ def generate_search_queries(idea, llm_client):
 Generate {DEFAULT_QUERY_COUNT} search queries to research the following idea.
 
 Return ONLY a JSON array of queries.
-
+Make sure to have no comments, output will be going directly to json.loads
 Idea:
 {idea}
 """
@@ -18,8 +18,9 @@ Idea:
         temperature=0
     )
 
-    import json
-    return json.loads(response.choices[0].message.content)
+    from core.parser import parse_json_with_repair
+    raw_output = response.choices[0].message.content
+    return parse_json_with_repair(raw_output)
 
 
 def search_duckduckgo(queries, depth="balanced"):
