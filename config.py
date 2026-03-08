@@ -6,7 +6,7 @@ SEARCH_DEPTH = {
     "deep": 20
 }
 
-SIMILARITY_THRESHOLD = 0.75
+SIMILARITY_THRESHOLD = 0.55
 TOP_K_SIMILAR = 5
 
 CLUSTER_MATCH_MIN = 4          # for expanding large clusters

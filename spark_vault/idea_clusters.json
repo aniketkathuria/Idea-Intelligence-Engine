@@ -23,5 +23,31 @@
         "conversational_reflection": "The ideas presented are variations on a common theme, showcasing different aspects of the waffle-shaped ice cream cone. They reflect a consistent interest in merging the characteristics of waffles and ice cream cones.",
         "cluster_id": 1,
         "created_at": "2026-03-07T18:07:16.219070+00:00"
+    },
+    {
+        "idea_ids": [
+            20,
+            21
+        ],
+        "core_shared_theme": "A SaaS platform connecting buyers and sellers in a verified marketplace.",
+        "merged_super_idea_summary": "A SaaS platform that connects verified buyers and sellers, allowing users to post and generate business-related content while ensuring authenticity and facilitating B2B transactions.",
+        "overlap_analysis": "Both ideas focus on creating a SaaS platform that facilitates connections between buyers and sellers, emphasizing the importance of verification and authenticity of users. The new idea is a more concise version of the context idea, retaining the core concept while omitting some details.",
+        "strategic_recommendation": "Proceed with development, focusing on user verification processes and marketing to attract genuine users.",
+        "conversational_reflection": "The ideas reflect a growing trend towards specialized platforms that enhance trust and connectivity in B2B environments.",
+        "cluster_id": 2,
+        "created_at": "2026-03-07T19:20:40.301436+00:00"
+    },
+    {
+        "idea_ids": [
+            24,
+            25
+        ],
+        "core_shared_theme": "Opening a croffle shop in Bangalore offering a combination of croissant and waffle with a crunchy texture for sweet and savory fillings.",
+        "merged_super_idea_summary": "Opening a croffle shop in Bangalore that offers a unique combination of croissant and waffle, featuring a crunchy texture that accommodates both sweet and savory fillings, ensuring product longevity and appeal.",
+        "overlap_analysis": "Both ideas focus on establishing a croffle shop in Bangalore, emphasizing the unique combination of croissant and waffle. They share the same target market and product characteristics, particularly the crunchy texture and versatility for fillings. However, the phrasing and minor details differ slightly, such as the spelling of 'croffle' and 'croissant'.",
+        "strategic_recommendation": "Conduct market research to assess demand and refine product offerings based on customer preferences.",
+        "conversational_reflection": "The combination of croissant and waffle presents a unique culinary experience that could resonate well with the Bangalore market, especially if marketed effectively.",
+        "cluster_id": 3,
+        "created_at": "2026-03-08T05:39:46.119861+00:00"
     }
 ]

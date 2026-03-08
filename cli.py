@@ -46,12 +46,18 @@ def main():
     raw_analysis = evaluate_idea(raw_idea, research_results)
 
     analysis = parse_json_with_repair(raw_analysis)
+    print(analysis)
 
 
     print("\n===== IDEA REPORT =====\n")
     print(f"Summary: {analysis['idea_summary']}")
     print(f"Novelty: {analysis['novelty_score']}/10")
     print(f"Feasibility: {analysis['feasibility_score']}/10")
+    
+    print("Market_analysis:")
+    for flaw in analysis["Market_analysis"]:
+        print(f"- {flaw}")
+
     print("Core Flaws:")
     for flaw in analysis["core_flaws"]:
         print(f"- {flaw}")
@@ -146,7 +152,7 @@ def main():
         print(f"\nIs Idea Evolutionary: {idea_Evolutionary}")
         print(f"Should Merge: {synthesis_result['should_merge']}")
         print("\nMerge Reasoning:")
-        print(synthesis_result["merge_reasoning"])
+        #print(synthesis_result["merge_reasoning"])
 
         if synthesis_result.get("should_merge"):
             print("\n===== MERGED IDEA =====\n")

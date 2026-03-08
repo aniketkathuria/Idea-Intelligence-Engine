@@ -69,6 +69,7 @@ Return ONLY valid JSON with this structure:
   }},
   "are_these_evolutionary": true/false,
   "should_merge": true/false,
+  "merge_reasoning": "...",
   "merged_super_idea_summary": "...",
   "unified_evaluation": {{
       "novelty_estimate": "...",
@@ -88,6 +89,8 @@ Rules:
 - Do NOT output markdown.
 - Do NOT add explanations outside JSON.
 - If should_merge is false, still return all fields but set merged_super_idea_summary to null and unified_evaluation fields to null.
+- Always clearly explain the reasoning behind the merge decision in "merge_reasoning".
+- If should_merge is false, explain why conceptual differences justify keeping them separate.
 """
 
     response = client.chat.completions.create(

@@ -32,9 +32,11 @@ Rules:
 - Do NOT insult.
 - Always provide improvement direction.
 - Return ONLY valid JSON.
+- Market analysis looks for product who currently exists (tell big companies and how much match is it)
 
 Return JSON with keys:
 idea_summary
+Market_analysis
 category
 similar_existing_concepts
 novelty_score
