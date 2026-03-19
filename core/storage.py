@@ -14,7 +14,7 @@ def initialize_storage():
             json.dump([], f)
 
 
-def save_idea(raw_text, analysis,embedding):
+def save_idea(raw_text, analysis, embedding):
     with open(IDEA_FILE, "r", encoding="utf-8") as f:
         data = json.load(f)
 

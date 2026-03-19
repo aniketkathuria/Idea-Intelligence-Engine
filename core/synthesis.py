@@ -30,6 +30,9 @@ Evaluation Summary:
     prompt = f"""
 You are analyzing structural relationships between ideas written by the same person.
 
+This is not an investor evaluation.
+This is a cognitive mapping exercise.
+
 A new idea has been generated.
 
 New Idea:
@@ -45,41 +48,71 @@ Context Ideas:
 
 Your tasks:
 
-1. Determine whether the new idea conceptually overlaps with the context ideas.
-2. Identify the core shared theme (if any).
-3. Provide structural overlap analysis (not superficial wording similarity).
-4. Identify distinct conceptual elements of each idea.
-5. Determine whether these ideas represent:
+1. MECHANISM EXTRACTION:
+- Identify the core mechanism of the new idea in one sentence.
+- Identify the core mechanism of each context idea in one sentence.
+- Use mechanism similarity (not theme similarity) as primary merge criterion.
+
+2. OVERLAP ANALYSIS:
+- Determine whether the new idea conceptually overlaps with the context ideas.
+- Identify the core shared theme (if any).
+- Provide structural overlap analysis (not superficial wording similarity).
+- Identify distinct conceptual elements of each idea.
+
+3. EVOLUTION CHECK:
+Determine whether these ideas represent:
    - Variations of one core idea
    - Evolution of a single idea over time
    - Or separate but related explorations
-6. Decide whether these ideas should be merged into a single conceptual cluster.
+
+4. ABSTRACTION & SCOPE CHECK:
+- Determine if ideas operate at the same abstraction level.
+- Determine if one idea generalizes the other.
+- Determine if one idea shifts domain (e.g., from product to meta-system).
+- Do NOT merge if abstraction layers differ significantly.
+- Do NOT merge if core mechanisms differ even if themes overlap.
+
+5. TRANSITIVE CONSISTENCY CHECK:
+- Compare the new idea against the foundational ideas in the cluster.
+- If similarity is only with recent additions but not structurally aligned with the core idea, do NOT merge.
+
+6. MERGE RISK CHECK:
+- If merging reduces conceptual clarity or increases abstraction vagueness, set should_merge to false.
+
+However:
+- If merging creates a clearer, stronger, more coherent conceptual direction, allow the merge.
+- Controlled scope expansion is acceptable if mechanism alignment remains strong.
 
 If merging is appropriate:
 7. Synthesize a unified "super idea" representing their strongest combined form.
-8. Re-evaluate this unified idea as if it were a single fresh idea.
+8. Re-evaluate the merged super idea briefly:
+   - Conceptual coherence
+   - Structural strength
+   - Primary constraint
+   - Most fragile assumption
+   - Whether merge improves or weakens clarity
 
 Return ONLY valid JSON with this structure:
 
-{{
+{
   "core_shared_theme": "...",
   "overlap_analysis": "...",
-  "distinct_elements_per_idea": {{
+  "distinct_elements_per_idea": {
       "idea_id": "distinct element description"
-  }},
+  },
   "are_these_evolutionary": true/false,
   "should_merge": true/false,
   "merge_reasoning": "...",
   "merged_super_idea_summary": "...",
-  "unified_evaluation": {{
+  "unified_evaluation": {
       "novelty_estimate": "...",
       "feasibility_estimate": "...",
       "key_risk": "...",
       "upside_potential": "..."
-  }},
+  },
   "strategic_recommendation": "...",
   "conversational_reflection": "..."
-}}
+}
 
 Rules:
 - Be structurally analytical.
@@ -88,9 +121,8 @@ Rules:
 - If overlap is weak, set should_merge to false.
 - Do NOT output markdown.
 - Do NOT add explanations outside JSON.
-- If should_merge is false, still return all fields but set merged_super_idea_summary to null and unified_evaluation fields to null.
-- Always clearly explain the reasoning behind the merge decision in "merge_reasoning".
-- If should_merge is false, explain why conceptual differences justify keeping them separate.
+- If should_merge is false, set merged_super_idea_summary and unified_evaluation fields to null.
+- Always clearly explain reasoning behind merge decision.
 """
 
     response = client.chat.completions.create(

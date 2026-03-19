@@ -49,5 +49,79 @@
         "conversational_reflection": "The combination of croissant and waffle presents a unique culinary experience that could resonate well with the Bangalore market, especially if marketed effectively.",
         "cluster_id": 3,
         "created_at": "2026-03-08T05:39:46.119861+00:00"
+    },
+    {
+        "idea_ids": [
+            22,
+            27,
+            28
+        ],
+        "core_shared_theme": "Recycling discarded coconut shells into eco-friendly products.",
+        "merged_super_idea_summary": "Develop a business model that recycles discarded coconut shells from coconut water shops in Bangalore into various eco-friendly products, such as bags and fabric, focusing on sustainability, scalability, and profitability.",
+        "overlap_analysis": "All ideas originate from the same observation of discarded coconut shells in Bangalore and propose recycling them into products like bags. The new idea and context ideas share a common goal of addressing waste management and promoting sustainability.",
+        "strategic_recommendation": "Conduct market research to validate product ideas and develop a prototype for testing consumer interest in coconut shell-based products.",
+        "conversational_reflection": "The exploration of recycling coconut shells presents a timely opportunity to address waste management while tapping into the sustainable product market.",
+        "cluster_id": 4,
+        "created_at": "2026-03-08T08:00:40.601720+00:00"
+    },
+    {
+        "idea_ids": [
+            34,
+            36,
+            42,
+            46
+        ],
+        "core_shared_theme": "Daily reflection on personal identity rather than task completion.",
+        "merged_super_idea_summary": "A mobile app that encourages users to write one sentence daily about their evolving identity, promoting personal growth rather than focusing on task completion.",
+        "overlap_analysis": "All ideas revolve around the concept of a mobile app that prompts users to write about their identity development daily. The phrasing varies slightly, but the underlying intent remains consistent across all ideas.",
+        "strategic_recommendation": "Focus on user engagement strategies to maintain interest and encourage consistent use of the app.",
+        "conversational_reflection": "This idea taps into a growing interest in personal development and self-awareness, making it relevant in today's market.",
+        "cluster_id": 5,
+        "created_at": "2026-03-19T05:26:25.807092+00:00"
+    },
+    {
+        "idea_ids": [
+            33,
+            37,
+            43
+        ],
+        "core_shared_theme": "Modular, low-cost thermal battery systems for solar energy storage in rural microgrids.",
+        "merged_super_idea_summary": "A modular, low-cost sand-based thermal battery system designed for storing excess solar energy in rural microgrids, aimed at enhancing energy accessibility and sustainability in off-grid areas.",
+        "overlap_analysis": "All ideas focus on a modular, low-cost sand-based thermal battery system specifically designed for storing excess solar energy in rural microgrids. The context ideas emphasize enhancing energy accessibility and sustainability, while the new idea maintains the same core functionality without additional context.",
+        "strategic_recommendation": "Pursue development and pilot testing of the integrated thermal battery system in rural microgrid settings to validate its effectiveness and scalability.",
+        "conversational_reflection": "The ideas reflect a coherent vision for sustainable energy solutions in rural areas, highlighting the importance of accessibility and cost-effectiveness.",
+        "cluster_id": 6,
+        "created_at": "2026-03-19T05:28:26.650839+00:00"
+    },
+    {
+        "idea_ids": [
+            31,
+            32,
+            38,
+            44
+        ],
+        "core_shared_theme": "Subscription service for regional Indian meal kits targeting working professionals in tier-2 cities.",
+        "merged_super_idea_summary": "A subscription service delivering pre-measured, ready-to-cook regional Indian meal kits for working professionals and dual-income households in tier-2 cities, priced competitively to cater to diverse customer needs.",
+        "overlap_analysis": "The new idea (ID: 44) and context ideas (ID: 31, ID: 38) share a core theme of providing subscription-based meal kits tailored for working professionals in tier-2 cities. However, Idea ID: 32 introduces a distinct pricing model and targets dual-income households, which differentiates it from the others.",
+        "strategic_recommendation": "Focus on marketing the regional aspect and convenience of the meal kits to differentiate from competitors, while considering flexible pricing strategies to appeal to both working professionals and dual-income households.",
+        "conversational_reflection": "The integration of these ideas highlights the potential for a comprehensive service that meets diverse needs in tier-2 cities, emphasizing the importance of regional cuisine in meal kit offerings.",
+        "cluster_id": 7,
+        "created_at": "2026-03-19T05:29:39.346587+00:00"
+    },
+    {
+        "idea_ids": [
+            35,
+            39,
+            40,
+            41,
+            45
+        ],
+        "core_shared_theme": "The stabilization of human societies through shared fears rather than shared values.",
+        "merged_super_idea_summary": "Human societies stabilize primarily through shared fears rather than shared values, indicating that collective anxieties can serve as a unifying force more effectively than common beliefs.",
+        "overlap_analysis": "All ideas present a consistent theory that human societies achieve stability through shared fears. The language and phrasing may vary slightly, but the underlying concept remains the same across all ideas.",
+        "strategic_recommendation": "Further explore the implications of this theory through empirical research and case studies to validate its applicability in contemporary society.",
+        "conversational_reflection": "This unified idea challenges traditional notions of social cohesion and invites deeper discussions about the role of fear in uniting communities.",
+        "cluster_id": 8,
+        "created_at": "2026-03-19T05:30:49.602026+00:00"
     }
 ]

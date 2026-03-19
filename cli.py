@@ -1,5 +1,5 @@
 from core.storage import initialize_storage, save_idea
-from core.evaluator import evaluate_idea
+from core.evaluator import evaluate_idea_adaptive
 from core.researcher import generate_search_queries, search_duckduckgo
 from core.parser import parse_json_with_repair
 from openai import OpenAI
@@ -11,6 +11,103 @@ from core.cluster_engine import determine_cluster_action
 from config import SIMILARITY_THRESHOLD
 from core.cluster_storage import create_new_cluster, update_cluster
 from core.synthesis import run_synthesis
+
+def print_idea_report(analysis):
+    print("\n================= IDEA REPORT =================\n")
+
+    # --- Summary ---
+    print("## SUMMARY")
+    print(f"{analysis['idea_summary']}\n")
+
+    print(f"CATEGORY: {analysis['category']}\n")
+
+    # --- Novelty & Feasibility ---
+    print("## CORE SCORES")
+    print(f"Novelty: {analysis['novelty_analysis']['score']}/10")
+    print("##Feasibility Breakdown:")
+    print(f"  Technical: {analysis['feasibility_analysis']['technical']['score']}/10")
+    print(f"  Economic: {analysis['feasibility_analysis']['economic']['score']}/10")
+    print(f"  Market: {analysis['feasibility_analysis']['market']['score']}/10")
+    print(f"  Execution Complexity: {analysis['feasibility_analysis']['execution_complexity']['score']}/10\n")
+
+    # --- Landscape ---
+    print("## EXISTING LANDSCAPE")
+
+    commercial = analysis["existing_landscape_analysis"]["commercial_landscape"]
+
+    print("\n  Commercial Players:")
+    for player in commercial["existing_players"]:
+        print(f"   - {player['name']} ({player['similarity_percentage']}% match)")
+        print(f"     Difference: {player['key_differences']}")
+
+    print(f"\n  Market State: {commercial['market_state']}")
+    print(f"  Market Analysis: {commercial['analysis']}\n")
+
+    print("  Conceptual Parallels:")
+    for concept in analysis["existing_landscape_analysis"]["conceptual_parallels"]:
+        print(f"   - {concept['concept']} ({concept['domain']})")
+        print(f"     Notes: {concept['similarity_notes']}")
+
+    positioning = analysis["existing_landscape_analysis"]["innovation_positioning"]
+    print(f"\n  Innovation Position: {positioning['position']}")
+    print(f"  Justification: {positioning['justification']}\n")
+
+    # --- Upside ---
+    print("## UPSIDE SCENARIO")
+    upside = analysis["upside_scenario"]
+    print(f"  Maximum Impact: {upside['maximum_impact']}")
+    print(f"  Beneficiaries: {', '.join(upside['primary_beneficiaries'])}")
+    print(f"  Industries Affected: {', '.join(upside['industries_affected'])}")
+    print(f"  Realistic Scale: {upside['realistic_scale']}")
+    print(f"  Impact Type: {upside['impact_type']}\n")
+
+    # --- Risk & Structure ---
+    print("## RISK & STRUCTURAL ANALYSIS")
+
+    print("\n  Underlying Assumptions:")
+    for assumption in analysis["risk_structural_analysis"]["underlying_assumptions"]:
+        print(f"   - {assumption['assumption']} ({assumption['classification']})")
+
+    print("\n  Structural Weaknesses:")
+    for flaw in analysis["risk_structural_analysis"]["structural_weaknesses"]:
+        print(f"   - {flaw}")
+
+    print("\n  Failure Scenarios:")
+    for failure in analysis["risk_structural_analysis"]["failure_scenarios"]:
+        print(f"   - {failure}")
+
+    print(f"\n  Most Underestimated Risk: {analysis['risk_structural_analysis']['most_underestimated_risk']}")
+    print(f"  Most Fragile Stage: {analysis['risk_structural_analysis']['fragile_stage']}\n")
+
+    # --- Improvements ---
+    print("## IMPROVEMENT DIRECTIONS")
+
+    print("\n  Strengthening Actions:")
+    for action in analysis["improvement_directions"]["strengthening_actions"]:
+        print(f"   - {action}")
+
+    print("\n  Research Needed:")
+    for research in analysis["improvement_directions"]["research_needed"]:
+        print(f"   - {research}")
+
+    print("\n  Cheap Validation Tests:")
+    for test in analysis["improvement_directions"]["cheap_validation_tests"]:
+        print(f"   - {test}")
+
+    # --- Brutal Truth ---
+    print("\n## BRUTAL TRUTH")
+    print(analysis["brutal_truth"])
+
+    # --- Meta ---
+    print("\n## META SCORES")
+    meta = analysis["meta_scores"]
+    print(f"  Overall Score: {meta['overall_score']}/10")
+    print(f"  Risk Level: {meta['risk_level']}")
+    print(f"  Asymmetry Potential: {meta['asymmetry_potential']}")
+
+    print("\n================================================\n")
+
+
 
 def main():
     initialize_storage()
@@ -43,34 +140,12 @@ def main():
     if not research_results:
         print("⚠ Warning: No research results found.")
     print("Evaluating idea...")
-    raw_analysis = evaluate_idea(raw_idea, research_results)
+    raw_analysis = evaluate_idea_adaptive(raw_idea, research_results)
 
     analysis = parse_json_with_repair(raw_analysis)
     print(analysis)
 
-
-    print("\n===== IDEA REPORT =====\n")
-    print(f"Summary: {analysis['idea_summary']}")
-    print(f"Novelty: {analysis['novelty_score']}/10")
-    print(f"Feasibility: {analysis['feasibility_score']}/10")
-    
-    print("Market_analysis:")
-    for flaw in analysis["Market_analysis"]:
-        print(f"- {flaw}")
-
-    print("Core Flaws:")
-    for flaw in analysis["core_flaws"]:
-        print(f"- {flaw}")
-
-    print("\nHidden Assumptions:")
-    for assumption in analysis["hidden_assumptions"]:
-        print(f"- {assumption}")
-
-    print("\nImprovement Directions:")
-    for direction in analysis["improvement_directions"]:
-        print(f"- {direction}")
-
-    print(f"\nBrutal Truth: {analysis['brutal_truth']}")
+    #print_idea_report(analysis)    
     
     print("\nGenerating embedding...")
     new_embedding = generate_embedding(raw_idea)
@@ -136,6 +211,8 @@ def main():
         # Run LLM synthesis
         print("\n===== STRUCTURAL SYNTHESIS =====\n")
         synthesis_result = run_synthesis(new_idea_object, context_ideas)
+        print(synthesis_result)
+        """
         print(f"Core Shared Theme:\n{synthesis_result['core_shared_theme']}\n")
 
         print("Overlap Analysis:")
@@ -199,6 +276,7 @@ def main():
 
         else:
             print("LLM determined ideas should not merge.")
+        """
 
     
 #################################################################################################

@@ -28,7 +28,7 @@ def find_similar_ideas(new_embedding, past_ideas, top_n=100):
         if "embedding" in idea:
             score = cosine_similarity(new_embedding, idea["embedding"])
             similarities.append((idea["id"], idea["raw_idea"], score))
-    print("Total computed similarities:", len(similarities))
+    #print("Total computed similarities:", len(similarities))
 
     similarities.sort(key=lambda x: x[2], reverse=True)
 
