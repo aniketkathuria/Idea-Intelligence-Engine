@@ -1,10 +1,32 @@
 import os
 import json
 from datetime import datetime, UTC
+from core.db import SessionLocal
+from core.models import Cluster, Idea
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 VAULT_DIR = os.path.join(BASE_DIR, "spark_vault")
 CLUSTER_FILE = os.path.join(VAULT_DIR, "idea_clusters.json")
+
+
+def load_clusters():
+    db = SessionLocal()
+
+    clusters = db.query(Cluster).all()
+
+    result = []
+    for cluster in clusters:
+        ideas = db.query(Idea).filter(Idea.cluster_id == cluster.id).all()
+
+        result.append({
+            "cluster_id": cluster.id,
+            "idea_ids": [idea.id for idea in ideas],
+            "super_idea": cluster.super_idea,
+            "merge_reasoning": cluster.merge_reasoning
+        })
+
+    db.close()
+    return result
 
 def initialize_cluster_storage():
     os.makedirs(VAULT_DIR, exist_ok=True)
@@ -12,25 +34,35 @@ def initialize_cluster_storage():
         with open(CLUSTER_FILE, "w", encoding="utf-8") as f:
             json.dump([], f)
 
-def load_clusters():
-    with open(CLUSTER_FILE, "r", encoding="utf-8") as f:
-        return json.load(f)
-
 def save_clusters(clusters):
     with open(CLUSTER_FILE, "w", encoding="utf-8") as f:
         json.dump(clusters, f, indent=4)
 
 def update_cluster(updated_cluster):
-    clusters = load_clusters()
-    for i, cluster in enumerate(clusters):
-        if cluster["cluster_id"] == updated_cluster["cluster_id"]:
-            clusters[i] = updated_cluster
-            break
-    save_clusters(clusters)
+    db = SessionLocal()
+
+    cluster = db.query(Cluster).filter(Cluster.id == updated_cluster["cluster_id"]).first()
+
+    if cluster:
+        cluster.super_idea = updated_cluster.get("super_idea", cluster.super_idea)
+        cluster.merge_reasoning = updated_cluster.get("merge_reasoning", cluster.merge_reasoning)
+
+        db.commit()
+
+    db.close()
 
 def create_new_cluster(cluster_data):
-    clusters = load_clusters()
-    cluster_data["cluster_id"] = len(clusters) + 1
-    cluster_data["created_at"] = datetime.now(UTC).isoformat()
-    clusters.append(cluster_data)
-    save_clusters(clusters)
+    db = SessionLocal()
+
+    new_cluster = Cluster(
+        user_id=1,
+        super_idea=cluster_data.get("super_idea"),
+        merge_reasoning=cluster_data.get("merge_reasoning")
+    )
+
+    db.add(new_cluster)
+    db.commit()
+    db.refresh(new_cluster)
+
+    db.close()
+    return new_cluster.id

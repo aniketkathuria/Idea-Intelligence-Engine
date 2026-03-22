@@ -42,7 +42,7 @@ from core.db import SessionLocal
 from core.models import Idea
 import json
 
-def save_idea(raw_text, analysis, embedding):
+def save_idea(raw_text, analysis, embedding,cluster_id,synthesis_output):
     db = SessionLocal()
     category = analysis["evaluation"].get("category", "unknown")
     new_idea = Idea(
@@ -50,8 +50,8 @@ def save_idea(raw_text, analysis, embedding):
         raw_input=raw_text,
         evaluation_json=json.dumps(analysis),
         embedding_vector=json.dumps(embedding),
-        cluster_id=None,
-        synthesis_output=None,
+        cluster_id=json.dumps(cluster_id),
+        synthesis_output=json.dumps(synthesis_output),
         category=category
     )
 

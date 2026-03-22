@@ -23,3 +23,15 @@ def root():
 def submit_idea(request: IdeaRequest):
     result = process_idea(request.idea_text)
     return result
+    
+@app.get("/ideas")
+def get_ideas():
+    from core.storage import load_all_ideas
+    ideas = load_all_ideas()
+    print("Ideas from DB:", ideas)
+    return load_all_ideas()
+
+@app.get("/clusters")
+def get_clusters():
+    from core.cluster_storage import load_clusters
+    return load_clusters()

@@ -42,8 +42,9 @@ def process_idea(raw_idea: str, depth="balanced"):
 
     # --- Clustering ---
     clusters = load_clusters()
-    print("Similar Ideas and clusters Loaded ✅")
-
+    print("Similar Ideas and clusters Loaded ✅")   
+    cluster_id = None
+    
     decision = determine_cluster_action(
         new_idea_id=len(past_ideas) + 1,
         matched_ideas=matched_ideas,
@@ -69,15 +70,40 @@ def process_idea(raw_idea: str, depth="balanced"):
         print("Running Synthesis")
         synthesis_result = run_synthesis(new_idea_object, context_ideas)
         print("Synthesis Done ✅")
+
+        if synthesis_result:
+            should_merge = synthesis_result.get("should_merge", False)
+
+            if should_merge:
+                if decision["action"] == "expand":
+                    cluster_id = decision["cluster_id"]
+
+                    update_cluster({
+                        "cluster_id": cluster_id,
+                        "super_idea": synthesis_result.get("super_idea"),
+                        "merge_reasoning": synthesis_result.get("merge_reasoning")
+                    })
+
+                else:
+                    cluster_id = create_new_cluster({
+                        "super_idea": synthesis_result.get("super_idea"),
+                        "merge_reasoning": synthesis_result.get("merge_reasoning")
+                    })
     else: 
         print("No Similar Ideas/clusters")
         
 
     # --- Save Idea ---
-    save_idea(raw_idea, {
+    save_idea(
+    raw_idea,
+    {
         "research": research_results,
         "evaluation": analysis
-    }, new_embedding)
+    },
+    new_embedding,
+    cluster_id=cluster_id,
+    synthesis_output=synthesis_result
+)
 
     return {
         "evaluation": analysis,
