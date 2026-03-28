@@ -3,11 +3,26 @@ import json
 from datetime import datetime, UTC
 from core.db import SessionLocal
 from core.models import Cluster, Idea
+from core.db import SessionLocal
+from core.models import Idea
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 VAULT_DIR = os.path.join(BASE_DIR, "spark_vault")
 CLUSTER_FILE = os.path.join(VAULT_DIR, "idea_clusters.json")
 
+
+
+
+def assign_ideas_to_cluster(idea_ids, cluster_id):
+    db = SessionLocal()
+
+    for idea_id in idea_ids:
+        idea = db.query(Idea).filter(Idea.id == idea_id).first()
+        if idea:
+            idea.cluster_id = cluster_id
+
+    db.commit()
+    db.close()
 
 def load_clusters():
     db = SessionLocal()

@@ -6,7 +6,7 @@ from core.evaluator import evaluate_idea_adaptive
 from core.parser import parse_json_with_repair
 from core.embedding import generate_embedding, find_similar_ideas
 from core.storage import load_all_ideas, save_idea
-from core.cluster_storage import load_clusters, create_new_cluster, update_cluster
+from core.cluster_storage import load_clusters, create_new_cluster, update_cluster, assign_ideas_to_cluster
 from core.cluster_engine import determine_cluster_action
 from core.synthesis import run_synthesis
 from config import SIMILARITY_THRESHOLD
@@ -83,12 +83,17 @@ def process_idea(raw_idea: str, depth="balanced"):
                         "super_idea": synthesis_result.get("super_idea"),
                         "merge_reasoning": synthesis_result.get("merge_reasoning")
                     })
+                    # 🔥 NEW: Fix consistency
+                    existing_ids = decision["cluster"]["idea_ids"]
+                    assign_ideas_to_cluster(existing_ids, cluster_id)
 
                 else:
                     cluster_id = create_new_cluster({
                         "super_idea": synthesis_result.get("super_idea"),
                         "merge_reasoning": synthesis_result.get("merge_reasoning")
                     })
+        else: 
+            print("No Similar Ideas/clusters")        
     else: 
         print("No Similar Ideas/clusters")
         
