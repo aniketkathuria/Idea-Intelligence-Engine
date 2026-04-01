@@ -1,7 +1,7 @@
 from config import CLUSTER_MATCH_MIN, MIN_MATCH_FOR_NEW_CLUSTER
 
 
-def determine_cluster_action(new_idea_id, matched_ideas, clusters):
+def determine_cluster_action(matched_ideas, clusters):
     """
     Decide whether to:
     - expand an existing cluster
@@ -14,7 +14,7 @@ def determine_cluster_action(new_idea_id, matched_ideas, clusters):
 
     matched_ids = [idea["id"] for idea in matched_ideas]
 
-    # 1️⃣ Check if we should expand an existing cluster
+    # 1. Check if we should expand an existing cluster
     for cluster in clusters:
         cluster_ids = cluster["idea_ids"]
         overlap = set(cluster_ids).intersection(set(matched_ids))
@@ -37,12 +37,12 @@ def determine_cluster_action(new_idea_id, matched_ideas, clusters):
                     "cluster": cluster
                 }
 
-    # 2️⃣ No expansion found — maybe create new cluster
+    # 2. No expansion found — maybe create new cluster
     if len(matched_ids) >= MIN_MATCH_FOR_NEW_CLUSTER:
         return {
             "action": "create",
             "matched_ids": matched_ids
         }
 
-    # 3️⃣ Otherwise do nothing
+    # 3. Otherwise do nothing
     return {"action": "none"}
