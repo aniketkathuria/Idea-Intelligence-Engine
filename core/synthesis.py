@@ -94,25 +94,25 @@ If merging is appropriate:
 
 Return ONLY valid JSON with this structure:
 
-{
+{{
   "core_shared_theme": "...",
   "overlap_analysis": "...",
-  "distinct_elements_per_idea": {
+  "distinct_elements_per_idea": {{
       "idea_id": "distinct element description"
-  },
+  }},
   "are_these_evolutionary": true/false,
   "should_merge": true/false,
   "merge_reasoning": "...",
   "merged_super_idea_summary": "...",
-  "unified_evaluation": {
+  "unified_evaluation": {{
       "novelty_estimate": "...",
       "feasibility_estimate": "...",
       "key_risk": "...",
       "upside_potential": "..."
-  },
+  }},
   "strategic_recommendation": "...",
   "conversational_reflection": "..."
-}
+}}
 
 Rules:
 - Be structurally analytical.

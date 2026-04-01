@@ -18,92 +18,75 @@ def print_idea_report(analysis):
     # --- Summary ---
     print("## SUMMARY")
     print(f"{analysis['idea_summary']}\n")
-
     print(f"CATEGORY: {analysis['category']}\n")
 
-    # --- Novelty & Feasibility ---
-    print("## CORE SCORES")
-    print(f"Novelty: {analysis['novelty_analysis']['score']}/10")
-    print("##Feasibility Breakdown:")
-    print(f"  Technical: {analysis['feasibility_analysis']['technical']['score']}/10")
-    print(f"  Economic: {analysis['feasibility_analysis']['economic']['score']}/10")
-    print(f"  Market: {analysis['feasibility_analysis']['market']['score']}/10")
-    print(f"  Execution Complexity: {analysis['feasibility_analysis']['execution_complexity']['score']}/10\n")
+    # --- Core Analysis ---
+    core = analysis["core_analysis"]
 
-    # --- Landscape ---
-    print("## EXISTING LANDSCAPE")
+    print("## CORE ANALYSIS")
 
-    commercial = analysis["existing_landscape_analysis"]["commercial_landscape"]
+    print("\n  Problem Definition:")
+    print(f"   {core['problem_definition']}")
 
-    print("\n  Commercial Players:")
-    for player in commercial["existing_players"]:
-        print(f"   - {player['name']} ({player['similarity_percentage']}% match)")
-        print(f"     Difference: {player['key_differences']}")
+    print("\n  Proposed Mechanism:")
+    print(f"   {core['proposed_mechanism']}")
 
-    print(f"\n  Market State: {commercial['market_state']}")
-    print(f"  Market Analysis: {commercial['analysis']}\n")
-
-    print("  Conceptual Parallels:")
-    for concept in analysis["existing_landscape_analysis"]["conceptual_parallels"]:
-        print(f"   - {concept['concept']} ({concept['domain']})")
-        print(f"     Notes: {concept['similarity_notes']}")
-
-    positioning = analysis["existing_landscape_analysis"]["innovation_positioning"]
-    print(f"\n  Innovation Position: {positioning['position']}")
-    print(f"  Justification: {positioning['justification']}\n")
-
-    # --- Upside ---
-    print("## UPSIDE SCENARIO")
-    upside = analysis["upside_scenario"]
-    print(f"  Maximum Impact: {upside['maximum_impact']}")
-    print(f"  Beneficiaries: {', '.join(upside['primary_beneficiaries'])}")
-    print(f"  Industries Affected: {', '.join(upside['industries_affected'])}")
-    print(f"  Realistic Scale: {upside['realistic_scale']}")
-    print(f"  Impact Type: {upside['impact_type']}\n")
-
-    # --- Risk & Structure ---
-    print("## RISK & STRUCTURAL ANALYSIS")
-
-    print("\n  Underlying Assumptions:")
-    for assumption in analysis["risk_structural_analysis"]["underlying_assumptions"]:
-        print(f"   - {assumption['assumption']} ({assumption['classification']})")
+    print("\n  Key Assumptions:")
+    for a in core["key_assumptions"]:
+        print(f"   - {a}")
 
     print("\n  Structural Weaknesses:")
-    for flaw in analysis["risk_structural_analysis"]["structural_weaknesses"]:
-        print(f"   - {flaw}")
+    for w in core["structural_weaknesses"]:
+        print(f"   - {w}")
 
     print("\n  Failure Scenarios:")
-    for failure in analysis["risk_structural_analysis"]["failure_scenarios"]:
-        print(f"   - {failure}")
+    for f in core["failure_scenarios"]:
+        print(f"   - {f}")
 
-    print(f"\n  Most Underestimated Risk: {analysis['risk_structural_analysis']['most_underestimated_risk']}")
-    print(f"  Most Fragile Stage: {analysis['risk_structural_analysis']['fragile_stage']}\n")
+    # --- Domain Specific ---
+    print("\n## DOMAIN SPECIFIC ANALYSIS")
+    if analysis["domain_specific_analysis"]:
+        for k, v in analysis["domain_specific_analysis"].items():
+            print(f"  {k}: {v}")
+    else:
+        print("  None provided")
 
     # --- Improvements ---
-    print("## IMPROVEMENT DIRECTIONS")
+    imp = analysis["improvement_directions"]
+
+    print("\n## IMPROVEMENT DIRECTIONS")
 
     print("\n  Strengthening Actions:")
-    for action in analysis["improvement_directions"]["strengthening_actions"]:
-        print(f"   - {action}")
+    for a in imp["strengthening_actions"]:
+        print(f"   - {a}")
 
     print("\n  Research Needed:")
-    for research in analysis["improvement_directions"]["research_needed"]:
-        print(f"   - {research}")
+    for r in imp["research_needed"]:
+        print(f"   - {r}")
 
-    print("\n  Cheap Validation Tests:")
-    for test in analysis["improvement_directions"]["cheap_validation_tests"]:
-        print(f"   - {test}")
+    print("\n  Validation Tests:")
+    for t in imp["validation_tests"]:
+        print(f"   - {t}")
 
-    # --- Brutal Truth ---
-    print("\n## BRUTAL TRUTH")
-    print(analysis["brutal_truth"])
+    # --- Scores ---
+    scores = analysis["scores"]
 
-    # --- Meta ---
-    print("\n## META SCORES")
-    meta = analysis["meta_scores"]
-    print(f"  Overall Score: {meta['overall_score']}/10")
-    print(f"  Risk Level: {meta['risk_level']}")
-    print(f"  Asymmetry Potential: {meta['asymmetry_potential']}")
+    print("\n## SCORES")
+    print(f"  Novelty: {scores['novelty']}/10")
+
+    feas = scores["feasibility_reasoning"]
+    print("\n  Feasibility Reasoning:")
+    print(f"   - Quantitative Basis: {feas['derived_from_quantitative_analysis']}")
+    print(f"   - Threshold Logic: {feas['threshold_logic']}")
+    print(f"   - Score: {feas['score']}/10")
+
+    print(f"\n  Overall Score: {scores['overall']}/10")
+    print(f"  Risk Level: {scores['risk_level']}")
+
+    # --- Final Verdict ---
+    print("\n## FINAL VERDICT")
+    print(f"  Classification: {analysis['final_classification']}")
+    print(f"  Reasoning: {analysis['verdict_reasoning']}")
 
     print("\n================================================\n")
 
@@ -143,9 +126,9 @@ def main():
     raw_analysis = evaluate_idea_adaptive(raw_idea, research_results)
 
     analysis = parse_json_with_repair(raw_analysis)
-    print(analysis)
+    #print(analysis)
 
-    #print_idea_report(analysis)    
+    print_idea_report(analysis)    
     
     print("\nGenerating embedding...")
     new_embedding = generate_embedding(raw_idea)
