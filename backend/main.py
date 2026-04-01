@@ -10,7 +10,7 @@ from core.pipeline import process_idea
 # Import your evaluator
 from core.evaluator import evaluate_idea_adaptive  # adjust if name differs
 
-app = FastAPI()
+app = FastAPI(root_path="/")
 
 class IdeaRequest(BaseModel):
     idea_text: str
