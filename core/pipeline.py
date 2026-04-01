@@ -114,7 +114,7 @@ def process_idea(raw_idea: str, depth="balanced"):
 
                         update_cluster({
                             "cluster_id": cluster_id,
-                            "super_idea": synthesis_result.get("super_idea"),
+                            "super_idea": synthesis_result.get("merged_super_idea_summary"),  # Fixed key
                             "merge_reasoning": synthesis_result.get("merge_reasoning")
                         })
 
@@ -123,7 +123,7 @@ def process_idea(raw_idea: str, depth="balanced"):
 
                     else:
                         cluster_id = create_new_cluster({
-                            "super_idea": synthesis_result.get("super_idea"),
+                            "super_idea": synthesis_result.get("merged_super_idea_summary"),  # Fixed key
                             "merge_reasoning": synthesis_result.get("merge_reasoning")
                         })
 
