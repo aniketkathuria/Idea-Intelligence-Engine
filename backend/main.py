@@ -6,6 +6,8 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from dotenv import load_dotenv
 
+
+
 # --- Setup logging ---
 logging.basicConfig(
     level=logging.INFO,
@@ -37,6 +39,17 @@ app = FastAPI(root_path="/")
 # --- Request model ---
 class IdeaRequest(BaseModel):
     idea_text: str
+
+#cron establishment
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # allow all for now
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # --- Routes ---
 
@@ -95,3 +108,7 @@ def get_clusters():
     except Exception as e:
         logger.error(f"❌ Error in /clusters: {e}", exc_info=True)
         return {"error": str(e)}
+    
+@app.get("/health")
+def health():
+    return {"status": "ok"}
