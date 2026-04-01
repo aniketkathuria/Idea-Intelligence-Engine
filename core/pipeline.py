@@ -17,7 +17,7 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
-
+logging.getLogger("ddgs").setLevel(logging.WARNING) # Removes Logs from ddgs
 
 def process_idea(raw_idea: str, depth="balanced"):
     client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
