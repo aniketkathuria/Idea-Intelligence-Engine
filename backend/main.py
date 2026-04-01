@@ -29,7 +29,7 @@ def get_ideas():
     from core.storage import load_all_ideas
     ideas = load_all_ideas()
     print("Ideas from DB:", ideas)
-    return load_all_ideas()
+    return ideas
 
 @app.get("/clusters")
 def get_clusters():
