@@ -6,6 +6,8 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from core.pipeline import process_idea
+from core.db import Base, engine
+Base.metadata.create_all(bind=engine)
 
 # Import your evaluator
 from core.evaluator import evaluate_idea_adaptive  # adjust if name differs
