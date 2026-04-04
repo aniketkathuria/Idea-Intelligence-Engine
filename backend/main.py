@@ -78,7 +78,7 @@ def submit_idea(request: IdeaRequest, background_tasks: BackgroundTasks):
 def get_ideas():
     from core.storage import load_all_ideas
     ideas = load_all_ideas()
-    print("Ideas from DB:", ideas)
+    #print("Ideas from DB:", ideas)
     return load_all_ideas()
 
 @app.get("/idea/{idea_id}")
