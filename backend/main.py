@@ -21,11 +21,15 @@ from core.pipeline import process_idea
 from fastapi import BackgroundTasks
 from core.storage import create_idea_entry, get_idea_by_id
 from core.pipeline import process_idea_background
-
+from core.db import Base, engine
 # Import your evaluator
 from core.evaluator import evaluate_idea_adaptive  # adjust if name differs
 
+
+Base.metadata.create_all(bind=engine)
+
 app = FastAPI()
+
 
 class IdeaRequest(BaseModel):
     idea_text: str
