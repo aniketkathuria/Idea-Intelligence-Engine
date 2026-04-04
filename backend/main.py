@@ -90,3 +90,7 @@ def get_idea(idea_id: int):
 def get_clusters():
     from core.cluster_storage import load_clusters
     return load_clusters()
+
+@app.on_event("startup")
+def startup():
+    Base.metadata.create_all(bind=engine)
