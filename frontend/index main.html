@@ -47,7 +47,6 @@
       align-items: baseline;
       gap: 16px;
     }
-
     header h1 { font-family: var(--serif); font-size: 20px; font-weight: 600; color: var(--text); letter-spacing: -0.3px; }
     header span { font-family: var(--mono); font-size: 11px; color: var(--text-muted); letter-spacing: 0.5px; }
 
@@ -76,7 +75,6 @@
       align-items: center;
       justify-content: space-between;
     }
-
     .ideas-count { background: var(--amber-dim); color: var(--amber); font-family: var(--mono); font-size: 10px; padding: 2px 8px; border-radius: 10px; }
 
     .ideas-list { flex: 1; overflow-y: auto; padding: 12px; }
@@ -95,9 +93,16 @@
     .idea-card:hover { border-color: var(--border2); background: var(--surface2); }
     .idea-card.active { border-color: var(--amber); background: var(--amber-glow); }
 
-    .idea-card-id { font-family: var(--mono); font-size: 10px; color: var(--amber); margin-bottom: 6px; }
+    .idea-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+    .idea-card-id { font-family: var(--mono); font-size: 10px; color: var(--amber); }
     .idea-card-text { font-size: 13px; color: var(--text); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .idea-card-meta { margin-top: 8px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+    /* Status dots on cards */
+    .status-dot-card { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .dot-processing { background: var(--amber); animation: pulse 1.2s infinite; }
+    .dot-completed  { background: var(--green); }
+    .dot-error      { background: var(--red); }
 
     .tag { font-family: var(--mono); font-size: 10px; padding: 2px 7px; border-radius: 4px; background: var(--surface2); color: var(--text-muted); border: 0.5px solid var(--border); }
     .tag.cluster { background: var(--amber-dim); color: var(--amber); border-color: rgba(212,146,42,0.2); }
@@ -187,10 +192,10 @@
     .log-line { display: flex; gap: 10px; align-items: baseline; }
     .log-time { color: var(--text-dim); font-size: 10px; min-width: 55px; }
     .log-msg { color: var(--text-muted); }
-    .log-msg.ok { color: var(--green); }
+    .log-msg.ok   { color: var(--green); }
     .log-msg.info { color: var(--amber); }
 
-    /* ── Result Panel ── */
+    /* Result Panel */
     .result-panel { background: var(--surface); border: 0.5px solid var(--border); border-radius: 10px; overflow: hidden; animation: fadeIn 0.3s ease; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
@@ -208,15 +213,14 @@
     .viewing-badge { font-family: var(--mono); font-size: 10px; color: var(--text-dim); padding: 3px 8px; border: 0.5px solid var(--border); border-radius: 4px; }
 
     .classification-badge { font-family: var(--mono); font-size: 10px; padding: 3px 10px; border-radius: 4px; letter-spacing: 0.5px; white-space: nowrap; }
-    .badge-promising { background: var(--green-dim); color: var(--green); }
-    .badge-weak { background: var(--red-dim); color: var(--red); }
-    .badge-interesting { background: var(--amber-dim); color: var(--amber); }
+    .badge-promising    { background: var(--green-dim); color: var(--green); }
+    .badge-weak         { background: var(--red-dim);   color: var(--red);   }
+    .badge-interesting  { background: var(--amber-dim); color: var(--amber); }
     .badge-breakthrough { background: var(--green-dim); color: var(--green); }
-    .badge-confused { background: var(--red-dim); color: var(--red); }
+    .badge-confused     { background: var(--red-dim);   color: var(--red);   }
 
     .result-body { padding: 24px 20px; display: flex; flex-direction: column; gap: 24px; }
 
-    /* sections */
     .r-section { display: flex; flex-direction: column; gap: 10px; }
 
     .section-label {
@@ -235,7 +239,6 @@
     .bullet-list li { font-size: 13px; color: var(--text-muted); display: flex; gap: 10px; line-height: 1.6; }
     .bullet-list li::before { content: '—'; color: var(--text-dim); flex-shrink: 0; font-family: var(--mono); font-size: 11px; margin-top: 2px; }
 
-    /* scores */
     .scores-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
     .score-card { background: var(--surface2); border-radius: 8px; padding: 12px 14px; border: 0.5px solid var(--border); }
     .score-label { font-family: var(--mono); font-size: 9px; letter-spacing: 1.2px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px; }
@@ -243,23 +246,20 @@
     .score-value span { font-size: 12px; color: var(--text-dim); }
     .score-text { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
 
-    /* feasibility detail */
     .feas-detail { background: var(--surface2); border: 0.5px solid var(--border); border-radius: 8px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
     .feas-row { display: flex; flex-direction: column; gap: 3px; }
     .feas-key { font-family: var(--mono); font-size: 10px; color: var(--text-dim); letter-spacing: 0.8px; }
     .feas-val { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
 
-    /* verdict */
     .verdict { background: var(--amber-glow); border-left: 2px solid var(--amber); padding: 14px 16px; border-radius: 0 8px 8px 0; }
     .verdict p { font-size: 13px; color: var(--text-muted); line-height: 1.8; }
 
-    /* domain analysis kv */
     .kv-list { display: flex; flex-direction: column; gap: 10px; }
     .kv-item { display: flex; flex-direction: column; gap: 3px; }
     .kv-key { font-family: var(--mono); font-size: 10px; color: var(--text-dim); letter-spacing: 0.8px; }
     .kv-val { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
 
-    /* synthesis panel */
+    /* Synthesis panel */
     .synthesis-panel { background: var(--surface2); border: 0.5px solid rgba(212,146,42,0.15); border-radius: 10px; overflow: hidden; }
     .synthesis-header {
       padding: 12px 18px;
@@ -271,7 +271,7 @@
     .synthesis-title { font-family: var(--mono); font-size: 10px; letter-spacing: 1.4px; color: var(--amber); text-transform: uppercase; }
     .merge-badge { font-family: var(--mono); font-size: 10px; padding: 2px 8px; border-radius: 4px; }
     .merge-yes { background: var(--green-dim); color: var(--green); }
-    .merge-no { background: var(--red-dim); color: var(--red); }
+    .merge-no  { background: var(--red-dim);   color: var(--red);   }
     .synthesis-body { padding: 18px; display: flex; flex-direction: column; gap: 16px; }
 
     .uni-eval-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -281,12 +281,11 @@
 
     .distinct-list { display: flex; flex-direction: column; gap: 8px; }
     .distinct-item { background: var(--surface); border: 0.5px solid var(--border); border-radius: 6px; padding: 10px 12px; }
-    .distinct-id { font-family: var(--mono); font-size: 10px; color: var(--amber); margin-bottom: 4px; }
+    .distinct-id  { font-family: var(--mono); font-size: 10px; color: var(--amber); margin-bottom: 4px; }
     .distinct-val { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
 
     .highlight-block { background: var(--amber-glow); border-left: 2px solid var(--amber); padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 13px; color: var(--text-muted); line-height: 1.8; }
 
-    /* misc */
     .divider { border: none; border-top: 0.5px solid var(--border); }
     .empty-state { text-align: center; padding: 48px 24px; color: var(--text-dim); }
     .empty-state .big { font-family: var(--serif); font-size: 28px; font-style: italic; margin-bottom: 8px; }
@@ -315,9 +314,9 @@
 
     <div class="controls">
       <div class="depth-group">
-        <button class="depth-btn" data-depth="fast" onclick="setDepth('fast')">Fast</button>
+        <button class="depth-btn" data-depth="fast"     onclick="setDepth('fast')">Fast</button>
         <button class="depth-btn active" data-depth="balanced" onclick="setDepth('balanced')">Balanced</button>
-        <button class="depth-btn" data-depth="deep" onclick="setDepth('deep')">Deep</button>
+        <button class="depth-btn" data-depth="deep"     onclick="setDepth('deep')">Deep</button>
       </div>
       <button class="submit-btn" id="submitBtn" onclick="submitIdea()">Evaluate Idea</button>
     </div>
@@ -354,25 +353,22 @@
   let allIdeas = [];
   let activeIdeaId = null;
 
+  // ── Depth selector ────────────────────────────────────────
+
   function setDepth(d) {
     selectedDepth = d;
-    document.querySelectorAll('.depth-btn')
-      .forEach(b => b.classList.toggle('active', b.dataset.depth === d));
+    document.querySelectorAll('.depth-btn').forEach(b => b.classList.toggle('active', b.dataset.depth === d));
   }
 
+  // ── Log helpers ───────────────────────────────────────────
+
   function now() {
-    return new Date().toLocaleTimeString('en-US', {
-      hour12: false,
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit'
-    });
+    return new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
   }
 
   function addLog(msg, type = '') {
     const body = document.getElementById('logBody');
     if (body.querySelector('.idle-hint')) body.innerHTML = '';
-
     const line = document.createElement('div');
     line.className = 'log-line';
     line.innerHTML = `<span class="log-time">${now()}</span><span class="log-msg ${type}">${msg}</span>`;
@@ -380,57 +376,360 @@
     body.scrollTop = body.scrollHeight;
   }
 
-  /* ✅ REPLACED: no fake timers anymore */
+  // Step-by-step pipeline log simulation
+  const LOG_STEPS = [
+    [0,     'Generating search queries...',       ''],
+    [2000,  'Querying DuckDuckGo...',              ''],
+    [4500,  'Deduplicating results...',            ''],
+    [6000,  'Research complete',                   'ok'],
+    [6500,  'Detecting category...',               ''],
+    [8000,  'Running adaptive evaluation...',      'info'],
+    [13000, 'Generating embedding vector...',      ''],
+    [15000, 'Embedding complete',                  'ok'],
+    [15500, 'Saving to database...',               ''],
+    [16000, 'Scanning past ideas for similarity...', ''],
+    [17000, 'Running cluster engine...',           ''],
+  ];
+
+  let logTimers = [];
+
   function startLogs() {
     document.getElementById('logDot').classList.add('active');
+    logTimers.forEach(clearTimeout);
+    logTimers = [];
     document.getElementById('logBody').innerHTML = '';
-    addLog('Submitting idea...', 'info');
+    LOG_STEPS.forEach(([delay, msg, type]) => {
+      logTimers.push(setTimeout(() => addLog(msg, type), delay));
+    });
   }
 
   function stopLogs(success) {
     document.getElementById('logDot').classList.remove('active');
+    logTimers.forEach(clearTimeout);
+    logTimers = [];
     addLog(
       success ? 'Pipeline completed successfully' : 'Pipeline failed',
       success ? 'ok' : ''
     );
   }
 
-  /* ✅ NEW: polling */
+  // ── Render helpers ────────────────────────────────────────
+
+  function getClassBadge(cls) {
+    if (!cls) return '';
+    const map = {
+      'Structurally Promising':    'badge-promising',
+      'High-Potential Breakthrough': 'badge-breakthrough',
+      'Weak Concept':              'badge-weak',
+      'Interesting but Unproven':  'badge-interesting',
+      'Conceptually Confused':     'badge-confused',
+    };
+    const key = Object.keys(map).find(k => cls.includes(k)) || '';
+    return `<span class="classification-badge ${map[key] || 'badge-interesting'}">${cls}</span>`;
+  }
+
+  function bullets(arr) {
+    if (!arr || !arr.length) return '<p class="prose" style="color:var(--text-dim)">None provided</p>';
+    return `<ul class="bullet-list">${arr.map(i => `<li>${i}</li>`).join('')}</ul>`;
+  }
+
+  // ── Render evaluation ─────────────────────────────────────
+
+  function renderEvaluation(ev, ideaId) {
+    const scores = ev.scores || {};
+    const core   = ev.core_analysis || {};
+    const imp    = ev.improvement_directions || {};
+    const feas   = scores.feasibility_reasoning || {};
+    const domain = ev.domain_specific_analysis || {};
+    const hasDomain = Object.keys(domain).length > 0;
+
+    return `
+      <div class="result-panel">
+        <div class="result-header">
+          <span class="result-title">${ev.idea_summary || 'Evaluation Result'}</span>
+          <div class="result-header-right">
+            ${ideaId !== null ? `<span class="viewing-badge">idea #${ideaId}</span>` : ''}
+            ${getClassBadge(ev.final_classification || '')}
+          </div>
+        </div>
+
+        <div class="result-body">
+
+          <div class="r-section">
+            <div class="section-label">Category</div>
+            <p class="prose">${ev.category || '—'}</p>
+          </div>
+
+          <div class="r-section">
+            <div class="section-label">Core Analysis</div>
+            <div class="kv-list">
+              <div class="kv-item">
+                <div class="kv-key">Problem Definition</div>
+                <div class="kv-val">${core.problem_definition || '—'}</div>
+              </div>
+              <div class="kv-item">
+                <div class="kv-key">Proposed Mechanism</div>
+                <div class="kv-val">${core.proposed_mechanism || '—'}</div>
+              </div>
+            </div>
+            <div style="margin-top:4px">
+              <div class="kv-key" style="margin-bottom:8px">Key Assumptions</div>
+              ${bullets(core.key_assumptions)}
+            </div>
+            <div style="margin-top:4px">
+              <div class="kv-key" style="margin-bottom:8px">Structural Weaknesses</div>
+              ${bullets(core.structural_weaknesses)}
+            </div>
+            <div style="margin-top:4px">
+              <div class="kv-key" style="margin-bottom:8px">Failure Scenarios</div>
+              ${bullets(core.failure_scenarios)}
+            </div>
+          </div>
+
+          ${hasDomain ? `
+          <div class="r-section">
+            <div class="section-label">Domain Analysis</div>
+            <div class="kv-list">
+              ${Object.entries(domain).map(([k, v]) => `
+                <div class="kv-item">
+                  <div class="kv-key">${k}</div>
+                  <div class="kv-val">${typeof v === 'object' ? JSON.stringify(v, null, 2) : v}</div>
+                </div>`).join('')}
+            </div>
+          </div>` : ''}
+
+          <div class="r-section">
+            <div class="section-label">Improvement Directions</div>
+            <div>
+              <div class="kv-key" style="margin-bottom:8px">Strengthening Actions</div>
+              ${bullets(imp.strengthening_actions)}
+            </div>
+            <div style="margin-top:8px">
+              <div class="kv-key" style="margin-bottom:8px">Research Needed</div>
+              ${bullets(imp.research_needed)}
+            </div>
+            <div style="margin-top:8px">
+              <div class="kv-key" style="margin-bottom:8px">Validation Tests</div>
+              ${bullets(imp.validation_tests)}
+            </div>
+          </div>
+
+          <div class="r-section">
+            <div class="section-label">Scores</div>
+            <div class="scores-row">
+              <div class="score-card">
+                <div class="score-label">Novelty</div>
+                <div class="score-value">${scores.novelty ?? '—'}<span>/10</span></div>
+              </div>
+              <div class="score-card">
+                <div class="score-label">Feasibility</div>
+                <div class="score-value">${feas.score ?? '—'}<span>/10</span></div>
+              </div>
+              <div class="score-card">
+                <div class="score-label">Overall</div>
+                <div class="score-value">${scores.overall ?? '—'}<span>/10</span></div>
+              </div>
+              <div class="score-card">
+                <div class="score-label">Risk Level</div>
+                <div class="score-text" style="margin-top:6px;font-size:13px;color:var(--text-muted)">${scores.risk_level || '—'}</div>
+              </div>
+            </div>
+            <div class="feas-detail" style="margin-top:4px">
+              <div class="kv-key" style="margin-bottom:4px">Feasibility Reasoning</div>
+              <div class="feas-row">
+                <div class="feas-key">Quantitative Basis</div>
+                <div class="feas-val">${feas.derived_from_quantitative_analysis || '—'}</div>
+              </div>
+              <div class="feas-row">
+                <div class="feas-key">Threshold Logic</div>
+                <div class="feas-val">${feas.threshold_logic || '—'}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="r-section">
+            <div class="section-label">Final Verdict</div>
+            <div class="verdict"><p>${ev.verdict_reasoning || '—'}</p></div>
+          </div>
+
+        </div>
+      </div>`;
+  }
+
+  // ── Render synthesis ──────────────────────────────────────
+
+  function renderSynthesis(syn) {
+    if (!syn) return '';
+    const shouldMerge = syn.should_merge;
+    const uni      = syn.unified_evaluation || {};
+    const distinct = syn.distinct_elements_per_idea || {};
+
+    return `
+      <div class="synthesis-panel">
+        <div class="synthesis-header">
+          <span class="synthesis-title">Synthesis Report</span>
+          <span class="merge-badge ${shouldMerge ? 'merge-yes' : 'merge-no'}">${shouldMerge ? 'Merged' : 'Not Merged'}</span>
+        </div>
+        <div class="synthesis-body">
+
+          <div class="r-section">
+            <div class="kv-key">Core Shared Theme</div>
+            <p class="prose">${syn.core_shared_theme || '—'}</p>
+          </div>
+
+          <div class="r-section">
+            <div class="kv-key">Overlap Analysis</div>
+            <p class="prose">${syn.overlap_analysis || '—'}</p>
+          </div>
+
+          ${Object.keys(distinct).length ? `
+          <div class="r-section">
+            <div class="kv-key" style="margin-bottom:8px">Distinct Elements Per Idea</div>
+            <div class="distinct-list">
+              ${Object.entries(distinct).map(([id, desc]) => `
+                <div class="distinct-item">
+                  <div class="distinct-id">Idea #${id}</div>
+                  <div class="distinct-val">${desc}</div>
+                </div>`).join('')}
+            </div>
+          </div>` : ''}
+
+          <div class="r-section">
+            <div class="kv-key">Evolutionary?</div>
+            <p class="${syn.are_these_evolutionary ? 'bool-yes' : 'bool-no'}" style="margin-top:4px">${syn.are_these_evolutionary ? 'Yes' : 'No'}</p>
+          </div>
+
+          <div class="r-section">
+            <div class="kv-key">Merge Reasoning</div>
+            <p class="prose">${syn.merge_reasoning || '—'}</p>
+          </div>
+
+          ${shouldMerge && syn.merged_super_idea_summary ? `
+          <div class="r-section">
+            <div class="kv-key" style="margin-bottom:8px">Merged Super Idea</div>
+            <div class="highlight-block">${syn.merged_super_idea_summary}</div>
+          </div>` : ''}
+
+          ${shouldMerge && Object.keys(uni).length ? `
+          <div class="r-section">
+            <div class="kv-key" style="margin-bottom:8px">Unified Evaluation</div>
+            <div class="uni-eval-grid">
+              <div class="uni-eval-card"><div class="uni-eval-label">Novelty</div><div class="uni-eval-val">${uni.novelty_estimate || '—'}</div></div>
+              <div class="uni-eval-card"><div class="uni-eval-label">Feasibility</div><div class="uni-eval-val">${uni.feasibility_estimate || '—'}</div></div>
+              <div class="uni-eval-card"><div class="uni-eval-label">Key Risk</div><div class="uni-eval-val">${uni.key_risk || '—'}</div></div>
+              <div class="uni-eval-card"><div class="uni-eval-label">Upside Potential</div><div class="uni-eval-val">${uni.upside_potential || '—'}</div></div>
+            </div>
+          </div>` : ''}
+
+          ${syn.strategic_recommendation ? `
+          <div class="r-section">
+            <div class="kv-key" style="margin-bottom:8px">Strategic Recommendation</div>
+            <p class="prose">${syn.strategic_recommendation}</p>
+          </div>` : ''}
+
+          ${syn.conversational_reflection ? `
+          <div class="r-section">
+            <div class="kv-key" style="margin-bottom:8px">Reflection</div>
+            <p class="prose">${syn.conversational_reflection}</p>
+          </div>` : ''}
+
+        </div>
+      </div>`;
+  }
+
+  // ── Main render ───────────────────────────────────────────
+
+  function renderResult(data, ideaId = null) {
+    // Normalise: /ideas shape has analysis.evaluation; /idea/:id has evaluation directly
+    const ev  = data.evaluation || data.analysis?.evaluation || {};
+    const syn = data.synthesis  || null;
+
+    document.getElementById('resultArea').innerHTML =
+      `<div style="display:flex;flex-direction:column;gap:16px">
+        ${renderEvaluation(ev, ideaId)}
+        ${syn ? renderSynthesis(syn) : ''}
+      </div>`;
+
+    document.getElementById('mainCol').scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── Open idea from sidebar ────────────────────────────────
+
+  function openIdea(id) {
+    activeIdeaId = id;
+
+    document.querySelectorAll('.idea-card').forEach(c => c.classList.remove('active'));
+    const card = document.querySelector(`.idea-card[data-id="${id}"]`);
+    if (card) card.classList.add('active');
+
+    const idea = allIdeas.find(i => i.id === id);
+    if (!idea) return;
+
+    document.getElementById('ideaInput').value = idea.raw_idea;
+
+    const status = idea.status || 'processing';
+
+    if (status === 'processing') {
+      // Show the pipeline log steps so user can see what's happening
+      document.getElementById('resultArea').innerHTML = `
+        <div class="empty-state">
+          <div class="big">Processing</div>
+          <p>Pipeline is running — follow the log above.</p>
+        </div>`;
+      startLogs();
+      return;
+    }
+
+    if (status === 'failed') {
+      document.getElementById('resultArea').innerHTML = `
+        <div class="empty-state">
+          <div class="big">Failed</div>
+          <p>Evaluation pipeline failed for this idea.</p>
+        </div>`;
+      return;
+    }
+
+    renderResult(idea, id);
+  }
+
+  // ── Polling ───────────────────────────────────────────────
+
   async function pollIdeaStatus(ideaId, attempts = 0) {
     if (attempts > 30) {
       stopLogs(false);
       addLog('Timed out waiting for result');
+      await loadIdeas();
       return;
     }
 
     try {
-      const res = await fetch(`${API}/idea/${ideaId}`);
+      const res    = await fetch(`${API}/idea/${ideaId}`);
       const result = await res.json();
 
       if (result.status === 'processing') {
-        addLog(`Idea ${ideaId} still processing...`);
-        setTimeout(() => pollIdeaStatus(ideaId, attempts + 1), 2000);
+        setTimeout(() => pollIdeaStatus(ideaId, attempts + 1), 4000);
         return;
       }
 
       if (result.status === 'completed') {
         stopLogs(true);
-        addLog(`Idea ${ideaId} completed`, 'ok');
-
-        renderResult(result, ideaId); // ✅ your original renderer
         await loadIdeas();
+        if (activeIdeaId === ideaId) {
+          renderResult(result, ideaId);
+        }
         return;
       }
 
       if (result.status === 'failed') {
         stopLogs(false);
-        addLog(`Idea ${ideaId} failed`);
-
-        document.getElementById('resultArea').innerHTML =
-          `<div class="empty-state">
-            <div class="big">Failed</div>
-            <p>${result.error || 'Something went wrong'}</p>
-          </div>`;
+        await loadIdeas();
+        if (activeIdeaId === ideaId) {
+          document.getElementById('resultArea').innerHTML = `
+            <div class="empty-state">
+              <div class="big">Failed</div>
+              <p>${result.error || 'Something went wrong'}</p>
+            </div>`;
+        }
         return;
       }
 
@@ -440,14 +739,11 @@
     }
   }
 
-  /* ✅ UPDATED submit — ONLY change */
+  // ── Submit ────────────────────────────────────────────────
+
   async function submitIdea() {
     const idea = document.getElementById('ideaInput').value.trim();
     if (!idea) return;
-
-    activeIdeaId = null;
-    document.querySelectorAll('.idea-card')
-      .forEach(c => c.classList.remove('active'));
 
     const btn = document.getElementById('submitBtn');
     btn.disabled = true;
@@ -465,11 +761,14 @@
 
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
-      const data = await res.json();
-      const ideaId = data.idea_id;
+      const data    = await res.json();
+      const ideaId  = data.idea_id;
 
-      addLog(`Idea submitted (ID: ${ideaId})`, 'info');
-      addLog('Processing in background...');
+      addLog(`Idea submitted (ID: #${ideaId})`, 'info');
+
+      // Immediately refresh sidebar so the orange-dot card appears
+      activeIdeaId = ideaId;
+      await loadIdeas();
 
       pollIdeaStatus(ideaId);
 
@@ -482,13 +781,13 @@
     }
   }
 
-  /* ✅ KEEP EVERYTHING ELSE EXACTLY AS YOU HAD IT BELOW */
+  // ── Load sidebar ──────────────────────────────────────────
 
   async function loadIdeas() {
     const list = document.getElementById('ideasList');
     try {
       const res = await fetch(`${API}/ideas`);
-      allIdeas = await res.json();
+      allIdeas  = await res.json();
       const count = Array.isArray(allIdeas) ? allIdeas.length : 0;
       document.getElementById('ideasCount').textContent = count;
 
@@ -498,13 +797,22 @@
       }
 
       list.innerHTML = [...allIdeas].reverse().map(idea => {
-        const ev  = idea.analysis?.evaluation || {};
-        const cat = ev.category || '';
-        const cid = idea.cluster_id;
+        const ev     = idea.analysis?.evaluation || {};
+        const cat    = ev.category || '';
+        const cid    = idea.cluster_id;
+        const status = idea.status || 'processing';
         const isActive = idea.id === activeIdeaId;
+
+        const dotClass = status === 'completed' ? 'dot-completed'
+                       : status === 'failed'    ? 'dot-error'
+                       : 'dot-processing';
+
         return `
           <div class="idea-card ${isActive ? 'active' : ''}" data-id="${idea.id}" onclick="openIdea(${idea.id})">
-            <div class="idea-card-id">#${idea.id}</div>
+            <div class="idea-card-top">
+              <div class="idea-card-id">#${idea.id}</div>
+              <div class="status-dot-card ${dotClass}"></div>
+            </div>
             <div class="idea-card-text">${idea.raw_idea}</div>
             <div class="idea-card-meta">
               ${cat ? `<span class="tag">${cat}</span>` : ''}
@@ -520,5 +828,5 @@
 
   loadIdeas();
 </script>
-</body> 
+</body>
 </html>
