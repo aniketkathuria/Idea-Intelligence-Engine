@@ -19,6 +19,27 @@ logging.basicConfig(
 )
 logging.getLogger("ddgs").setLevel(logging.WARNING) # Removes Logs from ddgs
 
+def process_idea_background(idea_id: int, raw_idea: str):
+    from core.storage import update_idea_status
+    import logging
+
+    logger = logging.getLogger(__name__)
+
+    try:
+        logger.info(f"Processing idea {idea_id}")
+
+        result = process_idea(raw_idea)
+
+        update_idea_status(idea_id, "completed", result)
+
+        logger.info(f"Idea {idea_id} completed")
+
+    except Exception as e:
+        logger.error(f"Idea {idea_id} failed: {e}", exc_info=True)
+
+        update_idea_status(idea_id, "failed", {"error": str(e)})
+
+
 def process_idea(raw_idea: str, depth="balanced"):
     client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
@@ -26,7 +47,15 @@ def process_idea(raw_idea: str, depth="balanced"):
     logging.info("Query Generating and Researching")
     try:
         queries = generate_search_queries(raw_idea, client)
-        research_results = search_duckduckgo(queries, depth)
+
+        try:
+            research_results = search_duckduckgo(queries, depth)
+        except Exception as e:
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.error(f"Research step failed: {e}")
+
+            research_results = []  # fallback
         logging.info("Query Generation and Researching Done ✅")
     except Exception as e:
         logging.error(f"Research step failed: {e}")
@@ -132,7 +161,7 @@ def process_idea(raw_idea: str, depth="balanced"):
 
                         update_cluster({
                             "cluster_id": cluster_id,
-                            "super_idea": synthesis_result.get("merged_super_idea_summary"),  # Fixed key
+                            "super_idea": synthesis_result.get("super_idea"),
                             "merge_reasoning": synthesis_result.get("merge_reasoning")
                         })
 
@@ -141,7 +170,7 @@ def process_idea(raw_idea: str, depth="balanced"):
 
                     else:
                         cluster_id = create_new_cluster({
-                            "super_idea": synthesis_result.get("merged_super_idea_summary"),  # Fixed key
+                            "super_idea": synthesis_result.get("super_idea"),
                             "merge_reasoning": synthesis_result.get("merge_reasoning")
                         })
                         logging.info(f"Backfilling cluster {cluster_id} to ideas: {matched_ids}")  

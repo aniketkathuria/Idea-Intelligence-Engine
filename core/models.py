@@ -29,6 +29,7 @@ class Idea(Base):
 
     user = relationship("User", back_populates="ideas")
     cluster = relationship("Cluster", back_populates="ideas")
+    status = Column(String, default="processing")
 
 
 class Cluster(Base):

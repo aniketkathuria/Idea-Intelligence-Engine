@@ -5,17 +5,6 @@ import os
 from fastapi import FastAPI
 from pydantic import BaseModel
 from dotenv import load_dotenv
-
-
-
-# --- Setup logging ---
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s"
-)
-logger = logging.getLogger(__name__)
-
-# --- Load env ---
 load_dotenv()
 
 # --- Fix import path ---
@@ -23,20 +12,15 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 # --- Imports ---
 from core.pipeline import process_idea
-from core.db import Base, engine
-from core.evaluator import evaluate_idea_adaptive  # (kept as is)
+from fastapi import BackgroundTasks
+from core.storage import create_idea_entry, get_idea_by_id
+from core.pipeline import process_idea_background
 
-# --- Ensure DB tables exist ---
-try:
-    Base.metadata.create_all(bind=engine)
-    logger.info("✅ Database initialized")
-except Exception as e:
-    logger.error(f"❌ DB init failed: {e}")
+# Import your evaluator
+from core.evaluator import evaluate_idea_adaptive  # adjust if name differs
 
-# --- FastAPI app ---
-app = FastAPI(root_path="/")
+app = FastAPI()
 
-# --- Request model ---
 class IdeaRequest(BaseModel):
     idea_text: str
 
@@ -60,55 +44,34 @@ def root():
 
 
 @app.post("/submit-idea")
-def submit_idea(request: IdeaRequest):
+def submit_idea(request: IdeaRequest, background_tasks: BackgroundTasks):
     logger.info("🚀 POST /submit-idea called")
-
     try:
-        logger.info(f"Input idea: {request.idea_text}")
+        idea_id = create_idea_entry(request.idea_text)
 
-        result = process_idea(request.idea_text)
+        background_tasks.add_task(
+            process_idea_background,
+            idea_id,
+            request.idea_text
+        )
 
-        logger.info("✅ Idea processed successfully")
-        return result
+        return {
+            "status": "processing",
+            "idea_id": idea_id
+        }
 
     except Exception as e:
-        logger.error(f"❌ Error in /submit-idea: {e}", exc_info=True)
+        logger.error(f"❌ Error in submit_idea: {e}", exc_info=True)
         return {"error": str(e)}
-
 
 @app.get("/ideas")
 def get_ideas():
-    logger.info("📥 GET /ideas called")
-
-    try:
-        from core.storage import load_all_ideas
-
-        ideas = load_all_ideas()
-
-        logger.info(f"✅ Retrieved {len(ideas)} ideas")
-        return ideas
-
-    except Exception as e:
-        logger.error(f"❌ Error in /ideas: {e}", exc_info=True)
-        return {"error": str(e)}
-
+    from core.storage import load_all_ideas
+    ideas = load_all_ideas()
+    print("Ideas from DB:", ideas)
+    return load_all_ideas()
 
 @app.get("/clusters")
 def get_clusters():
-    logger.info("📥 GET /clusters called")
-
-    try:
-        from core.cluster_storage import load_clusters
-
-        clusters = load_clusters()
-
-        logger.info(f"✅ Retrieved {len(clusters)} clusters")
-        return clusters
-
-    except Exception as e:
-        logger.error(f"❌ Error in /clusters: {e}", exc_info=True)
-        return {"error": str(e)}
-    
-@app.get("/health")
-def health():
-    return {"status": "ok"}
+    from core.cluster_storage import load_clusters
+    return load_clusters()

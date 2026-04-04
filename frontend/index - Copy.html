@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Idea Intelligence Engine</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+<style>
+/* ===== YOUR ORIGINAL CSS (UNCHANGED) ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0c0c0b;
+  --surface: #141412;
+  --surface2: #1c1c19;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --amber: #d4922a;
+  --green: #4caf7a;
+  --red: #c0524a;
+  --text: #e8e4dc;
+  --text-muted: #7a7770;
+  --mono: 'JetBrains Mono', monospace;
+  --serif: 'Lora', serif;
+  --sans: 'DM Sans', sans-serif;
+}
+
+html, body { height:100%; background:var(--bg); color:var(--text); font-family:var(--sans); }
+
+.app {
+  display:grid;
+  grid-template-columns:1fr 340px;
+  grid-template-rows:auto 1fr;
+  height:100vh;
+}
+
+header { padding:20px 32px; border-bottom:1px solid var(--border); display:flex; gap:16px; grid-column:1/-1;}
+
+.main-col { padding:32px; overflow-y:auto; }
+.sidebar { border-left:1px solid var(--border); display:flex; flex-direction:column;}
+
+textarea {
+  width:100%;
+  padding:16px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  color:var(--text);
+  border-radius:8px;
+}
+
+.submit-btn {
+  background:var(--amber);
+  border:none;
+  padding:10px 18px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* ===== NEW: STATUS DOT ===== */
+.status-dot {
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  margin-left:auto;
+}
+
+.status-processing { background: var(--amber); }
+.status-completed { background: var(--green); }
+
+/* keep rest of your styles as-is */
+</style>
+</head>
+
+<body>
+<div class="app">
+
+<header>
+  <h1>Idea Intelligence Engine</h1>
+  <span>V2 · Research-Integrated Evaluation</span>
+</header>
+
+<main class="main-col">
+
+<textarea id="ideaInput" placeholder="Write your raw idea here..."></textarea>
+<br><br>
+
+<button class="submit-btn" id="submitBtn" onclick="submitIdea()">Evaluate Idea</button>
+
+<div id="logBody" style="margin-top:20px;"></div>
+<div id="resultArea"></div>
+
+</main>
+
+<aside class="sidebar">
+  <div id="ideasList"></div>
+</aside>
+
+</div>
+
+<script>
+const API = 'https://idea-engine-zbno.onrender.com';
+
+let allIdeas = [];
+let activeIdeaId = null;
+
+/* ===== LOG ===== */
+function addLog(msg){
+  const el = document.createElement('div');
+  el.innerText = msg;
+  document.getElementById('logBody').appendChild(el);
+}
+
+/* ===== OPEN IDEA ===== */
+function openIdea(id){
+  const idea = allIdeas.find(i => i.id === id);
+  if(!idea) return;
+
+  activeIdeaId = id;
+
+  document.getElementById('ideaInput').value = idea.raw_idea;
+
+  renderResult(idea);
+}
+
+/* ===== RENDER RESULT ===== */
+function renderResult(data){
+  document.getElementById('resultArea').innerHTML =
+    `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+}
+
+/* ===== POLLING ===== */
+async function pollIdeaStatus(id){
+  try{
+    const res = await fetch(`${API}/idea/${id}`);
+    const data = await res.json();
+
+    if(data.status === 'processing'){
+      setTimeout(()=>pollIdeaStatus(id),2000);
+      return;
+    }
+
+    if(data.status === 'completed'){
+      addLog("Completed");
+
+      await loadIdeas();
+
+      if(id === activeIdeaId){
+        renderResult(data);
+      }
+
+      return;
+    }
+
+  }catch(e){
+    addLog("Error polling");
+  }
+}
+
+/* ===== SUBMIT ===== */
+async function submitIdea(){
+  const idea = document.getElementById('ideaInput').value.trim();
+  if(!idea) return;
+
+  try{
+    const res = await fetch(`${API}/submit-idea`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({idea_text:idea})
+    });
+
+    const data = await res.json();
+    const id = data.idea_id;
+
+    addLog(`Submitted ${id}`);
+
+    // 🔥 immediate refresh
+    await loadIdeas();
+
+    activeIdeaId = id;
+
+    pollIdeaStatus(id);
+
+  }catch(e){
+    addLog("Submit failed");
+  }
+}
+
+/* ===== LOAD IDEAS ===== */
+async function loadIdeas(){
+  try{
+    const res = await fetch(`${API}/ideas`);
+    allIdeas = await res.json();
+
+    document.getElementById('ideasList').innerHTML =
+      [...allIdeas].reverse().map(idea => {
+
+        const status = idea.status || (idea.analysis ? 'completed':'processing');
+
+        return `
+        <div onclick="openIdea(${idea.id})" 
+             style="padding:10px; border-bottom:1px solid #222; cursor:pointer; display:flex; align-items:center; gap:10px;">
+
+          <div>#${idea.id}</div>
+          <div style="flex:1">${idea.raw_idea}</div>
+
+          <div class="status-dot ${status === 'completed' ? 'status-completed':'status-processing'}"></div>
+
+        </div>`;
+      }).join('');
+
+  }catch(e){
+    document.getElementById('ideasList').innerText = "Failed to load";
+  }
+}
+
+loadIdeas();
+</script>
+
+</body>
+</html>
