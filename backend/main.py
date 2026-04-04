@@ -81,6 +81,11 @@ def get_ideas():
     print("Ideas from DB:", ideas)
     return load_all_ideas()
 
+@app.get("/idea/{idea_id}")
+def get_idea(idea_id: int):
+    logger.info(f"GET /idea/{idea_id} called")
+    return get_idea_by_id(idea_id)
+
 @app.get("/clusters")
 def get_clusters():
     from core.cluster_storage import load_clusters

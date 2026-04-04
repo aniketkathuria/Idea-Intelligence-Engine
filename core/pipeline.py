@@ -51,9 +51,7 @@ def process_idea(raw_idea: str, depth="balanced"):
         try:
             research_results = search_duckduckgo(queries, depth)
         except Exception as e:
-            import logging
-            logger = logging.getLogger(__name__)
-            logger.error(f"Research step failed: {e}")
+            logging.error(f"Research step failed: {e}")
 
             research_results = []  # fallback
         logging.info("Query Generation and Researching Done ✅")

@@ -46,12 +46,16 @@ def load_all_ideas():
         result.append({
             "id": idea.id,
             "raw_idea": idea.raw_input,
-            "embedding": json.loads(idea.embedding_vector),
-            "analysis": json.loads(idea.evaluation_json)
+            "status": idea.status or "processing",
+            "cluster_id": idea.cluster_id,
+            "embedding": json.loads(idea.embedding_vector) if idea.embedding_vector else [],
+            "analysis": json.loads(idea.evaluation_json) if idea.evaluation_json else {},
+            "synthesis": json.loads(idea.synthesis_output) if idea.synthesis_output else None,
         })
 
     db.close()
     return result
+
 
 def create_idea_entry(raw_idea: str):
     from core.db import SessionLocal
@@ -71,6 +75,7 @@ def create_idea_entry(raw_idea: str):
     db.close()
 
     return idea.id
+
 
 def update_idea_status(idea_id: int, status: str, result: dict = None):
     from core.db import SessionLocal
@@ -94,6 +99,7 @@ def update_idea_status(idea_id: int, status: str, result: dict = None):
 
     db.commit()
     db.close()
+
 
 def get_idea_by_id(idea_id: int):
     from core.db import SessionLocal
