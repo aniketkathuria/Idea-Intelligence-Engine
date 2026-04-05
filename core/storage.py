@@ -134,10 +134,14 @@ def update_idea_with_result(idea_id: int, raw_text: str, analysis: dict, embeddi
     if not idea:
         db.close()
         return idea_id
-    
-    idea.evaluation_json = json.dumps(analysis)
+
+    # FIXED: wrap in evaluation key so frontend can find analysis.evaluation
+    idea.evaluation_json = json.dumps({
+        "research": analysis.get("research", []),
+        "evaluation": analysis.get("evaluation", analysis)
+    })
     idea.embedding_vector = json.dumps(embedding)
-    idea.category = analysis.get("evaluation", {}).get("category", "unknown")
+    idea.category = analysis.get("evaluation", {}).get("category", analysis.get("category", "unknown"))
     
     db.commit()
     db.close()
