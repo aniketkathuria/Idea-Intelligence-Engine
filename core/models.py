@@ -17,7 +17,7 @@ class Idea(Base):
     __tablename__ = "ideas"
 
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"))
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
 
     raw_input = Column(Text)
     evaluation_json = Column(Text)
@@ -36,7 +36,7 @@ class Cluster(Base):
     __tablename__ = "clusters"
 
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"))
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
 
     super_idea = Column(Text)
     merge_reasoning = Column(Text)

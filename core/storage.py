@@ -8,7 +8,7 @@ def save_idea(raw_text, analysis, embedding):
     category = analysis["evaluation"].get("category", "unknown")
 
     new_idea = Idea(
-        user_id=1,  # TEMP
+        #user_id=1,  # TEMP
         raw_input=raw_text,
         evaluation_json=json.dumps(analysis),
         embedding_vector=json.dumps(embedding),

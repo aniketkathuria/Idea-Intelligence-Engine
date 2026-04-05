@@ -70,7 +70,7 @@ def create_new_cluster(cluster_data):
     db = SessionLocal()
 
     new_cluster = Cluster(
-        user_id=1,
+        #user_id=1,
         super_idea=cluster_data.get("super_idea"),
         merge_reasoning=cluster_data.get("merge_reasoning")
     )
