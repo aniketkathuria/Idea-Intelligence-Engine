@@ -9,9 +9,6 @@ engine = create_engine(
     pool_pre_ping=True
 )
 
-engine = create_engine(
-    DATABASE_URL, connect_args={"check_same_thread": False}
-)
 
 SessionLocal = sessionmaker(
     autocommit=False,
