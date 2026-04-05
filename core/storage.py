@@ -125,3 +125,20 @@ def get_idea_by_id(idea_id: int):
 
     db.close()
     return result
+
+def update_idea_with_result(idea_id: int, raw_text: str, analysis: dict, embedding: list):
+    db = SessionLocal()
+    
+    idea = db.query(Idea).filter(Idea.id == idea_id).first()
+    
+    if not idea:
+        db.close()
+        return idea_id
+    
+    idea.evaluation_json = json.dumps(analysis)
+    idea.embedding_vector = json.dumps(embedding)
+    idea.category = analysis.get("evaluation", {}).get("category", "unknown")
+    
+    db.commit()
+    db.close()
+    return idea_id

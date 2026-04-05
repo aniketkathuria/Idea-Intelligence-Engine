@@ -6,7 +6,7 @@ from core.researcher import generate_search_queries, search_duckduckgo
 from core.evaluator import evaluate_idea_adaptive
 from core.parser import parse_json_with_repair
 from core.embedding import generate_embedding, find_similar_ideas
-from core.storage import load_all_ideas, save_idea, update_idea_cluster
+from core.storage import load_all_ideas, update_idea_cluster
 from core.cluster_storage import load_clusters, create_new_cluster, update_cluster, assign_ideas_to_cluster
 from core.cluster_engine import determine_cluster_action
 from core.synthesis import run_synthesis
@@ -28,7 +28,7 @@ def process_idea_background(idea_id: int, raw_idea: str):
     try:
         logger.info(f"Processing idea {idea_id}")
 
-        result = process_idea(raw_idea)
+        result = process_idea(raw_idea,idea_id=idea_id)
 
         update_idea_status(idea_id, "completed", result)
 
@@ -40,7 +40,7 @@ def process_idea_background(idea_id: int, raw_idea: str):
         update_idea_status(idea_id, "failed", {"error": str(e)})
 
 
-def process_idea(raw_idea: str, depth="balanced"):
+def process_idea(raw_idea: str, depth="balanced",idea_id: int = None):
     client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
     # --- Research ---
@@ -79,9 +79,11 @@ def process_idea(raw_idea: str, depth="balanced"):
         raise
 
     # --- Save Idea First (get real DB-assigned ID) ---
-    logging.info("Saving idea to database")
+    logging.info("Saving evaluation to database")
     try:
-        idea_id = save_idea(
+        from core.storage import update_idea_with_result
+        update_idea_with_result(
+            idea_id,
             raw_idea,
             {
                 "research": research_results,
@@ -89,11 +91,10 @@ def process_idea(raw_idea: str, depth="balanced"):
             },
             new_embedding
         )
-        logging.info(f"Idea saved with DB ID: {idea_id} ✅")
+        logging.info(f"Idea {idea_id} updated with evaluation ✅")
     except Exception as e:
-        logging.error(f"DB save failed: {e}")
+        logging.error(f"DB update failed: {e}")
         raise
-
     # --- Similarity ---
     logging.info("Finding Similar past Ideas and loading clusters")
     try:
