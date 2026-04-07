@@ -17,15 +17,25 @@ def run_synthesis(new_idea, context_ideas):
     formatted_context = ""
 
     for idea in context_ideas:
+        # Handle both data shapes:
+        # New shape: analysis = {"research": [...], "evaluation": {...}}
+        # Old shape: analysis = {"idea_summary": ..., "category": ..., ...}
+        ev = idea['analysis'].get('evaluation') or idea['analysis']
+        
         formatted_context += f"""
-Idea ID: {idea['id']}
-Raw Idea:
-{idea['raw_idea']}
+    Idea ID: {idea['id']}
+    Raw Idea:
+    {idea['raw_idea']}
 
-Evaluation Summary:
-{idea['analysis']['evaluation']['idea_summary']}
--------------------------
-"""
+    Evaluation Summary:
+    {ev['idea_summary']}
+    -------------------------
+    """
+        
+    # In synthesis.py, for the new_idea passed in:
+    ev = new_idea['analysis'].get('evaluation') or new_idea['analysis']
+
+    # Then use ev['idea_summary'] instead of new_idea['analysis']['evaluation']['idea_summary']
 
     prompt = f"""
 You are analyzing structural relationships between ideas written by the same person.
@@ -41,7 +51,7 @@ Raw Idea:
 {new_idea['raw_idea']}
 
 Evaluation Summary:
-{new_idea['analysis']['evaluation']['idea_summary']}
+ev['idea_summary']
 
 Context Ideas:
 {formatted_context}
