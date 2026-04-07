@@ -656,54 +656,69 @@
   // ── Open idea from sidebar ────────────────────────────────
 
   function openIdea(id) {
-  activeIdeaId = id;
-  document.querySelectorAll('.idea-card').forEach(c => c.classList.remove('active'));
-  const card = document.querySelector(`.idea-card[data-id="${id}"]`);
-  if (card) card.classList.add('active');
+    activeIdeaId = id;
 
-  const idea = allIdeas.find(i => i.id === id);
-  if (!idea) return;
+    document.querySelectorAll('.idea-card').forEach(c => c.classList.remove('active'));
+    const card = document.querySelector(`.idea-card[data-id="${id}"]`);
+    if (card) card.classList.add('active');
 
-  document.getElementById('ideaInput').value = idea.raw_idea;
-  const status = idea.status || 'processing';
+    const idea = allIdeas.find(i => i.id === id);
+    if (!idea) return;
 
-  if (status === 'processing') {
-    document.getElementById('resultArea').innerHTML = `
-      <div class="empty-state">
-        <div class="big">Processing</div>
-        <p>Pipeline is still running — checking for results every few seconds.</p>
-      </div>`;
-    logTimers.forEach(clearTimeout);
-    logTimers = [];
-    document.getElementById('logBody').innerHTML = '';
-    document.getElementById('logDot').classList.add('active');
-    addLog(`Reconnected to idea #${id} — waiting for pipeline to finish...`, 'info');
-    pollIdeaStatus(id);
-    return;
+    document.getElementById('ideaInput').value = idea.raw_idea;
+
+    const status = idea.status || 'processing';
+
+    if (status === 'processing') {
+      document.getElementById('resultArea').innerHTML = `
+        <div class="empty-state">
+          <div class="big">Processing</div>
+          <p>Pipeline is still running — checking for results every few seconds.</p>
+        </div>`;
+      // Clear fake log steps, show a real live polling message instead
+      logTimers.forEach(clearTimeout);
+      logTimers = [];
+      document.getElementById('logBody').innerHTML = '';
+      document.getElementById('logDot').classList.add('active');
+      addLog(`Reconnected to idea #${id} — waiting for pipeline to finish...`, 'info');
+      // Resume polling so result renders automatically when done
+      pollIdeaStatus(id);
+      return;
+    }
+
+    if (status === 'failed') {
+      document.getElementById('resultArea').innerHTML = `
+        <div class="empty-state">
+          <div class="big">Failed</div>
+          <p>Evaluation pipeline failed for this idea.</p>
+        </div>`;
+      return;
+    }
+
+    // ── KEY FIX: normalize data shape from /ideas list ──
+    // /ideas returns: { analysis: { evaluation: {...} }, synthesis: {...} }
+    // renderResult expects: { evaluation: {...}, synthesis: {...} }
+    const normalized = {
+      evaluation: idea.analysis?.evaluation || idea.evaluation || {},
+      synthesis:  idea.synthesis || null
+    };
+
+    renderResult(normalized, id);
   }
-
-  if (status === 'failed') {
-    document.getElementById('resultArea').innerHTML = `
-      <div class="empty-state">
-        <div class="big">Failed</div>
-        <p>Evaluation pipeline failed for this idea.</p>
-      </div>`;
-    return;
-  }
-
-  // Handle all three possible shapes:
-  // 1. analysis.evaluation.idea_summary  (correct new shape)
-  // 2. analysis.idea_summary             (old shape, missing evaluation wrapper)
-  // 3. evaluation.idea_summary           (from polling endpoint)
-  const ev =
-    idea.analysis?.evaluation?.idea_summary ? idea.analysis.evaluation :
-    idea.analysis?.idea_summary             ? idea.analysis :
-    idea.evaluation                         || {};
-
-  renderResult({ evaluation: ev, synthesis: idea.synthesis || null }, id);
-}
 
   // ── Polling ───────────────────────────────────────────────
+
+  // Messages shown while polling so the log doesn't look dead
+  const POLL_MESSAGES = [
+    'Researching the web...',
+    'Evaluating idea structure...',
+    'Running domain analysis...',
+    'Scoring feasibility...',
+    'Generating embeddings...',
+    'Checking for similar ideas...',
+    'Running cluster engine...',
+    'Almost there...',
+  ];
 
   async function pollIdeaStatus(ideaId, attempts = 0) {
     if (attempts > 30) {
@@ -718,6 +733,9 @@
       const result = await res.json();
 
       if (result.status === 'processing') {
+        // Show a rotating status message so the log looks alive
+        const msg = POLL_MESSAGES[attempts % POLL_MESSAGES.length];
+        addLog(msg, '');
         setTimeout(() => pollIdeaStatus(ideaId, attempts + 1), 4000);
         return;
       }

@@ -108,6 +108,9 @@ def process_idea(raw_idea: str, depth="balanced",idea_id: int = None):
         matched_ids = [mid for (mid, _, _) in matched]
         matched_ideas = [idea for idea in past_ideas if idea["id"] in matched_ids]
         clusters = load_clusters()
+        logging.info(f"Similar ideas found: {[(id, round(score, 3)) for id, _, score in similar]}")
+        logging.info(f"Matched above threshold: {matched_ids}")
+
         logging.info("Similar Ideas and clusters Loaded ✅")
     except Exception as e:
         logging.error(f"Similarity/Loading failed: {e}")
@@ -120,6 +123,7 @@ def process_idea(raw_idea: str, depth="balanced",idea_id: int = None):
             matched_ideas=matched_ideas,
             clusters=clusters
         )
+        logging.info(f"Cluster decision: {decision}")
         logging.info(f"Cluster decision: {decision['action']}")
     except Exception as e:
         logging.error(f"Cluster decision failed: {e}")
