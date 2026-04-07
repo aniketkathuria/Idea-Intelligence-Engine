@@ -205,5 +205,6 @@ def process_idea(raw_idea: str, depth="balanced",idea_id: int = None):
     return {
         "evaluation": analysis,
         "synthesis": synthesis_result,
-        "cluster_decision": decision["action"]
+        "cluster_decision": decision["action"],
+        "cluster_id": cluster_id
     }
