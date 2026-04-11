@@ -92,8 +92,12 @@ def update_idea_status(idea_id: int, status: str, result: dict = None):
 
     idea.status = status
 
+
     if result:
-        idea.evaluation_json = json.dumps(result.get("evaluation"))
+        idea.evaluation_json = json.dumps({
+            "research": result.get("research", []),
+            "evaluation": result.get("evaluation")
+        })
         idea.synthesis_output = json.dumps(result.get("synthesis"))
         idea.cluster_id = result.get("cluster_id")
 
