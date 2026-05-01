@@ -6,15 +6,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-print("DATABASE_URL:", os.getenv("DATABASE_URL")[:50])  # print first 50 chars to confirm
-
-
-from core.storage import load_all_ideas
-ideas = load_all_ideas()
-latest = ideas[-1]
-print(latest['analysis'].keys())
-print(len(latest['analysis'].get('research', [])))
-"""
 from core.storage import load_all_ideas, update_idea_with_result
 from core.evaluator import evaluate_idea_adaptive
 from core.parser import parse_json_with_repair
@@ -31,10 +22,10 @@ def reprocess_all():
     for idea in ideas:
         print(f"\nReprocessing idea #{idea['id']}: {idea['raw_idea'][:60]}...")
 
-        # Pull cached research from DB
+        # Use cached research from DB
         research = idea['analysis'].get('research', [])
         if not research:
-            print(f"  ⚠ No cached research found, skipping")
+            print(f"  [!] No cached research found, skipping")
             continue
 
         # Re-run evaluation with new prompt
@@ -53,7 +44,7 @@ def reprocess_all():
             {"research": research, "evaluation": analysis},
             new_embedding
         )
-        print(f"  ✅ Evaluation updated")
+        print(f"  [OK] Evaluation updated")
 
     # Now rerun clustering + synthesis across all ideas fresh
     print(f"\nRerunning clustering and synthesis...")
@@ -78,7 +69,7 @@ def rerun_clustering():
         print(f"  Clustering idea #{idea['id']}...")
         new_embedding = idea['embedding']
         if not new_embedding:
-            print(f"    ⚠ No embedding, skipping")
+            print(f"    [!] No embedding, skipping")
             continue
 
         past_ideas = load_all_ideas()
@@ -89,7 +80,20 @@ def rerun_clustering():
         matched_ideas = [i for i in past_ideas if i['id'] in matched_ids]
         clusters = load_clusters()
 
+        clusters = load_clusters()
+
+        # Add these:
+        print(f"    Matched ids: {matched_ids}")
+        print(f"    Existing clusters: {[(c['cluster_id'], c['idea_ids']) for c in clusters]}")
+
         decision = determine_cluster_action(
+            new_idea_id=idea['id'],
+            matched_ideas=matched_ideas,
+            clusters=clusters
+        )
+
+        decision = determine_cluster_action(
+            new_idea_id=idea['id'],
             matched_ideas=matched_ideas,
             clusters=clusters
         )
@@ -131,7 +135,7 @@ def rerun_clustering():
             from core.storage import update_idea_cluster
             update_idea_cluster(idea['id'], cluster_id, synthesis_result)
             assign_ideas_to_cluster([idea['id']], cluster_id)
-            print(f"    ✅ Clustered into cluster #{cluster_id}")
+            print(f"    [OK] Clustered into cluster #{cluster_id}")
         else:
             from core.storage import update_idea_cluster
             update_idea_cluster(idea['id'], None, synthesis_result)
@@ -140,5 +144,3 @@ def rerun_clustering():
             
 if __name__ == "__main__":
     reprocess_all()
-
-"""

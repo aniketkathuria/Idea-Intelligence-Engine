@@ -168,8 +168,8 @@ def process_idea(raw_idea: str, depth="balanced",idea_id: int = None):
                             "merge_reasoning": synthesis_result.get("merge_reasoning")
                         })
 
-                        existing_ids = decision["cluster"]["idea_ids"]
-                        assign_ideas_to_cluster(existing_ids, cluster_id)
+                        #existing_ids = decision["cluster"]["idea_ids"]
+                        #assign_ideas_to_cluster(existing_ids, cluster_id)
 
                     else:
                         cluster_id = create_new_cluster({
@@ -177,7 +177,7 @@ def process_idea(raw_idea: str, depth="balanced",idea_id: int = None):
                             "merge_reasoning": synthesis_result.get("merge_reasoning")
                         })
                         logging.info(f"Backfilling cluster {cluster_id} to ideas: {matched_ids}")  
-                        assign_ideas_to_cluster(matched_ids, cluster_id)
+                        assign_ideas_to_cluster(matched_ids + [idea_id], cluster_id)
 
 
                     logging.info(f"Cluster assigned: {cluster_id}")

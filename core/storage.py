@@ -47,6 +47,7 @@ def load_all_ideas():
             "id": idea.id,
             "raw_idea": idea.raw_input,
             "status": idea.status or "processing",
+            "category": idea.category,
             "cluster_id": idea.cluster_id,
             "embedding": json.loads(idea.embedding_vector) if idea.embedding_vector else [],
             "analysis": json.loads(idea.evaluation_json) if idea.evaluation_json else {},
