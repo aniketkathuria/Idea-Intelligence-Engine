@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 import sys
 import os
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from dotenv import load_dotenv
 load_dotenv()
@@ -17,13 +17,13 @@ load_dotenv()
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 # --- Imports ---
-from core.pipeline import process_idea
+from core.pipeline import process_idea, process_idea_stateless
 from fastapi import BackgroundTasks
 from core.storage import create_idea_entry, get_idea_by_id
 from core.pipeline import process_idea_background
 from core.db import Base, engine
-# Import your evaluator
-from core.evaluator import evaluate_idea_adaptive  # adjust if name differs
+from core.evaluator import evaluate_idea_adaptive
+from typing import List, Optional, Any
 
 
 Base.metadata.create_all(bind=engine)
@@ -90,6 +90,43 @@ def get_idea(idea_id: int):
 def get_clusters():
     from core.cluster_storage import load_clusters
     return load_clusters()
+
+class PastIdea(BaseModel):
+    id: int
+    raw_idea: str
+    embedding: List[float]
+    analysis: dict
+    cluster_id: Optional[int] = None
+    synthesis: Optional[dict] = None
+
+class ProcessIdeaRequest(BaseModel):
+    raw_idea: str
+    past_ideas: List[PastIdea] = []
+    depth: str = "balanced"
+    category: Optional[str] = None
+
+@app.post("/process-idea")
+def process_idea_endpoint(request: ProcessIdeaRequest):
+    """
+    Stateless endpoint — processes an idea and returns the full result.
+    No data is stored on the server. The client (Android app) persists everything locally.
+
+    past_ideas: the client's local idea list, each with id + embedding, used for clustering.
+    """
+    logger.info(f"POST /process-idea called | past_ideas={len(request.past_ideas)}")
+    try:
+        past_ideas = [idea.model_dump() for idea in request.past_ideas]
+        result = process_idea_stateless(
+            raw_idea=request.raw_idea,
+            past_ideas=past_ideas,
+            depth=request.depth,
+            category=request.category,
+        )
+        return {"status": "completed", **result}
+    except Exception as e:
+        logger.error(f"❌ /process-idea failed: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
+
 
 @app.on_event("startup")
 def startup():

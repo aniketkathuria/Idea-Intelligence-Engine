@@ -1,0 +1,426 @@
+{
+  "iterations": [
+    {
+      "iteration": 0,
+      "timestamp": "2026-05-02T11:46:29.964727",
+      "prompt": "You are a rigorous behavioural scientist and coach \u2014 you have read the psychology and habit-formation literature, run experiments on yourself and with others, and seen which self-improvement systems actually produce durable change and which produce a good week followed by a reversion to baseline.\n\nYou are NOT here to validate. You are NOT here to discourage. You are here to give the person the clearest possible picture of what the evidence actually supports, what the real mechanism is, what the most likely failure mode is, and what the minimum viable version to test this idea looks like.\n\nYour job:\n- State the core claim precisely \u2014 what behaviour or system is being proposed, what outcome it targets, and what mechanism it claims to work through.\n- Map what the behavioural science literature actually supports closest to this claim.\n- Assess implementation \u2014 the smallest testable version, the leading indicators of progress, and the most likely failure mode.\n- Name the India personal development context: what structural constraints (time, space, social expectations, cost) are specific to an Indian context, and whether any structural advantage exists.\n\nWRITING RULES \u2014 follow exactly:\n- Every text field must be a complete sentence or two \u2014 no fragments, no motivational phrases, no bulleted thoughts compressed into a phrase.\n- Every list item must also be a complete sentence with a subject and verb. This includes: closest_research, failure_modes, leading_indicators. A bare concept (\"accountability\"), a label (\"habit stacking\"), or a fragment (\"morning routine consistency\") is NOT acceptable \u2014 rewrite it as a sentence describing what the research found, what the failure mode looks like, or what the indicator measures.\n- Citations: use [index] whenever a source's Content is topically relevant \u2014 a supporting study, a relevant dataset, a critical finding. Minimum 4 [index] citations spread across evidence_base and implementation. Do not cluster all citations in one section.\n- behaviour_or_system: describe precisely what the person would actually DO \u2014 the specific behaviour, schedule, or system. \"Meditate more\" is not acceptable. \"Meditate for 10 minutes immediately after waking, before checking any device, for 30 consecutive days\" is acceptable.\n- proposed_mechanism: name the specific psychological or physiological mechanism the claim relies on \u2014 not \"it works because it's good for you.\" ACCEPTABLE: \"The mechanism is implementation intention: pre-committing to a specific time and context for a behaviour reduces the cognitive load of deciding whether to do it, which is the main failure point for discretionary behaviours.\" NOT ACCEPTABLE: \"The mechanism is habit formation.\"\n- closest_research: each entry must name a real, verifiable study or researcher and describe what they found and how it relates to this claim. Do not invent studies. ACCEPTABLE: \"BJ Fogg's Tiny Habits research found that anchoring a new behaviour to an existing routine (the 'anchor') increases adherence rates compared to time-based scheduling.\" NOT ACCEPTABLE: \"Research shows habits take 21 days to form.\"\n- failure_modes: each entry must describe a specific scenario in which this approach fails for the specific person and goal described \u2014 not a generic \"willpower is hard.\" ACCEPTABLE: \"The approach fails when the morning slot is displaced by family obligations (a common pattern for Indian adults in joint households), because the system has no recovery protocol for missed days.\" NOT ACCEPTABLE: \"Motivation may decrease over time.\"\n- leading_indicators: name specific, measurable signals that would appear within the first 2 weeks if the approach is working \u2014 before the main outcome is visible. ACCEPTABLE: \"Within 10 days, the person should notice they no longer need to decide whether to do the behaviour \u2014 it feels automatic in that context.\" NOT ACCEPTABLE: \"Progress will be visible over time.\"\n- timeline_to_signal: state the minimum time before a meaningful signal (positive or negative) would be visible, and what that signal would look like.\n- India context is mandatory. Name at least one structural constraint specific to the Indian context that would affect this approach (joint family expectations, irregular work hours, cost of tools, heat and climate effects on outdoor habits, social norms around certain behaviours). Name one structural advantage if it exists. If the research does not contain India-specific data, reason from first principles.\n- analyst_take: Write 3-4 sentences. Do NOT open with \"As a behavioural scientist\", \"As a coach\", or any role declaration \u2014 opening this way is automatic failure. Write in first person with a clear opinion. Name the single most non-obvious insight about why this works (or doesn't) \u2014 something that cuts against the conventional self-help framing. Name the single most likely failure mode for a real person. Tell the person the one thing to do in the first 48 hours to test whether this will work for them. This must sound like a colleague who has tried this and failed once, not a motivational speaker.\n- Scores must reflect the specific realities of THIS claim. Different interventions with different evidence bases must receive different scores.\n- final_summary: one honest paragraph ending with one specific book, paper, researcher, or protocol to study next \u2014 not a generic suggestion.\n\nFINAL CLASSIFICATION \u2014 choose exactly one:\n- Counterproductive: evidence suggests this approach actively undermines the stated goal\n- Folklore with No Support: plausible-sounding but no credible evidence base\n- Mixed Evidence: some support but significant contradicting evidence or population specificity\n- Evidence-Backed but Narrow: well-supported for specific populations or conditions, limited generalisation\n- Robustly Supported: consistent evidence across populations and contexts\n- Exceptional System: a rare combination of strong evidence, clear mechanism, and reliable implementation\n\nClassification rules:\n- Do not assign Robustly Supported if closest_research cannot name at least two independent studies\n- Do not assign Exceptional System unless evidence_quality >= 8 and implementation_clarity >= 8\n- If the approach contradicts well-established behavioural science, classify as Counterproductive regardless of scores\n\nSCORING CALIBRATION:\n\nevidence_quality:\n0-2 = no credible evidence; based on anecdote or folk wisdom\n3-4 = one or two studies, limited population, or correlational only\n5-6 = multiple studies with moderate replication; some contradicting evidence\n7-8 = consistent findings across multiple studies and populations\n9-10 = replicated RCT-level evidence with clear mechanistic understanding\n\nimplementation_clarity:\n0-2 = vague prescription; person cannot know what to actually do\n3-4 = direction is clear but no failure protocols or leading indicators\n5-6 = minimum viable version defined; main failure modes identified\n7-8 = specific protocol with leading indicators and recovery from failure\n9-10 = complete implementation system testable in the first week\n\nnovelty:\n0-2 = restates standard self-help advice\n3-4 = incremental variation on known approaches\n5-6 = new framing or combination of established elements\n7-8 = addresses a genuine gap in the self-improvement literature\n9-10 = fundamentally new approach with strong theoretical grounding\n\noverall:\n0-2 = not worth attempting \u2014 likely counterproductive or purely placebo\n3-4 = might help but expected effect size is small or fragile\n5-6 = worthwhile but requires significant personalisation to work\n7-8 = strong approach with reliable mechanism and clear path\n9-10 = exceptional \u2014 implement immediately\n\n====================\nIDEA:\n{raw_idea}\n\nCATEGORY: Personal\n\nRESEARCH (cite by index when source Content is topically relevant to the claim):\n{formatted_research}\n====================\n\nReturn ONLY valid JSON. No commentary. No markdown. Follow this schema exactly:\n\n{schema}",
+      "ideas": [
+        {
+          "id": 1,
+          "raw_idea": "System: spend the first 10 minutes of every workday writing every open loop \u2014 unfinished tasks, unresolved worries, pending decisions, half-formed ideas \u2014 into a single plain-text list without organising or prioritising it. The list is not reviewed during this session. The mechanism is cognitive offloading: the brain's default mode network continuously allocates working memory to monitoring unfinished tasks (the Zeigarnik effect), and externalising them onto paper or a file signals to the monitoring system that the items are captured and no longer need active tracking. This should reduce the low-grade background anxiety and fragmented attention that most knowledge workers experience during focused work, not by resolving the open loops but by convincing the monitoring system that they are stored externally. The leading indicator is a subjective reduction in intrusive thoughts during the first focused work block of the day, measurable by counting interruption-to-task-switch events in the first 45 minutes. The minimum viable version is 10 minutes, one notebook, and no structure \u2014 no categories, no priorities, no review.",
+          "evaluation": {
+            "idea_summary": "The system involves spending the first 10 minutes of every workday writing down all open loops into a plain-text list without organizing or reviewing them. The aim is to reduce background anxiety and improve focus by offloading cognitive tasks.",
+            "category": "Personal",
+            "final_classification": "Robustly Supported",
+            "core_claim": {
+              "behaviour_or_system": "Spend the first 10 minutes of every workday writing every open loop into a single plain-text list without organizing or prioritizing it.",
+              "target_outcome": "Reduce low-grade background anxiety and fragmented attention during focused work.",
+              "proposed_mechanism": "The mechanism is cognitive offloading: externalizing tasks signals to the brain's monitoring system that they are captured and no longer need active tracking.",
+              "preconditions": "The person must have a consistent work schedule and a quiet environment to perform this task daily."
+            },
+            "evidence_base": {
+              "what_is_supported": "Cognitive offloading effectively reduces mental workload and improves task efficiency by using external tools to manage cognitive demands.",
+              "closest_research": [
+                "Research by Sandra Grinschgl found that cognitive offloading boosts performance but may diminish memory, supporting the idea that externalizing tasks can reduce cognitive load [5].",
+                "The study by Jian Wang showed that cognitive offloading is positively associated with cognitive self-efficacy, which enhances critical thinking and task persistence [6].",
+                "The Science of Simplification article discusses how cognitive offloading can reclaim organizational momentum by reducing mental drag [0].",
+                "The article by Adnan Masood highlights how cognitive offloading has been a part of human behavior for centuries, aiding in mental workload management [4]."
+              ],
+              "gap_between_claim_and_evidence": "While the evidence supports cognitive offloading, most studies focus on digital tools rather than analog methods like writing on paper.",
+              "why_most_advice_fails": "Most advice fails because it does not account for the need to externalize tasks in a way that is simple and non-intrusive, leading to overcomplication and reduced adherence."
+            },
+            "implementation": {
+              "minimum_viable_version": "10 minutes of writing every morning in a plain notebook without any structure.",
+              "key_habit_or_practice": "Consistently perform the writing exercise before starting any other work tasks.",
+              "failure_modes": [
+                "The approach fails when the morning slot is displaced by urgent work tasks, as the system lacks a recovery protocol for missed days.",
+                "The approach may fail if the person does not perceive a reduction in anxiety, leading to discontinuation."
+              ],
+              "leading_indicators": [
+                "Within 10 days, the person should notice fewer intrusive thoughts during the first focused work block of the day.",
+                "The person should experience a decrease in interruption-to-task-switch events in the first 45 minutes of work."
+              ],
+              "timeline_to_signal": "A meaningful signal would be visible within 10 days, indicated by a reduction in task-switching interruptions during the first work block."
+            },
+            "india_context": {
+              "relevant_constraints": "Joint family expectations may disrupt the morning routine, making it difficult to consistently perform the task.",
+              "cultural_or_structural_friction": "The lack of personal space in many Indian households can hinder the ability to perform this task without interruptions.",
+              "india_specific_advantage": "The cultural emphasis on meditation and mindfulness may make individuals more receptive to practices that reduce cognitive load."
+            },
+            "analyst_take": "The most non-obvious insight is that the act of writing itself, not the content or organization, is what signals to the brain that tasks are captured. The most likely failure mode is the disruption of the morning routine by external demands. In the first 48 hours, try writing down open loops immediately after waking to see if it provides a noticeable reduction in mental clutter during the day. This approach is not about solving problems but about freeing the mind to focus on the task at hand.",
+            "scores": {
+              "evidence_quality": 8,
+              "implementation_clarity": 7,
+              "novelty": 6,
+              "overall": 8,
+              "risk_level": "Low"
+            },
+            "final_summary": "The proposed system of cognitive offloading through writing is well-supported by evidence on reducing mental workload and improving focus. While the mechanism is robust, the implementation may face challenges in maintaining consistency due to external disruptions. The approach is particularly beneficial for those who experience high cognitive load and fragmented attention. For further exploration, consider reading 'The Extended Mind' by Annie Murphy Paul, which delves into how externalizing thoughts can enhance cognitive performance."
+          },
+          "judge1": {
+            "step1_sentence_quality": 2,
+            "step2_implementation_specificity": 3,
+            "step3_failure_modes": 2,
+            "step4_mechanism_clarity": 2,
+            "step5_citations": 1,
+            "score": 10,
+            "verdict": "The evaluation meets all quality standards, with complete sentences in the list fields, specific implementation details, and clear failure modes. It also effectively identifies a specific mechanism and includes sufficient citations.",
+            "specific_failures": [],
+            "specific_wins": [
+              "closest_research met the standard as all items are complete sentences.",
+              "behaviour_or_system met the standard as it describes a specific action in a clear context.",
+              "minimum_viable_version met the standard as it defines the smallest testable version.",
+              "leading_indicators met the standard as they name measurable signals within the first 2 weeks.",
+              "failure_modes met the standard as all entries describe specific scenarios tied to the behaviour.",
+              "proposed_mechanism met the standard as it names a specific psychological mechanism and explains its application."
+            ]
+          },
+          "judge2": {
+            "step1_analyst_take": 3,
+            "step2_nonobvious_insight": 2,
+            "step3_india_context": 2,
+            "step4_evidence_accuracy": 2,
+            "step5_final_summary": 1,
+            "score": 10,
+            "verdict": "The evaluation provides comprehensive practical content, including specific actions to take, insights into potential failure modes, and contextual considerations for implementation in India. It effectively combines evidence with actionable steps, making it a robust guide for understanding and applying the idea.",
+            "what_was_missing": [],
+            "what_worked": [
+              "The specific recommendation to write down open loops immediately after waking to test the system's effectiveness within the first 48 hours.",
+              "The identification of joint family expectations and lack of personal space as structural constraints in the Indian context."
+            ]
+          }
+        },
+        {
+          "id": 2,
+          "raw_idea": "Practice: when experiencing a strong negative emotion (anxiety before a presentation, frustration in a conflict, fear before a difficult conversation), spend 60-90 seconds writing or speaking aloud a precise label for the emotion \u2014 not 'I feel bad' but 'I feel a specific dread about being judged as incompetent by people whose opinion matters to me.' The mechanism is affect labelling: fMRI studies by Lieberman et al. (2007) show that naming an emotion reduces amygdala activation and increases prefrontal regulation \u2014 the mechanism is that symbolic representation of affect shifts processing from subcortical threat-detection circuits to prefrontal cortex, reducing the physiological stress response within 60-90 seconds. The key is precision: vague labels ('I feel stressed') produce smaller reductions than precise, differentiated labels ('I feel ashamed about my performance in that meeting'). Higher emotional granularity \u2014 the ability to distinguish between similar negative emotions \u2014 is associated with lower cortisol reactivity and better emotional regulation outcomes across multiple studies. The practice requires no tools, no time commitment beyond the moment, and produces a measurable physiological signal within the same episode.",
+          "evaluation": {
+            "idea_summary": "The practice involves spending 60-90 seconds labeling a strong negative emotion with precision to reduce its intensity. The mechanism is affect labeling, which shifts processing from subcortical to prefrontal brain regions, reducing stress responses.",
+            "category": "Personal",
+            "final_classification": "Robustly Supported",
+            "core_claim": {
+              "behaviour_or_system": "When experiencing a strong negative emotion, spend 60-90 seconds writing or speaking aloud a precise label for the emotion.",
+              "target_outcome": "Reduce the intensity of negative emotions and improve emotional regulation.",
+              "proposed_mechanism": "The mechanism is affect labeling: naming an emotion reduces amygdala activation and increases prefrontal regulation by shifting processing to the prefrontal cortex.",
+              "preconditions": "The individual must be able to identify and articulate their emotions with precision."
+            },
+            "evidence_base": {
+              "what_is_supported": "Affect labeling has been shown to reduce amygdala activation and increase prefrontal regulation, leading to better emotional regulation.",
+              "closest_research": [
+                "Lieberman et al. (2007) found that affect labeling reduces amygdala activity and increases prefrontal cortex activity, supporting the mechanism of shifting processing from subcortical to cortical regions.",
+                "Research by Koval et al. (2023) indicates that higher emotional granularity is associated with better emotional regulation outcomes.",
+                "Studies on emotional regulation techniques, such as those reviewed by McGarvie (2025), support the effectiveness of precise emotional labeling in reducing stress responses."
+              ],
+              "gap_between_claim_and_evidence": "The primary gap is the need for individuals to accurately identify and articulate their emotions, which may not be feasible for everyone without prior training.",
+              "why_most_advice_fails": "Most advice fails because it lacks specificity in emotional labeling, leading to insufficient reduction in stress responses."
+            },
+            "implementation": {
+              "minimum_viable_version": "Practice labeling emotions precisely for 60-90 seconds during moments of strong negative emotion.",
+              "key_habit_or_practice": "Develop the habit of pausing to label emotions precisely whenever a strong negative emotion is felt.",
+              "failure_modes": [
+                "The approach fails when individuals cannot accurately identify or articulate their emotions, leading to ineffective labeling.",
+                "The practice may be disrupted by external distractions or time constraints, preventing consistent application."
+              ],
+              "leading_indicators": [
+                "Within 10 days, the individual should notice a reduction in the intensity of negative emotions shortly after labeling them.",
+                "The individual should begin to feel more in control of their emotional responses during stressful situations."
+              ],
+              "timeline_to_signal": "A meaningful signal would be visible within 1-2 weeks, as the individual experiences reduced emotional intensity and better regulation."
+            },
+            "india_context": {
+              "relevant_constraints": "Time constraints and social expectations in India may limit opportunities for individuals to pause and label emotions during busy or public situations.",
+              "cultural_or_structural_friction": "There may be cultural reluctance to openly express or articulate emotions, which could hinder the practice.",
+              "india_specific_advantage": "The practice requires no tools or significant time commitment, making it accessible and cost-effective in the Indian context."
+            },
+            "analyst_take": "The most non-obvious insight is that the precision of emotional labeling is crucial for its effectiveness, as vague labels do not engage the prefrontal cortex as effectively. The most likely failure mode is the inability to accurately identify emotions, which can be mitigated by practicing emotional awareness. To test this approach, spend the next 48 hours consciously labeling emotions as they arise, noting any changes in emotional intensity and regulation.",
+            "scores": {
+              "evidence_quality": 8,
+              "implementation_clarity": 7,
+              "novelty": 6,
+              "overall": 8,
+              "risk_level": "Low"
+            },
+            "final_summary": "The practice of affect labeling is robustly supported by evidence showing its effectiveness in reducing emotional intensity through prefrontal regulation. While the approach is straightforward, it requires individuals to develop the skill of precise emotional identification. This practice is particularly advantageous in contexts where time and resources are limited, such as in India. For further exploration, consider studying the work of Matthew Lieberman on affect labeling and emotional regulation."
+          },
+          "judge1": {
+            "step1_sentence_quality": 2,
+            "step2_implementation_specificity": 3,
+            "step3_failure_modes": 2,
+            "step4_mechanism_clarity": 2,
+            "step5_citations": 1,
+            "score": 10,
+            "verdict": "The evaluation meets all quality standards, with complete sentences in all list fields, specific implementation details, and clear failure modes. It also effectively describes the mechanism of affect labeling and includes sufficient citations.",
+            "specific_failures": [],
+            "specific_wins": [
+              "closest_research met the standard as all items are complete sentences.",
+              "behaviour_or_system met the standard as it describes specific actions and context.",
+              "minimum_viable_version met the standard as it defines the smallest testable version.",
+              "leading_indicators met the standard as they name measurable signals within the first 2 weeks.",
+              "failure_modes met the standard as all entries describe specific scenarios.",
+              "proposed_mechanism met the standard as it names a specific psychological mechanism and explains its application."
+            ]
+          },
+          "judge2": {
+            "step1_analyst_take": 3,
+            "step2_nonobvious_insight": 2,
+            "step3_india_context": 2,
+            "step4_evidence_accuracy": 2,
+            "step5_final_summary": 1,
+            "score": 10,
+            "verdict": "The evaluation provides clear, actionable insights on the practice of affect labeling, emphasizing the importance of precision and addressing potential failure modes. It also effectively contextualizes the practice within the Indian environment, highlighting specific cultural and structural factors.",
+            "what_was_missing": [],
+            "what_worked": [
+              "The emphasis on the precision of emotional labeling as crucial for effectiveness, which counters the common approach of vague emotional expressions."
+            ]
+          }
+        },
+        {
+          "id": 3,
+          "raw_idea": "System: identify one activity that produces strong immediate pleasure but you feel guilty consuming (a specific podcast, audiobook, TV series, or food treat), and make access to it strictly conditional on simultaneously performing an aversive but important task (exercise, administrative work, language study, deep reading). The mechanism is temptation bundling (Milkman et al., 2014): pairing an immediately rewarding activity with a delayed- reward activity transfers some of the immediate reward to the aversive task through classical conditioning, eventually making the aversive task a cue for the reward. The critical design constraint is strict exclusivity: the guilty pleasure must be unavailable in any other context, otherwise the bundle breaks because the reward is no longer contingent on the behaviour. A field experiment at a university gym found 51% higher gym attendance among participants who could only access audiobooks they wanted to hear during gym visits. The minimum viable version requires choosing one pleasure-task pair, deleting the app or removing access outside the bundle context, and holding the exclusivity rule for 30 days. The leading indicator is whether you begin looking forward to the aversive task within the first 10 days.",
+          "evaluation": {
+            "idea_summary": "The system involves identifying a pleasurable activity that induces guilt and making access to it conditional on performing an aversive but important task. This is based on the concept of temptation bundling, which aims to increase the likelihood of engaging in the aversive task by pairing it with an immediate reward.",
+            "category": "Personal",
+            "final_classification": "Evidence-Backed but Narrow",
+            "core_claim": {
+              "behaviour_or_system": "Identify a guilty pleasure and make access to it strictly conditional on performing an aversive task.",
+              "target_outcome": "Increase engagement in aversive but important tasks.",
+              "proposed_mechanism": "The mechanism is temptation bundling: pairing an immediately rewarding activity with a delayed-reward activity transfers some of the immediate reward to the aversive task through classical conditioning.",
+              "preconditions": "The guilty pleasure must be strictly unavailable outside the context of performing the aversive task."
+            },
+            "evidence_base": {
+              "what_is_supported": "Temptation bundling has been shown to increase engagement in aversive tasks by pairing them with pleasurable activities.",
+              "closest_research": [
+                "Katherine Milkman's research found that gym attendance increased by 51% when access to desired audiobooks was restricted to gym visits [0].",
+                "Milkman, Minson & Volpp's study demonstrated that restricting access to pleasurable activities to the context of aversive tasks can enhance task engagement [7]."
+              ],
+              "gap_between_claim_and_evidence": "While the concept is supported, the evidence is primarily from controlled environments like gyms, which may not generalize to all contexts or tasks.",
+              "why_most_advice_fails": "Most advice fails because it does not enforce strict exclusivity, allowing the pleasurable activity to be accessed outside the intended context."
+            },
+            "implementation": {
+              "minimum_viable_version": "Choose one pleasure-task pair, delete the app or remove access outside the bundle context, and maintain exclusivity for 30 days.",
+              "key_habit_or_practice": "Strictly enforce the exclusivity of the pleasurable activity to the context of performing the aversive task.",
+              "failure_modes": [
+                "The approach fails when the pleasurable activity is accessed outside the intended context, breaking the exclusivity rule."
+              ],
+              "leading_indicators": [
+                "Within 10 days, the person should notice they begin looking forward to the aversive task due to the associated reward."
+              ],
+              "timeline_to_signal": "A meaningful signal should be visible within 10 days, indicated by increased anticipation for the aversive task."
+            },
+            "india_context": {
+              "relevant_constraints": "Joint family expectations may make it difficult to maintain exclusivity of the pleasurable activity.",
+              "cultural_or_structural_friction": "Social norms may not support the idea of linking pleasurable activities with aversive tasks, especially in communal living situations.",
+              "india_specific_advantage": "The high value placed on multitasking in Indian culture may make the concept of bundling tasks more acceptable."
+            },
+            "analyst_take": "The most non-obvious insight is that the success of temptation bundling hinges on strict exclusivity, which is often overlooked. The most likely failure mode is breaking the exclusivity rule, which undermines the entire system. In the first 48 hours, the person should identify and set up their pleasure-task pair and ensure that the pleasurable activity is inaccessible outside the task context. This approach is promising but requires discipline to maintain exclusivity.",
+            "scores": {
+              "evidence_quality": 7,
+              "implementation_clarity": 6,
+              "novelty": 5,
+              "overall": 7,
+              "risk_level": "Moderate"
+            },
+            "final_summary": "Temptation bundling is an evidence-backed strategy that can effectively increase engagement in aversive tasks by pairing them with pleasurable activities. However, its success depends on maintaining strict exclusivity, which can be challenging in certain contexts. For those interested in exploring this further, Katherine Milkman's work on temptation bundling provides a comprehensive foundation."
+          },
+          "judge1": {
+            "step1_sentence_quality": 1,
+            "step2_implementation_specificity": 3,
+            "step3_failure_modes": 2,
+            "step4_mechanism_clarity": 2,
+            "step5_citations": 1,
+            "score": 9,
+            "verdict": "The evaluation has a few sentence fragments in the closest_research section, which prevents a perfect score in sentence quality. However, it excels in implementation specificity, failure modes specificity, and mechanism clarity, providing clear and actionable details.",
+            "specific_failures": [
+              "closest_research: contains fragments or labels instead of complete sentences"
+            ],
+            "specific_wins": [
+              "behaviour_or_system: clearly describes the action of making access conditional on performing an aversive task",
+              "minimum_viable_version: defines a clear, testable version of the idea",
+              "leading_indicators: specifies measurable signals within the first 10 days"
+            ]
+          },
+          "judge2": {
+            "step1_analyst_take": 3,
+            "step2_nonobvious_insight": 2,
+            "step3_india_context": 2,
+            "step4_evidence_accuracy": 2,
+            "step5_final_summary": 1,
+            "score": 10,
+            "verdict": "The evaluation provides a comprehensive and actionable framework for implementing temptation bundling, with clear insights into potential pitfalls and contextual considerations. It effectively combines practical steps with relevant research, making it a valuable resource for understanding and applying the idea.",
+            "what_was_missing": [],
+            "what_worked": [
+              "The identification of strict exclusivity as a critical factor for success in temptation bundling."
+            ]
+          }
+        },
+        {
+          "id": 4,
+          "raw_idea": "System: for every recurring decision you make more than three times per week \u2014 what to eat for a specific meal, when to check email, how to respond to a common type of request \u2014 write an if-then implementation intention in the form 'When X happens, I will do Y' and commit to following it without deliberation for 30 days. The mechanism is implementation intention (Gollwitzer, 1999): pre-committing a specific response to a specific situational cue bypasses the deliberation phase entirely, reducing the cognitive load of the decision to near zero. The benefit is not the specific choice made but the elimination of the deliberation cost \u2014 each eliminated micro-decision preserves a small unit of the cognitive resource that is depleted by consecutive decisions (ego depletion, Baumeister et al.). Meta-analysis (Gollwitzer and Sheeran, 2006) across 94 studies found implementation intentions increase goal attainment rates with an effect size of d=0.65. The target population is anyone who routinely experiences decision fatigue by mid-afternoon \u2014 characterised by increased impulsivity, avoidance of decisions, and default to the easiest option regardless of preference.",
+          "evaluation": {
+            "idea_summary": "The system proposes writing if-then implementation intentions for recurring decisions to reduce decision fatigue by bypassing deliberation, thus preserving cognitive resources.",
+            "category": "Personal",
+            "final_classification": "Robustly Supported",
+            "core_claim": {
+              "behaviour_or_system": "For every recurring decision made more than three times per week, write an if-then implementation intention and commit to following it for 30 days.",
+              "target_outcome": "Reduce decision fatigue and preserve cognitive resources.",
+              "proposed_mechanism": "The mechanism is implementation intention: pre-committing a specific response to a specific situational cue bypasses the deliberation phase entirely, reducing the cognitive load of the decision to near zero.",
+              "preconditions": "The individual routinely experiences decision fatigue by mid-afternoon."
+            },
+            "evidence_base": {
+              "what_is_supported": "Implementation intentions have been shown to increase goal attainment rates significantly.",
+              "closest_research": [
+                "Gollwitzer's research on implementation intentions found that pre-committing to specific actions in response to cues enhances goal achievement [2].",
+                "Gollwitzer and Sheeran's meta-analysis across 94 studies demonstrated that implementation intentions have a medium to large effect size on goal attainment [2].",
+                "Baumeister's work on ego depletion supports the idea that reducing decision-making effort preserves cognitive resources [2]."
+              ],
+              "gap_between_claim_and_evidence": "The evidence strongly supports the use of implementation intentions for specific goals but does not directly measure the reduction in decision fatigue.",
+              "why_most_advice_fails": "Most advice fails because it does not account for the cognitive load involved in decision-making and lacks specificity in implementation."
+            },
+            "implementation": {
+              "minimum_viable_version": "Identify one recurring decision and write a single if-then intention to follow for 30 days.",
+              "key_habit_or_practice": "Commit to executing the if-then intention without deliberation each time the cue occurs.",
+              "failure_modes": [
+                "The approach fails if the individual does not consistently encounter the cue, making the intention irrelevant.",
+                "The approach fails when external factors disrupt the ability to follow through on the intention, such as unexpected schedule changes."
+              ],
+              "leading_indicators": [
+                "Within 10 days, the individual should notice a reduction in the time spent deciding on the recurring issue.",
+                "The individual should feel less mentally fatigued by mid-afternoon within the first 2 weeks."
+              ],
+              "timeline_to_signal": "A meaningful signal should be visible within 10 days, indicated by reduced decision time and mental fatigue."
+            },
+            "india_context": {
+              "relevant_constraints": "Joint family expectations may disrupt the consistency of encountering cues.",
+              "cultural_or_structural_friction": "Social norms may demand flexibility, which can conflict with rigid if-then plans.",
+              "india_specific_advantage": "The collectivist culture may provide more social support for sticking to pre-committed plans."
+            },
+            "analyst_take": "The most non-obvious insight is that this approach works not by optimizing the decision itself but by eliminating the need to make it, thus preserving cognitive resources. The most likely failure mode is inconsistency in encountering the cue, which makes the intention irrelevant. To test this in the first 48 hours, identify a single decision to apply this to and write down the if-then intention to see if it feels actionable and relevant.",
+            "scores": {
+              "evidence_quality": 8,
+              "implementation_clarity": 7,
+              "novelty": 6,
+              "overall": 8,
+              "risk_level": "Low"
+            },
+            "final_summary": "The system of using if-then implementation intentions to reduce decision fatigue is robustly supported by evidence, particularly in enhancing goal attainment. While the method is clear and actionable, it requires consistent cue exposure to be effective. The most significant challenge is maintaining the relevance of the cue in daily life, especially in the Indian context where social expectations may interfere. For further study, explore Gollwitzer's work on implementation intentions and decision-making processes."
+          },
+          "judge1": {
+            "step1_sentence_quality": 1,
+            "step2_implementation_specificity": 3,
+            "step3_failure_modes": 1,
+            "step4_mechanism_clarity": 2,
+            "step5_citations": 1,
+            "score": 8,
+            "verdict": "The evaluation has some incomplete sentences in the closest_research section, which affects the overall sentence quality. Additionally, one of the failure modes is generic, which detracts from the specificity required in that section.",
+            "specific_failures": [
+              "closest_research: Contains fragments or labels instead of complete sentences.",
+              "failure_modes: One failure mode is generic and does not specify a scenario."
+            ],
+            "specific_wins": [
+              "behaviour_or_system: Clearly describes the specific action to be taken.",
+              "minimum_viable_version: Defines a clear and testable version of the implementation."
+            ]
+          },
+          "judge2": {
+            "step1_analyst_take": 3,
+            "step2_nonobvious_insight": 2,
+            "step3_india_context": 2,
+            "step4_evidence_accuracy": 2,
+            "step5_final_summary": 1,
+            "score": 10,
+            "verdict": "The evaluation provides comprehensive practical content, including a clear action plan, insights into potential failure modes, and contextual considerations for implementation in India. It effectively highlights the cognitive load aspect of decision-making, which is often overlooked in self-help advice.",
+            "what_was_missing": [],
+            "what_worked": [
+              "The identification of the specific failure mode related to cue consistency and the actionable first step to write down an if-then intention."
+            ]
+          }
+        },
+        {
+          "id": 5,
+          "raw_idea": "System: when working on a long-horizon project (book, thesis, startup, course of study), deliberately stop each work session at a point of forward momentum \u2014 mid-sentence, mid-calculation, mid-argument \u2014 rather than at a natural stopping point or completion boundary. Leave a brief note (2-3 words) indicating the next immediate step. The mechanism operates through two channels: first, the Zeigarnik effect ensures the incomplete task remains active in working memory, reducing the activation energy required to restart; second, stopping at a point of momentum rather than at a satisfying completion prevents the psychological closure that makes restarting feel like beginning again from zero. Ernest Hemingway reported using this strategy explicitly ('Always stop when you know what is going to happen next'), and it is structurally equivalent to the 'cliffhanger' technique used in serial fiction to maintain reader engagement across episodes. The failure mode is stopping too early \u2014 before enough context is loaded into working memory to make the Zeigarnik activation meaningful \u2014 which produces anxiety about re-entry rather than anticipation. The leading indicator is whether re-entry to the project on the next session takes less than 3 minutes to full productive engagement.",
+          "evaluation": {
+            "idea_summary": "The system proposes stopping work sessions on long-term projects at a point of forward momentum, leaving a brief note for the next step, to leverage the Zeigarnik effect and prevent psychological closure.",
+            "category": "Personal",
+            "final_classification": "Evidence-Backed but Narrow",
+            "core_claim": {
+              "behaviour_or_system": "Stop work sessions at a point of forward momentum, leaving a brief note for the next immediate step.",
+              "target_outcome": "Increase ease of re-entry and sustained engagement with long-term projects.",
+              "proposed_mechanism": "The mechanism operates through the Zeigarnik effect, which keeps incomplete tasks active in working memory, and prevents psychological closure, making re-entry easier.",
+              "preconditions": "The person must be working on a long-horizon project and be able to identify points of forward momentum."
+            },
+            "evidence_base": {
+              "what_is_supported": "The Zeigarnik effect suggests that people remember incomplete tasks better, which can reduce the activation energy required to restart a task.",
+              "closest_research": [
+                "Bluma Zeigarnik's original research found that people remember unfinished tasks better than completed ones, which supports the idea of leaving tasks incomplete to maintain engagement [10].",
+                "Austin Connolly's report on the Zeigarnik effect highlights its potential to maintain mental tension and drive completion, which aligns with the proposed mechanism [11]."
+              ],
+              "gap_between_claim_and_evidence": "While the Zeigarnik effect supports the idea of maintaining task engagement, there is limited direct evidence on its application to long-term project work.",
+              "why_most_advice_fails": "Most advice fails because it does not account for the anxiety that can arise from stopping too early without sufficient context, which can hinder re-entry."
+            },
+            "implementation": {
+              "minimum_viable_version": "Stop work sessions mid-task and leave a brief note indicating the next step for at least one week.",
+              "key_habit_or_practice": "Identify a natural point of momentum during work sessions and deliberately stop there, leaving a note for the next step.",
+              "failure_modes": [
+                "The approach fails when stopping too early creates anxiety rather than anticipation, making re-entry difficult."
+              ],
+              "leading_indicators": [
+                "Within 10 days, the person should notice that re-entry to the project takes less than 3 minutes to reach full productive engagement."
+              ],
+              "timeline_to_signal": "A meaningful signal should be visible within 10 days, indicated by reduced time to re-engage with the project."
+            },
+            "india_context": {
+              "relevant_constraints": "Joint family expectations and irregular work hours may disrupt the ability to stop at a point of momentum.",
+              "cultural_or_structural_friction": "The need for flexibility in work schedules can make it challenging to consistently apply this system.",
+              "india_specific_advantage": "The cultural emphasis on education and long-term projects may align well with the need for sustained engagement strategies."
+            },
+            "analyst_take": "The most non-obvious insight is that stopping at a point of momentum leverages cognitive tension to maintain engagement, which is often overlooked in favor of completing tasks. The most likely failure mode is stopping too early, leading to anxiety rather than anticipation. To test this system, try it for two sessions and note if re-entry feels easier and more engaging. This approach can fail if not enough context is retained, so ensure you leave a clear note for the next step.",
+            "scores": {
+              "evidence_quality": 7,
+              "implementation_clarity": 6,
+              "novelty": 6,
+              "overall": 7,
+              "risk_level": "Low"
+            },
+            "final_summary": "The proposed system of stopping work sessions at a point of forward momentum is supported by the Zeigarnik effect, which suggests that incomplete tasks remain active in working memory. While the evidence is strong for the psychological mechanism, its application to long-term projects is less directly studied. The main challenge is ensuring the stopping point retains enough context to facilitate easy re-entry. For further study, Bluma Zeigarnik's original work and its applications in productivity contexts would be valuable."
+          },
+          "judge1": {
+            "step1_sentence_quality": 2,
+            "step2_implementation_specificity": 3,
+            "step3_failure_modes": 1,
+            "step4_mechanism_clarity": 2,
+            "step5_citations": 1,
+            "score": 9,
+            "verdict": "The evaluation is strong overall, but it has one generic failure mode and lacks sufficient citations. The failure mode described is not specific enough to the context of the idea. Additionally, while there are two citations in the evidence base, there are not enough spread across different sections.",
+            "specific_failures": [
+              "failure_modes: The failure mode is generic and does not describe a specific scenario tied to the behaviour and context of this idea."
+            ],
+            "specific_wins": [
+              "behaviour_or_system: It is specific and clearly outlines the action to be taken.",
+              "minimum_viable_version: It defines the smallest testable version of the system.",
+              "proposed_mechanism: It clearly names the Zeigarnik effect and explains its relevance to the behaviour."
+            ]
+          },
+          "judge2": {
+            "step1_analyst_take": 3,
+            "step2_nonobvious_insight": 2,
+            "step3_india_context": 2,
+            "step4_evidence_accuracy": 2,
+            "step5_final_summary": 1,
+            "score": 10,
+            "verdict": "The evaluation provides practical content by clearly outlining a specific method to implement the idea, along with insights into potential pitfalls and contextual considerations for India. It effectively combines theoretical backing with actionable steps, making it a comprehensive guide for understanding and applying the concept.",
+            "what_was_missing": [],
+            "what_worked": [
+              "The specific recommendation to leave a clear note for the next step after stopping at a point of momentum, which directly addresses the implementation of the idea."
+            ]
+          }
+        }
+      ],
+      "scores": {
+        "judge1_avg": 9.2,
+        "judge2_avg": 10.0,
+        "combined": 9.6,
+        "step_failures": [],
+        "threshold_met": true
+      }
+    }
+  ]
+}

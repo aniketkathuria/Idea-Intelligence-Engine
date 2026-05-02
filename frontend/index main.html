@@ -545,20 +545,112 @@
 
   function getClassBadge(cls) {
     if (!cls) return '';
-    const map = {
-      'Structurally Promising':      'badge-promising',
-      'High-Potential Breakthrough': 'badge-breakthrough',
-      'Weak Concept':                'badge-weak',
-      'Interesting but Unproven':    'badge-interesting',
-      'Conceptually Confused':       'badge-confused',
-    };
-    const key = Object.keys(map).find(k => cls.includes(k)) || '';
-    return `<span class="classification-badge ${map[key] || 'badge-interesting'}">${cls}</span>`;
+    const c = cls.toLowerCase();
+    let css = 'badge-interesting';
+    if (c.includes('breakthrough') || c.includes('paradigm') || c.includes('high-impact') ||
+        c.includes('exceptional')  || c.includes('category-creating') || c.includes('paradigm-level') ||
+        c.includes('paradigm-shifting'))                                      css = 'badge-breakthrough';
+    else if (c.includes('promising')   || c.includes('tractable')   || c.includes('within reach') ||
+             c.includes('researchable')|| c.includes('robustly')    || c.includes('worth prototyping') ||
+             c.includes('significant contribution') || c.includes('experimentally tractable'))
+                                                                              css = 'badge-promising';
+    else if (c.includes('weak')        || c.includes('trivially')   || c.includes('unfalsifiable') ||
+             c.includes('folklore')    || c.includes('counterproductive') || c.includes('vague notion') ||
+             c.includes('already exists') || c.includes('already established') ||
+             c.includes('already defended') || c.includes('intractable'))     css = 'badge-weak';
+    else if (c.includes('confused')    || c.includes('flawed'))               css = 'badge-confused';
+    return `<span class="classification-badge ${css}">${cls}</span>`;
   }
 
   function bullets(arr) {
     if (!arr || !arr.length) return '<p class="prose" style="color:var(--text-dim)">None provided</p>';
-    return `<ul class="bullet-list">${arr.map(i => `<li>${i}</li>`).join('')}</ul>`;
+    return `<ul class="bullet-list">${arr.map(i => {
+      if (typeof i === 'object' && i !== null) {
+        const text = Object.values(i).filter(v => v && typeof v === 'string').join(' — ');
+        return `<li>${text || JSON.stringify(i)}</li>`;
+      }
+      return `<li>${i}</li>`;
+    }).join('')}</ul>`;
+  }
+
+  function playerCards(players) {
+    if (!players || !players.length) return '<p class="prose" style="color:var(--text-dim)">None identified</p>';
+    return players.map(p => `
+      <div class="kv-item" style="flex-direction:column;gap:4px">
+        <div class="kv-key">${p.name || '—'}</div>
+        <div class="kv-val">${p.approach || p.model || ''}</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
+          ${p.edge     ? `<span class="tag">Edge: ${p.edge}</span>` : ''}
+          ${p.weakness ? `<span class="tag">Weakness: ${p.weakness}</span>` : ''}
+        </div>
+        ${p.relevance_to_your_idea ? `<div class="kv-val" style="margin-top:4px;font-style:italic">${p.relevance_to_your_idea}</div>` : ''}
+      </div>`).join('');
+  }
+
+  function renderAnalystTake(ev) {
+    if (!ev.analyst_take) return '';
+    return `
+      <div class="r-section">
+        <div class="section-label">Analyst Take</div>
+        <div style="background:var(--surface2);border:0.5px solid var(--border2);border-radius:10px;padding:20px 22px;">
+          <p style="font-family:var(--serif);font-size:14px;font-style:italic;color:var(--text);line-height:1.9;font-weight:400">${ev.analyst_take}</p>
+        </div>
+      </div>`;
+  }
+
+  function renderScoreCards(scores, defs) {
+    return `
+      <div class="r-section">
+        <div class="section-label">Scores</div>
+        <div class="scores-row">
+          ${defs.map(d => {
+            const val = scores[d.f];
+            if (val === undefined || val === null || val === '') return '';
+            const isText = typeof val === 'string';
+            return `<div class="score-card">
+              <div class="score-label">${d.l}</div>
+              ${isText
+                ? `<div class="score-text" style="margin-top:6px;font-size:13px;">${val}</div>`
+                : `<div class="score-value">${val}<span>/10</span></div>`}
+            </div>`;
+          }).join('')}
+        </div>
+      </div>`;
+  }
+
+  function renderLearning(learn) {
+    if (!learn) return '';
+    const queries  = learn.search_queries || [];
+    const sources  = learn.cited_sources  || [];
+    const secList  = learn.publications_to_follow || learn.key_papers || learn.key_readings
+                  || learn.key_datasets   || learn.key_references || [];
+    const secLabel = learn.publications_to_follow ? 'Publications to Follow'
+                   : learn.key_papers    ? 'Key Papers'
+                   : learn.key_readings  ? 'Key Readings'
+                   : learn.key_datasets  ? 'Key Datasets'
+                   : learn.key_references ? 'Key References' : '';
+    if (!queries.length && !sources.length && !secList.length) return '';
+    return `
+      <div class="r-section">
+        <div class="section-label">Learning</div>
+        ${queries.length ? `
+          <div class="kv-key" style="margin-bottom:8px">Search Queries</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px">
+            ${queries.map(q => `<a class="query-pill" href="https://duckduckgo.com/?q=${encodeURIComponent(q)}" target="_blank">${q}</a>`).join('')}
+          </div>` : ''}
+        ${secList.length ? `
+          <div class="kv-key" style="margin-bottom:8px">${secLabel}</div>
+          <div style="margin-bottom:12px">${bullets(secList)}</div>` : ''}
+        ${sources.length ? `
+          <div class="kv-key" style="margin-bottom:8px">Cited Sources</div>
+          <div class="kv-list">
+            ${sources.map(s => `
+              <div class="kv-item">
+                <div class="kv-key">[${s.index}] ${s.title || '—'}</div>
+                ${s.url ? `<div class="kv-val"><a href="${s.url}" target="_blank" style="color:var(--amber);word-break:break-all">${s.url}</a></div>` : ''}
+              </div>`).join('')}
+          </div>` : ''}
+      </div>`;
   }
 
   // ── Render clusters ───────────────────────────────────────
@@ -601,15 +693,25 @@
   // ── Render evaluation ─────────────────────────────────────
 
   function renderEvaluation(ev, ideaId) {
-    if (ev.category === 'Business' || ev.market_context) return renderBusiness(ev, ideaId);
-    if (ev.category === 'Technology' || ev.technical_assessment) return renderTechnology(ev, ideaId);
+    const cat = ev.category;
+    if (cat === 'Business'    || ev.market_context)          return renderBusiness(ev, ideaId);
+    if (cat === 'Technology'  || ev.technical_assessment)    return renderTechnology(ev, ideaId);
+    if (cat === 'Engineering' || ev.engineering_assessment)  return renderEngineering(ev, ideaId);
+    if (cat === 'Science'     || ev.methodology)             return renderScience(ev, ideaId);
+    if (cat === 'Mathematics' || ev.proof_strategy)          return renderMathematics(ev, ideaId);
+    if (cat === 'Society'     || ev.evidence_and_method)     return renderSociety(ev, ideaId);
+    if (cat === 'Philosophy'  || ev.argument_analysis)       return renderPhilosophy(ev, ideaId);
+    if (cat === 'Personal'    || ev.evidence_base)           return renderPersonal(ev, ideaId);
+    if (cat === 'Other'       || ev.prior_context)           return renderOther(ev, ideaId);
     return renderGeneral(ev, ideaId);
   }
 
   function renderHeader(ev, ideaId) {
+    const title = ev.idea_summary || ev.conjecture_summary || ev.hypothesis_summary
+               || ev.argument_summary || ev.observation_summary || 'Evaluation Result';
     return `
       <div class="result-header">
-        <span class="result-title">${ev.idea_summary || 'Evaluation Result'}</span>
+        <span class="result-title">${title}</span>
         <div class="result-header-right">
           ${ideaId !== null ? `<span class="viewing-badge">idea #${ideaId}</span>` : ''}
           ${getClassBadge(ev.final_classification || '')}
@@ -905,6 +1007,504 @@
               </div>` : ''}
           </div>
 
+        </div>
+      </div>`;
+  }
+
+  function renderEngineering(ev, ideaId) {
+    const scores = ev.scores || {};
+    const prob   = ev.problem_space || {};
+    const eng    = ev.engineering_assessment || {};
+    const gtm    = ev.go_to_market || {};
+    const comp   = ev.competitive_landscape || {};
+    const learn  = ev.learning || {};
+    function weakestAssumptions(items) {
+      if (!items || !items.length) return '<p class="prose" style="color:var(--text-dim)">None provided</p>';
+      return items.map(a => `
+        <div class="kv-item" style="flex-direction:column;gap:4px">
+          <div class="kv-key">${a.assumption || '—'}</div>
+          ${a.why_it_matters ? `<div class="kv-val">Why it matters: ${a.why_it_matters}</div>` : ''}
+          ${a.how_to_test    ? `<div class="kv-val" style="color:var(--green)">How to test: ${a.how_to_test}</div>` : ''}
+        </div>`).join('');
+    }
+    return `
+      <div class="result-panel">
+        ${renderHeader(ev, ideaId)}
+        <div class="result-body">
+          <div class="r-section">
+            <div class="section-label">Problem Space</div>
+            <div class="kv-list">
+              <div class="kv-item"><div class="kv-key">Problem Statement</div><div class="kv-val">${prob.problem_statement || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Who Has This Problem</div><div class="kv-val">${prob.who_has_this_problem || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Scale of Impact</div><div class="kv-val">${prob.scale_of_impact || '—'}</div></div>
+            </div>
+            ${prob.current_solutions && prob.current_solutions.length ? `<div style="margin-top:8px"><div class="kv-key" style="margin-bottom:6px">Current Solutions</div>${bullets(prob.current_solutions)}</div>` : ''}
+          </div>
+          <div class="r-section">
+            <div class="section-label">Competitive Landscape</div>
+            ${comp.whitespace ? `<div class="kv-item" style="margin-bottom:12px"><div class="kv-key">Whitespace</div><div class="kv-val">${comp.whitespace}</div></div>` : ''}
+            <div class="kv-key" style="margin-bottom:8px">Global Players</div>
+            <div class="kv-list">${playerCards(comp.global_players)}</div>
+            <div class="kv-key" style="margin-top:12px;margin-bottom:8px">India Players</div>
+            <div class="kv-list">${playerCards(comp.india_players)}</div>
+          </div>
+          <div class="r-section">
+            <div class="section-label">Engineering Assessment</div>
+            <div class="kv-list">
+              <div class="kv-item"><div class="kv-key">Physical Feasibility</div><div class="kv-val">${eng.physical_feasibility || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Core Engineering Challenge</div><div class="kv-val">${eng.core_engineering_challenge || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Development Complexity</div><div class="kv-val">${eng.development_complexity || '—'}</div></div>
+            </div>
+            ${eng.materials_and_components && eng.materials_and_components.length ? `<div style="margin-top:8px"><div class="kv-key" style="margin-bottom:6px">Materials & Components</div>${bullets(eng.materials_and_components)}</div>` : ''}
+            ${eng.regulatory_requirements && eng.regulatory_requirements.length ? `<div style="margin-top:8px"><div class="kv-key" style="margin-bottom:6px">Regulatory Requirements</div>${bullets(eng.regulatory_requirements)}</div>` : ''}
+          </div>
+          <div class="r-section">
+            <div class="section-label">Go to Market</div>
+            <div class="kv-list">
+              <div class="kv-item"><div class="kv-key">MVP Definition</div><div class="kv-val">${gtm.mvp_definition || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Moat</div><div class="kv-val">${gtm.moat || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Manufacturing Path</div><div class="kv-val">${gtm.manufacturing_path || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Distribution Strategy</div><div class="kv-val">${gtm.distribution_strategy || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Adoption Barrier</div><div class="kv-val" style="color:#ff6b6b">${gtm.adoption_barrier || '—'}</div></div>
+            </div>
+          </div>
+          <div class="r-section">
+            <div class="section-label">Weakest Assumptions</div>
+            <div class="kv-list">${weakestAssumptions(ev.weakest_assumptions)}</div>
+          </div>
+          ${renderAnalystTake(ev)}
+          ${renderScoreCards(scores, [
+            {l:'Engineering Feasibility', f:'engineering_feasibility'},
+            {l:'Market Potential',        f:'market_potential'},
+            {l:'Overall',                 f:'overall'},
+            {l:'Risk Level',              f:'risk_level'},
+          ])}
+          <div class="r-section">
+            <div class="section-label">Final Summary</div>
+            <div class="verdict"><p>${ev.final_summary || '—'}</p></div>
+          </div>
+          ${renderLearning(learn)}
+        </div>
+      </div>`;
+  }
+
+  function renderScience(ev, ideaId) {
+    const scores = ev.scores || {};
+    const hyp    = ev.hypothesis || {};
+    const art    = ev.prior_art || {};
+    const meth   = ev.methodology || {};
+    const modes  = ev.failure_modes || [];
+    const india  = ev.india_research_context || {};
+    const learn  = ev.learning || {};
+    function failureModes(items) {
+      if (!items || !items.length) return '<p class="prose" style="color:var(--text-dim)">None provided</p>';
+      return items.map(m => `
+        <div class="kv-item" style="flex-direction:column;gap:4px">
+          <div class="kv-key">${m.scenario || '—'}</div>
+          ${m.probability        ? `<span class="tag" style="margin-top:4px">Probability: ${m.probability}</span>` : ''}
+          ${m.what_it_would_mean ? `<div class="kv-val" style="margin-top:4px">${m.what_it_would_mean}</div>` : ''}
+        </div>`).join('');
+    }
+    return `
+      <div class="result-panel">
+        ${renderHeader(ev, ideaId)}
+        <div class="result-body">
+          <div class="r-section">
+            <div class="section-label">Hypothesis</div>
+            <div class="kv-list">
+              <div class="kv-item"><div class="kv-key">Core Claim</div><div class="kv-val">${hyp.core_claim || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Domain</div><div class="kv-val">${hyp.domain || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Novelty</div><div class="kv-val">${hyp.novelty_statement || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Falsifiability</div><div class="kv-val" style="color:var(--green)">${hyp.falsifiability || '—'}</div></div>
+            </div>
+          </div>
+          <div class="r-section">
+            <div class="section-label">Prior Art</div>
+            <div class="kv-list">
+              <div class="kv-item"><div class="kv-key">What Is Known</div><div class="kv-val">${art.what_is_known || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Gap Being Addressed</div><div class="kv-val">${art.gap_being_addressed || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Why Gap Exists</div><div class="kv-val">${art.why_gap_exists || '—'}</div></div>
+            </div>
+            ${art.key_papers_or_groups && art.key_papers_or_groups.length ? `<div style="margin-top:8px"><div class="kv-key" style="margin-bottom:6px">Key Papers / Groups</div>${bullets(art.key_papers_or_groups)}</div>` : ''}
+          </div>
+          <div class="r-section">
+            <div class="section-label">Methodology</div>
+            <div class="kv-list">
+              <div class="kv-item"><div class="kv-key">Proposed Approach</div><div class="kv-val">${meth.proposed_approach || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Experimental Controls</div><div class="kv-val">${meth.experimental_controls || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Estimated Timeline</div><div class="kv-val">${meth.estimated_timeline || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Critical Experiment</div><div class="kv-val" style="color:var(--amber)">${meth.critical_experiment || '—'}</div></div>
+            </div>
+            ${meth.required_equipment && meth.required_equipment.length ? `<div style="margin-top:8px"><div class="kv-key" style="margin-bottom:6px">Required Equipment</div>${bullets(meth.required_equipment)}</div>` : ''}
+          </div>
+          <div class="r-section">
+            <div class="section-label">Failure Modes</div>
+            <div class="kv-list">${failureModes(modes)}</div>
+          </div>
+          <div class="r-section">
+            <div class="section-label">India Research Context</div>
+            <div class="kv-list">
+              <div class="kv-item"><div class="kv-key">Funding Path</div><div class="kv-val">${india.funding_path || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Infrastructure Gap</div><div class="kv-val">${india.infrastructure_gap || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">India-Specific Advantage</div><div class="kv-val" style="color:var(--green)">${india.india_specific_advantage || '—'}</div></div>
+            </div>
+            ${india.relevant_institutions && india.relevant_institutions.length ? `<div style="margin-top:8px"><div class="kv-key" style="margin-bottom:6px">Relevant Institutions</div>${bullets(india.relevant_institutions)}</div>` : ''}
+          </div>
+          ${renderAnalystTake(ev)}
+          ${renderScoreCards(scores, [
+            {l:'Hypothesis Quality',   f:'hypothesis_quality'},
+            {l:'Methodological Rigor', f:'methodological_rigor'},
+            {l:'Novelty',              f:'novelty'},
+            {l:'Overall',              f:'overall'},
+            {l:'Risk Level',           f:'risk_level'},
+          ])}
+          <div class="r-section">
+            <div class="section-label">Final Summary</div>
+            <div class="verdict"><p>${ev.final_summary || '—'}</p></div>
+          </div>
+          ${renderLearning(learn)}
+        </div>
+      </div>`;
+  }
+
+  function renderMathematics(ev, ideaId) {
+    const scores = ev.scores || {};
+    const conj   = ev.conjecture || {};
+    const art    = ev.prior_art || {};
+    const proof  = ev.proof_strategy || {};
+    const risks  = ev.counterexample_risks || [];
+    const india  = ev.india_math_context || {};
+    const learn  = ev.learning || {};
+    function counterRisks(items) {
+      if (!items || !items.length) return '<p class="prose" style="color:var(--text-dim)">None provided</p>';
+      return items.map(r => `
+        <div class="kv-item" style="flex-direction:column;gap:4px">
+          <div class="kv-key">${r.scenario || '—'}</div>
+          ${r.why_it_would_matter ? `<div class="kv-val">${r.why_it_would_matter}</div>` : ''}
+          ${r.how_to_check        ? `<div class="kv-val" style="color:var(--green)">How to check: ${r.how_to_check}</div>` : ''}
+        </div>`).join('');
+    }
+    return `
+      <div class="result-panel">
+        ${renderHeader(ev, ideaId)}
+        <div class="result-body">
+          <div class="r-section">
+            <div class="section-label">Conjecture</div>
+            <div class="kv-list">
+              <div class="kv-item"><div class="kv-key">Formal Statement</div><div class="kv-val" style="font-family:var(--mono);font-size:13px">${conj.formal_statement || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Domain</div><div class="kv-val">${conj.domain || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Novelty</div><div class="kv-val">${conj.novelty_statement || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Known Special Cases</div><div class="kv-val">${conj.known_special_cases || '—'}</div></div>
+            </div>
+          </div>
+          <div class="r-section">
+            <div class="section-label">Prior Art</div>
+            <div class="kv-list">
+              <div class="kv-item"><div class="kv-key">What Is Established</div><div class="kv-val">${art.what_is_established || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Gap Being Addressed</div><div class="kv-val">${art.gap_being_addressed || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Why Gap Persists</div><div class="kv-val">${art.why_gap_persists || '—'}</div></div>
+            </div>
+            ${art.closest_results && art.closest_results.length ? `<div style="margin-top:8px"><div class="kv-key" style="margin-bottom:6px">Closest Results</div>${bullets(art.closest_results)}</div>` : ''}
+          </div>
+          <div class="r-section">
+            <div class="section-label">Proof Strategy</div>
+            <div class="kv-list">
+              <div class="kv-item"><div class="kv-key">Proposed Approach</div><div class="kv-val">${proof.proposed_approach || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Critical Obstacle</div><div class="kv-val" style="color:#ff6b6b">${proof.critical_obstacle || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Estimated Difficulty</div><div class="kv-val">${proof.estimated_difficulty || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Verification Method</div><div class="kv-val" style="color:var(--green)">${proof.verification_method || '—'}</div></div>
+            </div>
+            ${proof.key_tools_and_techniques && proof.key_tools_and_techniques.length ? `<div style="margin-top:8px"><div class="kv-key" style="margin-bottom:6px">Key Tools & Techniques</div>${bullets(proof.key_tools_and_techniques)}</div>` : ''}
+          </div>
+          <div class="r-section">
+            <div class="section-label">Counterexample Risks</div>
+            <div class="kv-list">${counterRisks(risks)}</div>
+          </div>
+          <div class="r-section">
+            <div class="section-label">India Mathematics Context</div>
+            <div class="kv-list">
+              <div class="kv-item"><div class="kv-key">Funding Path</div><div class="kv-val">${india.funding_path || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Active Researchers</div><div class="kv-val">${india.active_researchers || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">India's Contribution</div><div class="kv-val">${india.india_specific_contribution || '—'}</div></div>
+            </div>
+            ${india.relevant_institutions && india.relevant_institutions.length ? `<div style="margin-top:8px"><div class="kv-key" style="margin-bottom:6px">Relevant Institutions</div>${bullets(india.relevant_institutions)}</div>` : ''}
+          </div>
+          ${renderAnalystTake(ev)}
+          ${renderScoreCards(scores, [
+            {l:'Conjecture Quality', f:'conjecture_quality'},
+            {l:'Proof Tractability', f:'proof_tractability'},
+            {l:'Novelty',            f:'novelty'},
+            {l:'Overall',            f:'overall'},
+            {l:'Difficulty Level',   f:'difficulty_level'},
+          ])}
+          <div class="r-section">
+            <div class="section-label">Final Summary</div>
+            <div class="verdict"><p>${ev.final_summary || '—'}</p></div>
+          </div>
+          ${renderLearning(learn)}
+        </div>
+      </div>`;
+  }
+
+  function renderSociety(ev, ideaId) {
+    const scores = ev.scores || {};
+    const hyp    = ev.hypothesis || {};
+    const art    = ev.prior_art || {};
+    const evid   = ev.evidence_and_method || {};
+    const conf   = ev.confounds_and_risks || {};
+    const india  = ev.india_social_context || {};
+    const learn  = ev.learning || {};
+    return `
+      <div class="result-panel">
+        ${renderHeader(ev, ideaId)}
+        <div class="result-body">
+          <div class="r-section">
+            <div class="section-label">Hypothesis</div>
+            <div class="kv-list">
+              <div class="kv-item"><div class="kv-key">Core Claim</div><div class="kv-val">${hyp.core_claim || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Domain</div><div class="kv-val">${hyp.domain || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Novelty</div><div class="kv-val">${hyp.novelty_statement || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Falsifiability</div><div class="kv-val" style="color:var(--green)">${hyp.falsifiability || '—'}</div></div>
+            </div>
+          </div>
+          <div class="r-section">
+            <div class="section-label">Prior Art</div>
+            <div class="kv-list">
+              <div class="kv-item"><div class="kv-key">What Is Established</div><div class="kv-val">${art.what_is_established || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Gap Being Addressed</div><div class="kv-val">${art.gap_being_addressed || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Why Gap Persists</div><div class="kv-val">${art.why_gap_persists || '—'}</div></div>
+            </div>
+            ${art.closest_studies && art.closest_studies.length ? `<div style="margin-top:8px"><div class="kv-key" style="margin-bottom:6px">Closest Studies</div>${bullets(art.closest_studies)}</div>` : ''}
+          </div>
+          <div class="r-section">
+            <div class="section-label">Evidence & Method</div>
+            <div class="kv-list">
+              <div class="kv-item"><div class="kv-key">Supporting Evidence</div><div class="kv-val">${evid.supporting_evidence || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Proposed Study Method</div><div class="kv-val">${evid.proposed_study_method || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Estimated Timeline</div><div class="kv-val">${evid.estimated_timeline || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Critical Test</div><div class="kv-val" style="color:var(--amber)">${evid.critical_test || '—'}</div></div>
+            </div>
+            ${evid.required_data && evid.required_data.length ? `<div style="margin-top:8px"><div class="kv-key" style="margin-bottom:6px">Required Data</div>${bullets(evid.required_data)}</div>` : ''}
+          </div>
+          <div class="r-section">
+            <div class="section-label">Confounds & Risks</div>
+            ${conf.confounds && conf.confounds.length ? `<div style="margin-bottom:12px"><div class="kv-key" style="margin-bottom:6px">Confounds</div>${bullets(conf.confounds)}</div>` : ''}
+            ${conf.alternative_explanations && conf.alternative_explanations.length ? `<div><div class="kv-key" style="margin-bottom:6px">Alternative Explanations</div>${bullets(conf.alternative_explanations)}</div>` : ''}
+          </div>
+          <div class="r-section">
+            <div class="section-label">India Social Context</div>
+            <div class="kv-list">
+              <div class="kv-item"><div class="kv-key">Funding Path</div><div class="kv-val">${india.funding_path || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">India-Specific Dynamics</div><div class="kv-val">${india.india_specific_dynamics || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">India-Specific Advantage</div><div class="kv-val" style="color:var(--green)">${india.india_specific_advantage || '—'}</div></div>
+            </div>
+            ${india.relevant_institutions && india.relevant_institutions.length ? `<div style="margin-top:8px"><div class="kv-key" style="margin-bottom:6px">Relevant Institutions</div>${bullets(india.relevant_institutions)}</div>` : ''}
+          </div>
+          ${renderAnalystTake(ev)}
+          ${renderScoreCards(scores, [
+            {l:'Observation Quality',  f:'observation_quality'},
+            {l:'Methodological Rigor', f:'methodological_rigor'},
+            {l:'Novelty',              f:'novelty'},
+            {l:'Overall',              f:'overall'},
+            {l:'Risk Level',           f:'risk_level'},
+          ])}
+          <div class="r-section">
+            <div class="section-label">Final Summary</div>
+            <div class="verdict"><p>${ev.final_summary || '—'}</p></div>
+          </div>
+          ${renderLearning(learn)}
+        </div>
+      </div>`;
+  }
+
+  function renderPhilosophy(ev, ideaId) {
+    const scores = ev.scores || {};
+    const arg    = ev.argument || {};
+    const art    = ev.prior_art || {};
+    const anal   = ev.argument_analysis || {};
+    const india  = ev.india_philosophy_context || {};
+    const learn  = ev.learning || {};
+    return `
+      <div class="result-panel">
+        ${renderHeader(ev, ideaId)}
+        <div class="result-body">
+          <div class="r-section">
+            <div class="section-label">Argument</div>
+            <div class="kv-list">
+              <div class="kv-item"><div class="kv-key">Core Thesis</div><div class="kv-val">${arg.core_thesis || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Domain</div><div class="kv-val">${arg.domain || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Novelty</div><div class="kv-val">${arg.novelty_statement || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Logical Structure</div><div class="kv-val">${arg.logical_structure || '—'}</div></div>
+            </div>
+          </div>
+          <div class="r-section">
+            <div class="section-label">Prior Art</div>
+            <div class="kv-list">
+              <div class="kv-item"><div class="kv-key">What Is Established</div><div class="kv-val">${art.what_is_established || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Gap Being Addressed</div><div class="kv-val">${art.gap_being_addressed || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Why Gap Persists</div><div class="kv-val">${art.why_gap_persists || '—'}</div></div>
+            </div>
+            ${art.closest_arguments && art.closest_arguments.length ? `<div style="margin-top:8px"><div class="kv-key" style="margin-bottom:6px">Closest Arguments</div>${bullets(art.closest_arguments)}</div>` : ''}
+          </div>
+          <div class="r-section">
+            <div class="section-label">Argument Analysis</div>
+            ${anal.key_premises && anal.key_premises.length ? `<div style="margin-bottom:12px"><div class="kv-key" style="margin-bottom:6px">Key Premises</div>${bullets(anal.key_premises)}</div>` : ''}
+            <div class="kv-list">
+              <div class="kv-item"><div class="kv-key">Logical Validity</div><div class="kv-val">${anal.logical_validity || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Strongest Objection</div><div class="kv-val" style="color:#ff6b6b">${anal.strongest_objection || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Thought Experiment</div><div class="kv-val" style="color:var(--amber)">${anal.thought_experiment || '—'}</div></div>
+            </div>
+            ${anal.possible_responses && anal.possible_responses.length ? `<div style="margin-top:8px"><div class="kv-key" style="margin-bottom:6px">Possible Responses</div>${bullets(anal.possible_responses)}</div>` : ''}
+          </div>
+          <div class="r-section">
+            <div class="section-label">India Philosophy Context</div>
+            <div class="kv-list">
+              <div class="kv-item"><div class="kv-key">Funding Path</div><div class="kv-val">${india.funding_path || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Indian Philosophical Tradition</div><div class="kv-val">${india.india_philosophical_tradition || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">India's Contribution</div><div class="kv-val">${india.india_specific_contribution || '—'}</div></div>
+            </div>
+            ${india.relevant_institutions && india.relevant_institutions.length ? `<div style="margin-top:8px"><div class="kv-key" style="margin-bottom:6px">Relevant Institutions</div>${bullets(india.relevant_institutions)}</div>` : ''}
+          </div>
+          ${renderAnalystTake(ev)}
+          ${renderScoreCards(scores, [
+            {l:'Argument Quality', f:'argument_quality'},
+            {l:'Originality',      f:'originality'},
+            {l:'Rigor',            f:'rigor'},
+            {l:'Overall',          f:'overall'},
+            {l:'Difficulty Level', f:'difficulty_level'},
+          ])}
+          <div class="r-section">
+            <div class="section-label">Final Summary</div>
+            <div class="verdict"><p>${ev.final_summary || '—'}</p></div>
+          </div>
+          ${renderLearning(learn)}
+        </div>
+      </div>`;
+  }
+
+  function renderPersonal(ev, ideaId) {
+    const scores = ev.scores || {};
+    const claim  = ev.core_claim || {};
+    const evid   = ev.evidence_base || {};
+    const impl   = ev.implementation || {};
+    const india  = ev.india_context || {};
+    const learn  = ev.learning || {};
+    return `
+      <div class="result-panel">
+        ${renderHeader(ev, ideaId)}
+        <div class="result-body">
+          <div class="r-section">
+            <div class="section-label">Core Claim</div>
+            <div class="kv-list">
+              <div class="kv-item"><div class="kv-key">Behaviour / System</div><div class="kv-val">${claim.behaviour_or_system || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Target Outcome</div><div class="kv-val">${claim.target_outcome || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Proposed Mechanism</div><div class="kv-val">${claim.proposed_mechanism || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Preconditions</div><div class="kv-val">${claim.preconditions || '—'}</div></div>
+            </div>
+          </div>
+          <div class="r-section">
+            <div class="section-label">Evidence Base</div>
+            <div class="kv-list">
+              <div class="kv-item"><div class="kv-key">What Is Supported</div><div class="kv-val">${evid.what_is_supported || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Gap vs Evidence</div><div class="kv-val">${evid.gap_between_claim_and_evidence || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Why Most Advice Fails</div><div class="kv-val" style="color:#ff6b6b">${evid.why_most_advice_fails || '—'}</div></div>
+            </div>
+            ${evid.closest_research && evid.closest_research.length ? `<div style="margin-top:8px"><div class="kv-key" style="margin-bottom:6px">Closest Research</div>${bullets(evid.closest_research)}</div>` : ''}
+          </div>
+          <div class="r-section">
+            <div class="section-label">Implementation</div>
+            <div class="kv-list">
+              <div class="kv-item"><div class="kv-key">Minimum Viable Version</div><div class="kv-val" style="color:var(--green)">${impl.minimum_viable_version || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Key Habit / Practice</div><div class="kv-val">${impl.key_habit_or_practice || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Timeline to Signal</div><div class="kv-val">${impl.timeline_to_signal || '—'}</div></div>
+            </div>
+            ${impl.failure_modes && impl.failure_modes.length ? `<div style="margin-top:8px"><div class="kv-key" style="margin-bottom:6px">Failure Modes</div>${bullets(impl.failure_modes)}</div>` : ''}
+            ${impl.leading_indicators && impl.leading_indicators.length ? `<div style="margin-top:8px"><div class="kv-key" style="margin-bottom:6px">Leading Indicators</div>${bullets(impl.leading_indicators)}</div>` : ''}
+          </div>
+          <div class="r-section">
+            <div class="section-label">India Context</div>
+            <div class="kv-list">
+              <div class="kv-item"><div class="kv-key">Relevant Constraints</div><div class="kv-val">${india.relevant_constraints || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Cultural / Structural Friction</div><div class="kv-val">${india.cultural_or_structural_friction || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">India-Specific Advantage</div><div class="kv-val" style="color:var(--green)">${india.india_specific_advantage || '—'}</div></div>
+            </div>
+          </div>
+          ${renderAnalystTake(ev)}
+          ${renderScoreCards(scores, [
+            {l:'Evidence Quality',       f:'evidence_quality'},
+            {l:'Implementation Clarity', f:'implementation_clarity'},
+            {l:'Novelty',                f:'novelty'},
+            {l:'Overall',                f:'overall'},
+            {l:'Risk Level',             f:'risk_level'},
+          ])}
+          <div class="r-section">
+            <div class="section-label">Final Summary</div>
+            <div class="verdict"><p>${ev.final_summary || '—'}</p></div>
+          </div>
+          ${renderLearning(learn)}
+        </div>
+      </div>`;
+  }
+
+  function renderOther(ev, ideaId) {
+    const scores = ev.scores || {};
+    const core   = ev.core_analysis || {};
+    const prior  = ev.prior_context || {};
+    const feas   = ev.feasibility || {};
+    const india  = ev.india_relevance || {};
+    const learn  = ev.learning || {};
+    return `
+      <div class="result-panel">
+        ${renderHeader(ev, ideaId)}
+        <div class="result-body">
+          <div class="r-section">
+            <div class="section-label">Core Analysis</div>
+            <div class="kv-list">
+              <div class="kv-item"><div class="kv-key">What Is Being Proposed</div><div class="kv-val">${core.what_is_being_proposed || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Domain / Field</div><div class="kv-val">${core.domain_or_field || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Novelty</div><div class="kv-val">${core.novelty_statement || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Key Assumption</div><div class="kv-val">${core.key_assumption || '—'}</div></div>
+            </div>
+          </div>
+          <div class="r-section">
+            <div class="section-label">Prior Context</div>
+            <div class="kv-list">
+              <div class="kv-item"><div class="kv-key">What Exists</div><div class="kv-val">${prior.what_exists || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Gap / Opportunity</div><div class="kv-val">${prior.gap_or_opportunity || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Why Not Done Yet</div><div class="kv-val">${prior.why_not_done_yet || '—'}</div></div>
+            </div>
+            ${prior.closest_examples && prior.closest_examples.length ? `<div style="margin-top:8px"><div class="kv-key" style="margin-bottom:6px">Closest Examples</div>${bullets(prior.closest_examples)}</div>` : ''}
+          </div>
+          <div class="r-section">
+            <div class="section-label">Feasibility</div>
+            <div class="kv-list">
+              <div class="kv-item"><div class="kv-key">What Would Make This Work</div><div class="kv-val">${feas.what_would_make_this_work || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Critical Dependency</div><div class="kv-val" style="color:#ff6b6b">${feas.critical_dependency || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">Minimum Viable Test</div><div class="kv-val" style="color:var(--green)">${feas.minimum_viable_test || '—'}</div></div>
+            </div>
+            ${feas.failure_modes && feas.failure_modes.length ? `<div style="margin-top:8px"><div class="kv-key" style="margin-bottom:6px">Failure Modes</div>${bullets(feas.failure_modes)}</div>` : ''}
+          </div>
+          <div class="r-section">
+            <div class="section-label">India Relevance</div>
+            <div class="kv-list">
+              <div class="kv-item"><div class="kv-key">India-Specific Opportunity</div><div class="kv-val" style="color:var(--green)">${india.india_specific_opportunity || '—'}</div></div>
+              <div class="kv-item"><div class="kv-key">India-Specific Constraint</div><div class="kv-val">${india.india_specific_constraint || '—'}</div></div>
+            </div>
+            ${india.relevant_actors && india.relevant_actors.length ? `<div style="margin-top:8px"><div class="kv-key" style="margin-bottom:6px">Relevant Actors</div>${bullets(india.relevant_actors)}</div>` : ''}
+          </div>
+          ${renderAnalystTake(ev)}
+          ${renderScoreCards(scores, [
+            {l:'Novelty',          f:'novelty'},
+            {l:'Feasibility',      f:'feasibility'},
+            {l:'Impact Potential', f:'impact_potential'},
+            {l:'Overall',          f:'overall'},
+            {l:'Risk Level',       f:'risk_level'},
+          ])}
+          <div class="r-section">
+            <div class="section-label">Final Summary</div>
+            <div class="verdict"><p>${ev.final_summary || '—'}</p></div>
+          </div>
+          ${renderLearning(learn)}
         </div>
       </div>`;
   }

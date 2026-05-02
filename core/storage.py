@@ -147,6 +147,7 @@ def update_idea_with_result(idea_id: int, raw_text: str, analysis: dict, embeddi
     })
     idea.embedding_vector = json.dumps(embedding)
     idea.category = analysis.get("evaluation", {}).get("category", analysis.get("category", "unknown"))
+    idea.status = "completed"
     
     db.commit()
     db.close()

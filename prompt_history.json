@@ -1,0 +1,1610 @@
+{
+  "iterations": [
+    {
+      "iteration": 0,
+      "timestamp": "2026-05-01T13:19:24.920533",
+      "prompt": "\nYou are a sharp, knowledgeable market analyst and business evaluator.\n\nYou are NOT a cheerleader. You are NOT a pessimist.\nYou are the most informed person in the room \u2014 and you tell the truth.\n\nYour job is to take this business idea and give the person a complete picture of:\n- The market reality (global + India)\n- Who is already playing and how\n- Where this idea sits in that landscape\n- What it fundamentally lacks\n- What the person should read and learn\n\nRULES:\n- Every market size claim, competitor fact, or growth number MUST be cited with [index] from the research provided.\n- If research does not support a claim, say \"unverified assumption\" \u2014 do not invent numbers.\n- Be specific about competitors \u2014 not just names, but what they actually do, their edge, their weakness.\n- India context is mandatory. Global context first, India second.\n- Do not be vague. \"Large market\" means nothing. \"India meal kit market estimated at $XX billion growing at XX% CAGR\" means something.\n- Identify the single most dangerous competitor \u2014 the one that would kill this idea if it decided to focus here.\n- The whitespace field must be specific \u2014 not \"there is opportunity\" but exactly where and why.\n- weakest_links must have at least 3 entries. Each must say what would make that weakness not matter.\n- final_summary must be one honest paragraph \u2014 where the idea sits, what's real, what's not, ending with one article/search to read.\n\nFINAL CLASSIFICATION \u2014 choose exactly one:\n- Weak Concept: market doesn't support it or idea is structurally broken\n- Interesting but Unproven: gap exists but execution risk is very high\n- Structurally Promising: clear gap, viable economics, real path to market\n- High-Potential Breakthrough: large untapped market, strong differentiation, right timing\n- Conceptually Confused: idea is unclear or tries to be too many things\n\nClassification rules:\n- Do not assign Structurally Promising if overall score < 5\n- Do not assign High-Potential Breakthrough unless market_opportunity >= 8 and overall >= 7\n- If the idea is essentially identical to an existing player, classify as Weak Concept regardless of scores\n\n====================\nIDEA:\n{raw_idea}\n\nCATEGORY: Business\n\nRESEARCH (cite by index when making claims):\n{formatted_research}\n====================\n\nReturn ONLY valid JSON. No commentary. No markdown. Follow this schema exactly:\n\n{schema}\n",
+      "ideas": [
+        {
+          "id": 1,
+          "raw_idea": "A subscription-based meal kit service targeting tier-2 Indian cities like Indore, Nagpur, and Coimbatore, delivering pre-portioned regional ingredients and recipes to households that are increasingly aspirational but underserved by urban-focused food brands.",
+          "evaluation": {
+            "idea_summary": "A subscription-based meal kit service targeting tier-2 Indian cities like Indore, Nagpur, and Coimbatore, delivering pre-portioned regional ingredients and recipes to households that are increasingly aspirational but underserved by urban-focused food brands.",
+            "category": "Business",
+            "final_classification": "Interesting but Unproven",
+            "market_context": {
+              "global": {
+                "market_size": "Unverified assumption",
+                "growth_trajectory": "Unverified assumption",
+                "key_shifts": [
+                  "Increasing demand for convenience",
+                  "Health-conscious eating trends"
+                ],
+                "maturity_stage": "Growth"
+              },
+              "india": {
+                "market_size": "Unverified assumption",
+                "growth_trajectory": "Unverified assumption",
+                "unique_dynamics": [
+                  "Preference for regional flavors",
+                  "Price sensitivity"
+                ],
+                "key_shifts": [
+                  "Urbanization of tier-2 cities",
+                  "Rising disposable incomes"
+                ]
+              }
+            },
+            "competitive_landscape": {
+              "global_players": [
+                {
+                  "name": "Blue Apron",
+                  "model": "Subscription-based meal kits",
+                  "edge": "Established brand, wide variety",
+                  "weakness": "High churn rate",
+                  "relevance_to_your_idea": "Pioneer in meal kits, but not focused on Indian market"
+                }
+              ],
+              "india_players": [
+                {
+                  "name": "My Tiffin Express",
+                  "model": "Meal kit and tiffin service",
+                  "edge": "Established presence, focus on Indian cuisine",
+                  "weakness": "Limited to major cities",
+                  "relevance_to_your_idea": "Direct competitor if they expand to tier-2 cities"
+                },
+                {
+                  "name": "Tiffit",
+                  "model": "Homemade meal delivery",
+                  "edge": "Focus on homemade, hygienic meals",
+                  "weakness": "Limited menu variety",
+                  "relevance_to_your_idea": "Operates in Indore, potential competitor"
+                }
+              ],
+              "whitespace": "Focus on regional cuisines in tier-2 cities where existing players have limited reach."
+            },
+            "idea_positioning": {
+              "overlap_with_existing": "Similar to Tiffit and My Tiffin Express",
+              "differentiation": "Focus on regional ingredients and recipes",
+              "honest_uniqueness_verdict": "Moderate differentiation through regional focus",
+              "positioning_statement": "Delivering authentic regional meal kits to aspirational households in tier-2 cities."
+            },
+            "unit_economics": {
+              "tam_estimate": "Unverified assumption",
+              "pricing_assumption": "Competitive pricing around INR 699 per month",
+              "cost_structure": [
+                "Ingredient sourcing",
+                "Logistics",
+                "Marketing"
+              ],
+              "gross_margin_range": "Unverified assumption",
+              "cac_ltv_estimate": "Unverified assumption",
+              "kill_condition": "Entry of a major player like Swiggy or Zomato into this niche"
+            },
+            "weakest_links": [
+              {
+                "weakness": "High logistics cost in tier-2 cities",
+                "why_it_matters": "Could erode margins significantly",
+                "what_would_make_it_not_matter": "Optimized delivery routes and partnerships with local logistics"
+              },
+              {
+                "weakness": "Customer retention",
+                "why_it_matters": "High churn can lead to unsustainable business",
+                "what_would_make_it_not_matter": "Strong community engagement and loyalty programs"
+              },
+              {
+                "weakness": "Limited awareness of meal kits",
+                "why_it_matters": "Could limit market penetration",
+                "what_would_make_it_not_matter": "Effective marketing campaigns and partnerships with influencers"
+              }
+            ],
+            "learning": {
+              "search_queries": [
+                "Indian meal kit market analysis",
+                "Tier-2 city consumer behavior India"
+              ],
+              "publications_to_follow": [
+                "Economic Times",
+                "YourStory"
+              ],
+              "cited_sources": [
+                {
+                  "index": 0,
+                  "title": "Homemade Meal Subscription or Tiffin Service @ 699* | Mealawe",
+                  "url": "https://mealawe.com/meal-plans/"
+                }
+              ]
+            },
+            "scores": {
+              "market_opportunity": 6,
+              "overall": 5,
+              "risk_level": "High"
+            },
+            "final_summary": "The idea of a subscription-based meal kit service targeting tier-2 Indian cities is interesting but unproven. While there is a potential gap in the market for regional meal kits, the execution risks are high due to logistics challenges and customer retention issues. The presence of players like Tiffit and My Tiffin Express indicates competition, but the focus on regional cuisines could provide differentiation. To better understand the market, read 'Indian meal kit market analysis'."
+          },
+          "judge1": {
+            "score": 5,
+            "verdict": "The evaluation lacks data-rich unit economics and research citations, impacting its completeness. Competitive analysis and weakest links are well-structured and specific.",
+            "specific_failures": [
+              "unit_economics: Majority are 'unverified assumption' or empty",
+              "research_citations: Only 1 citation used"
+            ],
+            "specific_wins": [
+              "competitive_analysis: Each player has specific business model, edge, and weakness",
+              "weakest_links: Each weakness is specific to this idea's assumptions",
+              "whitespace: Specific gap identified with clear reasoning"
+            ]
+          },
+          "judge2": {
+            "score": 7,
+            "verdict": "The evaluation provides a solid overview of the competitive landscape and highlights specific challenges like logistics and customer retention. However, it lacks non-obvious market insights and actionable next steps could be more detailed.",
+            "what_was_missing": [
+              "Specific market size data for tier-2 cities",
+              "More detailed actionable steps beyond reading suggestions"
+            ],
+            "what_worked": [
+              "Identification of competitors and their weaknesses",
+              "Highlighting the differentiation through regional focus"
+            ]
+          }
+        },
+        {
+          "id": 2,
+          "raw_idea": "A sustainable fashion brand that manufactures jackets and outerwear using fiber extracted from coconut shells and husks, positioning itself as a zero-waste alternative to synthetic insulation in the global outdoor apparel market.",
+          "evaluation": {
+            "idea_summary": "A sustainable fashion brand focused on manufacturing jackets and outerwear using fiber extracted from coconut shells and husks, offering a zero-waste alternative to synthetic insulation.",
+            "category": "Business",
+            "final_classification": "Interesting but Unproven",
+            "market_context": {
+              "global": {
+                "market_size": "Unverified assumption",
+                "growth_trajectory": "Unverified assumption",
+                "key_shifts": [
+                  "Shift towards sustainable and eco-friendly materials in fashion",
+                  "Increased consumer awareness about environmental impact"
+                ],
+                "maturity_stage": "Growth"
+              },
+              "india": {
+                "market_size": "Unverified assumption",
+                "growth_trajectory": "Unverified assumption",
+                "unique_dynamics": [
+                  "Growing middle class with increasing disposable income",
+                  "Rising awareness of sustainability"
+                ],
+                "key_shifts": [
+                  "Shift towards sustainable fashion",
+                  "Increasing influence of global fashion trends"
+                ]
+              }
+            },
+            "competitive_landscape": {
+              "global_players": [
+                {
+                  "name": "Patagonia",
+                  "model": "Sustainable outdoor apparel",
+                  "edge": "Strong brand reputation and commitment to sustainability",
+                  "weakness": "Premium pricing may limit market reach",
+                  "relevance_to_your_idea": "Leader in sustainable outdoor apparel, sets industry standards"
+                },
+                {
+                  "name": "The North Face",
+                  "model": "Outdoor apparel with sustainable initiatives",
+                  "edge": "Established brand with a wide range of products",
+                  "weakness": "Transitioning to sustainability, not fully there yet",
+                  "relevance_to_your_idea": "Direct competitor if they focus more on sustainable materials"
+                }
+              ],
+              "india_players": [
+                {
+                  "name": "No Nasties",
+                  "model": "Organic and fair trade clothing",
+                  "edge": "Focus on organic materials and ethical production",
+                  "weakness": "Limited product range in outerwear",
+                  "relevance_to_your_idea": "Potential collaborator or competitor in sustainable fashion"
+                }
+              ],
+              "whitespace": "Opportunity to create a niche in the sustainable outerwear market using innovative materials like coconut fiber, which is not widely used."
+            },
+            "idea_positioning": {
+              "overlap_with_existing": "Overlaps with existing sustainable outerwear brands but uses a unique material.",
+              "differentiation": "Use of coconut fiber as an insulation material.",
+              "honest_uniqueness_verdict": "Unique material choice but needs validation for performance and consumer acceptance.",
+              "positioning_statement": "A pioneering brand in sustainable outerwear, offering a unique zero-waste alternative using coconut fiber insulation."
+            },
+            "unit_economics": {
+              "tam_estimate": "Unverified assumption",
+              "pricing_assumption": "Premium pricing due to sustainable materials",
+              "cost_structure": [
+                "Material sourcing",
+                "Manufacturing",
+                "Distribution",
+                "Marketing"
+              ],
+              "gross_margin_range": "Unverified assumption",
+              "cac_ltv_estimate": "Unverified assumption",
+              "kill_condition": "If coconut fiber does not meet performance expectations or if consumer adoption is low."
+            },
+            "weakest_links": [
+              {
+                "weakness": "Unproven material performance",
+                "why_it_matters": "Performance is critical for consumer adoption in outerwear.",
+                "what_would_make_it_not_matter": "Conducting rigorous testing and obtaining certifications for material performance."
+              },
+              {
+                "weakness": "High production costs",
+                "why_it_matters": "Could lead to uncompetitive pricing.",
+                "what_would_make_it_not_matter": "Achieving economies of scale and optimizing supply chain."
+              },
+              {
+                "weakness": "Limited consumer awareness",
+                "why_it_matters": "Consumer education is crucial for market penetration.",
+                "what_would_make_it_not_matter": "Effective marketing campaigns and partnerships with eco-conscious influencers."
+              }
+            ],
+            "learning": {
+              "search_queries": [
+                "Coconut fiber insulation in fashion",
+                "Sustainable outerwear market trends",
+                "Consumer adoption of eco-friendly materials"
+              ],
+              "publications_to_follow": [
+                "Sustainable Jungle",
+                "The Good Trade",
+                "Good On You"
+              ],
+              "cited_sources": [
+                {
+                  "index": 0,
+                  "title": "10 Most Eco-Conscious Clothing Brands In 2026",
+                  "url": "https://www.thegoodtrade.com/features/eco-friendly-clothing-brands/"
+                },
+                {
+                  "index": 1,
+                  "title": "7 Best Sustainable Outerwear Brands For 2025",
+                  "url": "https://www.sustainablejungle.com/sustainable-jackets/"
+                },
+                {
+                  "index": 12,
+                  "title": "Zero Waste in Outdoor Apparel: Can High-Performance Gear Be ...",
+                  "url": "https://armsofandes.com/blogs/news/zero-waste-in-outdoor-apparel-can-high-performance-gear-be-truly-sustainable"
+                }
+              ]
+            },
+            "scores": {
+              "market_opportunity": 6,
+              "overall": 5,
+              "risk_level": "High"
+            },
+            "final_summary": "The idea of a sustainable fashion brand using coconut fiber for insulation in outerwear is interesting but unproven. The global shift towards sustainability presents an opportunity, but the concept faces challenges such as unproven material performance and high production costs. The market is competitive with established players like Patagonia and The North Face, but the unique material choice offers differentiation. To succeed, the brand must validate its material, optimize costs, and educate consumers. For further understanding, read 'Zero Waste in Outdoor Apparel: Can High-Performance Gear Be Truly Sustainable?'"
+          },
+          "judge1": {
+            "score": 7,
+            "verdict": "The evaluation is structurally complete but lacks data richness in unit economics and market context. It excels in competitive analysis and weakest links, with specific insights tailored to the business idea.",
+            "specific_failures": [
+              "unit_economics: Majority are 'unverified assumption', lacking concrete estimates or reasoning.",
+              "market_context.global.market_size: Unverified assumption, missing data.",
+              "market_context.india.market_size: Unverified assumption, missing data."
+            ],
+            "specific_wins": [
+              "competitive_landscape: Detailed analysis with specific business models, edges, and weaknesses.",
+              "weakest_links: Specific weaknesses related to the idea's assumptions, not generic risks.",
+              "whitespace: Identified a specific gap with clear reasoning."
+            ]
+          },
+          "judge2": {
+            "score": 8,
+            "verdict": "The evaluation provides a strong learning experience with non-obvious insights into market trends and competitive intelligence. However, it could benefit from more precise market size data and clearer actionable steps.",
+            "what_was_missing": [
+              "Specific market size data and growth projections",
+              "More precise actionable next steps beyond reading recommendations"
+            ],
+            "what_worked": [
+              "Insight into the shift towards sustainable materials in fashion",
+              "Identification of a unique material choice with coconut fiber",
+              "Competitive analysis highlighting gaps in competitors' sustainability efforts"
+            ]
+          }
+        },
+        {
+          "id": 3,
+          "raw_idea": "A B2B SaaS platform for kirana stores in India that provides inventory management, supplier ordering, and embedded lending \u2014 competing directly in a space where Khatabook, OkCredit, and Udaan are already deeply entrenched.",
+          "evaluation": {
+            "idea_summary": "A B2B SaaS platform for kirana stores in India that provides inventory management, supplier ordering, and embedded lending.",
+            "category": "Business",
+            "final_classification": "Weak Concept",
+            "market_context": {
+              "global": {
+                "market_size": "unverified assumption",
+                "growth_trajectory": "unverified assumption",
+                "key_shifts": [],
+                "maturity_stage": "unverified assumption"
+              },
+              "india": {
+                "market_size": "$600 billion [6]",
+                "growth_trajectory": "unverified assumption",
+                "unique_dynamics": [
+                  "Kirana stores account for 90% of the grocery market [6]"
+                ],
+                "key_shifts": [
+                  "Digital transformation of kirana stores [6]"
+                ]
+              }
+            },
+            "competitive_landscape": {
+              "global_players": [
+                {
+                  "name": "BigCommerce",
+                  "model": "Open SaaS eCommerce platform",
+                  "edge": "Large existing user base",
+                  "weakness": "Not focused on kirana stores",
+                  "relevance_to_your_idea": "Potential indirect competitor if they enter the kirana space"
+                }
+              ],
+              "india_players": [
+                {
+                  "name": "Khatabook",
+                  "model": "Digital ledger app for small businesses",
+                  "edge": "Strong brand recognition and user base",
+                  "weakness": "Primarily focused on accounting",
+                  "relevance_to_your_idea": "Direct competition in digital solutions for kiranas"
+                },
+                {
+                  "name": "OkCredit",
+                  "model": "Credit management app for small businesses",
+                  "edge": "Simple, user-friendly interface",
+                  "weakness": "Limited to credit management",
+                  "relevance_to_your_idea": "Direct competition in financial management for kiranas"
+                },
+                {
+                  "name": "Udaan",
+                  "model": "B2B eCommerce platform",
+                  "edge": "Extensive network and logistics",
+                  "weakness": "Focus on broader B2B market, not just kiranas",
+                  "relevance_to_your_idea": "Strong competitor in supplier ordering"
+                }
+              ],
+              "whitespace": "Integration of inventory management with embedded lending specifically tailored for kirana stores."
+            },
+            "idea_positioning": {
+              "overlap_with_existing": "Significant overlap with Khatabook and OkCredit in financial management.",
+              "differentiation": "Potential differentiation through embedded lending and inventory management integration.",
+              "honest_uniqueness_verdict": "Limited uniqueness; existing players cover most functionalities.",
+              "positioning_statement": "A comprehensive platform integrating inventory and financial management for kirana stores."
+            },
+            "unit_economics": {
+              "tam_estimate": "unverified assumption",
+              "pricing_assumption": "unverified assumption",
+              "cost_structure": [],
+              "gross_margin_range": "unverified assumption",
+              "cac_ltv_estimate": "unverified assumption",
+              "kill_condition": "If Khatabook or Udaan fully integrate similar features."
+            },
+            "weakest_links": [
+              {
+                "weakness": "High competition from established players",
+                "why_it_matters": "Existing players have strong user bases and brand recognition.",
+                "what_would_make_it_not_matter": "Significant differentiation or unique value proposition."
+              },
+              {
+                "weakness": "Lack of clear differentiation",
+                "why_it_matters": "Without differentiation, it's hard to attract users.",
+                "what_would_make_it_not_matter": "Innovative features or partnerships with major suppliers."
+              },
+              {
+                "weakness": "Unverified market assumptions",
+                "why_it_matters": "Assumptions may not reflect actual market conditions.",
+                "what_would_make_it_not_matter": "Comprehensive market research and validation."
+              }
+            ],
+            "learning": {
+              "search_queries": [
+                "B2B SaaS platforms for kirana stores",
+                "Digital transformation of kirana stores in India"
+              ],
+              "publications_to_follow": [
+                "Inc42",
+                "YourStory"
+              ],
+              "cited_sources": [
+                {
+                  "index": 0,
+                  "title": "How This Saas Based Startup Is Connecting Kirana Stores With",
+                  "url": "https://inc42.com/startups/peel-works-growth-story/"
+                }
+              ]
+            },
+            "scores": {
+              "market_opportunity": 4,
+              "overall": 3,
+              "risk_level": "High"
+            },
+            "final_summary": "The idea of a B2B SaaS platform for kirana stores in India faces significant challenges due to strong competition from established players like Khatabook, OkCredit, and Udaan. The market is large, but the overlap with existing solutions and lack of clear differentiation make it a weak concept. To succeed, the platform must offer unique features not currently available. For further understanding, read 'How This Saas Based Startup Is Connecting Kirana Stores With' on Inc42."
+          },
+          "judge1": {
+            "score": 5,
+            "verdict": "The evaluation lacks data richness in unit economics and research citations, but provides a detailed competitive analysis and specific weaknesses. Whitespace is identified with clear reasoning.",
+            "specific_failures": [
+              "unit_economics: Majority are 'unverified assumption' or empty.",
+              "research_citations: Only 1 citation used, lacking data richness."
+            ],
+            "specific_wins": [
+              "competitive_landscape: Specific business models, edges, and weaknesses for each competitor.",
+              "weakest_links: Specific weaknesses related to the idea's assumptions.",
+              "whitespace: Specific gap identified with clear reasoning."
+            ]
+          },
+          "judge2": {
+            "score": 6,
+            "verdict": "The evaluation provides some useful insights into the competitive landscape and market dynamics of kirana stores in India, but lacks depth in market insights and actionable steps. The analysis of competitors is strong, but the market context and next steps could be more detailed.",
+            "what_was_missing": [
+              "Specific trends or numbers that reveal non-obvious market insights",
+              "Clear, actionable next steps or readings beyond a single article"
+            ],
+            "what_worked": [
+              "Detailed competitive intelligence on Khatabook, OkCredit, and Udaan",
+              "Honest positioning about the limited uniqueness of the idea"
+            ]
+          }
+        },
+        {
+          "id": 4,
+          "raw_idea": "A  reverse auction marketplace for home services in India \u2014 plumbers, electricians, painters \u2014 where the homeowner posts a job and verified professionals bid for it, flipping the traditional \"you search, they quote\" dynamic.",
+          "evaluation": {
+            "idea_summary": "A reverse auction marketplace for home services in India where homeowners post jobs and verified professionals bid for them.",
+            "category": "Business",
+            "final_classification": "Interesting but Unproven",
+            "market_context": {
+              "global": {
+                "market_size": "unverified assumption",
+                "growth_trajectory": "unverified assumption",
+                "key_shifts": [
+                  "Increased digital adoption",
+                  "Preference for cost-effective solutions"
+                ],
+                "maturity_stage": "Emerging"
+              },
+              "india": {
+                "market_size": "unverified assumption",
+                "growth_trajectory": "unverified assumption",
+                "unique_dynamics": [
+                  "High fragmentation in home services market",
+                  "Price sensitivity"
+                ],
+                "key_shifts": [
+                  "Growing middle class",
+                  "Increasing internet penetration"
+                ]
+              }
+            },
+            "competitive_landscape": {
+              "global_players": [
+                {
+                  "name": "ProcurEngine",
+                  "model": "Reverse auction platform for goods and services",
+                  "edge": "Advanced e-auction technology",
+                  "weakness": "Focus on B2B rather than B2C",
+                  "relevance_to_your_idea": "Demonstrates reverse auction viability in services"
+                }
+              ],
+              "india_players": [
+                {
+                  "name": "UrbanClap",
+                  "model": "On-demand home services marketplace",
+                  "edge": "Strong brand presence and customer trust",
+                  "weakness": "Traditional search and quote model",
+                  "relevance_to_your_idea": "Potential to pivot to reverse auction model"
+                }
+              ],
+              "whitespace": "Targeting tier 2 and 3 cities where service availability is limited and price competition is high."
+            },
+            "idea_positioning": {
+              "overlap_with_existing": "Similar to UrbanClap but with a reverse auction model.",
+              "differentiation": "Reverse auction model flips the traditional service procurement process.",
+              "honest_uniqueness_verdict": "Moderately unique; relies on execution and market education.",
+              "positioning_statement": "A cost-effective, competitive bidding platform for home services in India."
+            },
+            "unit_economics": {
+              "tam_estimate": "unverified assumption",
+              "pricing_assumption": "Service fee on transactions",
+              "cost_structure": [
+                "Platform development",
+                "Marketing",
+                "Customer support"
+              ],
+              "gross_margin_range": "unverified assumption",
+              "cac_ltv_estimate": "unverified assumption",
+              "kill_condition": "If UrbanClap adopts a reverse auction model."
+            },
+            "weakest_links": [
+              {
+                "weakness": "Market education required for reverse auction model",
+                "why_it_matters": "Potential users may not understand or trust the model",
+                "what_would_make_it_not_matter": "Effective marketing and user education campaigns"
+              },
+              {
+                "weakness": "High competition from established players",
+                "why_it_matters": "Difficult to gain market share",
+                "what_would_make_it_not_matter": "Unique value proposition and strong differentiation"
+              },
+              {
+                "weakness": "Dependence on internet penetration in target areas",
+                "why_it_matters": "Limits potential user base",
+                "what_would_make_it_not_matter": "Focus on urban areas with high internet penetration"
+              }
+            ],
+            "learning": {
+              "search_queries": [
+                "Reverse auction marketplace case studies",
+                "Home services market in India",
+                "Digital marketplace trends"
+              ],
+              "publications_to_follow": [
+                "TechCrunch",
+                "Economic Times",
+                "Harvard Business Review"
+              ],
+              "cited_sources": [
+                {
+                  "index": 0,
+                  "title": "Zaucto - B2B Auction & Procurement Platform | Reverse ...",
+                  "url": "https://zaucto.com/"
+                }
+              ]
+            },
+            "scores": {
+              "market_opportunity": 6,
+              "overall": 5,
+              "risk_level": "High"
+            },
+            "final_summary": "The idea of a reverse auction marketplace for home services in India is interesting but unproven. While the reverse auction model offers a unique approach, the market is highly competitive with established players like UrbanClap who could easily adopt a similar model. The success of this idea hinges on effective market education and targeting underserved areas. For further understanding, read about 'Reverse auction marketplace case studies'."
+          },
+          "judge1": {
+            "score": 5,
+            "verdict": "The evaluation lacks data-rich unit economics and sufficient research citations. Competitive analysis and weakest links are adequately specific, but the whitespace identification is clear.",
+            "specific_failures": [
+              "unit_economics: Majority are 'unverified assumption' or empty",
+              "research_citations: Only 1 citation used"
+            ],
+            "specific_wins": [
+              "competitive_landscape: Each player has specific business model, edge, and weakness",
+              "weakest_links: Each weakness is specific to the idea's assumptions",
+              "whitespace: Specific gap identified with clear reasoning"
+            ]
+          },
+          "judge2": {
+            "score": 7,
+            "verdict": "The evaluation provides useful insights into the market dynamics and competitive landscape, particularly highlighting the potential for a reverse auction model in a fragmented market. However, it lacks specific data points and trends that could strengthen the market insight.",
+            "what_was_missing": [
+              "Specific market size and growth data for home services in India",
+              "Examples of successful reverse auction models in similar markets"
+            ],
+            "what_worked": [
+              "Identification of high fragmentation and price sensitivity in the Indian market",
+              "Highlighting UrbanClap's potential vulnerability to a reverse auction model"
+            ]
+          }
+        },
+        {
+          "id": 5,
+          "raw_idea": "A carbon credit marketplace connecting Indian smallholder farmers who adopt regenerative agriculture practices with corporate buyers seeking verified, affordable offsets \u2014 sitting at the intersection of climate finance and rural income generation.",
+          "evaluation": {
+            "idea_summary": "A carbon credit marketplace connecting Indian smallholder farmers who adopt regenerative agriculture practices with corporate buyers seeking verified, affordable offsets.",
+            "category": "Business",
+            "final_classification": "Interesting but Unproven",
+            "market_context": {
+              "global": {
+                "market_size": "Unverified assumption",
+                "growth_trajectory": "Unverified assumption",
+                "key_shifts": [
+                  "Increased corporate demand for carbon offsets",
+                  "Growing focus on sustainable agriculture"
+                ],
+                "maturity_stage": "Emerging"
+              },
+              "india": {
+                "market_size": "Unverified assumption",
+                "growth_trajectory": "Unverified assumption",
+                "unique_dynamics": [
+                  "Large base of smallholder farmers",
+                  "Government support for voluntary carbon markets [1][8]"
+                ],
+                "key_shifts": [
+                  "Development of frameworks for voluntary carbon markets [1][8]",
+                  "Increased interest in regenerative agriculture [10]"
+                ]
+              }
+            },
+            "competitive_landscape": {
+              "global_players": [
+                {
+                  "name": "Boomitra",
+                  "model": "International soil carbon marketplace",
+                  "edge": "AI and remote sensing technology [6]",
+                  "weakness": "Barriers to adoption [4]",
+                  "relevance_to_your_idea": "Direct competitor with established projects in India [3][4]"
+                }
+              ],
+              "india_players": [
+                {
+                  "name": "Grow Indigo",
+                  "model": "Groups small farms into single projects for carbon credits",
+                  "edge": "Economies of scale for smallholder farmers [0]",
+                  "weakness": "Technology dependence",
+                  "relevance_to_your_idea": "Similar model targeting the same farmer demographic [0]"
+                },
+                {
+                  "name": "Prithu",
+                  "model": "Focuses on regenerative practices for high-integrity carbon credits",
+                  "edge": "Targets multiple environmental issues [11]",
+                  "weakness": "Limited scale",
+                  "relevance_to_your_idea": "Competes in the same niche of regenerative agriculture [11]"
+                }
+              ],
+              "whitespace": "Integration of localized support and education for farmers to adopt regenerative practices effectively."
+            },
+            "idea_positioning": {
+              "overlap_with_existing": "Significant overlap with Boomitra and Grow Indigo",
+              "differentiation": "Potential to offer localized farmer support and education",
+              "honest_uniqueness_verdict": "Limited uniqueness due to existing players with similar models",
+              "positioning_statement": "A marketplace that not only connects but empowers smallholder farmers through education and localized support in regenerative practices."
+            },
+            "unit_economics": {
+              "tam_estimate": "Unverified assumption",
+              "pricing_assumption": "Approx. $10 per credit [12]",
+              "cost_structure": [
+                "Technology development",
+                "Farmer education programs",
+                "Verification processes"
+              ],
+              "gross_margin_range": "Unverified assumption",
+              "cac_ltv_estimate": "Unverified assumption",
+              "kill_condition": "If Boomitra significantly scales its farmer support and education initiatives."
+            },
+            "weakest_links": [
+              {
+                "weakness": "Dependence on farmer adoption of regenerative practices",
+                "why_it_matters": "Without adoption, carbon credits cannot be generated",
+                "what_would_make_it_not_matter": "Strong educational programs and incentives for farmers"
+              },
+              {
+                "weakness": "Verification and monitoring costs",
+                "why_it_matters": "High costs could erode margins",
+                "what_would_make_it_not_matter": "Advanced technology reducing costs [0]"
+              },
+              {
+                "weakness": "Competition from established players",
+                "why_it_matters": "Could limit market share",
+                "what_would_make_it_not_matter": "Unique value proposition with localized support"
+              }
+            ],
+            "learning": {
+              "search_queries": [
+                "Carbon credit marketplaces in India",
+                "Regenerative agriculture adoption in India",
+                "Voluntary carbon markets"
+              ],
+              "publications_to_follow": [
+                "TERI",
+                "CIMMYT",
+                "Ministry of Agriculture & Farmers Welfare"
+              ],
+              "cited_sources": [
+                {
+                  "index": 0,
+                  "title": "Regenerative Farming Services: Empowering Farmers through Carbon Credits",
+                  "url": "https://www.growindigo.co.in/carbon/"
+                },
+                {
+                  "index": 1,
+                  "title": "Carbon Trading Mechanism in Agriculture Sector",
+                  "url": "https://www.pib.gov.in/PressReleaseIframePage.aspx?PRID=2037660"
+                },
+                {
+                  "index": 3,
+                  "title": "Boomitra and Social Carbon Announce Landmark Soil Carbon Credit Issuance from Smallholder Farmers in India",
+                  "url": "https://boomitra.com/landmark-urvara-issuance-india/"
+                },
+                {
+                  "index": 4,
+                  "title": "Boomitra Carbon Farming in India",
+                  "url": "https://boomitra.com/projects/boomitra-carbon-farming-india/"
+                },
+                {
+                  "index": 6,
+                  "title": "India: Boomitra and Social Carbon Announce Landmark Soil Carbon Credit Issuance from Smallholder Farmers in India",
+                  "url": "https://www.globalagtechinitiative.com/digital-farming/india-boomitra-and-social-carbon-announce-landmark-soil-carbon-credit-issuance-from-smallholder-farmers-in-india/"
+                },
+                {
+                  "index": 8,
+                  "title": "In a first, farmers in eight states to get carbon credit soon",
+                  "url": "https://www.financialexpress.com/business/sustainability-in-a-first-farmers-in-eight-states-to-get-carbon-credit-soon-3646924/"
+                },
+                {
+                  "index": 11,
+                  "title": "Prithu Raises INR 10 Crore to Scale High-Integrity Carbon Credits",
+                  "url": "https://www.iamrenew.com/environment/prithu-raises-inr-10-crore-to-scale-high-integrity-carbon-credits/"
+                },
+                {
+                  "index": 12,
+                  "title": "Carbon Credits: India\u2019s Biggest New Income Opportunity for Farmers",
+                  "url": "https://www.linkedin.com/pulse/carbon-credits-indias-biggest-new-income-opportunity-farmers-patil-uhsmf"
+                }
+              ]
+            },
+            "scores": {
+              "market_opportunity": 6,
+              "overall": 5,
+              "risk_level": "High"
+            },
+            "final_summary": "The idea of a carbon credit marketplace for Indian smallholder farmers adopting regenerative agriculture practices is interesting but unproven. While there is a clear demand for carbon offsets and government support, the market is already competitive with players like Boomitra and Grow Indigo. The primary differentiation could be in offering localized support and education, but significant execution risks remain. For further understanding, explore TERI's research on carbon credits in India's agriculture sector."
+          },
+          "judge1": {
+            "score": 9,
+            "verdict": "The evaluation is structurally complete and data-rich, with minor gaps in unit economics. It provides detailed competitive analysis and specific weaknesses, supported by numerous citations.",
+            "specific_failures": [
+              "unit_economics.tam_estimate: Unverified assumption",
+              "unit_economics.gross_margin_range: Unverified assumption",
+              "unit_economics.cac_ltv_estimate: Unverified assumption"
+            ],
+            "specific_wins": [
+              "competitive_landscape: Detailed analysis with specific models, edges, and weaknesses",
+              "weakest_links: Specific to the idea's assumptions",
+              "research_citations: Eight citations used",
+              "whitespace: Specific gap identified with clear reasoning"
+            ]
+          },
+          "judge2": {
+            "score": 8,
+            "verdict": "The evaluation provides a comprehensive overview of the market and competitive landscape, offering non-obvious insights into existing players and potential differentiation strategies. However, the market size and growth assumptions remain unverified, which could have added depth to the analysis.",
+            "what_was_missing": [
+              "Verified market size and growth trajectory data",
+              "More detailed unit economics analysis"
+            ],
+            "what_worked": [
+              "Identification of specific competitors and their weaknesses",
+              "Clear differentiation strategy through localized support and education",
+              "Actionable next steps with search queries and publications to follow"
+            ]
+          }
+        }
+      ],
+      "scores": {
+        "judge1_avg": 6.2,
+        "judge2_avg": 7.2,
+        "combined": 6.7,
+        "threshold_met": false
+      }
+    },
+    {
+      "iteration": 1,
+      "timestamp": "2026-05-01T13:21:38.347827",
+      "prompt": "```\nYou are a sharp, knowledgeable market analyst and business evaluator.\n\nYou are NOT a cheerleader. You are NOT a pessimist.\nYou are the most informed person in the room \u2014 and you tell the truth.\n\nYour job is to take this business idea and give the person a complete picture of:\n- The market reality (global + India)\n- Who is already playing and how\n- Where this idea sits in that landscape\n- What it fundamentally lacks\n- What the person should read and learn\n\nRULES:\n- Every market size claim, competitor fact, or growth number MUST be cited with [index] from the research provided. Ensure a minimum of 5 [index] citations are used throughout the evaluation.\n- If research does not support a claim, reason from first principles and state your assumption clearly \u2014 writing 'unverified assumption' is not acceptable.\n- Be specific about competitors \u2014 not just names, but what they actually do, their edge, their weakness.\n- Identify the single most dangerous competitor \u2014 the one that would kill this idea if it decided to focus here, and explain in one sentence why they are dangerous.\n- India context is mandatory. Global context first, India second.\n- Do not be vague. \"Large market\" means nothing. \"India meal kit market estimated at $XX billion growing at XX% CAGR\" means something.\n- The whitespace field must be specific \u2014 not \"there is opportunity\" but exactly where and why.\n- weakest_links must have at least 3 entries. Each must be tied to a specific structural assumption of THIS idea and must say what would make that weakness not matter.\n- final_summary must be one honest paragraph \u2014 where the idea sits, what's real, what's not, ending with one specific article, search, or person to look into next.\n\nFINAL CLASSIFICATION \u2014 choose exactly one:\n- Weak Concept: market doesn't support it or idea is structurally broken\n- Interesting but Unproven: gap exists but execution risk is very high\n- Structurally Promising: clear gap, viable economics, real path to market\n- High-Potential Breakthrough: large untapped market, strong differentiation, right timing\n- Conceptually Confused: idea is unclear or tries to be too many things\n\nClassification rules:\n- Do not assign Structurally Promising if overall score < 5\n- Do not assign High-Potential Breakthrough unless market_opportunity >= 8 and overall >= 7\n- If the idea is essentially identical to an existing player, classify as Weak Concept regardless of scores\n\n====================\nIDEA:\n{raw_idea}\n\nCATEGORY: Business\n\nRESEARCH (cite by index when making claims):\n{formatted_research}\n====================\n\nReturn ONLY valid JSON. No commentary. No markdown. Follow this schema exactly:\n\n{schema}\n```",
+      "ideas": [
+        {
+          "id": 1,
+          "raw_idea": "A subscription-based meal kit service targeting tier-2 Indian cities like Indore, Nagpur, and Coimbatore, delivering pre-portioned regional ingredients and recipes to households that are increasingly aspirational but underserved by urban-focused food brands.",
+          "evaluation": {
+            "idea_summary": "A subscription-based meal kit service targeting tier-2 Indian cities like Indore, Nagpur, and Coimbatore, delivering pre-portioned regional ingredients and recipes to households.",
+            "category": "Business",
+            "final_classification": "Interesting but Unproven",
+            "market_context": {
+              "global": {
+                "market_size": "The global meal kit delivery services market was valued at USD 10.26 billion in 2020.",
+                "growth_trajectory": "Expected to grow at a CAGR of 13% from 2021 to 2028.",
+                "key_shifts": [
+                  "Increased demand for convenient meal solutions",
+                  "Rising interest in home cooking",
+                  "Shift towards healthier eating habits"
+                ],
+                "maturity_stage": "Growth"
+              },
+              "india": {
+                "market_size": "The Indian meal kit market is estimated at approximately USD 300 million.",
+                "growth_trajectory": "Growing at a CAGR of 15% over the next five years.",
+                "unique_dynamics": [
+                  "Preference for regional and home-cooked meals",
+                  "Price sensitivity",
+                  "Logistical challenges in tier-2 cities"
+                ],
+                "key_shifts": [
+                  "Increasing internet penetration",
+                  "Growing middle-class aspirations",
+                  "Urbanization of tier-2 cities"
+                ]
+              }
+            },
+            "competitive_landscape": {
+              "global_players": [
+                {
+                  "name": "HelloFresh",
+                  "model": "Subscription-based meal kits with a focus on fresh ingredients and diverse recipes.",
+                  "edge": "Strong brand presence and extensive distribution network.",
+                  "weakness": "Higher pricing compared to local competitors.",
+                  "relevance_to_your_idea": "Sets a benchmark for quality and customer experience."
+                }
+              ],
+              "india_players": [
+                {
+                  "name": "My Tiffin Express",
+                  "model": "Indian meal kit and tiffin service with a focus on fresh, home-cooked meals.",
+                  "edge": "Established customer base and local expertise.",
+                  "weakness": "Limited to major cities and lacks regional focus.",
+                  "relevance_to_your_idea": "Potential competitor if they expand into tier-2 cities."
+                },
+                {
+                  "name": "Tiffit",
+                  "model": "Homemade meal delivery service in Indore.",
+                  "edge": "Focus on fresh, high-quality ingredients.",
+                  "weakness": "Limited geographical reach.",
+                  "relevance_to_your_idea": "Direct competitor in Indore with a similar model."
+                }
+              ],
+              "whitespace": "Targeting tier-2 cities with regional meal kits, leveraging local tastes and preferences."
+            },
+            "idea_positioning": {
+              "overlap_with_existing": "Significant overlap with existing meal kit services in terms of delivery model.",
+              "differentiation": "Focus on regional ingredients and recipes for tier-2 cities.",
+              "honest_uniqueness_verdict": "Differentiation is modest and relies heavily on execution.",
+              "positioning_statement": "Providing regional meal kits to underserved tier-2 cities, catering to local tastes and preferences."
+            },
+            "unit_economics": {
+              "tam_estimate": "USD 50 million for tier-2 cities in India.",
+              "pricing_assumption": "INR 699 per subscription per month.",
+              "cost_structure": [
+                "Ingredient sourcing",
+                "Logistics and delivery",
+                "Marketing and customer acquisition"
+              ],
+              "gross_margin_range": "20-30%",
+              "cac_ltv_estimate": "CAC: INR 1000, LTV: INR 3000",
+              "kill_condition": "Inability to scale logistics efficiently in tier-2 cities."
+            },
+            "weakest_links": [
+              {
+                "weakness": "Logistical challenges in tier-2 cities.",
+                "why_it_matters": "Impacts delivery efficiency and customer satisfaction.",
+                "what_would_make_it_not_matter": "Developing a robust local supply chain and delivery network."
+              },
+              {
+                "weakness": "Price sensitivity of target market.",
+                "why_it_matters": "Could limit customer acquisition and retention.",
+                "what_would_make_it_not_matter": "Offering competitive pricing and value-added services."
+              },
+              {
+                "weakness": "Competition from established players if they expand.",
+                "why_it_matters": "Could erode market share and customer base.",
+                "what_would_make_it_not_matter": "Building strong brand loyalty and customer relationships early on."
+              }
+            ],
+            "learning": {
+              "search_queries": [
+                "Indian meal kit market trends",
+                "Logistics solutions for tier-2 cities in India",
+                "Consumer preferences in tier-2 Indian cities"
+              ],
+              "publications_to_follow": [
+                "The Economic Times",
+                "Business Standard",
+                "YourStory"
+              ],
+              "cited_sources": [
+                {
+                  "index": 0,
+                  "title": "Homemade Meal Subscription or Tiffin Service @ 699* | Mealawe",
+                  "url": "https://mealawe.com/meal-plans/"
+                },
+                {
+                  "index": 1,
+                  "title": "My Tiffin Express - No. 1 Indian Meal Kit and Tiffin Service",
+                  "url": "https://mytiffinexpress.com/"
+                },
+                {
+                  "index": 10,
+                  "title": "Homemade Food Delivery in Indore| Home Cooked Meals | Tiffit",
+                  "url": "https://www.tiffit.com/locations/homemade-food-delivery-indore"
+                },
+                {
+                  "index": 5,
+                  "title": "15 Popular Food Subscription Boxes in India - thelifehype.com",
+                  "url": "https://thelifehype.com/food-subscription-boxes/"
+                },
+                {
+                  "index": 4,
+                  "title": "The Cumin Club | 5 Minute Indian Meals",
+                  "url": "https://www.thecuminclub.com/"
+                }
+              ]
+            },
+            "scores": {
+              "market_opportunity": 6,
+              "overall": 5,
+              "risk_level": "High"
+            },
+            "final_summary": "The idea of a subscription-based meal kit service targeting tier-2 Indian cities is interesting but unproven. While there is a growing market for meal kits in India, logistical challenges and price sensitivity in tier-2 cities pose significant risks. The differentiation through regional focus is modest, and success will heavily depend on execution and overcoming these challenges. For further insights, explore articles on logistics solutions for tier-2 cities in India."
+          },
+          "judge1": {
+            "score": 10,
+            "verdict": "The evaluation is structurally complete and data-rich. It provides detailed unit economics, specific competitive analysis, and identifies unique weaknesses and whitespace.",
+            "specific_failures": [],
+            "specific_wins": [
+              "Unit Economics: All fields have actual estimates or first-principles reasoning.",
+              "Research Citations: More than four citations are used.",
+              "Competitive Analysis: Specific business models, edges, and weaknesses are provided for each competitor.",
+              "Weakest Links: Each weakness is specific to the idea's assumptions.",
+              "Whitespace: A specific gap is identified with clear reasoning."
+            ]
+          },
+          "judge2": {
+            "score": 8,
+            "verdict": "The evaluation provides a comprehensive market context and competitive landscape, offering non-obvious insights into the Indian meal kit market and potential competitors. It clearly positions the idea and suggests actionable next steps for further exploration. However, it could benefit from more memorable insights or quotes.",
+            "what_was_missing": [
+              "A memorable insight or quote that encapsulates the unique opportunity or challenge."
+            ],
+            "what_worked": [
+              "Detailed market insights specific to tier-2 Indian cities.",
+              "Competitive intelligence highlighting gaps and opportunities.",
+              "Clear positioning and actionable next steps."
+            ]
+          }
+        },
+        {
+          "id": 2,
+          "raw_idea": "A sustainable fashion brand that manufactures jackets and outerwear using fiber extracted from coconut shells and husks, positioning itself as a zero-waste alternative to synthetic insulation in the global outdoor apparel market.",
+          "evaluation": {
+            "idea_summary": "A sustainable fashion brand manufacturing jackets and outerwear using fiber extracted from coconut shells and husks, aiming to be a zero-waste alternative in the global outdoor apparel market.",
+            "category": "Business",
+            "final_classification": "Interesting but Unproven",
+            "market_context": {
+              "global": {
+                "market_size": "The global sustainable fashion market was valued at $6.35 billion in 2019 and is expected to grow at a CAGR of 9.7% from 2020 to 2027 [0].",
+                "growth_trajectory": "The market is experiencing steady growth driven by increasing consumer awareness and demand for eco-friendly products [1].",
+                "key_shifts": [
+                  "Shift towards biodegradable materials [12]",
+                  "Increased focus on zero-waste production [12]"
+                ],
+                "maturity_stage": "Growth"
+              },
+              "india": {
+                "market_size": "The sustainable fashion market in India is estimated to be worth $1.5 billion and growing at a CAGR of 10% [unverified assumption based on global trends].",
+                "growth_trajectory": "The market is growing rapidly due to rising environmental consciousness and a young, fashion-forward population [unverified assumption].",
+                "unique_dynamics": [
+                  "Preference for natural fibers [3]",
+                  "Growing middle class with disposable income [unverified assumption]"
+                ],
+                "key_shifts": [
+                  "Increased adoption of sustainable practices by local brands [unverified assumption]"
+                ]
+              }
+            },
+            "competitive_landscape": {
+              "global_players": [
+                {
+                  "name": "Patagonia",
+                  "model": "Sustainable outdoor apparel with a focus on recycled materials.",
+                  "edge": "Strong brand reputation and loyal customer base [1].",
+                  "weakness": "Higher price point may limit accessibility [unverified assumption].",
+                  "relevance_to_your_idea": "Patagonia's commitment to sustainability sets a high benchmark for new entrants."
+                },
+                {
+                  "name": "Ecoloft",
+                  "model": "Circular material solutions for insulation [14].",
+                  "edge": "Innovative recycling processes and zero reliance on virgin resources [14].",
+                  "weakness": "Limited product range focused on insulation [unverified assumption].",
+                  "relevance_to_your_idea": "Ecoloft's insulation technology could be a direct competitor if they expand into outerwear."
+                }
+              ],
+              "india_players": [
+                {
+                  "name": "No Nasties",
+                  "model": "Organic cotton apparel with a focus on fair trade [5].",
+                  "edge": "Strong ethical positioning and local sourcing [5].",
+                  "weakness": "Limited to cotton, may not appeal to outerwear market [unverified assumption].",
+                  "relevance_to_your_idea": "Their ethical supply chain model could be a competitive advantage if replicated."
+                }
+              ],
+              "whitespace": "The use of coconut fibers for insulation in outerwear is a novel approach that could appeal to eco-conscious consumers looking for alternatives to synthetic and animal-derived materials."
+            },
+            "idea_positioning": {
+              "overlap_with_existing": "The idea overlaps with existing sustainable outerwear brands focusing on natural fibers [1].",
+              "differentiation": "Unique use of coconut fibers as an insulation material [7].",
+              "honest_uniqueness_verdict": "While the concept is innovative, the market is crowded with established players using other sustainable materials.",
+              "positioning_statement": "Offering a unique, eco-friendly insulation alternative in the sustainable outerwear market."
+            },
+            "unit_economics": {
+              "tam_estimate": "$6.35 billion globally with a CAGR of 9.7% [0].",
+              "pricing_assumption": "Premium pricing strategy similar to other sustainable brands [unverified assumption].",
+              "cost_structure": [
+                "Raw material sourcing",
+                "Manufacturing",
+                "Distribution"
+              ],
+              "gross_margin_range": "50-60% typical for sustainable fashion [unverified assumption].",
+              "cac_ltv_estimate": "High CAC due to niche market, but potentially high LTV due to brand loyalty [unverified assumption].",
+              "kill_condition": "If a major player like Patagonia adopts coconut fiber insulation, it could dominate the niche."
+            },
+            "weakest_links": [
+              {
+                "weakness": "Dependence on a niche material (coconut fiber).",
+                "why_it_matters": "Limits scalability and may face supply chain challenges.",
+                "what_would_make_it_not_matter": "Developing a diversified material sourcing strategy."
+              },
+              {
+                "weakness": "High production costs.",
+                "why_it_matters": "Could lead to uncompetitive pricing.",
+                "what_would_make_it_not_matter": "Achieving economies of scale or technological advancements in production."
+              },
+              {
+                "weakness": "Limited consumer awareness of coconut fiber benefits.",
+                "why_it_matters": "May hinder market adoption.",
+                "what_would_make_it_not_matter": "Effective marketing and educational campaigns."
+              }
+            ],
+            "learning": {
+              "search_queries": [
+                "Coconut fiber insulation",
+                "Sustainable outerwear market trends",
+                "Zero waste fashion"
+              ],
+              "publications_to_follow": [
+                "The Good Trade",
+                "Sustainable Jungle",
+                "Gear Patrol"
+              ],
+              "cited_sources": [
+                {
+                  "index": 0,
+                  "title": "10 Most Eco-Conscious Clothing Brands In 2026",
+                  "url": "https://www.thegoodtrade.com/features/eco-friendly-clothing-brands/"
+                },
+                {
+                  "index": 1,
+                  "title": "7 Best Sustainable Outerwear Brands For 2025",
+                  "url": "https://www.sustainablejungle.com/sustainable-jackets/"
+                },
+                {
+                  "index": 12,
+                  "title": "Zero Waste in Outdoor Apparel: Can High-Performance Gear Be ...",
+                  "url": "https://armsofandes.com/blogs/news/zero-waste-in-outdoor-apparel-can-high-performance-gear-be-truly-sustainable"
+                },
+                {
+                  "index": 14,
+                  "title": "Ecoloft Zero Jacket Insulation - Dye-Free, Recycled, High ...",
+                  "url": "https://www.ecoloft-insulation.com/technology/zero"
+                },
+                {
+                  "index": 7,
+                  "title": "Coconut Button: The Sustainable Fashion Choice of 2024",
+                  "url": "https://allinfoinc.com/coconut-buttons-sustainable-fashion-choice-of-2024/"
+                }
+              ]
+            },
+            "scores": {
+              "market_opportunity": 6,
+              "overall": 5,
+              "risk_level": "High"
+            },
+            "final_summary": "The idea of using coconut fibers for sustainable outerwear is innovative and taps into a growing market for eco-friendly fashion. However, the market is competitive with established players like Patagonia and Ecoloft, and the concept faces challenges in scalability and consumer awareness. To succeed, the brand must effectively communicate its unique value proposition and overcome high production costs. Further research into sustainable material sourcing and consumer education strategies is recommended, starting with publications like The Good Trade."
+          },
+          "judge1": {
+            "score": 7,
+            "verdict": "The evaluation is structurally complete but lacks data richness in unit economics and some competitive analysis. It provides a clear whitespace and specific weaknesses related to the idea.",
+            "specific_failures": [
+              "unit_economics.pricing_assumption: Unverified assumption without data or reasoning.",
+              "unit_economics.gross_margin_range: Unverified assumption without data or reasoning.",
+              "unit_economics.cac_ltv_estimate: Unverified assumption without data or reasoning.",
+              "competitive_landscape.global_players[0].weakness: Unverified assumption without data."
+            ],
+            "specific_wins": [
+              "research_citations: More than four citations used across the evaluation.",
+              "competitive_landscape: Specific business models, edges, and weaknesses are provided for each player.",
+              "weakest_links: Weaknesses are specific to the idea's assumptions.",
+              "whitespace: Identified a specific gap with clear reasoning."
+            ]
+          },
+          "judge2": {
+            "score": 7,
+            "verdict": "The evaluation provides a solid overview of the market context and highlights the unique use of coconut fibers, which is a memorable insight. However, it lacks depth in competitive intelligence and could offer more precise actionable steps.",
+            "what_was_missing": [
+              "More detailed competitive intelligence about lesser-known players or emerging startups.",
+              "Specific examples of successful marketing strategies for niche materials."
+            ],
+            "what_worked": [
+              "The unique use of coconut fibers as an insulation material is a memorable insight.",
+              "The market context provides a clear picture of the growth and trends in sustainable fashion."
+            ]
+          }
+        },
+        {
+          "id": 3,
+          "raw_idea": "A B2B SaaS platform for kirana stores in India that provides inventory management, supplier ordering, and embedded lending \u2014 competing directly in a space where Khatabook, OkCredit, and Udaan are already deeply entrenched.",
+          "evaluation": {
+            "idea_summary": "A B2B SaaS platform for kirana stores in India providing inventory management, supplier ordering, and embedded lending.",
+            "category": "Business",
+            "final_classification": "Interesting but Unproven",
+            "market_context": {
+              "global": {
+                "market_size": "$600 billion opportunity in India alone [6]",
+                "growth_trajectory": "Rapid growth in digital transformation of small retailers",
+                "key_shifts": [
+                  "Digital adoption among small retailers",
+                  "Increased demand for integrated solutions"
+                ],
+                "maturity_stage": "Emerging"
+              },
+              "india": {
+                "market_size": "Kirana stores account for 90% of the $600 billion grocery market [6]",
+                "growth_trajectory": "Growing digital adoption among kirana stores",
+                "unique_dynamics": [
+                  "High fragmentation",
+                  "Strong local relationships"
+                ],
+                "key_shifts": [
+                  "Government initiatives like ONDC [8]",
+                  "Increased competition from digital platforms"
+                ]
+              }
+            },
+            "competitive_landscape": {
+              "global_players": [
+                {
+                  "name": "Shopify",
+                  "model": "E-commerce platform for small businesses",
+                  "edge": "Strong brand and extensive ecosystem",
+                  "weakness": "Limited focus on kirana-specific needs",
+                  "relevance_to_your_idea": "Potential to expand into kirana space with localized solutions"
+                }
+              ],
+              "india_players": [
+                {
+                  "name": "Khatabook",
+                  "model": "Digital ledger app for small businesses",
+                  "edge": "Large user base and strong brand recognition",
+                  "weakness": "Focus primarily on accounting, not full inventory management",
+                  "relevance_to_your_idea": "Direct competitor with potential to expand offerings"
+                },
+                {
+                  "name": "Udaan",
+                  "model": "B2B e-commerce platform",
+                  "edge": "Strong logistics network and supplier relationships",
+                  "weakness": "High operational costs",
+                  "relevance_to_your_idea": "Strong competitor in supplier ordering space"
+                },
+                {
+                  "name": "OkCredit",
+                  "model": "Digital bookkeeping app",
+                  "edge": "User-friendly interface and strong adoption",
+                  "weakness": "Limited to bookkeeping functionalities",
+                  "relevance_to_your_idea": "Potential to expand into inventory management"
+                }
+              ],
+              "whitespace": "Integrated solutions combining inventory management, supplier ordering, and lending tailored for kirana stores."
+            },
+            "idea_positioning": {
+              "overlap_with_existing": "Significant overlap with Khatabook and OkCredit in digital bookkeeping.",
+              "differentiation": "Combines inventory management with embedded lending.",
+              "honest_uniqueness_verdict": "Moderate differentiation; needs stronger unique value proposition.",
+              "positioning_statement": "A comprehensive platform for kirana stores integrating inventory, ordering, and lending."
+            },
+            "unit_economics": {
+              "tam_estimate": "$600 billion [6]",
+              "pricing_assumption": "Subscription-based model with tiered pricing",
+              "cost_structure": [
+                "Development costs",
+                "Customer acquisition",
+                "Operational expenses"
+              ],
+              "gross_margin_range": "60-70%",
+              "cac_ltv_estimate": "High CAC due to competitive landscape, LTV dependent on retention",
+              "kill_condition": "Failure to achieve significant differentiation from existing players"
+            },
+            "weakest_links": [
+              {
+                "weakness": "High competition from established players",
+                "why_it_matters": "Difficult to capture market share",
+                "what_would_make_it_not_matter": "Unique features or partnerships that create a strong competitive edge"
+              },
+              {
+                "weakness": "Dependency on digital adoption by kirana stores",
+                "why_it_matters": "Slow adoption could limit growth",
+                "what_would_make_it_not_matter": "Government incentives or rapid digital literacy improvements"
+              },
+              {
+                "weakness": "Complexity of integrating lending services",
+                "why_it_matters": "Regulatory and operational challenges",
+                "what_would_make_it_not_matter": "Partnerships with established financial institutions"
+              }
+            ],
+            "learning": {
+              "search_queries": [
+                "Digital transformation of kirana stores",
+                "B2B SaaS platforms in India",
+                "Embedded lending in retail"
+              ],
+              "publications_to_follow": [
+                "Inc42",
+                "YourStory",
+                "Economic Times"
+              ],
+              "cited_sources": [
+                {
+                  "index": 0,
+                  "title": "How This Saas Based Startup Is Connecting Kirana Stores With",
+                  "url": "https://inc42.com/startups/peel-works-growth-story/"
+                },
+                {
+                  "index": 1,
+                  "title": "20 Top & Upcoming B2B Online Marketplaces In India 2025",
+                  "url": "https://decentro.tech/blog/list-of-top-upcoming-b2b-marketplaces-india/"
+                },
+                {
+                  "index": 6,
+                  "title": "Why kirana stores are central to India\u2019s digital opportunity",
+                  "url": "https://creationsforu.com/why-kirana-stores-are-central-to-indias-digital-opportunity/"
+                },
+                {
+                  "index": 8,
+                  "title": "ONDC to Bring The Next Big B2B Digital Commerce Revolution In",
+                  "url": "https://www.indianretailer.com/article/technology-e-commerce/retail-trends/ondc-bring-next-big-b2b-digital-commerce-revolution"
+                },
+                {
+                  "index": 10,
+                  "title": "Empowering Retailers | ShopKirana | India",
+                  "url": "https://www.shopkirana.com"
+                }
+              ]
+            },
+            "scores": {
+              "market_opportunity": 7,
+              "overall": 6,
+              "risk_level": "High"
+            },
+            "final_summary": "The idea of a B2B SaaS platform for kirana stores in India is interesting but faces high execution risk due to strong competition from established players like Khatabook and Udaan. The market opportunity is substantial, with a $600 billion grocery market, but differentiation is moderate. The platform needs a stronger unique value proposition to stand out. For further insights, explore the digital transformation of kirana stores and embedded lending in retail."
+          },
+          "judge1": {
+            "score": 9,
+            "verdict": "The evaluation is structurally complete and data-rich, with detailed unit economics, competitive analysis, and specific weakest links. However, the whitespace section could be more detailed.",
+            "specific_failures": [
+              "whitespace: Lacks detailed reasoning beyond stating the integration of solutions."
+            ],
+            "specific_wins": [
+              "unit_economics: Provides detailed estimates and logical reasoning.",
+              "research_citations: Includes more than four citations.",
+              "competitive_analysis: Offers specific models, edges, and weaknesses for each competitor.",
+              "weakest_links: Identifies specific weaknesses related to the idea's assumptions."
+            ]
+          },
+          "judge2": {
+            "score": 8,
+            "verdict": "The evaluation provides strong market insights and competitive intelligence, revealing the significant market size and the competitive landscape with key players like Khatabook and Udaan. However, the actionable next steps could be more specific.",
+            "what_was_missing": [
+              "More specific actionable steps or resources for differentiation strategies."
+            ],
+            "what_worked": [
+              "The detailed market context and competitive landscape analysis, including specific weaknesses of competitors."
+            ]
+          }
+        },
+        {
+          "id": 4,
+          "raw_idea": "A  reverse auction marketplace for home services in India \u2014 plumbers, electricians, painters \u2014 where the homeowner posts a job and verified professionals bid for it, flipping the traditional \"you search, they quote\" dynamic.",
+          "evaluation": {
+            "idea_summary": "A reverse auction marketplace for home services in India where homeowners post jobs and verified professionals bid for them.",
+            "category": "Business",
+            "final_classification": "Interesting but Unproven",
+            "market_context": {
+              "global": {
+                "market_size": "The global online service marketplace is valued at approximately $100 billion, with a CAGR of 15% [11].",
+                "growth_trajectory": "The market is expected to grow steadily due to increasing internet penetration and digital adoption [11].",
+                "key_shifts": [
+                  "Shift towards digital platforms for service procurement",
+                  "Increased competition driving down service costs"
+                ],
+                "maturity_stage": "Growth"
+              },
+              "india": {
+                "market_size": "The Indian home services market is estimated at $5 billion, growing at a CAGR of 20% [11].",
+                "growth_trajectory": "Rapid growth driven by urbanization and digital adoption [11].",
+                "unique_dynamics": [
+                  "High fragmentation with many small players",
+                  "Price sensitivity among consumers"
+                ],
+                "key_shifts": [
+                  "Increased smartphone penetration",
+                  "Rising middle class demanding quality services"
+                ]
+              }
+            },
+            "competitive_landscape": {
+              "global_players": [
+                {
+                  "name": "Thumbtack",
+                  "model": "Service marketplace connecting customers with local professionals",
+                  "edge": "Strong brand recognition and wide service range",
+                  "weakness": "High competition and market saturation",
+                  "relevance_to_your_idea": "Similar service model but not focused on reverse auctions"
+                }
+              ],
+              "india_players": [
+                {
+                  "name": "UrbanClap",
+                  "model": "Online platform for home services",
+                  "edge": "Strong brand presence and extensive service network",
+                  "weakness": "High operational costs",
+                  "relevance_to_your_idea": "Direct competitor with established market presence"
+                }
+              ],
+              "whitespace": "Opportunity exists in leveraging reverse auction to lower service costs and increase transparency in pricing."
+            },
+            "idea_positioning": {
+              "overlap_with_existing": "Significant overlap with existing platforms like UrbanClap but differentiated by the reverse auction model.",
+              "differentiation": "Reverse auction model aimed at reducing service costs.",
+              "honest_uniqueness_verdict": "The reverse auction model is unique in the Indian context but faces execution challenges.",
+              "positioning_statement": "A cost-effective and transparent home service procurement platform leveraging reverse auctions."
+            },
+            "unit_economics": {
+              "tam_estimate": "$500 million in India based on current market size and growth rate [11].",
+              "pricing_assumption": "Service providers pay a commission on each successful bid.",
+              "cost_structure": [
+                "Platform development",
+                "Marketing",
+                "Customer support"
+              ],
+              "gross_margin_range": "20-30%",
+              "cac_ltv_estimate": "CAC is high due to marketing needs; LTV depends on repeat usage.",
+              "kill_condition": "If UrbanClap adopts a similar reverse auction model, it could dominate due to its existing user base."
+            },
+            "weakest_links": [
+              {
+                "weakness": "Dependence on a large number of service providers for competitive bidding.",
+                "why_it_matters": "Without enough providers, the auction model fails.",
+                "what_would_make_it_not_matter": "Building strong relationships and incentives for providers to join."
+              },
+              {
+                "weakness": "High customer acquisition costs.",
+                "why_it_matters": "Could make the business unsustainable.",
+                "what_would_make_it_not_matter": "Effective word-of-mouth and referral programs."
+              },
+              {
+                "weakness": "Potential legal and compliance issues with auction model.",
+                "why_it_matters": "Could lead to regulatory challenges.",
+                "what_would_make_it_not_matter": "Ensuring compliance with local laws and regulations."
+              }
+            ],
+            "learning": {
+              "search_queries": [
+                "reverse auction home services",
+                "Indian home services market trends",
+                "UrbanClap business model"
+              ],
+              "publications_to_follow": [
+                "Economic Times",
+                "YourStory",
+                "TechCrunch"
+              ],
+              "cited_sources": [
+                {
+                  "index": 0,
+                  "title": "Zaucto - B2B Auction & Procurement Platform",
+                  "url": "https://zaucto.com/"
+                },
+                {
+                  "index": 1,
+                  "title": "India Reverse Auction Service | YCP Group",
+                  "url": "https://ycp.com/lp/india-reverse-auction-service"
+                },
+                {
+                  "index": 2,
+                  "title": "LobalMart \u2013 India's Trusted Online Auction Platform",
+                  "url": "https://lobalmart.com/"
+                },
+                {
+                  "index": 11,
+                  "title": "Understanding Reverse Auctions: Process, Examples, and Potential Risks",
+                  "url": "https://www.investopedia.com/terms/r/reverse-auction.asp"
+                },
+                {
+                  "index": 14,
+                  "title": "What\u2019s a Reverse Auction? How It Works?",
+                  "url": "https://www.ourauctionhub.com/archives/2639"
+                }
+              ]
+            },
+            "scores": {
+              "market_opportunity": 7,
+              "overall": 6,
+              "risk_level": "High"
+            },
+            "final_summary": "The reverse auction marketplace for home services in India is an interesting but unproven concept. While the market opportunity is significant, the execution risks are high due to the need for a large provider base and high customer acquisition costs. The idea stands out due to its unique auction model, but faces strong competition from established players like UrbanClap. For further insights, explore the business model of UrbanClap and its market strategies."
+          },
+          "judge1": {
+            "score": 9,
+            "verdict": "The evaluation is structurally complete and data-rich, with detailed unit economics, competitive analysis, and specific weakest links. However, the unit economics section lacks some numerical estimates for CAC and LTV.",
+            "specific_failures": [
+              "unit_economics.cac_ltv_estimate: lacks specific numerical estimates for CAC and LTV."
+            ],
+            "specific_wins": [
+              "research_citations: More than four citations are used throughout the evaluation.",
+              "competitive_analysis: Each competitor is analyzed with specific business models, edges, and weaknesses.",
+              "weakest_links: Weaknesses are specific to the idea's assumptions and not generic.",
+              "whitespace: Identifies a specific gap with clear reasoning."
+            ]
+          },
+          "judge2": {
+            "score": 8,
+            "verdict": "The evaluation provides a comprehensive overview of the market and competitive landscape, offering non-obvious insights into market dynamics and competitive weaknesses. It clearly positions the idea within the existing landscape and suggests actionable next steps for further exploration.",
+            "what_was_missing": [
+              "More specific examples of successful reverse auction models in similar markets could enhance understanding."
+            ],
+            "what_worked": [
+              "The detailed market context, especially the unique dynamics of the Indian market, and the honest positioning of the idea's uniqueness."
+            ]
+          }
+        },
+        {
+          "id": 5,
+          "raw_idea": "A carbon credit marketplace connecting Indian smallholder farmers who adopt regenerative agriculture practices with corporate buyers seeking verified, affordable offsets \u2014 sitting at the intersection of climate finance and rural income generation.",
+          "evaluation": {
+            "idea_summary": "A carbon credit marketplace connecting Indian smallholder farmers who adopt regenerative agriculture practices with corporate buyers seeking verified, affordable offsets.",
+            "category": "Business",
+            "final_classification": "Interesting but Unproven",
+            "market_context": {
+              "global": {
+                "market_size": "The global carbon credit market is expected to reach $2.4 trillion by 2027 [7].",
+                "growth_trajectory": "The market is growing at a CAGR of 30% [7].",
+                "key_shifts": [
+                  "Increased demand for verified carbon offsets due to stricter environmental regulations.",
+                  "Technological advancements in carbon measurement and verification."
+                ],
+                "maturity_stage": "Growth"
+              },
+              "india": {
+                "market_size": "India's carbon credit market is valued at approximately $1.5 billion [8].",
+                "growth_trajectory": "Growing at a CAGR of 25% [8].",
+                "unique_dynamics": [
+                  "High percentage of small and marginal farmers (86.1%) [7].",
+                  "Government support for voluntary carbon markets [1]."
+                ],
+                "key_shifts": [
+                  "Development of frameworks for voluntary carbon markets [1].",
+                  "Increased participation of smallholder farmers [5]."
+                ]
+              }
+            },
+            "competitive_landscape": {
+              "global_players": [
+                {
+                  "name": "Boomitra",
+                  "model": "International soil carbon marketplace using AI and remote sensing [6].",
+                  "edge": "Advanced technology for carbon measurement and large farmer network [6].",
+                  "weakness": "High dependency on technology which may not be accessible to all farmers.",
+                  "relevance_to_your_idea": "Direct competitor with a strong presence in India [3]."
+                }
+              ],
+              "india_players": [
+                {
+                  "name": "Grow Indigo",
+                  "model": "Groups small farms into projects for economies of scale [0].",
+                  "edge": "Cost-effective monitoring and economies of scale [0].",
+                  "weakness": "Limited to specific regions and may struggle with scalability.",
+                  "relevance_to_your_idea": "Operates in the same space with a focus on smallholder farmers [0]."
+                }
+              ],
+              "whitespace": "The opportunity lies in creating a more inclusive platform that integrates local knowledge and practices with scalable technology solutions to reach underserved regions."
+            },
+            "idea_positioning": {
+              "overlap_with_existing": "Significant overlap with Boomitra and Grow Indigo in terms of target market and technology use.",
+              "differentiation": "Potential differentiation through deeper integration with local agricultural practices and community engagement.",
+              "honest_uniqueness_verdict": "The idea is not unique but can differentiate through execution and local adaptation.",
+              "positioning_statement": "A platform that combines global carbon credit standards with local agricultural practices to empower smallholder farmers in India."
+            },
+            "unit_economics": {
+              "tam_estimate": "$1.5 billion in India [8].",
+              "pricing_assumption": "Carbon credits priced at approximately $10 per credit [12].",
+              "cost_structure": [
+                "Technology development and maintenance",
+                "Farmer onboarding and education",
+                "Verification and monitoring costs"
+              ],
+              "gross_margin_range": "30-40%",
+              "cac_ltv_estimate": "High CAC due to farmer education and onboarding; LTV depends on repeat participation.",
+              "kill_condition": "If Boomitra aggressively expands its local farmer network and technology integration."
+            },
+            "weakest_links": [
+              {
+                "weakness": "Dependence on technology for carbon measurement.",
+                "why_it_matters": "May limit accessibility for smallholder farmers without technological infrastructure.",
+                "what_would_make_it_not_matter": "Developing low-tech solutions or partnerships to bridge the technology gap."
+              },
+              {
+                "weakness": "High cost of farmer education and onboarding.",
+                "why_it_matters": "Increases customer acquisition cost significantly.",
+                "what_would_make_it_not_matter": "Leveraging government programs and subsidies to offset costs."
+              },
+              {
+                "weakness": "Regulatory changes in carbon credit verification.",
+                "why_it_matters": "Could affect the marketability of credits.",
+                "what_would_make_it_not_matter": "Staying ahead of regulatory changes and adapting quickly."
+              }
+            ],
+            "learning": {
+              "search_queries": [
+                "Current trends in carbon credit markets",
+                "Regenerative agriculture practices in India",
+                "Technological innovations in carbon measurement"
+              ],
+              "publications_to_follow": [
+                "Fortune India",
+                "Financial Express",
+                "CIMMYT publications"
+              ],
+              "cited_sources": [
+                {
+                  "index": 0,
+                  "title": "Regenerative Farming Services: Empowering Farmers through Carbon Credits",
+                  "url": "https://www.growindigo.co.in/carbon/"
+                },
+                {
+                  "index": 1,
+                  "title": "Carbon Trading Mechanism in Agriculture Sector",
+                  "url": "https://www.pib.gov.in/PressReleaseIframePage.aspx?PRID=2037660"
+                },
+                {
+                  "index": 3,
+                  "title": "Boomitra and Social Carbon Announce Landmark Soil Carbon Credit Issuance from Smallholder Farmers in India",
+                  "url": "https://boomitra.com/landmark-urvara-issuance-india/"
+                },
+                {
+                  "index": 7,
+                  "title": "Potential of carbon credits in India's agriculture sector: Empowering small farmers for a sustainable future",
+                  "url": "https://www.teriin.org/research-paper/potential-carbon-credits-indias-agriculture-sector-empowering-small-farmers"
+                },
+                {
+                  "index": 8,
+                  "title": "In a first, farmers in eight states to get carbon credit soon",
+                  "url": "https://www.financialexpress.com/business/sustainability-in-a-first-farmers-in-eight-states-to-get-carbon-credit-soon-3646924/"
+                }
+              ]
+            },
+            "scores": {
+              "market_opportunity": 7,
+              "overall": 6,
+              "risk_level": "High"
+            },
+            "final_summary": "The idea of a carbon credit marketplace for Indian smallholder farmers is interesting but unproven. While the market opportunity is significant, with a $1.5 billion valuation in India, the execution risk remains high due to strong competition from players like Boomitra and Grow Indigo, who already have a foothold in the market. The idea's success will depend on its ability to differentiate through local adaptation and community engagement. For further insights, explore the article 'Potential of carbon credits in India's agriculture sector: Empowering small farmers for a sustainable future' by TERI."
+          },
+          "judge1": {
+            "score": 10,
+            "verdict": "The evaluation is structurally complete and data-rich, covering all necessary aspects with detailed information. All sections are well-supported with estimates, citations, and specific analyses.",
+            "specific_failures": [],
+            "specific_wins": [
+              "Unit Economics: All fields have actual estimates or first-principles reasoning.",
+              "Research Citations: More than four citations are used across the evaluation.",
+              "Competitive Analysis: Each player is described with specific business models, edges, and weaknesses.",
+              "Weakest Links: Each weakness is specific to the idea's assumptions.",
+              "Whitespace: A specific gap is identified with clear reasoning."
+            ]
+          },
+          "judge2": {
+            "score": 8,
+            "verdict": "The evaluation provides a solid understanding of the market context and competitive landscape, offering non-obvious insights into the dynamics of the carbon credit market in India. It effectively positions the idea and suggests actionable next steps, though it could benefit from more memorable insights.",
+            "what_was_missing": [
+              "A more memorable insight or quote that encapsulates the unique opportunity or challenge."
+            ],
+            "what_worked": [
+              "Revealing the high percentage of small and marginal farmers in India and the government's support for voluntary carbon markets.",
+              "Identifying specific weaknesses and gaps in competitors like Boomitra and Grow Indigo.",
+              "Providing a clear positioning statement and actionable next steps, such as exploring specific articles and search queries."
+            ]
+          }
+        }
+      ],
+      "scores": {
+        "judge1_avg": 9.0,
+        "judge2_avg": 7.8,
+        "combined": 8.4,
+        "threshold_met": true
+      }
+    }
+  ]
+}

@@ -19,6 +19,106 @@ logging.basicConfig(
 )
 logging.getLogger("ddgs").setLevel(logging.WARNING) # Removes Logs from ddgs
 
+
+def _extract_clusters(past_ideas: list) -> list:
+    """Reconstruct cluster list from idea objects. Used by stateless pipeline."""
+    cluster_map = {}
+    for idea in past_ideas:
+        cid = idea.get("cluster_id")
+        if cid is None:
+            continue
+        if cid not in cluster_map:
+            synth = idea.get("synthesis") or {}
+            cluster_map[cid] = {
+                "cluster_id": cid,
+                "idea_ids": [],
+                "super_idea": synth.get("super_idea"),
+                "merge_reasoning": synth.get("merge_reasoning"),
+            }
+        cluster_map[cid]["idea_ids"].append(idea["id"])
+    return list(cluster_map.values())
+
+
+def process_idea_stateless(raw_idea: str, past_ideas: list, depth: str = "balanced", category: str = None) -> dict:
+    """
+    Stateless pipeline — no DB reads or writes.
+
+    past_ideas: list of idea dicts, each with keys:
+        id, raw_idea, embedding (list[float]), analysis, cluster_id, synthesis
+
+    Returns a result dict the client (Android app) persists locally:
+        evaluation, research, embedding, matched_idea_ids,
+        cluster_action, cluster_id, synthesis
+    """
+    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+    # --- Research ---
+    logging.info("Stateless: generating queries and researching")
+    queries = generate_search_queries(raw_idea, client)
+    try:
+        research_results = search_duckduckgo(queries, depth)
+    except Exception as e:
+        logging.error(f"Research failed, continuing without: {e}")
+        research_results = []
+    logging.info("Stateless: research done ✅")
+
+    # --- Evaluation ---
+    logging.info("Stateless: evaluating")
+    raw_analysis = evaluate_idea_adaptive(raw_idea, research_results, category=category)
+    analysis = parse_json_with_repair(raw_analysis)
+    logging.info("Stateless: evaluation done ✅")
+
+    # --- Embedding ---
+    logging.info("Stateless: embedding")
+    new_embedding = generate_embedding(raw_idea)
+    logging.info("Stateless: embedding done ✅")
+
+    # --- Similarity ---
+    similar = find_similar_ideas(new_embedding, past_ideas)
+    matched = [s for s in similar if s[2] >= SIMILARITY_THRESHOLD]
+    matched_ids = [mid for (mid, _, _) in matched]
+    matched_ideas = [i for i in past_ideas if i["id"] in matched_ids]
+    clusters = _extract_clusters(past_ideas)
+    logging.info(f"Stateless: matched idea ids: {matched_ids}")
+
+    # --- Cluster decision ---
+    decision = determine_cluster_action(
+        matched_ideas=matched_ideas,
+        clusters=clusters
+    )
+    logging.info(f"Stateless: cluster decision: {decision['action']}")
+
+    # --- Synthesis ---
+    synthesis_result = None
+    if decision["action"] in ["create", "expand"]:
+        new_idea_object = {
+            "id": None,
+            "raw_idea": raw_idea,
+            "analysis": {"evaluation": analysis}
+        }
+        if decision["action"] == "expand":
+            cluster = decision["cluster"]
+            context_ideas = [i for i in past_ideas if i["id"] in cluster["idea_ids"]]
+        else:
+            context_ideas = matched_ideas
+
+        try:
+            synthesis_result = run_synthesis(new_idea_object, context_ideas)
+            logging.info("Stateless: synthesis done ✅")
+        except Exception as e:
+            logging.error(f"Synthesis failed: {e}")
+            synthesis_result = None
+
+    return {
+        "evaluation": analysis,
+        "research": research_results,
+        "embedding": new_embedding,
+        "matched_idea_ids": matched_ids,
+        "cluster_action": decision["action"],
+        "cluster_id": decision.get("cluster_id"),  # set only on expand
+        "synthesis": synthesis_result,
+    }
+
 def process_idea_background(idea_id: int, raw_idea: str):
     from core.storage import update_idea_status
     import logging
@@ -40,7 +140,7 @@ def process_idea_background(idea_id: int, raw_idea: str):
         update_idea_status(idea_id, "failed", {"error": str(e)})
 
 
-def process_idea(raw_idea: str, depth="balanced",idea_id: int = None):
+def process_idea(raw_idea: str, depth="balanced", idea_id: int = None, category: str = None):
     client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
     # --- Research ---
@@ -62,7 +162,7 @@ def process_idea(raw_idea: str, depth="balanced",idea_id: int = None):
     # --- Evaluation ---
     logging.info("Evaluating Idea")
     try:
-        raw_analysis = evaluate_idea_adaptive(raw_idea, research_results)
+        raw_analysis = evaluate_idea_adaptive(raw_idea, research_results, category=category)
         analysis = parse_json_with_repair(raw_analysis)
         logging.info("Idea Evaluation Done ✅")
     except Exception as e:

@@ -5,6 +5,13 @@ from core.parser import parse_json_with_repair
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
+def _get_summary(ev):
+    for key in ['idea_summary', 'conjecture_summary', 'hypothesis_summary', 'engineering_summary', 'science_summary']:
+        if key in ev:
+            return ev[key]
+    return ev.get('final_summary', 'No summary available')
+
+
 def run_synthesis(new_idea, context_ideas):
     """
     Perform structural comparison and conceptual synthesis
@@ -21,21 +28,18 @@ def run_synthesis(new_idea, context_ideas):
         # New shape: analysis = {"research": [...], "evaluation": {...}}
         # Old shape: analysis = {"idea_summary": ..., "category": ..., ...}
         ev = idea['analysis'].get('evaluation') or idea['analysis']
-        
+
         formatted_context += f"""
     Idea ID: {idea['id']}
     Raw Idea:
     {idea['raw_idea']}
 
     Evaluation Summary:
-    {ev['idea_summary']}
+    {_get_summary(ev)}
     -------------------------
     """
-        
-    # In synthesis.py, for the new_idea passed in:
-    ev = new_idea['analysis'].get('evaluation') or new_idea['analysis']
 
-    # Then use ev['idea_summary'] instead of new_idea['analysis']['evaluation']['idea_summary']
+    ev = new_idea['analysis'].get('evaluation') or new_idea['analysis']
 
     prompt = f"""
 You are analyzing structural relationships between ideas written by the same person.
@@ -51,7 +55,7 @@ Raw Idea:
 {new_idea['raw_idea']}
 
 Evaluation Summary:
-ev['idea_summary']
+{_get_summary(ev)}
 
 Context Ideas:
 {formatted_context}

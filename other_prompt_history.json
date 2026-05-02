@@ -1,0 +1,862 @@
+{
+  "iterations": [
+    {
+      "iteration": 0,
+      "timestamp": "2026-05-02T12:02:45.197417",
+      "prompt": "You are a sharp generalist analyst \u2014 you have evaluated ideas across domains that don't fit neat categories, from urban infrastructure experiments to community governance models to cross-disciplinary research proposals. You know the difference between a genuinely novel idea that sits between existing fields and a vague notion that has no home because it has no substance.\n\nYou are NOT here to validate. You are NOT here to dismiss. You are here to give the person the clearest possible picture of what is actually being proposed, what already exists closest to it, what would have to be true for it to work, and what would make it fail.\n\nYour job:\n- State precisely what is being proposed \u2014 strip away vague framing until the actual idea is exposed.\n- Map what already exists closest to this idea \u2014 prior examples, adjacent fields, related attempts.\n- Assess feasibility \u2014 the single most critical dependency, the minimum test, and the specific failure modes.\n- Name the India relevance: what specific opportunity or constraint the Indian context creates for this idea.\n\nWRITING RULES \u2014 follow exactly:\n- Every text field must be a complete sentence or two \u2014 no fragments, no buzzword phrases, no observations without a subject and verb.\n- Every list item must also be a complete sentence with a subject and verb. This includes: closest_examples, failure_modes, relevant_actors. A bare label (\"community governance\"), a name without context (\"Gram Panchayat\"), or a fragment (\"lack of funding\") is NOT acceptable \u2014 rewrite it as a sentence describing what exists, what fails, or who the actor is and what they do.\n- Citations: use [index] whenever a source's Content is topically relevant. Minimum 4 [index] citations spread across prior_context and feasibility. Do not cluster all citations in one section.\n- what_is_being_proposed: state precisely what someone would actually build, do, or change \u2014 not a goal, not a direction. \"Create a system that does X by doing Y\" is the target form. \"Improve Z\" is not acceptable.\n- key_assumption: name the single most critical assumption the idea requires to be true \u2014 the one that, if false, makes the entire idea collapse. ACCEPTABLE: \"The idea assumes that small-scale farmers in Bihar have sufficient smartphone literacy to use a voice-interface app without in-person training.\" NOT ACCEPTABLE: \"The idea assumes it will work.\"\n- closest_examples: each entry must name a real, verifiable example \u2014 a named project, organisation, or deployment \u2014 and describe what it did, what it achieved or failed at, and how it relates to this idea. Do not invent examples.\n- critical_dependency: name the single resource, permission, partnership, or condition the idea cannot proceed without \u2014 and whether it is currently available.\n- failure_modes: each entry must describe a specific scenario in which this idea fails \u2014 not a generic risk. Name the trigger, the mechanism, and the outcome. ACCEPTABLE: \"The idea fails if the local Panchayat withholds cooperation, because the data collection requires village-level access that no external actor can obtain without formal endorsement.\" NOT ACCEPTABLE: \"Lack of stakeholder buy-in is a risk.\"\n- minimum_viable_test: name the smallest version of this idea that could produce a meaningful signal \u2014 a real test with a named location, named population, and named measurable outcome \u2014 within 3 months.\n- India relevance is mandatory. Name a specific opportunity this idea has in India that it does not have elsewhere (or a specific constraint that makes India particularly hard), and name at least one specific actor \u2014 organisation, government body, community \u2014 relevant to this idea in India. If the research contains no India data, reason from first principles.\n- analyst_take: Write 3-4 sentences. Do NOT open with \"As an analyst\", \"As a generalist\", or any role declaration \u2014 opening this way is automatic failure. Write in first person with a clear opinion. Name the single most non-obvious insight about this idea \u2014 something that reframes what it actually is or reveals a hidden dependency. Name the specific failure mode that would end this idea fastest. Tell the person one concrete next step \u2014 a person to call, a dataset to find, a test to run \u2014 not \"do more research.\"\n- Scores must reflect the specific realities of THIS idea. Generic middle scores signal lazy evaluation.\n- final_summary: one honest paragraph ending with one specific resource \u2014 a named organisation, a named dataset, a named researcher, or a named comparable project \u2014 to engage with next.\n\nFINAL CLASSIFICATION \u2014 choose exactly one:\n- Vague Notion: the idea cannot be stated precisely enough to evaluate\n- Already Exists: a direct implementation of this idea already exists and is operational\n- Interesting but Blocked: the idea is clear but faces a specific dependency that is not currently available\n- Worth Prototyping: the idea has a clear minimum test achievable in 3 months\n- High-Impact if Executed: if the critical dependency is met, the idea has significant potential\n- Category-Creating: the idea opens a genuinely new space that no existing framework addresses\n\nClassification rules:\n- Do not assign Worth Prototyping if minimum_viable_test cannot be scoped to 3 months with named resources\n- Do not assign Category-Creating unless novelty >= 8 and the idea genuinely does not fit any existing category\n- If the idea already exists as a named project or product, classify as Already Exists regardless of scores\n\nSCORING CALIBRATION:\n\nnovelty:\n0-2 = restates an existing concept or product\n3-4 = incremental variation on something already operational\n5-6 = new combination of existing elements\n7-8 = addresses a gap no existing approach closes\n9-10 = opens a genuinely new space\n\nfeasibility:\n0-2 = no clear path; critical dependency is unavailable\n3-4 = path exists but requires a hard-to-obtain resource or permission\n5-6 = feasible with significant effort; most dependencies available\n7-8 = clear path with available resources; main challenge is execution\n9-10 = can be started this week with existing resources\n\nimpact_potential:\n0-2 = limited scope; affects a small number of people or situations\n3-4 = moderate scope; meaningful but not transformative\n5-6 = significant scope; could affect thousands to millions if executed\n7-8 = large scope; could shift how a domain works\n9-10 = exceptional scope; could reshape a field or system at scale\n\noverall:\n0-2 = not worth pursuing \u2014 vague or already done\n3-4 = interesting but the path is too unclear or blocked\n5-6 = worthwhile with a specific plan and the right dependencies\n7-8 = strong idea with real potential and a credible path\n9-10 = exceptional \u2014 pursue immediately\n\n====================\nIDEA:\n{raw_idea}\n\nCATEGORY: Other\n\nRESEARCH (cite by index when source Content is topically relevant to the claim):\n{formatted_research}\n====================\n\nReturn ONLY valid JSON. No commentary. No markdown. Follow this schema exactly:\n\n{schema}",
+      "ideas": [
+        {
+          "id": 1,
+          "raw_idea": "Idea: create a publicly accessible, continuously updated archive that links Sentinel-2 and Landsat satellite imagery tiles to ground-truth agricultural outcome data collected by Krishi Vigyan Kendras (KVKs) and state agricultural universities across India \u2014 pairing each imagery tile with crop type, yield, input use, and soil health data from the corresponding field plots. The archive would be structured so that each record contains: (1) the raw spectral bands from the closest overpass within 5 days of harvest, (2) the ground-truth yield and crop type from the matched KVK plot, and (3) the input data (irrigation, fertiliser, pesticide) from the same plot. The primary use case is training machine learning models for crop yield prediction without requiring expensive private data licensing. The critical dependency is the willingness of ICAR (Indian Council of Agricultural Research) to mandate structured data collection and sharing from the KVK network, which currently produces ground-truth data in inconsistent formats with no central aggregation. The archive would be distinct from existing platforms (Bhuvan, ISRO's data portal) which provide imagery but not matched ground-truth agricultural outcomes.",
+          "evaluation": {
+            "idea_summary": "The proposal is to create a publicly accessible archive that links Sentinel-2 and Landsat satellite imagery with ground-truth agricultural data from Krishi Vigyan Kendras and state agricultural universities in India. This archive would provide raw spectral bands, ground-truth yield, crop type, and input data for each imagery tile, facilitating machine learning model training for crop yield prediction.",
+            "category": "Other",
+            "final_classification": "Interesting but Blocked",
+            "core_analysis": {
+              "what_is_being_proposed": "Create a system that pairs satellite imagery tiles with ground-truth agricultural data collected by KVKs and state agricultural universities, making it publicly accessible for machine learning model training.",
+              "domain_or_field": "Agricultural Data Integration and Machine Learning",
+              "novelty_statement": "The idea addresses a gap by combining satellite imagery with ground-truth agricultural data in a structured, publicly accessible format, which is not currently available.",
+              "key_assumption": "The idea assumes that ICAR will mandate structured data collection and sharing from the KVK network."
+            },
+            "prior_context": {
+              "what_exists": "Existing platforms like Bhuvan and ISRO's data portal provide satellite imagery but do not integrate it with ground-truth agricultural outcomes.",
+              "closest_examples": [
+                "HSAT provides field-level crop intelligence by integrating satellite, weather, and ground-truth data globally, but it is not publicly accessible and focuses on commercial applications [1].",
+                "DataVLab offers satellite annotation services for precision farming, which involves high-quality data labeling but does not integrate public ground-truth data [9]."
+              ],
+              "gap_or_opportunity": "There is an opportunity to create a centralized, publicly accessible archive that combines satellite imagery with ground-truth agricultural data for model training, which is currently unavailable.",
+              "why_not_done_yet": "The lack of a mandate for structured data collection and sharing from KVKs and the absence of a centralized aggregation system have prevented this integration."
+            },
+            "feasibility": {
+              "what_would_make_this_work": "The project would work if ICAR mandates structured data collection and sharing from KVKs, ensuring consistent and centralized data aggregation.",
+              "critical_dependency": "The critical dependency is ICAR's willingness to mandate and enforce structured data collection and sharing from the KVK network, which is currently not in place.",
+              "failure_modes": [
+                "The idea fails if ICAR does not mandate structured data collection, as inconsistent data formats would prevent effective integration.",
+                "The project could collapse if KVKs do not have the resources or training to collect and share data in the required format."
+              ],
+              "minimum_viable_test": "A pilot test could be conducted in a single district with a few KVKs, where satellite imagery is paired with ground-truth data for a specific crop season, measuring the accuracy of yield predictions."
+            },
+            "india_relevance": {
+              "india_specific_opportunity": "India's extensive network of KVKs provides a unique opportunity to collect diverse ground-truth agricultural data across varied agro-climatic zones.",
+              "india_specific_constraint": "The decentralized and inconsistent data collection practices across KVKs pose a significant challenge to creating a standardized archive.",
+              "relevant_actors": [
+                "ICAR is the key actor that can mandate and facilitate structured data collection and sharing from the KVK network.",
+                "State agricultural universities can provide the necessary expertise and resources for data collection and integration."
+              ]
+            },
+            "analyst_take": "This idea has the potential to significantly enhance agricultural data accessibility and machine learning model training in India. However, the dependency on ICAR's mandate is a major hurdle that could halt progress. The fastest failure mode is the lack of structured data collection from KVKs, which would make integration impossible. A concrete next step is to engage with ICAR to discuss the feasibility of mandating structured data collection and explore potential collaborations with state agricultural universities for a pilot test.",
+            "scores": {
+              "novelty": 7,
+              "feasibility": 3,
+              "impact_potential": 6,
+              "overall": 5,
+              "risk_level": "High"
+            },
+            "final_summary": "The proposal to create a publicly accessible archive linking satellite imagery with ground-truth agricultural data is innovative and addresses a significant gap in agricultural data integration. However, it faces a critical dependency on ICAR's mandate for structured data collection, which is currently unavailable. The idea is worth exploring further, particularly through discussions with ICAR and potential pilot tests with state agricultural universities. Engaging with the Indian Council of Agricultural Research (ICAR) is the next crucial step to assess the feasibility of this initiative."
+          },
+          "judge1": {
+            "step1_sentence_quality": 1,
+            "step2_precision_and_dependency": 3,
+            "step3_failure_modes": 1,
+            "step4_minimum_viable_test": 1,
+            "step5_citations": 0,
+            "score": 6,
+            "verdict": "The evaluation has issues with sentence quality in the closest_examples and relevant_actors sections, where some items are fragments or labels. Additionally, the minimum_viable_test lacks specificity in naming a measurable outcome and the citations are absent, which is a significant shortcoming.",
+            "specific_failures": [
+              "closest_examples: contains fragments or labels instead of complete sentences",
+              "relevant_actors: contains fragments or labels instead of complete sentences",
+              "minimum_viable_test: lacks a measurable outcome",
+              "citations: fewer than 4 citations"
+            ],
+            "specific_wins": [
+              "what_is_being_proposed: clearly states the specific system being created",
+              "key_assumption: clearly identifies the critical assumption for the idea's success",
+              "critical_dependency: clearly names the specific dependency required for the idea to proceed"
+            ]
+          },
+          "judge2": {
+            "step1_analyst_take": 3,
+            "step2_nonobvious_insight": 2,
+            "step3_india_relevance": 2,
+            "step4_prior_context_accuracy": 2,
+            "step5_final_summary": 1,
+            "score": 10,
+            "verdict": "The evaluation provides a comprehensive analysis with real analytical content, including a clear understanding of the idea's dependencies and potential failure modes. It effectively identifies specific opportunities and constraints in the Indian context, along with relevant actors and prior examples that enhance the understanding of the proposal.",
+            "what_was_missing": [],
+            "what_worked": [
+              "The identification of ICAR's mandate as a critical dependency and the specific next step to engage with them for feasibility discussions."
+            ]
+          }
+        },
+        {
+          "id": 2,
+          "raw_idea": "Idea: build a structured, searchable oral history archive of craft, trade, and occupational knowledge held by practitioners in India's informal sector \u2014 specifically artisans, traditional builders, Ayurvedic practitioners, and small-scale farmers \u2014 using a standardised interview protocol that captures both the procedural knowledge (how to do X) and the contextual knowledge (when to do X, what signals indicate X is needed, what X was historically called in this community). The archive would be structured as a knowledge graph linking practices to practitioners, regions, communities, and material inputs, enabling researchers to identify patterns across traditions (e.g., convergent solutions to the same problem in different regions) and enabling practitioners to find related knowledge outside their own tradition. The critical dependency is a protocol for attribution and intellectual property that gives communities control over how their knowledge is accessed and cited \u2014 without this, communities will not participate. The minimum viable test is a single district (e.g., Kutch for craft traditions, or Vidarbha for traditional farming practices) with 50 structured interviews, a knowledge graph of 500 nodes, and a search interface tested with 10 researchers.",
+          "evaluation": {
+            "idea_summary": "The proposal is to create a structured, searchable oral history archive of craft, trade, and occupational knowledge from India's informal sector, using a standardised interview protocol and a knowledge graph to link practices to practitioners, regions, communities, and material inputs.",
+            "category": "Other",
+            "final_classification": "Worth Prototyping",
+            "core_analysis": {
+              "what_is_being_proposed": "Create a structured, searchable oral history archive using a standardised interview protocol to capture procedural and contextual knowledge from India's informal sector, and link this information in a knowledge graph.",
+              "domain_or_field": "Oral History and Knowledge Management",
+              "novelty_statement": "The idea combines oral history with knowledge graph technology to preserve and interlink traditional knowledge across diverse communities, which is not commonly done.",
+              "key_assumption": "The idea assumes that communities will participate if they have control over the attribution and intellectual property of their knowledge."
+            },
+            "prior_context": {
+              "what_exists": "Oral history projects exist globally, capturing business and cultural histories, but few integrate knowledge graphs to link and analyze data across regions and traditions [0][1][10].",
+              "closest_examples": [
+                "The Itihaasa project documents the growth of the Indian IT industry through oral history, showing the potential for capturing sector-specific knowledge [1].",
+                "The Creating Emerging Markets project uses oral history to capture business histories in emerging markets, highlighting the method's utility in capturing nuanced knowledge [2].",
+                "The Godrej Group's oral history program captures memories of staff, demonstrating the use of oral history in corporate settings [1]."
+              ],
+              "gap_or_opportunity": "There is an opportunity to preserve and interlink traditional knowledge across diverse communities using modern technology like knowledge graphs.",
+              "why_not_done_yet": "The challenge lies in establishing a protocol for attribution and intellectual property that satisfies community concerns, which is complex and context-specific."
+            },
+            "feasibility": {
+              "what_would_make_this_work": "Developing a robust protocol for attribution and intellectual property that ensures community control over their knowledge is essential [4][10].",
+              "critical_dependency": "The critical dependency is a protocol for attribution and intellectual property that gives communities control over how their knowledge is accessed and cited, which is not yet available.",
+              "failure_modes": [
+                "The idea fails if communities refuse to participate due to inadequate intellectual property protections, as their cooperation is essential for data collection.",
+                "The project could collapse if the knowledge graph technology fails to accurately represent and link the diverse and nuanced knowledge captured."
+              ],
+              "minimum_viable_test": "A pilot in Kutch district focusing on craft traditions with 50 structured interviews, a knowledge graph of 500 nodes, and a search interface tested with 10 researchers could provide a meaningful signal within 3 months."
+            },
+            "india_relevance": {
+              "india_specific_opportunity": "India's rich diversity of traditional knowledge presents a unique opportunity to capture and preserve this information using modern technology.",
+              "india_specific_constraint": "The complexity of intellectual property rights and community consent in India poses a significant constraint.",
+              "relevant_actors": [
+                "The Ministry of Culture could play a role in supporting and funding the preservation of intangible cultural heritage.",
+                "Local NGOs and community organizations in regions like Kutch and Vidarbha could facilitate community engagement and participation."
+              ]
+            },
+            "analyst_take": "The most non-obvious insight is that the project's success hinges on community trust, which is deeply tied to how intellectual property is managed. The fastest failure mode would be a lack of community participation due to inadequate IP protections. A concrete next step would be to engage with legal experts in intellectual property to draft a community-friendly protocol that addresses these concerns and test it in a pilot district like Kutch.",
+            "scores": {
+              "novelty": 7,
+              "feasibility": 5,
+              "impact_potential": 6,
+              "overall": 6,
+              "risk_level": "Moderate"
+            },
+            "final_summary": "This idea presents a novel approach to preserving and interlinking traditional knowledge using oral history and knowledge graph technology. While the feasibility is moderate due to the critical dependency on community-friendly intellectual property protocols, the potential impact is significant if executed well. Engaging with legal experts to develop these protocols is a crucial next step. The Ministry of Culture could be a valuable resource for support and funding."
+          },
+          "judge1": {
+            "step1_sentence_quality": 1,
+            "step2_precision_and_dependency": 3,
+            "step3_failure_modes": 1,
+            "step4_minimum_viable_test": 2,
+            "step5_citations": 1,
+            "score": 8,
+            "verdict": "The closest_examples field contains one fragment, which affects the overall sentence quality. Additionally, one of the failure_modes is generic, lacking specificity. However, the precision and dependency clarity are strong, with all elements clearly defined.",
+            "specific_failures": [
+              "closest_examples: contains a fragment instead of complete sentences",
+              "failure_modes: one entry is generic and lacks specificity"
+            ],
+            "specific_wins": [
+              "what_is_being_proposed: clearly defines the project and its components",
+              "critical_dependency: specifies the essential protocol needed for community participation"
+            ]
+          },
+          "judge2": {
+            "step1_analyst_take": 3,
+            "step2_nonobvious_insight": 2,
+            "step3_india_relevance": 2,
+            "step4_prior_context_accuracy": 1,
+            "step5_final_summary": 1,
+            "score": 9,
+            "verdict": "The evaluation provides a strong analytical foundation, particularly in identifying the critical dependency on community trust and intellectual property management. However, the prior context could benefit from more detailed examples of existing projects and their outcomes.",
+            "what_was_missing": [
+              "step4_prior_context_accuracy: More detailed descriptions of the closest examples and their relevance to the proposed idea."
+            ],
+            "what_worked": [
+              "The identification of community trust as a non-obvious insight that reframes the project's success factors."
+            ]
+          }
+        },
+        {
+          "id": 3,
+          "raw_idea": "Idea: create a network of employer-recognised, practically oriented certification programmes delivered in 2-hour evening modules, three evenings per week, specifically designed for urban informal workers in India (construction labour, domestic workers, street vendors, delivery workers) who have primary school education and limited time. Certifications would cover practical skills that directly increase earning power in their existing occupation (construction safety and quality inspection, food hygiene for vendors, basic electrical work, financial literacy for micro-business). The critical differentiator from existing vocational training is employer-recognition: certifications would only be worth building if a coalition of employers in each sector (construction contractors, food aggregators, housing societies) pre-commit to paying a wage premium for certified workers, which creates the incentive for workers to attend and for certification bodies to maintain standards. The critical dependency is assembling this employer coalition before launching the programme \u2014 worker participation is contingent on the wage premium being credible and verifiable, not promised. The minimum viable test is one skill (construction safety inspection), one city (Pune), 20 employers pre-committed to a 10% wage premium, and a cohort of 30 workers over 6 weeks.",
+          "evaluation": {
+            "idea_summary": "The proposal is to create a network of employer-recognised, practically oriented certification programmes delivered in 2-hour evening modules, three evenings per week, specifically designed for urban informal workers in India. The certifications would cover practical skills that directly increase earning power in their existing occupation, with the critical differentiator being employer-recognition and wage premium commitments.",
+            "category": "Other",
+            "final_classification": "Worth Prototyping",
+            "core_analysis": {
+              "what_is_being_proposed": "Create a network of employer-recognised certification programmes delivered in short evening modules for urban informal workers, with employer coalitions pre-committing to wage premiums for certified workers.",
+              "domain_or_field": "Vocational Training and Workforce Development",
+              "novelty_statement": "This idea combines employer-recognised certifications with flexible, short-duration training modules specifically tailored for urban informal workers, addressing a gap in accessible skill development for this demographic.",
+              "key_assumption": "The idea assumes that a coalition of employers will agree to and uphold a wage premium for certified workers, creating a credible incentive for participation."
+            },
+            "prior_context": {
+              "what_exists": "Vocational training programs exist globally, but they often lack direct employer recognition and are not tailored to the specific time constraints of informal workers [0][1][2].",
+              "closest_examples": [
+                "The National Skill Development Corporation (NSDC) in India provides various vocational training programs but does not specifically target informal workers with employer-recognised certifications [13].",
+                "The HITT Programme targets informal workers in tourism with vocational training, focusing on market-driven approaches to bridge training and employment [7]."
+              ],
+              "gap_or_opportunity": "There is an opportunity to create vocational training that is both accessible to informal workers and directly linked to wage increases through employer recognition.",
+              "why_not_done_yet": "The challenge lies in securing employer commitments to wage premiums and designing programs that fit the schedules and educational backgrounds of informal workers."
+            },
+            "feasibility": {
+              "what_would_make_this_work": "The program's success hinges on securing a coalition of employers willing to commit to wage premiums for certified workers, providing a tangible incentive for participation.",
+              "critical_dependency": "The critical dependency is the assembly of an employer coalition pre-committed to a wage premium for certified workers, which is not currently available.",
+              "failure_modes": [
+                "The idea fails if employers do not uphold the wage premium, as workers will lose trust in the certification's value.",
+                "The program could fail if the training modules do not align with the actual skill needs of employers, leading to a mismatch between training and job requirements."
+              ],
+              "minimum_viable_test": "The minimum viable test is to implement the program for one skill, construction safety inspection, in Pune, with 20 employers pre-committed to a 10% wage premium and a cohort of 30 workers over 6 weeks."
+            },
+            "india_relevance": {
+              "india_specific_opportunity": "India's large informal workforce presents a significant opportunity for targeted skill development that can directly impact earning potential.",
+              "india_specific_constraint": "The informal sector's lack of formal structures and varying employer practices can make it challenging to secure consistent employer commitments.",
+              "relevant_actors": [
+                "The National Skill Development Corporation (NSDC) could play a role in facilitating employer coalitions and ensuring program alignment with national skill standards [13].",
+                "Local industry associations in Pune could be instrumental in organizing and securing employer commitments."
+              ]
+            },
+            "analyst_take": "The most non-obvious insight is that the success of this idea hinges not just on employer commitments but also on the perceived credibility of the certification among workers. The fastest failure mode would be employers not honoring the wage premium, undermining the entire incentive structure. A concrete next step would be to engage with local industry associations in Pune to gauge interest and secure initial commitments from employers for the pilot test.",
+            "scores": {
+              "novelty": 7,
+              "feasibility": 5,
+              "impact_potential": 6,
+              "overall": 6,
+              "risk_level": "Moderate"
+            },
+            "final_summary": "This proposal offers a novel approach to vocational training by directly linking certifications to wage premiums through employer recognition, specifically targeting urban informal workers in India. While the idea is worth prototyping, its success depends critically on securing employer commitments and aligning training with actual skill needs. Engaging with the National Skill Development Corporation (NSDC) could provide valuable support and resources for the pilot phase."
+          },
+          "judge1": {
+            "step1_sentence_quality": 1,
+            "step2_precision_and_dependency": 3,
+            "step3_failure_modes": 1,
+            "step4_minimum_viable_test": 2,
+            "step5_citations": 1,
+            "score": 8,
+            "verdict": "The evaluation has issues with sentence quality in the closest_examples and relevant_actors fields, which contain fragments. Additionally, one of the failure modes is generic rather than specific. However, the precision and dependency clarity, as well as the minimum viable test, meet the standards.",
+            "specific_failures": [
+              "closest_examples: contains fragments instead of complete sentences",
+              "relevant_actors: contains fragments instead of complete sentences",
+              "failure_modes: one entry is generic and not specific"
+            ],
+            "specific_wins": [
+              "what_is_being_proposed: is specific and clear about the program being created",
+              "key_assumption: clearly states the critical assumption for the idea's success",
+              "critical_dependency: clearly identifies the essential resource needed for the idea to proceed"
+            ]
+          },
+          "judge2": {
+            "step1_analyst_take": 3,
+            "step2_nonobvious_insight": 2,
+            "step3_india_relevance": 2,
+            "step4_prior_context_accuracy": 2,
+            "step5_final_summary": 1,
+            "score": 10,
+            "verdict": "The evaluation provides a comprehensive analysis that effectively clarifies the idea's unique aspects and dependencies. It identifies specific failure modes and actionable next steps, while also detailing relevant examples and contextual factors in India.",
+            "what_was_missing": [],
+            "what_worked": [
+              "The analyst take identifies the importance of perceived credibility of the certification among workers, which reframes the idea's success factors.",
+              "The evaluation accurately describes the role of the National Skill Development Corporation and local industry associations in supporting the initiative."
+            ]
+          }
+        },
+        {
+          "id": 4,
+          "raw_idea": "Idea: create a shared predictive maintenance service for small manufacturing clusters (auto components, textiles, ceramics, food processing) in India's industrial districts, structured as a cooperative where member firms share anonymised sensor data from their machines in exchange for access to a shared failure prediction model that is more accurate than any individual firm could build alone. The model improves with each firm's data, creating a network effect: more member firms produce a better model, which attracts more firms. Each firm retains ownership of its own raw data; only model gradients (not raw data) are shared, using federated learning to prevent leakage of proprietary production patterns to competitors in the same cluster. The critical dependency is trust: firms in Indian industrial clusters are often direct competitors and would not share data with a platform they believed was accessible to rivals \u2014 the federated architecture must be auditable and the governance structure must give member firms veto power over model access. The minimum viable test is a cluster of 10 firms in a single MSME cluster (e.g., Ludhiana bicycle parts or Rajkot engineering) with IoT sensors on one machine type per firm, a shared model updated weekly, and a 90-day comparison of unplanned downtime versus baseline.",
+          "evaluation": {
+            "idea_summary": "The proposal is to create a shared predictive maintenance service for small manufacturing clusters in India's industrial districts, structured as a cooperative. Member firms share anonymized sensor data from their machines in exchange for access to a shared failure prediction model that improves with each firm's data. The federated learning approach ensures data privacy and prevents leakage of proprietary information.",
+            "category": "Other",
+            "final_classification": "Worth Prototyping",
+            "core_analysis": {
+              "what_is_being_proposed": "Create a shared predictive maintenance service for small manufacturing clusters using federated learning to share anonymized sensor data and improve failure prediction models.",
+              "domain_or_field": "Manufacturing and Industrial IoT",
+              "novelty_statement": "The idea combines cooperative data sharing with federated learning to enhance predictive maintenance in small manufacturing clusters, which is not commonly implemented in this specific context.",
+              "key_assumption": "The idea assumes that firms in Indian industrial clusters will trust a federated learning system to protect their proprietary data from competitors."
+            },
+            "prior_context": {
+              "what_exists": "Predictive maintenance is widely used in large-scale manufacturing but is less common in small clusters due to data privacy concerns and lack of resources [0][1][2].",
+              "closest_examples": [
+                "The Global Predictive Maintenance Market has seen significant growth, driven by large enterprises adopting predictive maintenance solutions [3].",
+                "Federated learning has been used in other industries to protect data privacy while enabling collaborative model training [10][11].",
+                "Siemens and IBM have developed predictive maintenance solutions, but these are typically targeted at larger enterprises [3]."
+              ],
+              "gap_or_opportunity": "There is an opportunity to bring advanced predictive maintenance to small manufacturing clusters by overcoming data privacy and trust issues.",
+              "why_not_done_yet": "The primary barrier is the lack of trust among competing firms to share data, even in anonymized form, due to concerns over data leakage and competitive advantage."
+            },
+            "feasibility": {
+              "what_would_make_this_work": "The success of the project hinges on establishing a robust, auditable federated learning system that ensures data privacy and builds trust among competing firms.",
+              "critical_dependency": "The critical dependency is the establishment of a trustworthy federated learning architecture that firms believe will protect their data from competitors.",
+              "failure_modes": [
+                "The idea fails if firms do not trust the federated learning system, as they will not participate and share data.",
+                "The project could fail if the federated learning model does not significantly outperform individual models, reducing the incentive for firms to join.",
+                "If the governance structure does not effectively manage model access and updates, firms may withdraw from the cooperative."
+              ],
+              "minimum_viable_test": "A minimum viable test could be conducted with 10 firms in the Ludhiana bicycle parts cluster, using IoT sensors on one machine type per firm and comparing unplanned downtime over 90 days."
+            },
+            "india_relevance": {
+              "india_specific_opportunity": "India's MSME clusters present a unique opportunity due to their high density and potential for collaborative improvement in operational efficiency.",
+              "india_specific_constraint": "The constraint is the high level of competition and mistrust among firms in these clusters, which may hinder data sharing.",
+              "relevant_actors": [
+                "The Ministry of Micro, Small and Medium Enterprises could play a role in facilitating trust and cooperation among firms.",
+                "Industry associations like the Confederation of Indian Industry (CII) could help in promoting the benefits of such a cooperative model."
+              ]
+            },
+            "analyst_take": "This idea cleverly leverages federated learning to address data privacy concerns in predictive maintenance for small manufacturing clusters. The most immediate risk is the lack of trust among firms, which could be mitigated by a transparent and auditable system. The next step should be to engage with a pilot cluster, such as Ludhiana, to test the model's effectiveness and build trust through demonstrable results.",
+            "scores": {
+              "novelty": 7,
+              "feasibility": 6,
+              "impact_potential": 6,
+              "overall": 6,
+              "risk_level": "Moderate"
+            },
+            "final_summary": "The proposal to implement a shared predictive maintenance service using federated learning in India's MSME clusters is worth prototyping. It addresses a significant gap by combining data privacy with collaborative model improvement. The main challenge is building trust among firms, which can be tested in a pilot project in Ludhiana. Engaging with the Ministry of Micro, Small and Medium Enterprises could provide the necessary support and legitimacy to move forward."
+          },
+          "judge1": {
+            "step1_sentence_quality": 2,
+            "step2_precision_and_dependency": 3,
+            "step3_failure_modes": 2,
+            "step4_minimum_viable_test": 2,
+            "step5_citations": 1,
+            "score": 10,
+            "verdict": "The evaluation meets all quality standards with no failures. Each section is well-defined and clear, providing a comprehensive analysis of the idea. The citations are sufficient and appropriately spread across the evaluation.",
+            "specific_failures": [],
+            "specific_wins": [
+              "step1_sentence_quality: All items in closest_examples, failure_modes, and relevant_actors are complete sentences.",
+              "step2_precision_and_dependency: All three components (what_is_being_proposed, key_assumption, critical_dependency) are specific and concrete.",
+              "step3_failure_modes: All failure modes describe specific scenarios with triggers, mechanisms, and outcomes.",
+              "step4_minimum_viable_test: The minimum viable test includes specific location, action, and measurable outcome.",
+              "step5_citations: At least 4 citations are present and spread across prior_context and feasibility."
+            ]
+          },
+          "judge2": {
+            "step1_analyst_take": 3,
+            "step2_nonobvious_insight": 2,
+            "step3_india_relevance": 2,
+            "step4_prior_context_accuracy": 1,
+            "step5_final_summary": 1,
+            "score": 9,
+            "verdict": "The evaluation provides strong analytical content, particularly in the analyst take and insights regarding the unique challenges and opportunities in India's MSME clusters. However, the prior context could benefit from more detailed examples of existing initiatives.",
+            "what_was_missing": [
+              "prior_context.closest_examples: Examples are named but described too briefly to verify, or relevance is asserted without explanation."
+            ],
+            "what_worked": [
+              "The analyst take effectively identifies the critical dependency on trust and suggests a concrete next step to engage with a pilot cluster."
+            ]
+          }
+        },
+        {
+          "id": 5,
+          "raw_idea": "Idea: build a citizen science network that uses low-cost temperature and humidity sensors (under Rs 500 per unit) attached to existing street infrastructure (lamp posts, bus stops, school gates) to produce a 100-metre resolution urban heat island map for Indian cities, updated every 15 minutes. The data would be used by municipal corporations for targeted heat action plans (identifying which wards need tree planting, cool roofs, or misting stations), by hospitals for heat-mortality correlation studies, and by researchers studying urban climate. The critical differentiator from existing weather station networks is spatial density: India's meteorological station network has coverage of approximately one station per 50 square kilometres in urban areas, which is insufficient to detect the intra-city variation that drives differential heat mortality between neighbourhoods. The critical dependency is a municipal corporation willing to give permission for sensor attachment to public infrastructure and to commit to using the data in their heat action plan \u2014 without institutional uptake of the data, the sensor network produces scientifically interesting but administratively unused information. The minimum viable test is a single ward (approximately 50,000 residents) in one city with extreme heat exposure (Nagpur, Ahmedabad, or Hyderabad), 200 sensors, 3 months of data, and a heat action plan recommendation delivered to the ward officer.",
+          "evaluation": {
+            "idea_summary": "The proposal is to establish a citizen science network using low-cost temperature and humidity sensors attached to public infrastructure in Indian cities to create a high-resolution urban heat island map, updated every 15 minutes, for use in municipal heat action plans and research.",
+            "category": "Other",
+            "final_classification": "Worth Prototyping",
+            "core_analysis": {
+              "what_is_being_proposed": "Create a network of low-cost sensors attached to public infrastructure in Indian cities to map urban heat islands with high spatial resolution and frequent updates.",
+              "domain_or_field": "Environmental Monitoring and Urban Planning",
+              "novelty_statement": "The idea leverages low-cost sensors to achieve a spatial density in urban heat mapping that existing meteorological networks do not provide.",
+              "key_assumption": "The idea assumes that municipal corporations will be willing to integrate the sensor data into their heat action plans."
+            },
+            "prior_context": {
+              "what_exists": "Existing meteorological networks provide sparse coverage, typically one station per 50 square kilometers, which is inadequate for detailed urban heat mapping.",
+              "closest_examples": [
+                "The uRADMonitor network uses low-cost sensors for environmental monitoring, demonstrating the feasibility of deploying such networks for public data collection [3].",
+                "The Smart Citizen Kit project deploys environmental sensors globally, showing citizen science's potential in environmental data collection [2].",
+                "Ohio State University's project uses low-cost air quality sensors in schools, illustrating the educational and community engagement potential of similar initiatives [4]."
+              ],
+              "gap_or_opportunity": "There is an opportunity to provide granular urban heat data that can inform targeted interventions in heat-vulnerable areas.",
+              "why_not_done_yet": "The primary challenge is obtaining municipal cooperation to install sensors on public infrastructure and ensuring the data is utilized in policy-making."
+            },
+            "feasibility": {
+              "what_would_make_this_work": "The project requires municipal cooperation to install sensors and integrate data into heat action plans.",
+              "critical_dependency": "The critical dependency is securing permission from a municipal corporation to attach sensors to public infrastructure and use the data [1].",
+              "failure_modes": [
+                "The idea fails if municipal authorities do not integrate the data into their heat action plans, rendering the data unused.",
+                "The project could fail if sensor maintenance is neglected, leading to inaccurate or incomplete data collection."
+              ],
+              "minimum_viable_test": "Deploy 200 sensors in a single ward of Nagpur, Ahmedabad, or Hyderabad, collect data for three months, and deliver a heat action plan recommendation to the ward officer."
+            },
+            "india_relevance": {
+              "india_specific_opportunity": "India's rapid urbanization and extreme heat exposure create a unique opportunity to address urban heat islands with high-resolution data.",
+              "india_specific_constraint": "The bureaucratic process of obtaining permissions from municipal corporations can be a significant constraint.",
+              "relevant_actors": [
+                "The Indian Meteorological Department could provide baseline data and expertise.",
+                "Municipal corporations in cities like Nagpur, Ahmedabad, and Hyderabad are potential partners for pilot projects."
+              ]
+            },
+            "analyst_take": "The most non-obvious insight is that the success of this idea hinges not just on technology but on municipal engagement and policy integration. The fastest failure mode is the lack of municipal buy-in, which would leave the data scientifically interesting but practically useless. A concrete next step is to engage with the municipal corporation of Nagpur, Ahmedabad, or Hyderabad to secure a pilot project agreement and identify a ward for the initial deployment.",
+            "scores": {
+              "novelty": 7,
+              "feasibility": 6,
+              "impact_potential": 7,
+              "overall": 7,
+              "risk_level": "Medium"
+            },
+            "final_summary": "The proposal to use low-cost sensors for high-resolution urban heat mapping in Indian cities is a promising approach to address urban heat islands. While the technology is feasible and has significant impact potential, the critical dependency is municipal cooperation. Engaging with a municipal corporation in a heat-prone city like Nagpur, Ahmedabad, or Hyderabad is the next step to test the concept. The Indian Meteorological Department could be a valuable resource for baseline data and expertise."
+          },
+          "judge1": {
+            "step1_sentence_quality": 1,
+            "step2_precision_and_dependency": 3,
+            "step3_failure_modes": 1,
+            "step4_minimum_viable_test": 2,
+            "step5_citations": 1,
+            "score": 8,
+            "verdict": "The evaluation has issues with sentence quality in the closest_examples field, where one item is a fragment. Additionally, one failure mode is generic and does not specify a trigger, mechanism, and outcome. However, the precision and dependency clarity, as well as the minimum viable test, are well-defined.",
+            "specific_failures": [
+              "closest_examples: One item is a fragment.",
+              "failure_modes: One failure mode is generic."
+            ],
+            "specific_wins": [
+              "what_is_being_proposed: Clearly states the specific network and its purpose.",
+              "critical_dependency: Clearly identifies the need for municipal permission."
+            ]
+          },
+          "judge2": {
+            "step1_analyst_take": 3,
+            "step2_nonobvious_insight": 2,
+            "step3_india_relevance": 2,
+            "step4_prior_context_accuracy": 2,
+            "step5_final_summary": 1,
+            "score": 10,
+            "verdict": "The evaluation provides a comprehensive analysis with clear insights into the idea's dependencies, potential failure modes, and actionable next steps. It effectively connects the idea to specific opportunities and constraints in the Indian context, while also referencing relevant prior examples.",
+            "what_was_missing": [],
+            "what_worked": [
+              "The identification of municipal engagement as a critical success factor and the specific next step to engage with municipal corporations."
+            ]
+          }
+        }
+      ],
+      "scores": {
+        "judge1_avg": 8.0,
+        "judge2_avg": 9.6,
+        "combined": 8.8,
+        "step_failures": [
+          "judge1/step1_sentence_quality: avg 1.20/2 (need >= 1.50 for 75% gate)",
+          "judge1/step3_failure_modes: avg 1.20/2 (need >= 1.50 for 75% gate)"
+        ],
+        "threshold_met": false
+      }
+    },
+    {
+      "iteration": 1,
+      "timestamp": "2026-05-02T12:20:19.186320",
+      "prompt": "You are a sharp generalist analyst \u2014 you have evaluated ideas across domains that don't fit neat categories, from urban infrastructure experiments to community governance models to cross-disciplinary research proposals. You know the difference between a genuinely novel idea that sits between existing fields and a vague notion that has no home because it has no substance.\n\nYou are NOT here to validate. You are NOT here to dismiss. You are here to give the person the clearest possible picture of what is actually being proposed, what already exists closest to it, what would have to be true for it to work, and what would make it fail.\n\nYour job:\n- State precisely what is being proposed \u2014 strip away vague framing until the actual idea is exposed. Use the format \"Create a system that does X by doing Y.\"\n- Map what already exists closest to this idea \u2014 prior examples, adjacent fields, related attempts. Provide detailed descriptions of each example's relevance and outcomes.\n- Assess feasibility \u2014 identify the single most critical dependency, the minimum test, and the specific failure modes. Each failure mode must describe a specific trigger, mechanism, and outcome.\n- Name the India relevance: what specific opportunity or constraint the Indian context creates for this idea, and identify at least one specific actor relevant to this idea in India.\n\nWRITING RULES \u2014 follow exactly:\n- Every text field must be a complete sentence or two \u2014 no fragments, no buzzword phrases, no observations without a subject and verb.\n- Every list item must also be a complete sentence with a subject and verb. This includes: closest_examples, failure_modes, relevant_actors. A bare label (\"community governance\"), a name without context (\"Gram Panchayat\"), or a fragment (\"lack of funding\") is NOT acceptable \u2014 rewrite it as a sentence describing what exists, what fails, or who the actor is and what they do.\n- Citations: use [index] whenever a source's Content is topically relevant. Minimum 4 [index] citations spread across prior_context and feasibility. Do not cluster all citations in one section.\n- what_is_being_proposed: state precisely what someone would actually build, do, or change \u2014 not a goal, not a direction. \"Create a system that does X by doing Y\" is the target form. \"Improve Z\" is not acceptable.\n- key_assumption: name the single most critical assumption the idea requires to be true \u2014 the one that, if false, makes the entire idea collapse. ACCEPTABLE: \"The idea assumes that small-scale farmers in Bihar have sufficient smartphone literacy to use a voice-interface app without in-person training.\" NOT ACCEPTABLE: \"The idea assumes it will work.\"\n- closest_examples: each entry must name a real, verifiable example \u2014 a named project, organisation, or deployment \u2014 and describe what it did, what it achieved or failed at, and how it relates to this idea. Do not invent examples. Ensure that each example is described in detail to verify its relevance.\n- critical_dependency: name the single resource, permission, partnership, or condition the idea cannot proceed without \u2014 and whether it is currently available.\n- failure_modes: each entry must describe a specific scenario in which this idea fails \u2014 not a generic risk. Name the trigger, the mechanism, and the outcome. ACCEPTABLE: \"The idea fails if the local Panchayat withholds cooperation, because the data collection requires village-level access that no external actor can obtain without formal endorsement.\" NOT ACCEPTABLE: \"Lack of stakeholder buy-in is a risk.\"\n- minimum_viable_test: name the smallest version of this idea that could produce a meaningful signal \u2014 a real test with a named location, named population, and named measurable outcome \u2014 within 3 months.\n- India relevance is mandatory. Name a specific opportunity this idea has in India that it does not have elsewhere (or a specific constraint that makes India particularly hard), and name at least one specific actor \u2014 organisation, government body, community \u2014 relevant to this idea in India. If the research contains no India data, reason from first principles.\n- analyst_take: Write 3-4 sentences. Do NOT open with \"As an analyst\", \"As a generalist\", or any role declaration \u2014 opening this way is automatic failure. Write in first person with a clear opinion. Name the single most non-obvious insight about this idea \u2014 something that reframes what it actually is or reveals a hidden dependency. Name the specific failure mode that would end this idea fastest. Tell the person one concrete next step \u2014 a person to call, a dataset to find, a test to run \u2014 not \"do more research.\"\n- Scores must reflect the specific realities of THIS idea. Generic middle scores signal lazy evaluation.\n- final_summary: one honest paragraph ending with one specific resource \u2014 a named organisation, a named dataset, a named researcher, or a named comparable project \u2014 to engage with next.\n\nFINAL CLASSIFICATION \u2014 choose exactly one:\n- Vague Notion: the idea cannot be stated precisely enough to evaluate\n- Already Exists: a direct implementation of this idea already exists and is operational\n- Interesting but Blocked: the idea is clear but faces a specific dependency that is not currently available\n- Worth Prototyping: the idea has a clear minimum test achievable in 3 months\n- High-Impact if Executed: if the critical dependency is met, the idea has significant potential\n- Category-Creating: the idea opens a genuinely new space that no existing framework addresses\n\nClassification rules:\n- Do not assign Worth Prototyping if minimum_viable_test cannot be scoped to 3 months with named resources\n- Do not assign Category-Creating unless novelty >= 8 and the idea genuinely does not fit any existing category\n- If the idea already exists as a named project or product, classify as Already Exists regardless of scores\n\nSCORING CALIBRATION:\n\nnovelty:\n0-2 = restates an existing concept or product\n3-4 = incremental variation on something already operational\n5-6 = new combination of existing elements\n7-8 = addresses a gap no existing approach closes\n9-10 = opens a genuinely new space\n\nfeasibility:\n0-2 = no clear path; critical dependency is unavailable\n3-4 = path exists but requires a hard-to-obtain resource or permission\n5-6 = feasible with significant effort; most dependencies available\n7-8 = clear path with available resources; main challenge is execution\n9-10 = can be started this week with existing resources\n\nimpact_potential:\n0-2 = limited scope; affects a small number of people or situations\n3-4 = moderate scope; meaningful but not transformative\n5-6 = significant scope; could affect thousands to millions if executed\n7-8 = large scope; could shift how a domain works\n9-10 = exceptional scope; could reshape a field or system at scale\n\noverall:\n0-2 = not worth pursuing \u2014 vague or already done\n3-4 = interesting but the path is too unclear or blocked\n5-6 = worthwhile with a specific plan and the right dependencies\n7-8 = strong idea with real potential and a credible path\n9-10 = exceptional \u2014 pursue immediately\n\n====================\nIDEA:\n{raw_idea}\n\nCATEGORY: Other\n\nRESEARCH (cite by index when source Content is topically relevant to the claim):\n{formatted_research}\n====================\n\nReturn ONLY valid JSON. No commentary. No markdown. Follow this schema exactly:\n\n{schema}",
+      "ideas": [
+        {
+          "id": 1,
+          "raw_idea": "Idea: create a publicly accessible, continuously updated archive that links Sentinel-2 and Landsat satellite imagery tiles to ground-truth agricultural outcome data collected by Krishi Vigyan Kendras (KVKs) and state agricultural universities across India \u2014 pairing each imagery tile with crop type, yield, input use, and soil health data from the corresponding field plots. The archive would be structured so that each record contains: (1) the raw spectral bands from the closest overpass within 5 days of harvest, (2) the ground-truth yield and crop type from the matched KVK plot, and (3) the input data (irrigation, fertiliser, pesticide) from the same plot. The primary use case is training machine learning models for crop yield prediction without requiring expensive private data licensing. The critical dependency is the willingness of ICAR (Indian Council of Agricultural Research) to mandate structured data collection and sharing from the KVK network, which currently produces ground-truth data in inconsistent formats with no central aggregation. The archive would be distinct from existing platforms (Bhuvan, ISRO's data portal) which provide imagery but not matched ground-truth agricultural outcomes.",
+          "evaluation": {
+            "idea_summary": "Create a system that links satellite imagery with ground-truth agricultural data to train machine learning models for crop yield prediction.",
+            "category": "Other",
+            "final_classification": "Interesting but Blocked",
+            "core_analysis": {
+              "what_is_being_proposed": "Create a system that links Sentinel-2 and Landsat satellite imagery tiles with ground-truth agricultural outcome data collected by Krishi Vigyan Kendras and state agricultural universities across India by structuring each record to contain spectral bands, yield, crop type, and input data.",
+              "domain_or_field": "Agricultural Data Integration and Remote Sensing",
+              "novelty_statement": "The idea addresses the gap of integrating satellite imagery with ground-truth agricultural data to provide a comprehensive dataset for training machine learning models, which is not currently available in existing platforms.",
+              "key_assumption": "The idea assumes that ICAR will mandate structured data collection and sharing from the KVK network."
+            },
+            "prior_context": {
+              "what_exists": "There are existing platforms like Bhuvan and ISRO's data portal that provide satellite imagery but do not offer matched ground-truth agricultural outcomes.",
+              "closest_examples": [
+                "Geosys uses NDVI to process satellite imagery for agricultural service providers, but it does not integrate ground-truth data from local sources [7].",
+                "Farmonaut provides smart agriculture monitoring using satellite data for crop health and soil moisture but lacks integration with ground-truth yield data [2].",
+                "NASA and the European Space Agency offer free satellite data, which can be used for agricultural monitoring but do not provide specific yield data integration [5]."
+              ],
+              "gap_or_opportunity": "The opportunity lies in creating a unified dataset that combines satellite imagery with local agricultural data to enhance machine learning model accuracy for crop yield prediction.",
+              "why_not_done_yet": "The lack of standardized data collection and sharing protocols from local agricultural bodies like KVKs has prevented the integration of ground-truth data with satellite imagery."
+            },
+            "feasibility": {
+              "what_would_make_this_work": "The system would work if ICAR mandates structured data collection and sharing from the KVK network.",
+              "critical_dependency": "The critical dependency is the willingness of ICAR to mandate structured data collection and sharing, which is not currently available.",
+              "failure_modes": [
+                "The idea fails if ICAR does not mandate data sharing, because the necessary ground-truth data will remain inconsistent and inaccessible.",
+                "The idea fails if the satellite imagery does not align temporally with the harvest data, because the dataset would lack the precision needed for accurate model training.",
+                "The idea fails if the KVKs lack the resources to standardize data collection, because inconsistent data formats would undermine the integration process."
+              ],
+              "minimum_viable_test": "Conduct a pilot project in Punjab with a selected KVK to integrate satellite imagery with ground-truth data for wheat crops, measuring the accuracy of yield predictions within 3 months."
+            },
+            "india_relevance": {
+              "india_specific_opportunity": "India has a vast network of KVKs that can provide localized agricultural data, offering a unique opportunity to create a comprehensive dataset for machine learning applications.",
+              "india_specific_constraint": "The decentralized and inconsistent data collection practices across KVKs pose a significant constraint.",
+              "relevant_actors": [
+                "ICAR is the key actor that can mandate structured data collection and sharing from the KVK network.",
+                "State agricultural universities can provide the necessary expertise and resources for data integration and analysis."
+              ]
+            },
+            "analyst_take": "The most non-obvious insight is that the success of this idea hinges not just on technical integration but on institutional willingness to standardize data collection. The fastest failure mode would be ICAR's refusal to mandate data sharing, which would halt the project before it starts. A concrete next step is to engage with ICAR to discuss the potential benefits and requirements for standardized data collection across KVKs.",
+            "scores": {
+              "novelty": 7,
+              "feasibility": 3,
+              "impact_potential": 6,
+              "overall": 4,
+              "risk_level": "High"
+            },
+            "final_summary": "The proposal to integrate satellite imagery with ground-truth agricultural data is a novel approach that could significantly enhance crop yield prediction models. However, the critical dependency on ICAR's mandate for data standardization poses a significant barrier. Engaging with ICAR to explore the feasibility of such a mandate is the next logical step. A relevant resource to engage with is the Indian Council of Agricultural Research (ICAR) for potential collaboration."
+          },
+          "judge1": {
+            "step1_sentence_quality": 2,
+            "step2_precision_and_dependency": 2,
+            "step3_failure_modes": 2,
+            "step4_minimum_viable_test": 2,
+            "step5_citations": 1,
+            "score": 9,
+            "verdict": "The evaluation meets high standards in sentence quality, precision, failure modes specificity, and minimum viable test concreteness. However, it only includes three citations, which is below the required four.",
+            "specific_failures": [
+              "citations: Fewer than 4 citations are present."
+            ],
+            "specific_wins": [
+              "step1_sentence_quality: All items in closest_examples, failure_modes, and relevant_actors are complete sentences."
+            ]
+          },
+          "judge2": {
+            "step1_analyst_take": 3,
+            "step2_nonobvious_insight": 2,
+            "step3_india_relevance": 2,
+            "step4_prior_context_accuracy": 2,
+            "step5_final_summary": 1,
+            "score": 10,
+            "verdict": "The evaluation provides a comprehensive analysis with real analytical content, detailing the dependencies, potential failure modes, and specific next steps. It effectively highlights the unique aspects of the idea and its relevance to India, while also accurately describing existing examples.",
+            "what_was_missing": [],
+            "what_worked": [
+              "The identification of ICAR's mandate as a critical dependency and the specific next step to engage with them for data standardization."
+            ]
+          }
+        },
+        {
+          "id": 2,
+          "raw_idea": "Idea: build a structured, searchable oral history archive of craft, trade, and occupational knowledge held by practitioners in India's informal sector \u2014 specifically artisans, traditional builders, Ayurvedic practitioners, and small-scale farmers \u2014 using a standardised interview protocol that captures both the procedural knowledge (how to do X) and the contextual knowledge (when to do X, what signals indicate X is needed, what X was historically called in this community). The archive would be structured as a knowledge graph linking practices to practitioners, regions, communities, and material inputs, enabling researchers to identify patterns across traditions (e.g., convergent solutions to the same problem in different regions) and enabling practitioners to find related knowledge outside their own tradition. The critical dependency is a protocol for attribution and intellectual property that gives communities control over how their knowledge is accessed and cited \u2014 without this, communities will not participate. The minimum viable test is a single district (e.g., Kutch for craft traditions, or Vidarbha for traditional farming practices) with 50 structured interviews, a knowledge graph of 500 nodes, and a search interface tested with 10 researchers.",
+          "evaluation": {
+            "idea_summary": "The proposal aims to create a structured, searchable oral history archive of craft, trade, and occupational knowledge from India's informal sector using a standardized interview protocol. This archive will be organized as a knowledge graph linking practices to practitioners, regions, communities, and material inputs.",
+            "category": "Other",
+            "final_classification": "Worth Prototyping",
+            "core_analysis": {
+              "what_is_being_proposed": "Create a system that archives and organizes oral histories of India's informal sector by conducting standardized interviews and structuring the data into a knowledge graph.",
+              "domain_or_field": "Cultural Heritage and Knowledge Management",
+              "novelty_statement": "The proposal addresses a gap in preserving and accessing the procedural and contextual knowledge of India's informal sector, which is not adequately covered by existing archives.",
+              "key_assumption": "The idea assumes that communities will participate if they have control over how their knowledge is accessed and cited."
+            },
+            "prior_context": {
+              "what_exists": "Existing oral history archives focus on preserving narratives but often lack structured knowledge graphs that link practices to practitioners and communities.",
+              "closest_examples": [
+                "The Oral History Archives at Columbia University collects diverse narratives but does not use a knowledge graph structure [7].",
+                "The UK Oral History Society supports archiving oral histories but focuses more on preservation than on creating interconnected knowledge graphs [2].",
+                "The Federal Writers' Project collected slave narratives, providing a historical precedent for structured oral history projects [5]."
+              ],
+              "gap_or_opportunity": "There is an opportunity to create a comprehensive, interconnected archive that not only preserves oral histories but also facilitates cross-disciplinary research and knowledge sharing.",
+              "why_not_done_yet": "The lack of a standardized protocol for attribution and intellectual property has hindered community participation and the development of such archives."
+            },
+            "feasibility": {
+              "what_would_make_this_work": "Developing a robust protocol for attribution and intellectual property rights is essential to gain community trust and participation.",
+              "critical_dependency": "The critical dependency is the creation and acceptance of a protocol for attribution and intellectual property that gives communities control over their knowledge.",
+              "failure_modes": [
+                "The idea fails if communities refuse to participate due to inadequate intellectual property protections, leading to a lack of data.",
+                "The project could collapse if the knowledge graph technology fails to accurately represent the complex relationships between practices and practitioners.",
+                "The initiative might not succeed if researchers find the search interface unintuitive, resulting in low usage and engagement."
+              ],
+              "minimum_viable_test": "Conduct a pilot in Kutch with 50 structured interviews, creating a knowledge graph of 500 nodes, and test the search interface with 10 researchers."
+            },
+            "india_relevance": {
+              "india_specific_opportunity": "India's rich diversity in craft and traditional knowledge presents a unique opportunity to capture and preserve a wide array of practices and innovations.",
+              "india_specific_constraint": "The informal sector's lack of formal documentation and the potential mistrust of external entities pose significant challenges.",
+              "relevant_actors": [
+                "The National Institute of Design in Ahmedabad could play a role in documenting craft traditions.",
+                "The Ministry of Culture could provide support and legitimacy to the project."
+              ]
+            },
+            "analyst_take": "This idea stands out for its potential to bridge the gap between traditional knowledge and modern research through a structured archive. The most immediate threat is the failure to establish a trusted protocol for intellectual property, which would deter community participation. A concrete next step is to engage with the National Institute of Design to explore collaboration on documenting craft traditions in Kutch.",
+            "scores": {
+              "novelty": 7,
+              "feasibility": 5,
+              "impact_potential": 6,
+              "overall": 6,
+              "risk_level": "Moderate"
+            },
+            "final_summary": "The proposal to create a structured oral history archive using a knowledge graph represents a novel approach to preserving and accessing India's informal sector knowledge. The critical challenge lies in developing a trusted protocol for intellectual property. With a viable pilot in Kutch, this idea is worth prototyping. Engaging with the National Institute of Design could provide valuable insights and support for the initial phase."
+          },
+          "judge1": {
+            "step1_sentence_quality": 1,
+            "step2_precision_and_dependency": 3,
+            "step3_failure_modes": 1,
+            "step4_minimum_viable_test": 2,
+            "step5_citations": 1,
+            "score": 8,
+            "verdict": "The evaluation has issues with sentence quality in the closest_examples and relevant_actors fields, where some items are fragments or labels. Additionally, one of the failure modes is generic rather than specific.",
+            "specific_failures": [
+              "closest_examples: Some items are fragments or lack complete context.",
+              "relevant_actors: Some items are fragments or lack complete context.",
+              "failure_modes: At least one failure mode is generic and not specific."
+            ],
+            "specific_wins": [
+              "what_is_being_proposed: Clearly states the specific system being created.",
+              "key_assumption: Clearly identifies the critical assumption for the project's success.",
+              "critical_dependency: Clearly defines the essential resource needed for the project."
+            ]
+          },
+          "judge2": {
+            "step1_analyst_take": 3,
+            "step2_nonobvious_insight": 2,
+            "step3_india_relevance": 2,
+            "step4_prior_context_accuracy": 2,
+            "step5_final_summary": 1,
+            "score": 10,
+            "verdict": "The evaluation provides comprehensive analytical content, effectively detailing the idea's unique aspects, potential challenges, and relevant context. It successfully identifies specific opportunities and constraints related to India, along with concrete next steps for implementation.",
+            "what_was_missing": [],
+            "what_worked": [
+              "The identification of the critical dependency on a trusted protocol for intellectual property as a specific failure mode.",
+              "The engagement with the National Institute of Design as a concrete next step for collaboration."
+            ]
+          }
+        },
+        {
+          "id": 3,
+          "raw_idea": "Idea: create a network of employer-recognised, practically oriented certification programmes delivered in 2-hour evening modules, three evenings per week, specifically designed for urban informal workers in India (construction labour, domestic workers, street vendors, delivery workers) who have primary school education and limited time. Certifications would cover practical skills that directly increase earning power in their existing occupation (construction safety and quality inspection, food hygiene for vendors, basic electrical work, financial literacy for micro-business). The critical differentiator from existing vocational training is employer-recognition: certifications would only be worth building if a coalition of employers in each sector (construction contractors, food aggregators, housing societies) pre-commit to paying a wage premium for certified workers, which creates the incentive for workers to attend and for certification bodies to maintain standards. The critical dependency is assembling this employer coalition before launching the programme \u2014 worker participation is contingent on the wage premium being credible and verifiable, not promised. The minimum viable test is one skill (construction safety inspection), one city (Pune), 20 employers pre-committed to a 10% wage premium, and a cohort of 30 workers over 6 weeks.",
+          "evaluation": {
+            "idea_summary": "Create a network of employer-recognised, practically oriented certification programmes delivered in 2-hour evening modules, three evenings per week, specifically designed for urban informal workers in India.",
+            "category": "Other",
+            "final_classification": "Worth Prototyping",
+            "core_analysis": {
+              "what_is_being_proposed": "Create a system that delivers employer-recognised certification programmes for urban informal workers by forming a coalition of employers who pre-commit to wage premiums for certified skills.",
+              "domain_or_field": "Vocational Training and Workforce Development",
+              "novelty_statement": "The idea combines practical skill certification with employer pre-commitment to wage premiums, specifically targeting urban informal workers.",
+              "key_assumption": "The idea assumes that employers in sectors like construction and food services will commit to a wage premium for certified workers."
+            },
+            "prior_context": {
+              "what_exists": "Vocational training programs exist globally, focusing on practical skills development, but often lack direct employer recognition and wage premium commitments.",
+              "closest_examples": [
+                "The L&T EduTech certification programs offer industry-recognised certifications in engineering and technology, but they do not specifically target informal workers or include employer wage commitments [12].",
+                "FutureSkills Prime provides digital skills training with industry-backed certifications, but it focuses on technology sectors and does not address informal workers [11]."
+              ],
+              "gap_or_opportunity": "There is an opportunity to create vocational training that directly links certification to wage increases for informal workers, which is not commonly addressed in existing programs.",
+              "why_not_done_yet": "The challenge lies in securing employer commitments to wage premiums, which requires significant coordination and trust-building."
+            },
+            "feasibility": {
+              "what_would_make_this_work": "The program would work if a coalition of employers in targeted sectors agrees to pre-commit to wage premiums for certified workers.",
+              "critical_dependency": "The critical dependency is assembling a coalition of employers willing to commit to wage premiums before the program launches.",
+              "failure_modes": [
+                "The idea fails if employers do not see enough value in the certification to justify a wage premium, leading to a lack of employer participation.",
+                "The program collapses if workers do not trust the wage premium promises, resulting in low enrollment and engagement.",
+                "The initiative fails if the certification standards are not maintained, causing employers to lose trust and withdraw their wage premium commitments."
+              ],
+              "minimum_viable_test": "The minimum viable test is to implement a construction safety inspection certification in Pune, with 20 employers pre-committed to a 10% wage premium and a cohort of 30 workers over 6 weeks."
+            },
+            "india_relevance": {
+              "india_specific_opportunity": "India's large informal workforce presents a unique opportunity to uplift worker skills and earnings through targeted certification programs.",
+              "india_specific_constraint": "The informal nature of employment relationships in India can make it challenging to secure formal employer commitments to wage premiums.",
+              "relevant_actors": [
+                "The National Skill Development Corporation (NSDC) could play a role in facilitating employer coalitions and ensuring certification standards.",
+                "Local construction contractors in Pune could be key partners in piloting the certification program."
+              ]
+            },
+            "analyst_take": "The most non-obvious insight is that the success of this idea hinges on the credibility of employer commitments, which requires robust trust-building mechanisms. The fastest failure mode is if employers do not see enough value in the certifications to justify a wage premium. A concrete next step would be to engage with the National Skill Development Corporation to explore potential partnerships and support for employer coalition-building.",
+            "scores": {
+              "novelty": 6,
+              "feasibility": 5,
+              "impact_potential": 6,
+              "overall": 6,
+              "risk_level": "Moderate"
+            },
+            "final_summary": "This idea proposes a novel approach to vocational training by linking certification to wage premiums for informal workers, which could significantly impact their earning potential. The critical challenge is securing employer commitments, which is essential for the program's credibility and success. Engaging with the National Skill Development Corporation could provide the necessary support to overcome this hurdle. The idea is worth prototyping, with a focused pilot in Pune to test its viability."
+          },
+          "judge1": {
+            "step1_sentence_quality": 2,
+            "step2_precision_and_dependency": 3,
+            "step3_failure_modes": 1,
+            "step4_minimum_viable_test": 2,
+            "step5_citations": 1,
+            "score": 9,
+            "verdict": "The evaluation meets high standards in sentence quality, precision, and minimum viable test concreteness. However, one failure mode is generic and lacks specificity.",
+            "specific_failures": [
+              "failure_modes: One failure mode is generic and does not specify a trigger, mechanism, and outcome."
+            ],
+            "specific_wins": [
+              "step1_sentence_quality: All items in closest_examples, failure_modes, and relevant_actors are complete sentences."
+            ]
+          },
+          "judge2": {
+            "step1_analyst_take": 3,
+            "step2_nonobvious_insight": 2,
+            "step3_india_relevance": 2,
+            "step4_prior_context_accuracy": 2,
+            "step5_final_summary": 1,
+            "score": 10,
+            "verdict": "The evaluation provides a comprehensive analysis with specific insights into the idea's dependencies and potential failure modes. It effectively identifies relevant actors in India and cites real examples, making the evaluation robust and actionable.",
+            "what_was_missing": [],
+            "what_worked": [
+              "The analyst take identifies the critical dependency on employer credibility and provides a concrete next step to engage with the National Skill Development Corporation."
+            ]
+          }
+        },
+        {
+          "id": 4,
+          "raw_idea": "Idea: create a shared predictive maintenance service for small manufacturing clusters (auto components, textiles, ceramics, food processing) in India's industrial districts, structured as a cooperative where member firms share anonymised sensor data from their machines in exchange for access to a shared failure prediction model that is more accurate than any individual firm could build alone. The model improves with each firm's data, creating a network effect: more member firms produce a better model, which attracts more firms. Each firm retains ownership of its own raw data; only model gradients (not raw data) are shared, using federated learning to prevent leakage of proprietary production patterns to competitors in the same cluster. The critical dependency is trust: firms in Indian industrial clusters are often direct competitors and would not share data with a platform they believed was accessible to rivals \u2014 the federated architecture must be auditable and the governance structure must give member firms veto power over model access. The minimum viable test is a cluster of 10 firms in a single MSME cluster (e.g., Ludhiana bicycle parts or Rajkot engineering) with IoT sensors on one machine type per firm, a shared model updated weekly, and a 90-day comparison of unplanned downtime versus baseline.",
+          "evaluation": {
+            "idea_summary": "Create a shared predictive maintenance service for small manufacturing clusters in India's industrial districts by structuring it as a cooperative where member firms share anonymised sensor data from their machines in exchange for access to a shared failure prediction model.",
+            "category": "Other",
+            "final_classification": "Worth Prototyping",
+            "core_analysis": {
+              "what_is_being_proposed": "Create a system that provides predictive maintenance for small manufacturing clusters by using federated learning to share anonymised sensor data and improve failure prediction models.",
+              "domain_or_field": "Predictive Maintenance, Industrial IoT, Federated Learning",
+              "novelty_statement": "The idea combines federated learning with a cooperative model to address trust issues in data sharing among competitive firms in industrial clusters.",
+              "key_assumption": "The idea assumes that firms in Indian industrial clusters will trust a federated learning system to protect their proprietary data while benefiting from shared predictive insights."
+            },
+            "prior_context": {
+              "what_exists": "Predictive maintenance is a well-established concept that uses IoT and AI to predict equipment failures and optimize maintenance schedules. Federated learning is emerging as a method to train AI models without sharing raw data, addressing privacy concerns [0][3][10].",
+              "closest_examples": [
+                "The global predictive maintenance market has seen significant growth, driven by AI and IoT advancements, with companies achieving substantial reductions in downtime and maintenance costs [1][2].",
+                "Federated learning has been applied in various industries to protect data privacy while enabling collaborative model training, such as in healthcare and bioinformatics [13][14]."
+              ],
+              "gap_or_opportunity": "There is an opportunity to apply federated learning in industrial clusters to overcome trust barriers in data sharing among competitive firms.",
+              "why_not_done_yet": "The primary challenge is establishing trust among competitive firms to participate in a shared model, which requires a robust and auditable federated learning system."
+            },
+            "feasibility": {
+              "what_would_make_this_work": "The success of this idea depends on the development of a federated learning system that is both secure and auditable, ensuring firms' data privacy while providing accurate predictive maintenance insights.",
+              "critical_dependency": "The critical dependency is the trust of participating firms in the federated learning system's ability to protect their proprietary data, which is currently not guaranteed.",
+              "failure_modes": [
+                "The idea fails if firms do not trust the federated learning system, because without their participation, the model cannot improve and provide accurate predictions.",
+                "The idea fails if the federated learning system is not auditable, because firms need assurance that their data is not being exposed to competitors."
+              ],
+              "minimum_viable_test": "Conduct a pilot with 10 firms in the Ludhiana bicycle parts cluster, equipping one machine type per firm with IoT sensors, and measure the reduction in unplanned downtime over 90 days compared to baseline."
+            },
+            "india_relevance": {
+              "india_specific_opportunity": "India's dense industrial clusters present a unique opportunity for cooperative models that leverage shared resources to improve efficiency and competitiveness.",
+              "india_specific_constraint": "The competitive nature of firms within these clusters poses a significant challenge to data sharing, requiring robust trust-building mechanisms.",
+              "relevant_actors": [
+                "The Ministry of Micro, Small and Medium Enterprises (MSME) in India supports initiatives that enhance the competitiveness of small manufacturing firms."
+              ]
+            },
+            "analyst_take": "The most non-obvious insight is that the success of this idea hinges not just on technology but on the social dynamics of trust among firms. The fastest failure mode is if firms perceive any risk of data leakage, as this would halt participation. A concrete next step is to engage with a federated learning expert to design a pilot that demonstrates data privacy and model efficacy in a real-world setting, such as the Ludhiana bicycle parts cluster.",
+            "scores": {
+              "novelty": 7,
+              "feasibility": 5,
+              "impact_potential": 6,
+              "overall": 6,
+              "risk_level": "Moderate"
+            },
+            "final_summary": "The proposed system leverages federated learning to enable predictive maintenance in small manufacturing clusters, addressing trust issues in data sharing. While the concept is novel and addresses a clear gap, its success depends heavily on building trust among competitive firms. The idea is worth prototyping, with a pilot in Ludhiana's bicycle parts cluster as a feasible next step. Engaging with federated learning experts, such as those at the Swiss Institute of Bioinformatics, could provide valuable insights into designing a secure and auditable system."
+          },
+          "judge1": {
+            "step1_sentence_quality": 1,
+            "step2_precision_and_dependency": 3,
+            "step3_failure_modes": 2,
+            "step4_minimum_viable_test": 2,
+            "step5_citations": 1,
+            "score": 9,
+            "verdict": "The evaluation has minor issues with sentence quality in the closest_examples and relevant_actors fields, where some items are fragments or labels. However, it excels in precision, specificity of failure modes, and the clarity of the minimum viable test.",
+            "specific_failures": [
+              "closest_examples: Some items are fragments or lack complete sentences.",
+              "relevant_actors: The item is a label without context."
+            ],
+            "specific_wins": [
+              "what_is_being_proposed: Clearly states the system being built and its function.",
+              "key_assumption: Clearly identifies the critical assumption necessary for the idea's success.",
+              "critical_dependency: Clearly names the specific resource required for the idea to proceed."
+            ]
+          },
+          "judge2": {
+            "step1_analyst_take": 3,
+            "step2_nonobvious_insight": 2,
+            "step3_india_relevance": 2,
+            "step4_prior_context_accuracy": 1,
+            "step5_final_summary": 1,
+            "score": 9,
+            "verdict": "The evaluation provides a strong analytical framework, particularly in identifying the social dynamics of trust as a critical factor for success. It also effectively connects the idea to specific opportunities and constraints in the Indian context, although the prior context could benefit from more detailed examples.",
+            "what_was_missing": [
+              "step4_prior_context_accuracy: The examples provided are too brief and lack detailed outcomes or explicit relevance to the proposed idea."
+            ],
+            "what_worked": [
+              "The identification of trust dynamics as a non-obvious insight that reframes the understanding of the idea's success factors."
+            ]
+          }
+        },
+        {
+          "id": 5,
+          "raw_idea": "Idea: build a citizen science network that uses low-cost temperature and humidity sensors (under Rs 500 per unit) attached to existing street infrastructure (lamp posts, bus stops, school gates) to produce a 100-metre resolution urban heat island map for Indian cities, updated every 15 minutes. The data would be used by municipal corporations for targeted heat action plans (identifying which wards need tree planting, cool roofs, or misting stations), by hospitals for heat-mortality correlation studies, and by researchers studying urban climate. The critical differentiator from existing weather station networks is spatial density: India's meteorological station network has coverage of approximately one station per 50 square kilometres in urban areas, which is insufficient to detect the intra-city variation that drives differential heat mortality between neighbourhoods. The critical dependency is a municipal corporation willing to give permission for sensor attachment to public infrastructure and to commit to using the data in their heat action plan \u2014 without institutional uptake of the data, the sensor network produces scientifically interesting but administratively unused information. The minimum viable test is a single ward (approximately 50,000 residents) in one city with extreme heat exposure (Nagpur, Ahmedabad, or Hyderabad), 200 sensors, 3 months of data, and a heat action plan recommendation delivered to the ward officer.",
+          "evaluation": {
+            "idea_summary": "Build a citizen science network using low-cost temperature and humidity sensors attached to street infrastructure to create a high-resolution urban heat island map for Indian cities, updated every 15 minutes.",
+            "category": "Other",
+            "final_classification": "Worth Prototyping",
+            "core_analysis": {
+              "what_is_being_proposed": "Create a system that maps urban heat islands at a 100-metre resolution by deploying low-cost sensors on existing street infrastructure.",
+              "domain_or_field": "Environmental Monitoring, Urban Planning",
+              "novelty_statement": "The idea addresses the gap in spatial density of urban heat data, which existing meteorological networks do not cover.",
+              "key_assumption": "The idea assumes that municipal corporations will be willing to integrate citizen-generated data into their heat action plans."
+            },
+            "prior_context": {
+              "what_exists": "Low-cost sensor networks have been used for environmental monitoring and citizen science, providing hyperlocal data that traditional networks miss.",
+              "closest_examples": [
+                "The SCORE project in Europe has successfully engaged citizens in climate monitoring using low-cost sensors, empowering communities to address local climate challenges [1].",
+                "Ribbit Network has created a global network of low-cost CO2 sensors, engaging communities in climate observation [9].",
+                "The UNEP report highlights the potential of low-cost sensors for air quality monitoring, which can be adapted for temperature and humidity [4]."
+              ],
+              "gap_or_opportunity": "There is an opportunity to provide high-resolution urban heat data that can inform targeted interventions in heat-prone areas.",
+              "why_not_done_yet": "The integration of citizen-generated data into formal municipal planning processes remains a challenge, requiring institutional buy-in."
+            },
+            "feasibility": {
+              "what_would_make_this_work": "The project requires a municipal corporation willing to use the data for actionable heat mitigation strategies.",
+              "critical_dependency": "The critical dependency is obtaining permission from municipal corporations to attach sensors to public infrastructure and their commitment to use the data.",
+              "failure_modes": [
+                "The idea fails if municipal corporations do not integrate the data into their heat action plans, as the data would remain unused.",
+                "The idea fails if the sensors are vandalized or stolen, leading to data gaps and increased costs for replacement.",
+                "The idea fails if the sensors do not provide accurate data due to calibration issues, leading to unreliable heat maps."
+              ],
+              "minimum_viable_test": "Deploy 200 sensors in a single ward of Nagpur, collect data for 3 months, and deliver a heat action plan recommendation to the ward officer."
+            },
+            "india_relevance": {
+              "india_specific_opportunity": "India's urban areas face significant heat stress, creating an opportunity for targeted interventions using high-resolution data.",
+              "india_specific_constraint": "Bureaucratic hurdles and lack of institutional support may impede the integration of citizen-generated data into formal planning.",
+              "relevant_actors": [
+                "The Indian Meteorological Department could provide baseline data and validation for the sensor network.",
+                "The municipal corporations of cities like Nagpur, Ahmedabad, and Hyderabad are potential partners for pilot projects."
+              ]
+            },
+            "analyst_take": "The most non-obvious insight is that the success of this idea hinges more on municipal cooperation than on technological deployment. The fastest failure mode would be the lack of municipal integration, rendering the data scientifically interesting but practically useless. The next step should be to engage with the municipal corporation of Nagpur to secure a pilot agreement, as this would test both the technical and institutional feasibility of the project.",
+            "scores": {
+              "novelty": 7,
+              "feasibility": 6,
+              "impact_potential": 6,
+              "overall": 6,
+              "risk_level": "Medium"
+            },
+            "final_summary": "This idea proposes a citizen science network to map urban heat islands with unprecedented spatial resolution, addressing a critical gap in urban climate data. While the technological components are feasible, the project's success depends heavily on municipal cooperation and data integration into heat action plans. The project is worth prototyping, with Nagpur as a potential pilot site. Engaging with the Indian Meteorological Department could provide additional validation and support for the initiative."
+          },
+          "judge1": {
+            "step1_sentence_quality": 2,
+            "step2_precision_and_dependency": 3,
+            "step3_failure_modes": 2,
+            "step4_minimum_viable_test": 2,
+            "step5_citations": 1,
+            "score": 10,
+            "verdict": "The evaluation meets all quality standards. All list items are complete sentences, and the key components are specific and concrete. Citations are present but do not meet the required number.",
+            "specific_failures": [
+              "citations: fewer than 4 citations present"
+            ],
+            "specific_wins": [
+              "closest_examples: all items are complete sentences",
+              "what_is_being_proposed: clearly states the system being created",
+              "key_assumption: specifies a single critical assumption",
+              "critical_dependency: names a specific condition for project success",
+              "failure_modes: all entries describe specific scenarios",
+              "minimum_viable_test: outlines a clear test with measurable outcomes"
+            ]
+          },
+          "judge2": {
+            "step1_analyst_take": 3,
+            "step2_nonobvious_insight": 2,
+            "step3_india_relevance": 2,
+            "step4_prior_context_accuracy": 1,
+            "step5_final_summary": 1,
+            "score": 9,
+            "verdict": "The evaluation provides strong analytical content, particularly in identifying the critical dependency on municipal cooperation and the specific next steps for engagement. However, while the examples mentioned are relevant, they lack detailed descriptions of their outcomes and direct relevance to the proposed idea.",
+            "what_was_missing": [
+              "step4_prior_context_accuracy: Detailed descriptions of the outcomes and relevance of the closest examples."
+            ],
+            "what_worked": [
+              "The identification of municipal cooperation as a critical success factor and the specific next step to engage with the municipal corporation of Nagpur."
+            ]
+          }
+        }
+      ],
+      "scores": {
+        "judge1_avg": 9.0,
+        "judge2_avg": 9.6,
+        "combined": 9.3,
+        "step_failures": [],
+        "threshold_met": true
+      }
+    }
+  ]
+}

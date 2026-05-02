@@ -2,6 +2,7 @@
 import os
 import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+sys.stdout.reconfigure(encoding='utf-8')
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -28,9 +29,10 @@ def reprocess_all():
             print(f"  [!] No cached research found, skipping")
             continue
 
-        # Re-run evaluation with new prompt
+        # Re-run evaluation with new prompt — pass stored category to skip detect_category LLM call
         print(f"  Evaluating...")
-        raw_analysis = evaluate_idea_adaptive(idea['raw_idea'], research)
+        stored_category = idea['analysis'].get('evaluation', {}).get('category')
+        raw_analysis = evaluate_idea_adaptive(idea['raw_idea'], research, category=stored_category)
         analysis = parse_json_with_repair(raw_analysis)
 
         # Re-run embedding
@@ -44,6 +46,19 @@ def reprocess_all():
             {"research": research, "evaluation": analysis},
             new_embedding
         )
+
+        # Force-restore stored category — model output may classify differently
+        if stored_category:
+            from core.db import SessionLocal
+            from core.models import Idea as IdeaModel
+            db = SessionLocal()
+            db_idea = db.query(IdeaModel).filter(IdeaModel.id == idea['id']).first()
+            if db_idea and db_idea.category != stored_category:
+                print(f"  [!] Category drifted to '{db_idea.category}', restoring '{stored_category}'")
+                db_idea.category = stored_category
+                db.commit()
+            db.close()
+
         print(f"  [OK] Evaluation updated")
 
     # Now rerun clustering + synthesis across all ideas fresh

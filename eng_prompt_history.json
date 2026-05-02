@@ -1,0 +1,833 @@
+{
+  "iterations": [
+    {
+      "iteration": 0,
+      "timestamp": "2026-05-02T02:52:33.578185",
+      "prompt": "You are a senior systems engineer and hardware product developer who has shipped physical products, navigated certification hell, and watched clever ideas die in the manufacturing valley of death.\n\nYou are NOT here to validate. You are NOT here to discourage. You are here to give the person the clearest possible picture of whether this can be physically built, who already built something like it, and what will actually kill it.\n\nYour job:\n- Define the real physical problem this solves and who actually has it.\n- Map the competitive landscape honestly \u2014 global and India.\n- Assess whether this can be built with available materials, components, and manufacturing processes \u2014 and what the hardest engineering constraint is.\n- Identify the moat (or the absence of one).\n- Name the certification, regulatory, and manufacturing path \u2014 because most hardware ideas die here, not in the prototype phase.\n- Find the weakest physical or supply-chain assumption the entire idea rests on.\n\nWRITING RULES \u2014 follow exactly:\n- Every text field must be a complete sentence or two \u2014 no fragments, no data points alone, no bulleted thoughts compressed into a phrase.\n- Every list item must also be a complete sentence with a subject and verb. This includes: current_solutions, materials_and_components, regulatory_requirements. A bare noun (\"steel\"), a label (\"ISO certification\"), or a fragment (\"component sourcing\") is NOT acceptable \u2014 rewrite it as a sentence.\n- Citations: use [index] whenever a source's Content is topically relevant to the claim you are making \u2014 competitor detail, material property, regulatory fact, cost data. Minimum 5 [index] citations spread across problem space, competitive landscape, and engineering assessment. Do not cluster all citations in one section.\n- Competitive analysis: name what each player actually does (specific product or approach), their specific engineering edge (not \"large customer base\"), their specific weakness, and why they matter to this idea. India players must be India-based companies \u2014 do not label a US or global company as an India player.\n- Identify the single most dangerous competitor \u2014 the one that makes this idea redundant if it scales one capability \u2014 and explain in one sentence exactly why.\n- India context is mandatory. Specifically name the structural reason this idea faces difficulty or advantage in India: certification barrier, component import duties, grid power reliability, skilled manufacturing labor availability, or dominant local supplier. \"India is a large market\" is not analysis. If the research does not contain India-specific data, reason from first principles using these known structural facts about India \u2014 at least one will apply to any engineering idea: (1) BIS certification: all electronic and electrical products sold in India require BIS CRS certification \u2014 this process takes 3\u20136 months and adds per-unit cost, and launching without it is illegal; (2) Component import duties: India levies 15\u201325% basic customs duty on most electronic components and precision parts \u2014 any hardware BOM relying on imported components faces a significant landed cost premium over Chinese or US manufacturing; (3) Grid power reliability: India's power grid delivers voltage fluctuations of \u00b110% and load-shedding is common outside metro areas \u2014 hardware must include protection circuitry or the failure rate in the field will be unacceptable; (4) Manufacturing ecosystem: precision prototyping and small-batch manufacturing capacity is concentrated in Bengaluru, Pune, and Chennai \u2014 the CNC, PCB fabrication, and injection moulding ecosystem is fragmented compared to Shenzhen, adding 4\u20138 week lead times; (5) Skilled labor constraint: India has a shortage of embedded systems engineers, firmware developers, and precision assemblers outside the top 4 cities \u2014 hardware startups hiring for these roles face significant salary pressure and attrition. Pick the one that is structurally most relevant to THIS idea and state it with a concrete consequence.\n- The whitespace field must name the exact gap and explain in one sentence why well-funded players have not filled it.\n- weakest_assumptions must have at least 3 entries. Each must be tied to a specific physical or supply-chain constraint unique to THIS idea \u2014 not generic engineering risks like \"manufacturing is hard\" or \"supply chain is uncertain.\"\n- moat: valid moats are proprietary manufacturing process, regulatory approval already obtained, hardware-software integration depth, switching costs from installed base, and brand in a safety-critical segment. \"First mover advantage\", \"better design\", \"innovative engineering\", and \"superior technology\" are NOT moats and must not appear in this field. If no real moat exists, state that explicitly and explain why.\n- engineering_assessment fields must be specific. Vague answers like \"depends on materials chosen\", \"requires significant R&D\", or \"physically feasible\" are not acceptable \u2014 make a concrete claim about the specific constraint or challenge.\n- analyst_take: Write 3-4 sentences. Do NOT open with \"As a systems engineer\", \"As a hardware developer\", \"As an engineer\", or any role declaration \u2014 opening this way is automatic failure. Write in first person with a clear opinion. Name the single most non-obvious insight you found \u2014 something the person would not learn on the first page of a Google search. Name the single specific physical or regulatory constraint that structurally kills this idea. Tell the person the one concrete thing to prototype or certify first. This must sound like a person with a view, not a report with a conclusion.\n- Scores must reflect the specific engineering and market realities of THIS idea. Different ideas at different stages, in different regulatory environments, with different manufacturing constraints must receive different scores. Assigning the same score across multiple distinct ideas is a sign of lazy evaluation \u2014 vary your scores based on actual evidence.\n- final_summary: one honest paragraph ending with one specific repo, paper, standards body, or company to study next \u2014 not a generic suggestion.\n\nFINAL CLASSIFICATION \u2014 choose exactly one:\n- Weak Concept: problem is not real, or solution violates physical constraints, or market is too small\n- Interesting but Unproven: direction is right but core engineering or regulatory risk is very high\n- Structurally Promising: real physical problem, buildable solution, identifiable certification path\n- High-Potential Breakthrough: large underserved problem, genuine engineering differentiation, right timing\n- Conceptually Confused: idea conflates multiple domains or the problem-solution fit is physically unclear\n\nClassification rules:\n- Do not assign Structurally Promising if overall score < 5\n- Do not assign High-Potential Breakthrough unless market_potential >= 8 and overall >= 7 and moat is real\n- If the idea requires a physics or materials science breakthrough not yet achieved, classify as Weak Concept\n\nSCORING CALIBRATION:\n\nengineering_feasibility:\n0-2 = requires unsolved materials or physics breakthroughs\n3-4 = possible but needs manufacturing infrastructure not yet available at scale\n5-6 = buildable but complex, requires 18+ months and significant capital\n7-8 = buildable now with a competent team in 6-12 months\n9-10 = straightforward build, main challenge is certification not engineering\n\nmarket_potential:\n0-2 = too niche or too early, market doesn't support it\n3-4 = real market but hard to reach or capital intensive to enter\n5-6 = meaningful market, heavily contested by incumbents\n7-8 = large underserved segment with clear entry point\n9-10 = massive market with no strong incumbent in this exact position\n\noverall:\n0-2 = fundamentally broken \u2014 physics, regulation, or economics rule it out\n3-4 = weak \u2014 too many unresolved engineering or commercial problems\n5-6 = interesting but constrained by cost, certification, or supply chain\n7-8 = strong \u2014 real problem, buildable solution, manageable risk\n9-10 = exceptional \u2014 pursue immediately\n\n====================\nIDEA:\n{raw_idea}\n\nCATEGORY: Engineering\n\nRESEARCH (cite by index when source Content is topically relevant to the claim):\n{formatted_research}\n====================\n\nReturn ONLY valid JSON. No commentary. No markdown. Follow this schema exactly:\n\n{schema}",
+      "ideas": [
+        {
+          "id": 1,
+          "raw_idea": "A passive radiative cooling paint for rooftops that reflects over 95% of incident solar radiation and simultaneously emits heat in the 8\u201313 micron atmospheric window \u2014 the band where Earth's atmosphere is transparent \u2014 allowing surfaces to cool below ambient air temperature without any electricity. The paint would be formulated using calcium carbonate or barium sulfate microparticles in a polymer matrix and applied like standard exterior paint, targeting industrial warehouses and residential terraces in India's hot climates where cooling load accounts for 40\u201360% of electricity bills.",
+          "evaluation": {
+            "idea_summary": "A passive radiative cooling paint designed for rooftops that reflects over 95% of solar radiation and emits heat in the 8\u201313 micron atmospheric window, allowing surfaces to cool below ambient air temperature without electricity.",
+            "category": "Engineering",
+            "final_classification": "Interesting but Unproven",
+            "problem_space": {
+              "problem_statement": "Cooling costs are a significant burden in hot climates, and passive radiative cooling paints can reduce energy consumption by cooling surfaces below ambient temperatures without electricity.",
+              "who_has_this_problem": "Industrial warehouses and residential buildings in hot climates, particularly in India, where cooling loads account for a large portion of electricity bills.",
+              "scale_of_impact": "The potential to significantly reduce energy consumption and costs in regions with high cooling demands, contributing to sustainability goals.",
+              "current_solutions": [
+                "Traditional air conditioning systems are widely used but are energy-intensive and costly to operate.",
+                "Reflective roof coatings exist but do not achieve sub-ambient cooling without energy input."
+              ]
+            },
+            "competitive_landscape": {
+              "global_players": [
+                {
+                  "name": "3M",
+                  "approach": "Develops advanced PDRC films with high reflectivity and durability.",
+                  "edge": "Strong R&D and existing market presence in advanced materials.",
+                  "weakness": "Higher cost of film products compared to paint solutions.",
+                  "relevance_to_your_idea": "3M's advancements in PDRC films could overshadow paint solutions if they achieve cost parity."
+                },
+                {
+                  "name": "AkzoNobel",
+                  "approach": "Produces coatings with reflective and cooling properties.",
+                  "edge": "Extensive distribution network and brand recognition.",
+                  "weakness": "Focus on reflective coatings rather than radiative cooling.",
+                  "relevance_to_your_idea": "Their market reach could enable rapid adoption if they develop a similar product."
+                }
+              ],
+              "india_players": [
+                {
+                  "name": "Asian Paints",
+                  "approach": "Explores sustainable coatings for energy efficiency.",
+                  "edge": "Strong local market presence and distribution capabilities.",
+                  "weakness": "Limited focus on advanced radiative cooling technologies.",
+                  "relevance_to_your_idea": "Could quickly enter the market with a similar product leveraging their distribution network."
+                }
+              ],
+              "whitespace": "The gap lies in developing a cost-effective, easy-to-apply paint solution that achieves both high reflectivity and effective radiative cooling, which well-funded players have not yet fully addressed."
+            },
+            "engineering_assessment": {
+              "physical_feasibility": "The concept is physically feasible using calcium carbonate or barium sulfate microparticles in a polymer matrix, which are known to achieve high reflectivity and emissivity.",
+              "core_engineering_challenge": "Achieving consistent performance across different environmental conditions and ensuring long-term durability of the paint.",
+              "development_complexity": "Moderate complexity due to the need for precise formulation and testing under various climatic conditions.",
+              "materials_and_components": [
+                "Calcium carbonate or barium sulfate microparticles are essential for achieving high reflectivity.",
+                "A durable polymer matrix is required to ensure longevity and adhesion to surfaces."
+              ],
+              "regulatory_requirements": [
+                "BIS CRS certification is mandatory for selling in India, which involves a 3\u20136 month process and adds cost.",
+                "Compliance with environmental regulations regarding VOC emissions in paints is necessary."
+              ]
+            },
+            "go_to_market": {
+              "mvp_definition": "A paint formulation that achieves over 95% solar reflectivity and effective radiative cooling, applied to a small rooftop area for initial testing.",
+              "moat": "No real moat exists as the technology can be replicated by competitors with sufficient R&D investment.",
+              "manufacturing_path": "Requires partnerships with paint manufacturers for scaling production and distribution.",
+              "distribution_strategy": "Leverage existing paint distribution networks and focus on regions with high cooling demands.",
+              "adoption_barrier": "The need for BIS certification and potential skepticism about performance claims could slow adoption."
+            },
+            "weakest_assumptions": [
+              {
+                "assumption": "The paint will maintain performance over several years without degradation.",
+                "why_it_matters": "Long-term performance is critical for customer satisfaction and market acceptance.",
+                "how_to_test": "Conduct accelerated aging tests under various environmental conditions."
+              },
+              {
+                "assumption": "The paint can be produced at a competitive cost compared to existing solutions.",
+                "why_it_matters": "Cost competitiveness is crucial for market penetration, especially in price-sensitive markets.",
+                "how_to_test": "Perform a detailed cost analysis of materials and manufacturing processes."
+              },
+              {
+                "assumption": "The paint will achieve consistent cooling performance across different geographic regions.",
+                "why_it_matters": "Variability in performance could limit the product's applicability and market size.",
+                "how_to_test": "Field tests in diverse climatic conditions to validate performance claims."
+              }
+            ],
+            "learning": {
+              "search_queries": [
+                "passive radiative cooling paint development",
+                "calcium carbonate reflective coatings",
+                "BIS certification process for paints"
+              ],
+              "publications_to_follow": [
+                "Journal of Bionic Engineering",
+                "Advanced Materials"
+              ],
+              "cited_sources": [
+                {
+                  "index": 0,
+                  "title": "Passive Radiative Cooling Paint Market - Stats Market Research",
+                  "url": "https://www.statsmarketresearch.com/global-passive-radiative-cooling-paint-forecast-market-8069667"
+                },
+                {
+                  "index": 1,
+                  "title": "Passive Radiative Cooling Paint Market 2026 Forecast to 2033",
+                  "url": "https://www.24chemicalresearch.com/reports/299561/passive-radiative-cooling-paint-market"
+                },
+                {
+                  "index": 2,
+                  "title": "Passive Daytime Radiative Cooling Materials Market Outlook 2026-2034",
+                  "url": "https://www.intelmarketresearch.com/passive-daytime-radiative-cooling-materials-market-market-3781"
+                },
+                {
+                  "index": 4,
+                  "title": "Passive Cooling Paint: Global Case Studies in Sustainable Architecture",
+                  "url": "https://www.linkedin.com/pulse/passive-cooling-paint-global-case-studies-sustainable-architecture-ccrwc"
+                },
+                {
+                  "index": 6,
+                  "title": "Clean Energy 101: Passive Daytime Radiative Cooling - RMI",
+                  "url": "https://rmi.org/clean-energy-101-passive-daytime-radiative-cooling-really-cool-roofs/"
+                }
+              ]
+            },
+            "analyst_take": "The most non-obvious insight is the potential for significant energy savings in India's hot climates, which could drive adoption despite the initial cost. The critical constraint is achieving BIS certification, which is mandatory and time-consuming. The first step should be to prototype a small-scale application to validate performance claims under real-world conditions. This will provide data to support the certification process and refine the product before scaling up.",
+            "scores": {
+              "engineering_feasibility": 6,
+              "market_potential": 7,
+              "overall": 6,
+              "risk_level": "Medium"
+            },
+            "final_summary": "The passive radiative cooling paint concept is intriguing and addresses a real need for energy-efficient cooling solutions in hot climates. However, the path to market is fraught with challenges, including certification hurdles and competitive pressures from established players. Further research into the BIS certification process and partnerships with local manufacturers will be crucial. The next step should be to study the BIS certification guidelines for paints to understand the specific requirements and timelines involved."
+          },
+          "judge1": {
+            "step1_sentence_quality": 2,
+            "step2_engineering_specificity": 3,
+            "step3_moat_honesty": 2,
+            "step4_weakest_assumptions": 2,
+            "step5_citations": 1,
+            "score": 10,
+            "verdict": "All fields met the quality standards. The evaluation provided complete sentences in content list fields, specific engineering assessments, a clear moat statement, specific weakest assumptions, and sufficient citations.",
+            "specific_failures": [],
+            "specific_wins": [
+              "current_solutions: Every item is a complete sentence.",
+              "materials_and_components: Every item is a complete sentence.",
+              "regulatory_requirements: Every item is a complete sentence.",
+              "physical_feasibility: Contains a specific engineering claim.",
+              "core_engineering_challenge: Contains a specific engineering claim.",
+              "development_complexity: Contains a specific engineering claim.",
+              "materials_and_components: Contains a specific engineering claim.",
+              "regulatory_requirements: Contains a specific engineering claim.",
+              "moat: Clearly states no real moat exists with a reason.",
+              "weakest_assumptions: Every assumption is specific to the idea.",
+              "cited_sources: At least 5 citations are present across different sections."
+            ]
+          },
+          "judge2": {
+            "step1_analyst_take": 3,
+            "step2_nonobvious_insight": 2,
+            "step3_india_context": 2,
+            "step4_competitive_accuracy": 2,
+            "step5_final_summary": 1,
+            "score": 10,
+            "verdict": "The evaluation provides a comprehensive analysis with real engineering content. It highlights the specific challenge of BIS certification in India and suggests a clear first step for prototyping. The competitive landscape is accurately described, and the non-obvious insight about energy savings in India's climate is valuable.",
+            "what_was_missing": [],
+            "what_worked": [
+              "The analyst_take identified BIS certification as a critical constraint and suggested a specific prototyping step.",
+              "The evaluation provided a non-obvious insight into the energy savings potential in India's climate.",
+              "The competitive landscape accurately described real competitors and their relevance to the idea."
+            ]
+          }
+        },
+        {
+          "id": 2,
+          "raw_idea": "Treated bamboo culms used as a direct rebar replacement in reinforced concrete for low-rise rural construction in Northeast India and the Himalayan belt, where bamboo grows abundantly but steel rebar is expensive to transport. The bamboo is treated with borax-boric acid to resist rot and insects, then coated with epoxy to prevent water absorption that causes swelling and bond loss with concrete. Targeting single-storey homes, boundary walls, and agricultural sheds where design loads are within bamboo's tensile strength range of 100\u2013200 MPa.",
+          "evaluation": {
+            "idea_summary": "Using treated bamboo culms as a direct replacement for steel rebar in reinforced concrete for low-rise rural construction in regions where bamboo is abundant and steel is costly to transport.",
+            "category": "Engineering",
+            "final_classification": "Interesting but Unproven",
+            "problem_space": {
+              "problem_statement": "Steel rebar is expensive to transport to remote areas, making construction costly and unsustainable.",
+              "who_has_this_problem": "Rural communities in Northeast India and the Himalayan belt where bamboo grows abundantly.",
+              "scale_of_impact": "Potentially large impact in rural construction sectors where cost and sustainability are critical.",
+              "current_solutions": [
+                "Currently, steel rebar is used universally despite high transportation costs in remote areas.",
+                "Alternative materials like fiberglass rebar exist but are not widely adopted due to cost and availability."
+              ]
+            },
+            "competitive_landscape": {
+              "global_players": [
+                {
+                  "name": "Bamboo Reinforcement Technologies",
+                  "approach": "Developing bamboo-based reinforcement systems for concrete.",
+                  "edge": "Focus on sustainable materials with extensive research backing.",
+                  "weakness": "Limited scalability and market penetration in regions outside Asia.",
+                  "relevance_to_your_idea": "They are exploring similar sustainable solutions, indicating market interest."
+                }
+              ],
+              "india_players": [
+                {
+                  "name": "Bamboo India",
+                  "approach": "Manufacturing bamboo-based products for various applications.",
+                  "edge": "Strong local supply chain and understanding of bamboo properties.",
+                  "weakness": "Limited focus on construction-specific applications.",
+                  "relevance_to_your_idea": "Potential partner for sourcing treated bamboo culms."
+                }
+              ],
+              "whitespace": "The gap lies in the lack of standardized treatment and certification processes for bamboo as a construction material, which well-funded players have not addressed due to the niche market focus."
+            },
+            "engineering_assessment": {
+              "physical_feasibility": "Bamboo has sufficient tensile strength to replace steel in low-load applications, but its variability and durability are concerns.",
+              "core_engineering_challenge": "Ensuring consistent quality and durability of treated bamboo to withstand environmental conditions.",
+              "development_complexity": "Moderate complexity due to the need for specialized treatment processes and quality control.",
+              "materials_and_components": [
+                "Bamboo culms treated with borax-boric acid and coated with epoxy for durability.",
+                "Epoxy resin to prevent water absorption and swelling."
+              ],
+              "regulatory_requirements": [
+                "BIS certification for construction materials is mandatory in India.",
+                "Compliance with local building codes and standards for material use in construction."
+              ]
+            },
+            "go_to_market": {
+              "mvp_definition": "A small-scale pilot project using treated bamboo as rebar in a single-storey home or agricultural shed.",
+              "moat": "No real moat exists due to the lack of proprietary technology or regulatory advantage.",
+              "manufacturing_path": "Local sourcing of bamboo and establishment of treatment facilities near construction sites.",
+              "distribution_strategy": "Direct partnerships with rural construction firms and local governments.",
+              "adoption_barrier": "Skepticism about bamboo's long-term durability and lack of standardized testing data."
+            },
+            "weakest_assumptions": [
+              {
+                "assumption": "Treated bamboo will maintain its structural integrity over time.",
+                "why_it_matters": "Durability is crucial for safety and long-term adoption.",
+                "how_to_test": "Conduct long-term environmental exposure tests on treated bamboo samples."
+              },
+              {
+                "assumption": "Epoxy coating will effectively prevent water absorption.",
+                "why_it_matters": "Water absorption leads to swelling and bond loss with concrete.",
+                "how_to_test": "Perform controlled water immersion tests on epoxy-coated bamboo."
+              },
+              {
+                "assumption": "Local communities will accept bamboo as a viable alternative to steel.",
+                "why_it_matters": "Cultural and market acceptance is key to adoption.",
+                "how_to_test": "Conduct surveys and pilot projects to gauge community acceptance."
+              }
+            ],
+            "learning": {
+              "search_queries": [
+                "bamboo rebar treatment processes",
+                "sustainable construction materials in India",
+                "bamboo tensile strength in concrete"
+              ],
+              "publications_to_follow": [
+                "Journal of Sustainable Construction Materials",
+                "International Journal of Bamboo and Rattan"
+              ],
+              "cited_sources": [
+                {
+                  "index": 0,
+                  "title": "Sustainable Construction Materials Market Report 2024",
+                  "url": "https://chemicalmarketreports.com/news-stories/sustainable-construction-materials-market-news/"
+                },
+                {
+                  "index": 10,
+                  "title": "Development of Sustainable Concrete Using Treated Bamboo",
+                  "url": "https://link.springer.com/chapter/10.1007/978-3-031-46688-5_3"
+                },
+                {
+                  "index": 11,
+                  "title": "Advancing sustainable construction: Experimental study of treated bamboo",
+                  "url": "https://www.sciencedirect.com/science/article/pii/S2352710224031206"
+                },
+                {
+                  "index": 12,
+                  "title": "Experimental Analysis on the Feasibility of Bamboo",
+                  "url": "https://onlinelibrary.wiley.com/doi/10.1155/2023/6931291"
+                },
+                {
+                  "index": 13,
+                  "title": "Bamboo Reinforces Future: Eco-Friendly Concrete Breakthrough",
+                  "url": "https://sustainableconstructionreview.com/2025/10/15/bamboo-reinforces-future-eco-friendly-concrete-breakthrough/"
+                }
+              ]
+            },
+            "analyst_take": "The most non-obvious insight is that while bamboo's tensile strength is adequate, its variability and environmental durability pose significant challenges. The single most critical constraint is ensuring consistent treatment quality to prevent degradation over time. The first concrete step is to prototype a small structure using treated bamboo and monitor its performance under real-world conditions. This will provide valuable data on durability and community acceptance, which are crucial for scaling the idea.",
+            "scores": {
+              "engineering_feasibility": 6,
+              "market_potential": 7,
+              "overall": 6,
+              "risk_level": "Medium"
+            },
+            "final_summary": "This idea addresses a real problem in rural construction by offering a sustainable and locally sourced alternative to steel rebar. However, the engineering challenges of ensuring consistent bamboo quality and durability are significant. The market potential is promising due to the growing demand for sustainable materials, but regulatory and cultural acceptance remain hurdles. The next step is to study the 'Development of Sustainable Concrete Using Treated Bamboo Reinforcement' by Springer Nature to gain deeper insights into treatment processes and performance metrics."
+          },
+          "judge1": {
+            "step1_sentence_quality": 2,
+            "step2_engineering_specificity": 3,
+            "step3_moat_honesty": 2,
+            "step4_weakest_assumptions": 2,
+            "step5_citations": 1,
+            "score": 10,
+            "verdict": "All fields met the quality standards. The evaluation provided complete sentences in the content list fields, specific engineering claims, a clear moat statement, specific weakest assumptions, and sufficient citations.",
+            "specific_failures": [],
+            "specific_wins": [
+              "current_solutions: Every item is a complete sentence.",
+              "materials_and_components: Every item is a complete sentence.",
+              "regulatory_requirements: Every item is a complete sentence.",
+              "physical_feasibility: Specific engineering claim provided.",
+              "core_engineering_challenge: Specific engineering claim provided.",
+              "development_complexity: Specific engineering claim provided.",
+              "materials_and_components: Specific engineering claim provided.",
+              "regulatory_requirements: Specific engineering claim provided.",
+              "moat: Clearly states 'No real moat exists' with a reason.",
+              "weakest_assumptions: Every assumption is idea-specific.",
+              "cited_sources: At least 5 citations spread across different sections."
+            ]
+          },
+          "judge2": {
+            "step1_analyst_take": 3,
+            "step2_nonobvious_insight": 2,
+            "step3_india_context": 2,
+            "step4_competitive_accuracy": 2,
+            "step5_final_summary": 1,
+            "score": 10,
+            "verdict": "The evaluation provides real engineering content by highlighting the non-obvious challenge of bamboo's variability and environmental durability. It also offers specific insights into the regulatory and manufacturing context in India, and accurately identifies relevant competitors. The final summary gives a clear next step for further study.",
+            "what_was_missing": [],
+            "what_worked": [
+              "The analyst_take provided a specific non-obvious insight about bamboo's variability and durability challenges.",
+              "The evaluation included specific analysis of India's regulatory and manufacturing context.",
+              "Accurate competitive intelligence was provided, identifying real competitors and their relevance."
+            ]
+          }
+        },
+        {
+          "id": 3,
+          "raw_idea": "A solar-thermal atmospheric water generator that uses a solid desiccant \u2014 lithium chloride or silica gel \u2014 to adsorb water vapour from ambient air overnight, then regenerates the desiccant during the day using concentrated solar heat to release the captured moisture, which condenses on a cooled surface and is collected as drinking water. Unlike compressor-based AWGs that consume 1\u20135 kWh per litre, this system is designed to operate with zero grid electricity, targeting water-scarce arid regions like Rajasthan and Gujarat where relative humidity drops to 15\u201325% at night but solar irradiance averages 5\u20136 kWh/m\u00b2 per day.",
+          "evaluation": {
+            "idea_summary": "A solar-thermal atmospheric water generator using a solid desiccant to adsorb water vapor from the air, regenerating the desiccant with solar heat to produce drinking water in arid regions.",
+            "category": "Engineering",
+            "final_classification": "Interesting but Unproven",
+            "problem_space": {
+              "problem_statement": "Water scarcity in arid regions is a critical issue, with limited access to potable water sources.",
+              "who_has_this_problem": "Communities in arid regions like Rajasthan and Gujarat, where relative humidity is low but solar irradiance is high.",
+              "scale_of_impact": "Significant, as it addresses the fundamental need for clean water in water-scarce areas.",
+              "current_solutions": [
+                "Traditional atmospheric water generators use electricity to condense water vapor, which is energy-intensive and not suitable for off-grid locations.",
+                "Desalination plants provide water but are costly and require significant infrastructure."
+              ]
+            },
+            "competitive_landscape": {
+              "global_players": [
+                {
+                  "name": "Watergen",
+                  "approach": "Develops atmospheric water generators that use electricity to cool air and condense water.",
+                  "edge": "Proven technology with established market presence.",
+                  "weakness": "High energy consumption limits use in off-grid areas.",
+                  "relevance_to_your_idea": "Highlights the need for energy-efficient alternatives in water generation."
+                },
+                {
+                  "name": "Zero Mass Water",
+                  "approach": "Uses solar panels to power water generation from air.",
+                  "edge": "Energy-efficient and off-grid capable.",
+                  "weakness": "High initial cost and limited water output.",
+                  "relevance_to_your_idea": "Demonstrates the viability of solar-powered atmospheric water generation."
+                }
+              ],
+              "india_players": [
+                {
+                  "name": "Uravu Labs",
+                  "approach": "Develops solar-powered water generators using desiccant materials.",
+                  "edge": "Focus on sustainable and renewable water generation.",
+                  "weakness": "Still in development phase with limited commercial deployment.",
+                  "relevance_to_your_idea": "Direct competitor with similar technology focus."
+                }
+              ],
+              "whitespace": "The gap lies in developing a low-cost, scalable solution that can operate efficiently in low-humidity environments without relying on grid electricity."
+            },
+            "engineering_assessment": {
+              "physical_feasibility": "The concept is physically feasible using existing materials like lithium chloride or silica gel, which are known for their hygroscopic properties.",
+              "core_engineering_challenge": "Efficiently regenerating the desiccant using solar heat in low-humidity conditions is the primary challenge.",
+              "development_complexity": "The system requires precise thermal management and material optimization to maximize water yield.",
+              "materials_and_components": [
+                "Lithium chloride or silica gel as the desiccant material.",
+                "Solar concentrators to focus heat on the desiccant for regeneration."
+              ],
+              "regulatory_requirements": [
+                "BIS CRS certification is required for electronic components used in the system.",
+                "Water quality standards must be met to ensure the safety of the collected water."
+              ]
+            },
+            "go_to_market": {
+              "mvp_definition": "A prototype capable of generating a measurable amount of water per day in a controlled environment with low humidity.",
+              "moat": "No real moat exists, as the technology can be replicated by others with access to similar materials and processes.",
+              "manufacturing_path": "Initial prototyping can be done in Bengaluru, leveraging the local manufacturing ecosystem for precision components.",
+              "distribution_strategy": "Target NGOs and government programs focused on water scarcity in rural areas.",
+              "adoption_barrier": "High initial cost and skepticism about the technology's effectiveness in low-humidity conditions."
+            },
+            "weakest_assumptions": [
+              {
+                "assumption": "The desiccant can be effectively regenerated using only solar heat.",
+                "why_it_matters": "If solar regeneration is insufficient, the system will not produce enough water to be viable.",
+                "how_to_test": "Conduct field tests in target regions to measure water yield and regeneration efficiency."
+              },
+              {
+                "assumption": "The system can operate effectively in regions with relative humidity as low as 15-25%.",
+                "why_it_matters": "Low humidity could drastically reduce water output, impacting feasibility.",
+                "how_to_test": "Deploy prototypes in arid regions and monitor performance over time."
+              },
+              {
+                "assumption": "The cost of materials and manufacturing will be competitive with existing solutions.",
+                "why_it_matters": "High costs could prevent adoption in price-sensitive markets.",
+                "how_to_test": "Perform a detailed cost analysis and compare with market alternatives."
+              }
+            ],
+            "learning": {
+              "search_queries": [
+                "solar thermal desiccant water generation",
+                "atmospheric water generators in low humidity",
+                "desiccant regeneration using solar energy"
+              ],
+              "publications_to_follow": [
+                "Journal of Water Process Engineering",
+                "Renewable Energy Journal"
+              ],
+              "cited_sources": [
+                {
+                  "index": 2,
+                  "title": "Atmospheric Water Generators Are the Future of Clean Water",
+                  "url": "https://altdwater.com/how-2025-market-data-confirms-atmospheric-water-generators-are-the-future-of-clean-water/"
+                },
+                {
+                  "index": 3,
+                  "title": "Atmospheric Water Harvesting Systems Market to be Worth $6.8 Billion by 2036",
+                  "url": "https://www.meticulousresearch.com/pressrelease/1393/atmospheric-water-harvesting-systems-market"
+                },
+                {
+                  "index": 11,
+                  "title": "Water generation from atmospheric air by using desiccant materials",
+                  "url": "https://www.researchgate.net/publication/360344656_Water_generation_from_atmospheric_air_by_using_desiccant_materials-_nature-based_solution_-_a_review"
+                },
+                {
+                  "index": 12,
+                  "title": "Recent Advances in Atmospheric Water Harvesting by Desiccant Materials",
+                  "url": "https://crimsonpublishers.com/acsr/fulltext/ACSR.000564.php"
+                },
+                {
+                  "index": 14,
+                  "title": "Experimental Investigations and Modeling of Atmospheric Water Generation Using a Desiccant Material",
+                  "url": "https://www.academia.edu/129577815/Experimental_Investigations_and_Modeling_of_Atmospheric_Water_Generation_Using_a_Desiccant_Material"
+                }
+              ]
+            },
+            "analyst_take": "The idea of using solar-thermal energy to regenerate desiccants for atmospheric water generation is intriguing, but the low humidity levels in target regions pose a significant challenge. The most non-obvious insight is that while the materials and basic physics are understood, the efficiency of solar regeneration in these conditions is not well-documented. The biggest structural risk is the lack of a proven method to regenerate desiccants efficiently using only solar heat. The first step should be to prototype the desiccant regeneration process in a real-world environment to validate its effectiveness before scaling up production.",
+            "scores": {
+              "engineering_feasibility": 5,
+              "market_potential": 6,
+              "overall": 5,
+              "risk_level": "Medium"
+            },
+            "final_summary": "This solar-thermal atmospheric water generator concept is technically feasible but faces significant challenges in low-humidity environments. The market for atmospheric water generators is growing, driven by water scarcity, but the technology must prove its efficiency and cost-effectiveness in arid regions. The next step is to study the work of Uravu Labs, which is developing similar technology, to understand their approach to desiccant regeneration and market entry."
+          },
+          "judge1": {
+            "step1_sentence_quality": 2,
+            "step2_engineering_specificity": 3,
+            "step3_moat_honesty": 2,
+            "step4_weakest_assumptions": 2,
+            "step5_citations": 1,
+            "score": 10,
+            "verdict": "All fields met the quality standards. The content list fields contained complete sentences. Engineering assessment fields were specific. The moat was honestly assessed. Weakest assumptions were specific to the idea. Citations were sufficient and spread across sections.",
+            "specific_failures": [],
+            "specific_wins": [
+              "current_solutions: Every item is a complete sentence.",
+              "materials_and_components: Every item is a complete sentence.",
+              "regulatory_requirements: Every item is a complete sentence.",
+              "physical_feasibility: Contains a specific engineering claim.",
+              "core_engineering_challenge: Contains a specific engineering claim.",
+              "development_complexity: Contains a specific engineering claim.",
+              "materials_and_components: Contains a specific engineering claim.",
+              "regulatory_requirements: Contains a specific engineering claim.",
+              "moat: Honestly states no real moat exists with a reason.",
+              "weakest_assumptions: Every assumption is specific to the idea.",
+              "cited_sources: At least 5 citations spread across sections."
+            ]
+          },
+          "judge2": {
+            "step1_analyst_take": 3,
+            "step2_nonobvious_insight": 2,
+            "step3_india_context": 1,
+            "step4_competitive_accuracy": 2,
+            "step5_final_summary": 1,
+            "score": 9,
+            "verdict": "The evaluation provides real engineering content by identifying the challenge of solar regeneration efficiency in low humidity, which is not well-documented. It accurately describes competitors and suggests a specific next step by studying Uravu Labs. However, the India-specific context could be more detailed.",
+            "what_was_missing": [
+              "problem_space: More specific analysis on India's regulatory and manufacturing challenges for this technology."
+            ],
+            "what_worked": [
+              "analyst_take: Identified the non-obvious challenge of solar regeneration efficiency in low humidity.",
+              "competitive_landscape: Accurate competitor analysis and identification of the most relevant competitor."
+            ]
+          }
+        },
+        {
+          "id": 5,
+          "raw_idea": "A prefabricated, modular fixed-dome biogas digester made from glass-fibre reinforced plastic panels that can be assembled without skilled labour in 4\u20136 hours, designed for Indian farming households with 2\u20134 cattle. The digester processes cattle dung and crop residue into biogas for cooking and a nitrogen-rich slurry for fertiliser. Unlike traditional brick digesters that cost \u20b925,000\u201340,000 and require masons, this unit is designed to cost under \u20b912,000, qualify for MNRE's biogas subsidy of \u20b97,000\u201312,000 per unit, and ship as flat-pack components deliverable by a tempo to villages without paved roads.",
+          "evaluation": {
+            "idea_summary": "A prefabricated, modular fixed-dome biogas digester made from glass-fibre reinforced plastic panels that can be assembled without skilled labour in 4\u20136 hours, designed for Indian farming households with 2\u20134 cattle.",
+            "category": "Engineering",
+            "final_classification": "Structurally Promising",
+            "problem_space": {
+              "problem_statement": "Traditional brick biogas digesters are costly and require skilled labor for installation, making them inaccessible for many rural Indian farmers.",
+              "who_has_this_problem": "Indian farming households with 2\u20134 cattle who need a cost-effective and easy-to-install biogas solution.",
+              "scale_of_impact": "The impact is significant as it addresses energy needs and waste management for millions of small-scale farmers in India.",
+              "current_solutions": [
+                "Traditional brick digesters are widely used but are expensive and labor-intensive to install.",
+                "Metal biogas digesters offer durability but are costly and prone to corrosion.",
+                "Plastic drum digesters are cheaper but have limited capacity and durability."
+              ]
+            },
+            "competitive_landscape": {
+              "global_players": [
+                {
+                  "name": "Envitec Biogas",
+                  "approach": "Envitec Biogas provides large-scale biogas plants with advanced technology.",
+                  "edge": "They have a strong technological base and experience in large installations.",
+                  "weakness": "Their solutions are not tailored for small-scale rural applications.",
+                  "relevance_to_your_idea": "Their focus on large-scale solutions leaves a gap in the small-scale market."
+                }
+              ],
+              "india_players": [
+                {
+                  "name": "Green Elephant Engineering",
+                  "approach": "They focus on small and medium-sized biogas plants.",
+                  "edge": "They have local market knowledge and experience with subsidies.",
+                  "weakness": "Their solutions still require skilled labor for installation.",
+                  "relevance_to_your_idea": "They are a direct competitor but lack the modular, easy-assembly approach."
+                }
+              ],
+              "whitespace": "The gap is in providing a low-cost, modular, and easy-to-assemble biogas solution for small-scale farmers, which well-funded players have not filled due to their focus on larger installations."
+            },
+            "engineering_assessment": {
+              "physical_feasibility": "The use of glass-fibre reinforced plastic makes the digester lightweight and durable, suitable for prefabrication and easy assembly.",
+              "core_engineering_challenge": "Ensuring the airtightness and durability of the joints between the prefabricated panels is critical.",
+              "development_complexity": "The project is complex but feasible, requiring careful design of the panel locking mechanisms and gas-tight seals.",
+              "materials_and_components": [
+                "Glass-fibre reinforced plastic is used for its strength and lightweight properties.",
+                "Rubber gaskets are necessary for sealing joints to ensure airtightness.",
+                "Standard biogas valves and pipes are used for gas collection and distribution."
+              ],
+              "regulatory_requirements": [
+                "BIS CRS certification is required for electronic components used in the system.",
+                "MNRE approval is necessary to qualify for government subsidies."
+              ]
+            },
+            "go_to_market": {
+              "mvp_definition": "A fully functional prototype of the modular biogas digester that can be assembled in under 6 hours and operates efficiently.",
+              "moat": "The moat lies in the proprietary design of the modular assembly system that allows for quick installation without skilled labor.",
+              "manufacturing_path": "Manufacturing will involve local production of FRP panels and assembly kits, leveraging India's existing fiberglass industry.",
+              "distribution_strategy": "Distribution will focus on rural areas through partnerships with agricultural cooperatives and NGOs.",
+              "adoption_barrier": "The primary barrier is the initial skepticism of farmers towards new technology, which can be mitigated through demonstrations and subsidies."
+            },
+            "weakest_assumptions": [
+              {
+                "assumption": "The cost of FRP panels will remain stable and affordable.",
+                "why_it_matters": "Cost overruns on materials could make the product unviable at the target price point.",
+                "how_to_test": "Conduct a cost analysis with multiple suppliers to ensure price stability."
+              },
+              {
+                "assumption": "Farmers will be able to assemble the digester without skilled labor.",
+                "why_it_matters": "If assembly is too complex, the product will not meet its market promise.",
+                "how_to_test": "Run pilot assembly sessions with target users to validate ease of assembly."
+              },
+              {
+                "assumption": "The digester will perform efficiently with local cattle dung and crop residue.",
+                "why_it_matters": "Biogas yield must meet expectations to justify the investment.",
+                "how_to_test": "Conduct field tests with typical feedstock to measure gas output and efficiency."
+              }
+            ],
+            "learning": {
+              "search_queries": [
+                "prefabricated biogas digester designs",
+                "FRP biogas digester manufacturing",
+                "biogas subsidy schemes in India"
+              ],
+              "publications_to_follow": [
+                "Journal of Renewable Energy",
+                "Biogas World Magazine",
+                "MNRE's official publications on renewable energy"
+              ],
+              "cited_sources": [
+                {
+                  "index": 0,
+                  "title": "Biogas Digesters Market Trends & Predictions",
+                  "url": "https://blog.anaerobic-digestion.com/biogas-digesters-market-trends-predictions/"
+                },
+                {
+                  "index": 1,
+                  "title": "Anaerobic Digestion Market Trends | Report [2033]",
+                  "url": "https://www.marketgrowthreports.com/market-reports/anaerobic-digestion-market-112731"
+                },
+                {
+                  "index": 2,
+                  "title": "Biogas Plant Market Size, Growth & Forecast Report 2034",
+                  "url": "https://www.imarcgroup.com/biogas-plant-market"
+                },
+                {
+                  "index": 10,
+                  "title": "Development and application of prefabricated biogas digesters",
+                  "url": "https://www.researchgate.net/publication/261186638_Development_and_application_of_prefabricated_biogas_digesters_in_developing_countries"
+                },
+                {
+                  "index": 11,
+                  "title": "Comparative Evaluation of Fiber-glass Reinforced Plastic and Metal Biogas Digesters",
+                  "url": "https://www.academia.edu/13236315/Comparative_Evaluation_of_Fiber_glass_Reinforced_Plastic_and_Metal_Biogas_Digesters"
+                }
+              ]
+            },
+            "analyst_take": "The most non-obvious insight is that while the market for biogas digesters is growing, the specific need for low-cost, easy-to-assemble solutions in rural India remains unmet. The primary constraint is ensuring airtight seals between prefabricated panels, which is critical for efficiency. The first step should be to prototype the panel locking and sealing mechanism to validate assembly ease and airtightness. This idea has a real shot if it can overcome the engineering challenge of panel assembly and sealing, making it a structurally promising venture.",
+            "scores": {
+              "engineering_feasibility": 7,
+              "market_potential": 8,
+              "overall": 7,
+              "risk_level": "Moderate"
+            },
+            "final_summary": "This idea addresses a real need in rural India for affordable, easy-to-install biogas solutions. The engineering challenge lies in the modular assembly and ensuring airtight seals, but it is feasible with current materials and technology. The market potential is significant, given the government's push for renewable energy and available subsidies. For further study, look into the MNRE's guidelines and subsidy schemes for biogas projects."
+          },
+          "judge1": {
+            "step1_sentence_quality": 2,
+            "step2_engineering_specificity": 3,
+            "step3_moat_honesty": 2,
+            "step4_weakest_assumptions": 2,
+            "step5_citations": 1,
+            "score": 10,
+            "verdict": "All fields met the quality standards. The evaluation provided complete sentences in all content list fields, specific engineering assessments, a valid moat explanation, specific weakest assumptions, and sufficient citations.",
+            "specific_failures": [],
+            "specific_wins": [
+              "current_solutions: All items are complete sentences.",
+              "materials_and_components: All items are complete sentences.",
+              "regulatory_requirements: All items are complete sentences.",
+              "physical_feasibility: Specific engineering claim with reasoning.",
+              "core_engineering_challenge: Specific engineering claim with reasoning.",
+              "development_complexity: Specific engineering claim with reasoning.",
+              "materials_and_components: Specific engineering claim with reasoning.",
+              "regulatory_requirements: Specific engineering claim with reasoning.",
+              "moat: Valid moat type with specific explanation.",
+              "weakest_assumptions: All assumptions are specific to the idea.",
+              "cited_sources: At least 5 citations spread across different sections."
+            ]
+          },
+          "judge2": {
+            "step1_analyst_take": 3,
+            "step2_nonobvious_insight": 2,
+            "step3_india_context": 2,
+            "step4_competitive_accuracy": 2,
+            "step5_final_summary": 1,
+            "score": 10,
+            "verdict": "The evaluation provides a comprehensive analysis with specific engineering insights, such as the challenge of ensuring airtight seals between prefabricated panels. It also offers a detailed look at the competitive landscape and the specific needs of the Indian market. The final summary gives a clear next step by pointing to MNRE guidelines for further study.",
+            "what_was_missing": [],
+            "what_worked": [
+              "The analyst_take provided a specific engineering challenge related to airtight seals and a clear first step for prototyping.",
+              "The evaluation included a non-obvious insight about the unmet need for low-cost, easy-to-assemble solutions in rural India.",
+              "The competitive analysis accurately identified relevant players and their weaknesses, particularly in the context of the Indian market."
+            ]
+          }
+        },
+        {
+          "id": 6,
+          "raw_idea": "A network of low-power wireless sensors \u2014 accelerometers, strain gauges, and corrosion probes \u2014 cast directly into bridge deck concrete during construction, powered by energy harvesting from vibration and thermal gradients, that continuously transmits structural health data to a cloud dashboard. The system flags anomalies like rebar corrosion current spikes, resonant frequency shifts indicating crack formation, or deflection exceeding design limits, giving bridge engineers a 6-18 month warning before failures become visible. Targeting India's NHAI and state PWD departments which manage 1.4 lakh bridges and conduct mostly reactive maintenance after visible damage.",
+          "evaluation": {
+            "idea_summary": "A network of low-power wireless sensors embedded in bridge deck concrete to monitor structural health, powered by energy harvesting, targeting proactive maintenance for India's bridge infrastructure.",
+            "category": "Engineering",
+            "final_classification": "Interesting but Unproven",
+            "problem_space": {
+              "problem_statement": "Bridges often suffer from undetected structural issues that lead to failures and costly repairs.",
+              "who_has_this_problem": "India's NHAI and state PWD departments managing over 1.4 lakh bridges with mostly reactive maintenance practices.",
+              "scale_of_impact": "Significant, as proactive maintenance can prevent catastrophic failures and reduce repair costs.",
+              "current_solutions": [
+                "Current solutions include manual inspections and periodic maintenance, which are often reactive and not predictive."
+              ]
+            },
+            "competitive_landscape": {
+              "global_players": [
+                {
+                  "name": "Microstrain Inc",
+                  "approach": "Energy harvesting, wireless structural health monitoring systems.",
+                  "edge": "Proven technology with patents in energy harvesting and wireless monitoring.",
+                  "weakness": "High cost and complexity of deployment.",
+                  "relevance_to_your_idea": "Their technology is similar in concept but may not be optimized for the Indian market."
+                }
+              ],
+              "india_players": [
+                {
+                  "name": "SenseGiz",
+                  "approach": "IoT-based sensor networks for industrial monitoring.",
+                  "edge": "Local manufacturing and understanding of Indian market needs.",
+                  "weakness": "Limited focus on structural health monitoring specifically for bridges.",
+                  "relevance_to_your_idea": "Potential partner or competitor in the IoT sensor space."
+                }
+              ],
+              "whitespace": "The gap exists in integrating energy harvesting with wireless sensors specifically for bridge health monitoring in India, which well-funded players have not filled due to the niche application and regulatory challenges."
+            },
+            "engineering_assessment": {
+              "physical_feasibility": "The concept is physically feasible with current technology in low-power sensors and energy harvesting.",
+              "core_engineering_challenge": "Ensuring reliable energy harvesting from low-frequency vibrations and thermal gradients in bridges.",
+              "development_complexity": "Complex, requiring integration of multiple sensor types and energy harvesting technologies.",
+              "materials_and_components": [
+                "The system requires accelerometers, strain gauges, corrosion probes, and energy harvesting modules."
+              ],
+              "regulatory_requirements": [
+                "BIS CRS certification is mandatory for electronic products sold in India, which can take 3-6 months."
+              ]
+            },
+            "go_to_market": {
+              "mvp_definition": "A prototype sensor network embedded in a test bridge section, transmitting real-time data to a cloud dashboard.",
+              "moat": "No real moat exists due to the lack of proprietary technology or regulatory advantage.",
+              "manufacturing_path": "Initial prototyping in Bengaluru, leveraging local precision manufacturing capabilities.",
+              "distribution_strategy": "Partnerships with state PWD departments for pilot projects.",
+              "adoption_barrier": "The high initial cost and complexity of deployment in existing infrastructure."
+            },
+            "weakest_assumptions": [
+              {
+                "assumption": "Energy harvesting will provide sufficient power for continuous operation.",
+                "why_it_matters": "If energy harvesting is insufficient, the system will fail to operate reliably.",
+                "how_to_test": "Conduct field tests to measure energy harvesting efficiency under real bridge conditions."
+              },
+              {
+                "assumption": "Wireless communication will be reliable in the bridge environment.",
+                "why_it_matters": "Unreliable communication could lead to data loss and system failure.",
+                "how_to_test": "Test wireless protocols in a bridge environment to ensure reliable data transmission."
+              },
+              {
+                "assumption": "The system can be economically integrated into new bridge constructions.",
+                "why_it_matters": "If integration costs are too high, adoption will be limited.",
+                "how_to_test": "Estimate integration costs and compare with current construction budgets."
+              }
+            ],
+            "learning": {
+              "search_queries": [
+                "energy harvesting for structural health monitoring",
+                "wireless sensor networks in civil engineering",
+                "IoT sensors for bridge monitoring"
+              ],
+              "publications_to_follow": [
+                "Journal of Civil Structural Health Monitoring",
+                "IEEE Internet of Things Journal"
+              ],
+              "cited_sources": [
+                {
+                  "index": 0,
+                  "title": "Low Power Wireless IoT Sensors Market 2025",
+                  "url": "https://semiconductorinsight.com/report/global-low-power-wireless-iot-sensors-market/"
+                },
+                {
+                  "index": 1,
+                  "title": "Global Low Power Wireless IoT Sensors Market Research Report 2024",
+                  "url": "https://www.qyresearch.com/reports/2248536/low-power-wireless-iot-sensors"
+                },
+                {
+                  "index": 2,
+                  "title": "Worldwide Low Power Wireless IoT Sensors Market Research Report 2025",
+                  "url": "https://pmarketresearch.com/worldwide-low-power-wireless-iot-sensors-market-research-2024-by-type-application-participants-and-countries-forecast-to-2030/"
+                },
+                {
+                  "index": 3,
+                  "title": "Global Low Power Wireless IoT Sensors Market 2024 by Manufacturers",
+                  "url": "https://www.globalinforesearch.com/reports/1772201/low-power-wireless-iot-sensors"
+                },
+                {
+                  "index": 10,
+                  "title": "US7719416B2 - Energy harvesting, wireless structural health",
+                  "url": "https://patents.google.com/patent/US7719416B2/en"
+                }
+              ]
+            },
+            "analyst_take": "The most non-obvious insight is that while the technology for energy harvesting and wireless sensors exists, integrating them into a cohesive system for bridge monitoring is complex and unproven at scale. The biggest structural constraint is the energy harvesting efficiency, which may not meet the power needs of continuous monitoring. The first concrete step is to prototype the energy harvesting system to validate its viability in real-world conditions. This idea is promising but faces significant engineering and regulatory challenges that need to be addressed before it can be considered viable.",
+            "scores": {
+              "engineering_feasibility": 5,
+              "market_potential": 6,
+              "overall": 5,
+              "risk_level": "High"
+            },
+            "final_summary": "This idea addresses a real problem in bridge maintenance by leveraging IoT and energy harvesting technologies. However, it faces significant engineering challenges, particularly in energy harvesting and regulatory hurdles in India. The market potential is meaningful but constrained by the complexity and cost of deployment. For further study, examine the work of Microstrain Inc, which has developed similar energy harvesting systems for structural health monitoring."
+          },
+          "judge1": {
+            "step1_sentence_quality": 1,
+            "step2_engineering_specificity": 2,
+            "step3_moat_honesty": 2,
+            "step4_weakest_assumptions": 2,
+            "step5_citations": 1,
+            "score": 8,
+            "verdict": "The evaluation failed in the sentence quality criterion due to fragments in materials_and_components and regulatory_requirements. Engineering specificity was mostly met, but one field was vague. The moat honesty and weakest assumptions were well addressed.",
+            "specific_failures": [
+              "materials_and_components: Contains a fragment instead of a complete sentence.",
+              "regulatory_requirements: Contains a fragment instead of a complete sentence.",
+              "physical_feasibility: Contains a vague phrase 'physically feasible with current technology'."
+            ],
+            "specific_wins": [
+              "core_engineering_challenge: Specific engineering claim with concrete reasoning.",
+              "development_complexity: Specific engineering claim with concrete reasoning.",
+              "moat: Explicitly states 'no real moat exists' with a reason.",
+              "weakest_assumptions: Every assumption names a specific physical or supply-chain dependency of the idea.",
+              "citations: At least 5 citations appear, spread across at least two different sections."
+            ]
+          },
+          "judge2": {
+            "step1_analyst_take": 3,
+            "step2_nonobvious_insight": 2,
+            "step3_india_context": 1,
+            "step4_competitive_accuracy": 2,
+            "step5_final_summary": 1,
+            "score": 9,
+            "verdict": "The evaluation provides real engineering content with specific insights into the challenges of energy harvesting and the complexity of system integration. It accurately identifies competitors and provides a concrete next step for further study. However, the India-specific context could be more detailed.",
+            "what_was_missing": [
+              "problem_space: Specific analysis of India's regulatory and infrastructure constraints related to this idea"
+            ],
+            "what_worked": [
+              "analyst_take: Identified the energy harvesting efficiency as a critical constraint",
+              "competitive_landscape: Accurate description of competitors and their relevance",
+              "final_summary: Provided a specific company to study for further insights"
+            ]
+          }
+        }
+      ],
+      "scores": {
+        "judge1_avg": 9.6,
+        "judge2_avg": 9.6,
+        "combined": 9.6,
+        "step_failures": [],
+        "threshold_met": true
+      }
+    }
+  ]
+}

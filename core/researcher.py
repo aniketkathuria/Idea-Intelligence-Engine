@@ -14,11 +14,18 @@ CONTENT_MAX_CHARS = 2000 # chars kept per article
 
 
 def generate_search_queries(idea, llm_client):
+    india_count  = max(1, DEFAULT_QUERY_COUNT // 3)
+    global_count = DEFAULT_QUERY_COUNT - india_count
+
     prompt = f"""
 Generate {DEFAULT_QUERY_COUNT} search queries to research the following idea.
 
-Return ONLY a JSON array of queries.
-Make sure to have no comments, output will be going directly to json.loads
+Structure your queries as follows:
+- {global_count} queries covering global market, technology landscape, competitors, and technical feasibility
+- {india_count} queries specifically about the Indian context for this idea: Indian competitors or alternatives, adoption in India, pricing or affordability in India, India-specific use cases, or regulatory/infrastructure constraints in India
+
+Return ONLY a JSON array of {DEFAULT_QUERY_COUNT} queries. No comments. Output goes directly to json.loads.
+
 Idea:
 {idea}
 """
