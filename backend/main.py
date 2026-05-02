@@ -7,11 +7,17 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 import sys
 import os
+import uuid
+from threading import Thread
+from datetime import datetime, timedelta
 
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from dotenv import load_dotenv
 load_dotenv()
+
+# In-memory job store for async /process-idea polling
+_jobs: dict = {}
 
 # --- Fix import path ---
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
@@ -108,24 +114,51 @@ class ProcessIdeaRequest(BaseModel):
 @app.post("/process-idea")
 def process_idea_endpoint(request: ProcessIdeaRequest):
     """
-    Stateless endpoint — processes an idea and returns the full result.
-    No data is stored on the server. The client (Android app) persists everything locally.
-
-    past_ideas: the client's local idea list, each with id + embedding, used for clustering.
+    Submits an idea for async processing. Returns job_id immediately.
+    Client polls GET /idea-status/{job_id} every 5s for the result.
+    This avoids mobile network timeouts on long-running requests (2+ minutes).
     """
-    logger.info(f"POST /process-idea called | past_ideas={len(request.past_ideas)}")
-    try:
-        past_ideas = [idea.model_dump() for idea in request.past_ideas]
-        result = process_idea_stateless(
-            raw_idea=request.raw_idea,
-            past_ideas=past_ideas,
-            depth=request.depth,
-            category=request.category,
-        )
-        return {"status": "completed", **result}
-    except Exception as e:
-        logger.error(f"❌ /process-idea failed: {e}", exc_info=True)
-        raise HTTPException(status_code=500, detail=str(e))
+    job_id = str(uuid.uuid4())
+    _jobs[job_id] = {"status": "processing", "created_at": datetime.utcnow()}
+    logger.info(f"POST /process-idea | job_id={job_id} | past_ideas={len(request.past_ideas)}")
+
+    past_ideas = [idea.model_dump() for idea in request.past_ideas]
+    raw_idea   = request.raw_idea
+    depth      = request.depth
+    category   = request.category
+
+    def run():
+        try:
+            result = process_idea_stateless(
+                raw_idea=raw_idea,
+                past_ideas=past_ideas,
+                depth=depth,
+                category=category,
+            )
+            _jobs[job_id].update({"status": "completed", **result})
+            logger.info(f"✅ job {job_id} completed")
+        except Exception as e:
+            _jobs[job_id].update({"status": "failed", "error": str(e)})
+            logger.error(f"❌ job {job_id} failed: {e}", exc_info=True)
+
+    Thread(target=run, daemon=True).start()
+
+    # Clean up jobs older than 1 hour
+    cutoff = datetime.utcnow() - timedelta(hours=1)
+    stale = [jid for jid, j in _jobs.items() if j.get("created_at", datetime.utcnow()) < cutoff]
+    for jid in stale:
+        del _jobs[jid]
+
+    return {"job_id": job_id}
+
+
+@app.get("/idea-status/{job_id}")
+def get_idea_status(job_id: str):
+    """Poll this after POST /process-idea. Returns status: processing | completed | failed."""
+    if job_id not in _jobs:
+        raise HTTPException(status_code=404, detail="Job not found or expired")
+    job = {k: v for k, v in _jobs[job_id].items() if k != "created_at"}
+    return job
 
 
 @app.on_event("startup")
