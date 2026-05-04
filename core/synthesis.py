@@ -133,7 +133,6 @@ Rules:
 - Use the exact idea_id values provided ("new" for the new idea, integer IDs for context ideas).
 - If should_merge is false, super_idea and cluster_narrative must be null.
 - Be precise and analytical. Do not exaggerate connections."""
-"""
 
     response = client.chat.completions.create(
         model="gpt-4o-mini",
