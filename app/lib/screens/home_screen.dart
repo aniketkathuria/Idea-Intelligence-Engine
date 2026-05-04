@@ -7,6 +7,7 @@ import '../theme/app_theme.dart';
 import '../widgets/note_card.dart';
 import 'note_screen.dart';
 import 'settings_screen.dart';
+import 'cluster_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -243,22 +244,32 @@ class _ClustersTab extends StatelessWidget {
     return ListView.builder(
       padding: const EdgeInsets.only(top: 8, bottom: 100),
       itemCount: clusters.length,
-      itemBuilder: (ctx, i) => _ClusterCard(
-        cluster: clusters[i],
-        ideas: provider.ideasInCluster(clusters[i]),
-      ),
+      itemBuilder: (ctx, i) {
+        final cluster = clusters[i];
+        final clusterIdeas = provider.ideasInCluster(cluster);
+        return _ClusterCard(
+          cluster: cluster,
+          ideas: clusterIdeas,
+          onTap: () => Navigator.push(ctx, MaterialPageRoute(
+            builder: (_) => ClusterScreen(cluster: cluster, ideas: clusterIdeas),
+          )),
+        );
+      },
     );
   }
 }
 
 class _ClusterCard extends StatelessWidget {
-  final Cluster     cluster;
-  final List<Idea>  ideas;
-  const _ClusterCard({required this.cluster, required this.ideas});
+  final Cluster      cluster;
+  final List<Idea>   ideas;
+  final VoidCallback onTap;
+  const _ClusterCard({required this.cluster, required this.ideas, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -310,6 +321,6 @@ class _ClusterCard extends StatelessWidget {
           ],
         ],
       ),
-    );
+    ));
   }
 }

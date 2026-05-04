@@ -29,10 +29,12 @@ def _extract_clusters(past_ideas: list) -> list:
             continue
         if cid not in cluster_map:
             synth = idea.get("synthesis") or {}
+            # Handle old field name (merged_super_idea_summary) and new (super_idea)
+            super_idea = synth.get("super_idea") or synth.get("merged_super_idea_summary")
             cluster_map[cid] = {
                 "cluster_id": cid,
                 "idea_ids": [],
-                "super_idea": synth.get("super_idea"),
+                "super_idea": super_idea,
                 "merge_reasoning": synth.get("merge_reasoning"),
             }
         cluster_map[cid]["idea_ids"].append(idea["id"])

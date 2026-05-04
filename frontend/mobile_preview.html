@@ -50,28 +50,22 @@ h1{color:var(--muted);font-size:13px;letter-spacing:1px;text-transform:uppercase
 .icon-btn{width:36px;height:36px;display:flex;align-items:center;justify-content:center;
   color:var(--muted);cursor:pointer;border-radius:50%;transition:background .15s;}
 .icon-btn:hover{background:var(--surface);}
-
 .search-bar{
   margin:4px 16px 8px;height:38px;background:var(--surface);
   border-radius:10px;border:0.5px solid var(--border);
   display:flex;align-items:center;gap:8px;padding:0 12px;
   color:var(--dim);font-size:13px;cursor:text;
 }
-.tab-bar{
-  display:flex;border-bottom:0.5px solid var(--border);
-  padding:0 16px;flex-shrink:0;
-}
+.tab-bar{display:flex;border-bottom:0.5px solid var(--border);padding:0 16px;flex-shrink:0;}
 .tab-item{
   padding:10px 16px;font-size:13px;color:var(--muted);cursor:pointer;
-  border-bottom:2px solid transparent;margin-bottom:-0.5px;transition:color .15s;
-  font-weight:400;
+  border-bottom:2px solid transparent;margin-bottom:-0.5px;transition:color .15s;font-weight:400;
 }
 .tab-item.active{color:var(--amber);border-bottom-color:var(--amber);font-weight:500;}
 .notes-list{flex:1;overflow-y:auto;padding:8px 0 90px;}
 .note-card{
   margin:5px 16px;padding:14px 16px;background:var(--surface);
-  border-radius:12px;border:0.5px solid var(--border);cursor:pointer;
-  transition:border-color .15s;
+  border-radius:12px;border:0.5px solid var(--border);cursor:pointer;transition:border-color .15s;
 }
 .note-card:hover{border-color:var(--border2);}
 .note-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}
@@ -81,16 +75,13 @@ h1{color:var(--muted);font-size:13px;letter-spacing:1px;text-transform:uppercase
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 .note-meta{display:flex;align-items:center;gap:8px;margin-top:8px;}
 .note-date{font-size:10px;color:var(--dim);}
-.cat-badge{
-  padding:2px 6px;border-radius:4px;font-size:9px;font-weight:500;
+.cat-badge{padding:2px 6px;border-radius:4px;font-size:9px;font-weight:500;
   letter-spacing:0.3px;background:var(--amber-dim);color:var(--amber);
-  border:0.5px solid rgba(212,146,42,0.3);
-}
+  border:0.5px solid rgba(212,146,42,0.3);}
 .status-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:3px;}
 .dot-green{background:var(--green);}
 .dot-amber{background:var(--amber);}
 .dot-dim{background:var(--dim);border:0.5px solid var(--border2);}
-
 .fab{
   position:absolute;bottom:28px;right:24px;
   width:52px;height:52px;border-radius:50%;background:var(--amber);
@@ -101,157 +92,134 @@ h1{color:var(--muted);font-size:13px;letter-spacing:1px;text-transform:uppercase
 .fab:hover{transform:scale(1.05);}
 
 /* ── Note screen ─────────────────────────────────────────── */
-.note-appbar{
-  padding:10px 16px 0;display:flex;align-items:center;gap:10px;flex-shrink:0;
-}
+.note-appbar{padding:10px 16px 0;display:flex;align-items:center;gap:10px;flex-shrink:0;}
 .back-btn{color:var(--muted);font-size:13px;cursor:pointer;display:flex;align-items:center;gap:4px;}
-.note-appbar-title{flex:1;font-size:13px;color:var(--muted);
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.note-tabs{
-  display:flex;border-bottom:0.5px solid var(--border);
-  padding:0 16px;flex-shrink:0;margin-top:2px;
-}
-.note-tab{
-  padding:9px 14px;font-size:12px;color:var(--muted);cursor:pointer;
-  border-bottom:2px solid transparent;margin-bottom:-0.5px;
-  transition:color .15s;font-weight:400;
-}
+.note-appbar-title{flex:1;font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.note-tabs{display:flex;border-bottom:0.5px solid var(--border);padding:0 16px;flex-shrink:0;margin-top:2px;}
+.note-tab{padding:9px 14px;font-size:12px;color:var(--muted);cursor:pointer;
+  border-bottom:2px solid transparent;margin-bottom:-0.5px;transition:color .15s;font-weight:400;}
 .note-tab.active{color:var(--amber);border-bottom-color:var(--amber);font-weight:500;}
 .tab-content{display:none;flex:1;overflow:hidden;flex-direction:column;}
 .tab-content.active{display:flex;}
 
 /* Note editor */
-.editor-area{
-  flex:1;padding:18px 20px;font-size:14px;color:var(--text);
-  line-height:1.75;overflow-y:auto;white-space:pre-wrap;
-  outline:none;
-}
-.editor-area[data-placeholder]:empty::before{
-  content:attr(data-placeholder);color:var(--dim);
-}
-.bottom-bar{
-  padding:10px 16px 24px;background:var(--surface);
-  border-top:0.5px solid var(--border);display:flex;align-items:center;gap:6px;
-  flex-shrink:0;
-}
-.depth-chip{
-  padding:5px 10px;border-radius:12px;font-size:10px;cursor:pointer;
-  border:0.5px solid var(--border);color:var(--dim);transition:all .15s;
-}
+.editor-area{flex:1;padding:18px 20px;font-size:14px;color:var(--text);
+  line-height:1.75;overflow-y:auto;white-space:pre-wrap;outline:none;}
+.editor-area[data-placeholder]:empty::before{content:attr(data-placeholder);color:var(--dim);}
+.bottom-bar{padding:10px 16px 24px;background:var(--surface);
+  border-top:0.5px solid var(--border);display:flex;align-items:center;gap:6px;flex-shrink:0;}
+.depth-chip{padding:5px 10px;border-radius:12px;font-size:10px;cursor:pointer;
+  border:0.5px solid var(--border);color:var(--dim);transition:all .15s;}
 .depth-chip.sel{background:var(--amber-dim);border-color:var(--amber);color:var(--amber);font-weight:600;}
-.analyze-btn{
-  margin-left:auto;padding:8px 16px;border-radius:20px;background:var(--amber);
+.analyze-btn{margin-left:auto;padding:8px 16px;border-radius:20px;background:var(--amber);
   color:var(--bg);font-size:12px;font-weight:600;cursor:pointer;
-  display:flex;align-items:center;gap:6px;transition:opacity .15s;
-}
+  display:flex;align-items:center;gap:6px;transition:opacity .15s;}
 .analyze-btn:hover{opacity:0.9;}
 .analyze-icon{font-size:12px;}
 
 /* Evaluator tab */
 .eval-area{flex:1;overflow-y:auto;padding:16px;}
-.eval-cat{
-  display:inline-block;padding:3px 8px;border-radius:4px;
+.eval-cat{display:inline-block;padding:3px 8px;border-radius:4px;
   background:var(--amber-dim);color:var(--amber);font-size:10px;font-weight:500;
-  margin-bottom:10px;border:0.5px solid rgba(212,146,42,0.3);
-}
+  margin-bottom:10px;border:0.5px solid rgba(212,146,42,0.3);}
 .eval-title{font-size:15px;font-weight:600;color:var(--text);line-height:1.4;margin-bottom:8px;}
-.class-badge{
-  display:inline-block;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:500;
-  margin-bottom:16px;
-}
+.class-badge{display:inline-block;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:500;margin-bottom:16px;}
 .badge-promising{background:var(--amber-dim);color:var(--amber);}
-.badge-breakthrough{background:rgba(156,106,222,0.12);color:#9c6ade;}
-.badge-weak{background:var(--red-dim);color:var(--red);}
-.section-label{
-  font-size:9px;font-weight:600;letter-spacing:1px;color:var(--amber);
-  text-transform:uppercase;margin-bottom:6px;
-}
-.section-card{
-  background:var(--surface);border-radius:10px;border:0.5px solid var(--border);
-  padding:12px;margin-bottom:14px;
-}
+.section-label{font-size:9px;font-weight:600;letter-spacing:1px;color:var(--amber);
+  text-transform:uppercase;margin-bottom:6px;}
+.section-card{background:var(--surface);border-radius:10px;border:0.5px solid var(--border);
+  padding:12px;margin-bottom:14px;}
 .kv-row{margin-bottom:8px;}
 .kv-key{font-size:10px;color:var(--dim);margin-bottom:2px;}
 .kv-val{font-size:12px;color:var(--text);line-height:1.55;}
 .kv-val.green{color:var(--green);}
 .kv-val.red{color:var(--red);}
 .scores-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
-.score-card{
-  background:var(--surface);border-radius:8px;border:0.5px solid var(--border);
-  padding:8px 12px;text-align:center;min-width:60px;
-}
+.score-card{background:var(--surface);border-radius:8px;border:0.5px solid var(--border);
+  padding:8px 12px;text-align:center;min-width:60px;}
 .score-label{font-size:9px;color:var(--dim);margin-bottom:3px;}
 .score-val{font-size:18px;font-weight:600;color:var(--amber);}
 .score-val span{font-size:10px;color:var(--dim);}
-.analyst-card{
-  background:var(--surface);border-radius:10px;border:0.5px solid var(--border2);
-  padding:14px;margin-bottom:14px;
-}
-.analyst-text{
-  font-size:13px;font-style:italic;color:var(--text);line-height:1.75;
-}
-.summary-card{
-  background:var(--surface);border-radius:10px;border:0.5px solid var(--border);
-  padding:12px;margin-bottom:14px;
-}
+.analyst-card{background:var(--surface);border-radius:10px;border:0.5px solid var(--border2);
+  padding:14px;margin-bottom:14px;}
+.analyst-text{font-size:13px;font-style:italic;color:var(--text);line-height:1.75;}
+.summary-card{background:var(--surface);border-radius:10px;border:0.5px solid var(--border);
+  padding:12px;margin-bottom:14px;}
 .summary-text{font-size:12px;color:var(--text);line-height:1.6;}
 
-/* Synthesis tab */
+/* ── Synthesis tab ───────────────────────────────────────── */
 .synth-area{flex:1;overflow-y:auto;padding:16px;}
-.synth-cluster-header{
-  display:flex;align-items:center;gap:6px;margin-bottom:12px;
-  font-size:9px;font-weight:600;letter-spacing:1px;color:var(--amber);text-transform:uppercase;
+
+.narrative-card{
+  width:100%;padding:16px;border-radius:12px;
+  background:var(--amber-dim);border:0.5px solid rgba(212,146,42,0.25);
+  margin-bottom:14px;
 }
-.super-idea-card{
-  background:var(--surface);border-radius:10px;
-  border:0.5px solid rgba(212,146,42,0.2);padding:14px;margin-bottom:10px;
+.narrative-label{font-size:9px;font-weight:600;letter-spacing:1px;color:var(--amber);
+  text-transform:uppercase;margin-bottom:10px;}
+.narrative-text{font-size:13px;color:var(--text);line-height:1.65;}
+
+.synth-section{width:100%;padding:13px;border-radius:10px;
+  background:var(--surface);border:0.5px solid var(--border);margin-bottom:10px;}
+.synth-section-amber{border-color:rgba(212,146,42,0.3);}
+.synth-section-label{font-size:10px;color:var(--dim);margin-bottom:7px;}
+.synth-section-text{font-size:12px;color:var(--muted);line-height:1.55;}
+
+.sub-label{font-size:9px;font-weight:600;letter-spacing:0.8px;color:var(--dim);
+  text-transform:uppercase;margin-bottom:7px;}
+
+.role-card{
+  padding:12px;border-radius:10px;background:var(--surface);
+  border:0.5px solid var(--border);margin-bottom:8px;
 }
-.super-idea-label{font-size:10px;color:var(--dim);margin-bottom:5px;}
-.super-idea-text{font-size:13px;color:var(--text);line-height:1.55;}
-.connected-note{
-  display:flex;align-items:center;gap:8px;
-  background:var(--surface);border-radius:8px;border:0.5px solid var(--border);
-  padding:10px 12px;margin-bottom:6px;
-}
+.role-card-new{border-color:rgba(212,146,42,0.3);}
+.role-header{display:flex;align-items:center;gap:7px;margin-bottom:8px;}
+.role-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.role-dot-amber{background:var(--amber);}
+.role-dot-green{background:var(--green);}
+.role-name{font-size:11px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.role-name-amber{color:var(--amber);}
+.role-name-green{color:var(--text);}
+.role-row{display:flex;margin-bottom:4px;}
+.role-key{font-size:10px;color:var(--dim);width:82px;flex-shrink:0;}
+.role-val{font-size:11px;color:var(--muted);line-height:1.5;}
+
+.rel-badge{display:inline-block;padding:3px 8px;border-radius:6px;font-size:10px;font-weight:500;}
+.rel-complementary{background:rgba(76,175,122,0.12);color:var(--green);border:0.5px solid rgba(76,175,122,0.4);}
+.rel-evolutionary{background:var(--amber-dim);color:var(--amber);border:0.5px solid rgba(212,146,42,0.4);}
+.rel-variations{background:rgba(107,103,96,0.15);color:var(--dim);border:0.5px solid rgba(107,103,96,0.3);}
+.rel-divergent{background:var(--red-dim);color:var(--red);border:0.5px solid rgba(192,82,74,0.4);}
+
+.connected-note{display:flex;align-items:center;gap:8px;background:var(--surface);
+  border-radius:8px;border:0.5px solid var(--border);padding:10px 12px;margin-bottom:6px;}
 .connected-dot{width:5px;height:5px;border-radius:50%;background:var(--green);flex-shrink:0;}
 .connected-title{font-size:12px;color:var(--text);}
-.empty-msg{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  flex:1;gap:12px;padding:40px 20px;text-align:center;
-}
+
+.empty-msg{display:flex;flex-direction:column;align-items:center;justify-content:center;
+  flex:1;gap:12px;padding:40px 20px;text-align:center;}
 .empty-icon{font-size:40px;opacity:0.3;}
 .empty-text{font-size:13px;color:var(--dim);line-height:1.6;}
 
 /* Clusters tab */
-.cluster-card{
-  margin:5px 16px;padding:14px 16px;background:var(--surface);
-  border-radius:12px;border:0.5px solid var(--border);
-}
-.cluster-header{
-  display:flex;align-items:center;gap:6px;margin-bottom:10px;
-  font-size:9px;color:var(--amber);font-weight:600;letter-spacing:0.8px;
-  text-transform:uppercase;
-}
+.cluster-card{margin:5px 16px;padding:14px 16px;background:var(--surface);
+  border-radius:12px;border:0.5px solid var(--border);}
+.cluster-header{display:flex;align-items:center;gap:6px;margin-bottom:10px;
+  font-size:9px;color:var(--amber);font-weight:600;letter-spacing:0.8px;text-transform:uppercase;}
 .cluster-super{font-size:13px;color:var(--text);line-height:1.5;margin-bottom:10px;}
 .idea-pills{display:flex;flex-wrap:wrap;gap:5px;}
-.idea-pill{
-  padding:3px 8px;border-radius:6px;font-size:10px;color:var(--muted);
-  background:var(--surface2);border:0.5px solid var(--border);
-}
+.idea-pill{padding:3px 8px;border-radius:6px;font-size:10px;color:var(--muted);
+  background:var(--surface2);border:0.5px solid var(--border);}
 </style>
 </head>
 <body>
-<h1>Spark Vault — Phone Preview</h1>
+<h1>Spark Vault — Phone Preview · v1.0.5</h1>
 
 <div class="phone">
   <div class="notch"><div class="notch-dot"></div></div>
 
-  <!-- Status bar -->
   <div class="status-bar">
     <span>9:41</span>
-    <div class="status-icons">
-      <span>▲</span><span>WiFi</span><span>■■■</span>
-    </div>
+    <div class="status-icons"><span>▲</span><span>WiFi</span><span>■■■</span></div>
   </div>
 
   <!-- ── HOME SCREEN ──────────────────────────────────────── -->
@@ -262,11 +230,10 @@ h1{color:var(--muted);font-size:13px;letter-spacing:1px;text-transform:uppercase
     </div>
     <div class="search-bar">🔍 &nbsp;Search notes…</div>
     <div class="tab-bar">
-      <div class="tab-item active" id="htab-notes" onclick="switchHomeTab('notes')">Notes</div>
-      <div class="tab-item" id="htab-clusters" onclick="switchHomeTab('clusters')">Clusters</div>
+      <div class="tab-item active" id="htab-notes"    onclick="switchHomeTab('notes')">Notes</div>
+      <div class="tab-item"        id="htab-clusters" onclick="switchHomeTab('clusters')">Clusters</div>
     </div>
 
-    <!-- Notes list -->
     <div class="notes-list" id="notes-panel">
       <div class="note-card" onclick="openNote('other')">
         <div class="note-card-top">
@@ -281,7 +248,7 @@ h1{color:var(--muted);font-size:13px;letter-spacing:1px;text-transform:uppercase
       </div>
       <div class="note-card" onclick="openNote('science')">
         <div class="note-card-top">
-          <div class="note-title">Gut microbiome circadian rhythm disruption and metabolic syndrome</div>
+          <div class="note-title">Gut microbiome circadian rhythm disruption</div>
           <div class="status-dot dot-green"></div>
         </div>
         <div class="note-preview">The circadian clock in gut microbiota modulates bile acid recycling and short-chain fatty acid production in a time-dependent manner…</div>
@@ -296,27 +263,22 @@ h1{color:var(--muted);font-size:13px;letter-spacing:1px;text-transform:uppercase
           <div class="status-dot dot-dim"></div>
         </div>
         <div class="note-preview">Create a network of employer-recognised, practically oriented certification programmes delivered in 2-hour evening modules…</div>
-        <div class="note-meta">
-          <span class="note-date">May 1</span>
-        </div>
+        <div class="note-meta"><span class="note-date">May 1</span></div>
       </div>
       <div class="note-card" onclick="openNote('processing')">
         <div class="note-card-top">
-          <div class="note-title">Predictive maintenance cooperative for manufacturing clusters</div>
+          <div class="note-title">Predictive maintenance cooperative for manufacturing</div>
           <div class="status-dot dot-amber"></div>
         </div>
         <div class="note-preview">Shared predictive maintenance service for small manufacturing clusters structured as a cooperative where member firms share anonymised sensor data…</div>
-        <div class="note-meta">
-          <span class="note-date">May 1</span>
-        </div>
+        <div class="note-meta"><span class="note-date">May 1</span></div>
       </div>
     </div>
 
-    <!-- Clusters list -->
     <div class="notes-list" id="clusters-panel" style="display:none">
-      <div class="cluster-card">
+      <div class="cluster-card" onclick="openCluster()" style="cursor:pointer;transition:border-color .15s" onmouseover="this.style.borderColor='rgba(255,255,255,0.15)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'">
         <div class="cluster-header">⬡ Cluster #1 · 3 notes</div>
-        <div class="cluster-super">Infrastructure systems for democratising access to India-specific data — satellite, oral, and sensor-based — to enable research and planning that is currently bottlenecked by data fragmentation.</div>
+        <div class="cluster-super">A federated open data infrastructure for India — aggregating agricultural satellite imagery, oral economic histories, and urban microclimate data — enabling cross-domain research currently blocked by fragmentation and institutional gatekeeping.</div>
         <div class="idea-pills">
           <span class="idea-pill">Satellite archive</span>
           <span class="idea-pill">Oral history archive</span>
@@ -340,21 +302,19 @@ h1{color:var(--muted);font-size:13px;letter-spacing:1px;text-transform:uppercase
       <div class="note-tab"        id="ntab-synthesis" onclick="switchNoteTab('synthesis')">Synthesis</div>
     </div>
 
-    <!-- Note tab -->
     <div class="tab-content active" id="tcontent-note">
       <div class="editor-area" id="editor" contenteditable="true"
            data-placeholder="Write your idea, thought, or observation…"></div>
       <div class="bottom-bar">
-        <div class="depth-chip" id="chip-fast"     onclick="selDepth('fast')">Fast</div>
+        <div class="depth-chip"     id="chip-fast"     onclick="selDepth('fast')">Fast</div>
         <div class="depth-chip sel" id="chip-balanced" onclick="selDepth('balanced')">Balanced</div>
-        <div class="depth-chip" id="chip-deep"     onclick="selDepth('deep')">Deep</div>
+        <div class="depth-chip"     id="chip-deep"     onclick="selDepth('deep')">Deep</div>
         <div class="analyze-btn" onclick="fakeAnalyze()">
           <span class="analyze-icon">✦</span> Analyze
         </div>
       </div>
     </div>
 
-    <!-- Evaluator tab -->
     <div class="tab-content" id="tcontent-evaluator">
       <div class="eval-area" id="eval-content">
         <div class="empty-msg">
@@ -364,14 +324,93 @@ h1{color:var(--muted);font-size:13px;letter-spacing:1px;text-transform:uppercase
       </div>
     </div>
 
-    <!-- Synthesis tab -->
     <div class="tab-content" id="tcontent-synthesis">
       <div class="synth-area" id="synth-content">
         <div class="empty-msg">
           <div class="empty-icon">⬡</div>
-          <div class="empty-text">No synthesis yet.<br>Analyze the note first — connections to similar ideas appear here.</div>
+          <div class="empty-text">No synthesis yet.<br>Analyze the note first — connections appear here.</div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- ── CLUSTER DETAIL SCREEN ─────────────────────────────── -->
+  <div class="screen" id="screen-cluster">
+    <div class="note-appbar">
+      <span class="back-btn" onclick="goHome();switchHomeTab('clusters')">‹ &nbsp;Back</span>
+      <span class="note-appbar-title">Cluster #1 · 3 notes</span>
+    </div>
+    <div style="flex:1;overflow-y:auto;padding:16px;">
+
+      <div class="narrative-card">
+        <div class="narrative-label">The Bigger Picture</div>
+        <div class="narrative-text">A recurring pattern of thinking about how fragmented, siloed data in India prevents systems-level research — and how lightweight, community-driven collection can democratise what has historically required institutional gatekeepers.</div>
+      </div>
+
+      <div class="synth-section synth-section-amber" style="margin-bottom:10px">
+        <div class="synth-section-label">Super Idea</div>
+        <div class="synth-section-text" style="color:var(--text)">A federated open data infrastructure for India — aggregating agricultural satellite imagery, oral economic histories, and urban microclimate readings — enabling cross-domain research currently blocked by data fragmentation and institutional access barriers.</div>
+      </div>
+
+      <div class="sub-label" style="margin-bottom:8px">Role of Each Idea</div>
+
+      <div class="role-card">
+        <div class="role-header">
+          <div class="role-dot role-dot-green"></div>
+          <div class="role-name role-name-green">Satellite imagery archive</div>
+        </div>
+        <div class="role-row"><div class="role-key">Mechanism</div><div class="role-val">Linking remote sensing data to ground-truth agricultural outcomes via KVK network</div></div>
+        <div class="role-row"><div class="role-key">Contribution</div><div class="role-val">The spatial-temporal layer — where and when, at scale</div></div>
+        <div class="role-row"><div class="role-key">Framing</div><div class="role-val">Agricultural domain, satellite-first</div></div>
+      </div>
+
+      <div class="role-card">
+        <div class="role-header">
+          <div class="role-dot role-dot-green"></div>
+          <div class="role-name role-name-green">Oral history archive for informal sector</div>
+        </div>
+        <div class="role-row"><div class="role-key">Mechanism</div><div class="role-val">Preserving tacit economic knowledge before it disappears from institutional memory</div></div>
+        <div class="role-row"><div class="role-key">Contribution</div><div class="role-val">The human and economic layer — what people know that sensors cannot measure</div></div>
+        <div class="role-row"><div class="role-key">Framing</div><div class="role-val">Informal economy, oral-first</div></div>
+      </div>
+
+      <div class="role-card">
+        <div class="role-header">
+          <div class="role-dot role-dot-green"></div>
+          <div class="role-name role-name-green">Citizen science urban heat island mapping</div>
+        </div>
+        <div class="role-row"><div class="role-key">Mechanism</div><div class="role-val">Distributed sensing via citizen participation as an alternative to centralised monitoring</div></div>
+        <div class="role-row"><div class="role-key">Contribution</div><div class="role-val">The participatory collection model — proving the architecture works without institutions</div></div>
+        <div class="role-row"><div class="role-key">Framing</div><div class="role-val">Urban environment, citizen-first</div></div>
+      </div>
+
+      <div class="synth-section" style="margin-top:4px">
+        <div class="synth-section-label">How They Differ</div>
+        <div class="synth-section-text">Each idea operates in a different domain and uses a different collection mechanism. None contains the other — satellite imagery cannot capture oral economic knowledge, and neither captures urban microclimate readings.</div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:10px;margin:10px 0 4px">
+        <div class="sub-label" style="margin-bottom:0">Relationship</div>
+        <div class="rel-badge rel-complementary">complementary</div>
+      </div>
+
+      <div class="synth-section">
+        <div class="synth-section-label">Why These Connect</div>
+        <div class="synth-section-text">These are not variations of the same idea — each brings a distinct data modality. Together they reveal a coherent design philosophy: lightweight participatory collection as an alternative to centralised institutional data production.</div>
+      </div>
+
+      <div class="sub-label" style="margin:10px 0 7px">Notes in this cluster</div>
+      <div class="connected-note" onclick="openNote('other')" style="cursor:pointer">
+        <div class="connected-dot"></div><div class="connected-title">Satellite imagery archive for agricultural data</div>
+      </div>
+      <div class="connected-note" style="cursor:pointer">
+        <div class="connected-dot"></div><div class="connected-title">Oral history archive for informal sector</div>
+      </div>
+      <div class="connected-note" style="cursor:pointer">
+        <div class="connected-dot"></div><div class="connected-title">Citizen science urban heat island mapping</div>
+      </div>
+
+      <div style="height:40px"></div>
     </div>
   </div>
 
@@ -398,7 +437,7 @@ h1{color:var(--muted);font-size:13px;letter-spacing:1px;text-transform:uppercase
       <div class="section-label">About</div>
       <div class="section-card">
         <div class="kv-row"><div class="kv-key">App</div><div class="kv-val">Spark Vault</div></div>
-        <div class="kv-row"><div class="kv-key">Version</div><div class="kv-val">1.0.0</div></div>
+        <div class="kv-row"><div class="kv-key">Version</div><div class="kv-val">1.0.5</div></div>
         <div class="kv-row"><div class="kv-key">Storage</div><div class="kv-val">Local SQLite (on device)</div></div>
         <div class="kv-row"><div class="kv-key">Processing</div><div class="kv-val">Render backend (cloud)</div></div>
       </div>
@@ -408,25 +447,18 @@ h1{color:var(--muted);font-size:13px;letter-spacing:1px;text-transform:uppercase
 </div><!-- /phone -->
 
 <script>
-// ── Screen navigation ──────────────────────────────────────
 function show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active'); }
 function goHome(){ show('screen-home'); }
 function goSettings(){ show('screen-settings'); }
 
-// ── Home tabs ──────────────────────────────────────────────
 function switchHomeTab(tab){
-  ['notes','clusters'].forEach(t=>{
-    document.getElementById('htab-'+t).classList.toggle('active',t===tab);
-    document.getElementById(t===t?t+'-panel':'').style&&null;
-  });
-  document.getElementById('notes-panel').style.display   = tab==='notes'    ? 'block' : 'none';
-  document.getElementById('clusters-panel').style.display= tab==='clusters' ? 'block' : 'none';
+  document.getElementById('notes-panel').style.display    = tab==='notes'    ? 'block':'none';
+  document.getElementById('clusters-panel').style.display = tab==='clusters' ? 'block':'none';
   document.getElementById('htab-notes').classList.toggle('active',tab==='notes');
   document.getElementById('htab-clusters').classList.toggle('active',tab==='clusters');
 }
 
-// ── Note tabs ──────────────────────────────────────────────
 function switchNoteTab(tab){
   ['note','evaluator','synthesis'].forEach(t=>{
     document.getElementById('ntab-'+t).classList.toggle('active',t===tab);
@@ -434,73 +466,42 @@ function switchNoteTab(tab){
   });
 }
 
-// ── Open note ──────────────────────────────────────────────
 const noteData = {
   'other': {
-    title: 'Satellite imagery archive…',
-    text: 'Idea: create a publicly accessible, continuously updated archive that links Sentinel-2 and Landsat satellite imagery tiles to ground-truth agricultural outcome data collected by Krishi Vigyan Kendras (KVKs) and state agricultural universities across India.',
-    hasEval: true,
-    hasSynth: true,
-    cat: 'Other',
-    cls: 'Worth Prototyping',
-    clsBadge: 'badge-promising',
-    evalTitle: 'Open satellite-agricultural data archive for India',
-    analystTake: 'The idea is technically sound but institutionally brittle. The value proposition is real — India\'s KVK network produces ground-truth data that no one currently aggregates — but the critical dependency on ICAR mandating structured collection is a single point of failure that no amount of technical work can bypass.',
-    summary: 'A high-leverage infrastructure play contingent on one institutional commitment. The minimum viable test is achievable in one district. The kill condition is ICAR declining to mandate structured data formats from KVKs — which is the base case given their current operational model.',
+    title:'Satellite imagery archive…',
+    text:'Idea: create a publicly accessible, continuously updated archive that links Sentinel-2 and Landsat satellite imagery tiles to ground-truth agricultural outcome data collected by Krishi Vigyan Kendras (KVKs) and state agricultural universities across India.',
+    hasEval:true, hasSynth:true, cat:'Other', cls:'Worth Prototyping', clsBadge:'badge-promising',
+    evalTitle:'Open satellite-agricultural data archive for India',
+    analystTake:'The idea is technically sound but institutionally brittle. The value proposition is real — India\'s KVK network produces ground-truth data that no one currently aggregates — but the critical dependency on ICAR mandating structured collection is a single point of failure that no amount of technical work can bypass.',
+    summary:'A high-leverage infrastructure play contingent on one institutional commitment. The minimum viable test is achievable in one district. The kill condition is ICAR declining to mandate structured data formats from KVKs.',
   },
-  'science': {
-    title: 'Gut microbiome circadian rhythm…',
-    text: 'The circadian clock in gut microbiota modulates bile acid recycling and short-chain fatty acid production in a time-dependent manner. Disruption of this rhythm — through shift work, late eating, or travel — precedes measurable changes in insulin sensitivity within 72 hours.',
-    hasEval: true,
-    hasSynth: false,
-    cat: 'Science',
-    cls: 'Experimentally Tractable',
-    clsBadge: 'badge-promising',
-    evalTitle: 'Circadian microbiome disruption precedes metabolic dysfunction',
-    analystTake: 'This is one of the cleaner hypotheses in the microbiome-metabolic space because it generates a testable timeline: 72-hour disruption window, specific metabolite readouts, and a reversibility prediction. The confound is that shift work disrupts sleep, diet, and light exposure simultaneously.',
-    summary: 'A well-specified hypothesis with a clear minimum viable test. The 72-hour prediction distinguishes it from vague microbiome-metabolism associations and makes it falsifiable. Three Indian institutions have the capability to run the required mouse study.',
+  'science':{
+    title:'Gut microbiome circadian rhythm…',
+    text:'The circadian clock in gut microbiota modulates bile acid recycling and short-chain fatty acid production in a time-dependent manner. Disruption — through shift work, late eating, or travel — precedes measurable changes in insulin sensitivity within 72 hours.',
+    hasEval:true, hasSynth:false, cat:'Science', cls:'Experimentally Tractable', clsBadge:'badge-promising',
+    evalTitle:'Circadian microbiome disruption precedes metabolic dysfunction',
+    analystTake:'One of the cleaner hypotheses in the microbiome-metabolic space because it generates a testable timeline: 72-hour disruption window, specific metabolite readouts, and a reversibility prediction.',
+    summary:'A well-specified hypothesis with a clear minimum viable test. The 72-hour prediction makes it falsifiable and distinguishes it from vague microbiome-metabolism associations.',
   },
-  'draft': {
-    title: 'Night-school certification…',
-    text: 'Create a network of employer-recognised, practically oriented certification programmes delivered in 2-hour evening modules, three evenings per week, specifically designed for urban informal workers in India.',
-    hasEval: false,
-    hasSynth: false,
-    cat: null,
-  },
-  'processing': {
-    title: 'Predictive maintenance cooperative…',
-    text: 'Create a shared predictive maintenance service for small manufacturing clusters structured as a cooperative where member firms share anonymised sensor data from their machines.',
-    hasEval: false,
-    hasSynth: false,
-    processing: true,
-    cat: null,
-  },
-  'new': {
-    title: '',
-    text: '',
-    hasEval: false,
-    hasSynth: false,
-    cat: null,
-  }
+  'draft':{title:'Night-school certification…',text:'Create a network of employer-recognised, practically oriented certification programmes delivered in 2-hour evening modules, three evenings per week, specifically designed for urban informal workers in India.',hasEval:false,hasSynth:false},
+  'processing':{title:'Predictive maintenance cooperative…',text:'Create a shared predictive maintenance service for small manufacturing clusters structured as a cooperative where member firms share anonymised sensor data from their machines.',hasEval:false,hasSynth:false,processing:true},
+  'new':{title:'',text:'',hasEval:false,hasSynth:false}
 };
 
 function openNote(key){
   const n = noteData[key];
   show('screen-note');
   switchNoteTab('note');
-  document.getElementById('note-appbar-title').textContent =
-    n.title || 'New Note';
-  const ed = document.getElementById('editor');
-  ed.textContent = n.text;
+  document.getElementById('note-appbar-title').textContent = n.title || 'New Note';
+  document.getElementById('editor').textContent = n.text;
 
-  // Evaluator content
+  // Evaluator
   const evalEl = document.getElementById('eval-content');
   if(n.hasEval){
     evalEl.innerHTML = `
       <span class="eval-cat">${n.cat}</span>
       <div class="eval-title">${n.evalTitle}</div>
       <span class="class-badge ${n.clsBadge}">${n.cls}</span>
-
       <div class="section-label">Core Analysis</div>
       <div class="section-card">
         <div class="kv-row"><div class="kv-key">What Is Being Proposed</div>
@@ -508,95 +509,140 @@ function openNote(key){
         <div class="kv-row"><div class="kv-key">Key Assumption</div>
           <div class="kv-val">ICAR will mandate structured data collection and sharing from the KVK network.</div></div>
       </div>
-
       <div class="section-label">Feasibility</div>
       <div class="section-card">
         <div class="kv-row"><div class="kv-key">Critical Dependency</div>
-          <div class="kv-val red">ICAR mandating structured data collection from KVKs — currently produces inconsistent formats with no central aggregation.</div></div>
+          <div class="kv-val red">ICAR mandating structured data collection — currently produces inconsistent formats with no central aggregation.</div></div>
         <div class="kv-row"><div class="kv-key">Minimum Viable Test</div>
-          <div class="kv-val green">One district, one crop season, 10 KVK plots, matched imagery tiles — deliverable to ICAR as a proof of concept within 4 months.</div></div>
+          <div class="kv-val green">One district, one crop season, 10 KVK plots — deliverable as ICAR proof of concept within 4 months.</div></div>
       </div>
-
       <div class="section-label">Scores</div>
       <div class="scores-row">
         <div class="score-card"><div class="score-label">Novelty</div><div class="score-val">7<span>/10</span></div></div>
         <div class="score-card"><div class="score-label">Feasibility</div><div class="score-val">6<span>/10</span></div></div>
         <div class="score-card"><div class="score-label">Impact</div><div class="score-val">9<span>/10</span></div></div>
         <div class="score-card"><div class="score-label">Overall</div><div class="score-val">7<span>/10</span></div></div>
-        <div class="score-card"><div class="score-label">Risk</div><div class="score-val" style="font-size:14px;color:var(--muted)">High</div></div>
       </div>
-
       <div class="section-label">Analyst Take</div>
-      <div class="analyst-card">
-        <div class="analyst-text">"${n.analystTake}"</div>
-      </div>
-
+      <div class="analyst-card"><div class="analyst-text">"${n.analystTake}"</div></div>
       <div class="section-label">Final Summary</div>
-      <div class="summary-card">
-        <div class="summary-text">${n.summary}</div>
-      </div>
-    `;
+      <div class="summary-card"><div class="summary-text">${n.summary}</div></div>`;
   } else if(n.processing){
-    evalEl.innerHTML = `<div class="empty-msg">
+    evalEl.innerHTML=`<div class="empty-msg">
       <div style="width:36px;height:36px;border:2px solid var(--surface2);border-top-color:var(--amber);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto"></div>
-      <div class="empty-text">Analyzing…<br><span style="font-size:11px">This may take 1–3 minutes</span></div>
+      <div class="empty-text">Processing…<br><span style="font-size:11px">Engine is working on your idea.<br>Come back in a moment.</span></div>
     </div>`;
   } else {
-    evalEl.innerHTML = `<div class="empty-msg">
+    evalEl.innerHTML=`<div class="empty-msg">
       <div class="empty-icon">🔬</div>
       <div class="empty-text">No evaluation yet.<br>Tap Analyze in the Note tab.</div>
     </div>`;
   }
 
-  // Synthesis content
+  // Synthesis
   const synthEl = document.getElementById('synth-content');
   if(n.hasSynth){
     synthEl.innerHTML = `
-      <div class="synth-cluster-header">⬡ Cluster #1 · 3 connected notes</div>
-      <div class="super-idea-card">
-        <div class="super-idea-label">Super Idea</div>
-        <div class="super-idea-text">Infrastructure systems for democratising access to India-specific data — satellite, oral, and sensor-based — to enable research and planning that is currently bottlenecked by data fragmentation.</div>
+      <!-- Bigger picture -->
+      <div class="narrative-card">
+        <div class="narrative-label">The Bigger Picture</div>
+        <div class="narrative-text">A recurring pattern of thinking about how fragmented, siloed data in India prevents systems-level research — and how lightweight, community-driven collection can democratise what has historically required institutional gatekeepers.</div>
       </div>
-      <div class="section-label" style="margin-top:10px">Connected Notes</div>
+
+      <!-- Super idea -->
+      <div class="synth-section synth-section-amber" style="margin-bottom:10px">
+        <div class="synth-section-label">Super Idea</div>
+        <div class="synth-section-text" style="color:var(--text)">A federated open data infrastructure for India — aggregating agricultural satellite imagery, oral economic histories, and urban microclimate readings — enabling cross-domain research currently blocked by data fragmentation and institutional access barriers.</div>
+      </div>
+
+      <!-- Role of each idea -->
+      <div class="sub-label" style="margin-bottom:8px">Role of Each Idea</div>
+
+      <div class="role-card role-card-new">
+        <div class="role-header">
+          <div class="role-dot role-dot-amber"></div>
+          <div class="role-name role-name-amber">This note — Satellite imagery archive</div>
+        </div>
+        <div class="role-row"><div class="role-key">Mechanism</div><div class="role-val">Linking remote sensing data to ground-truth agricultural outcomes via KVK network</div></div>
+        <div class="role-row"><div class="role-key">Contribution</div><div class="role-val">The spatial-temporal layer — where and when, at scale</div></div>
+        <div class="role-row"><div class="role-key">Framing</div><div class="role-val">Agricultural domain, satellite-first</div></div>
+      </div>
+
+      <div class="role-card">
+        <div class="role-header">
+          <div class="role-dot role-dot-green"></div>
+          <div class="role-name role-name-green">Oral history archive for informal sector</div>
+        </div>
+        <div class="role-row"><div class="role-key">Mechanism</div><div class="role-val">Preserving tacit economic knowledge before it disappears from institutional memory</div></div>
+        <div class="role-row"><div class="role-key">Contribution</div><div class="role-val">The human and economic layer — what people know that sensors cannot measure</div></div>
+        <div class="role-row"><div class="role-key">Framing</div><div class="role-val">Informal economy, oral-first</div></div>
+      </div>
+
+      <div class="role-card">
+        <div class="role-header">
+          <div class="role-dot role-dot-green"></div>
+          <div class="role-name role-name-green">Citizen science urban heat island mapping</div>
+        </div>
+        <div class="role-row"><div class="role-key">Mechanism</div><div class="role-val">Distributed sensing via citizen participation as an alternative to centralised monitoring</div></div>
+        <div class="role-row"><div class="role-key">Contribution</div><div class="role-val">The participatory collection model — proving the architecture works without institutions</div></div>
+        <div class="role-row"><div class="role-key">Framing</div><div class="role-val">Urban environment, citizen-first</div></div>
+      </div>
+
+      <!-- How they differ -->
+      <div class="synth-section" style="margin-top:4px">
+        <div class="synth-section-label">How They Differ</div>
+        <div class="synth-section-text">Each idea operates in a different domain and uses a different collection mechanism. None contains the other — satellite imagery cannot capture oral economic knowledge, and neither captures urban microclimate readings. The distinction is at the mechanism level, not just the framing.</div>
+      </div>
+
+      <!-- Relationship -->
+      <div style="display:flex;align-items:center;gap:10px;margin:10px 0 4px">
+        <div class="sub-label" style="margin-bottom:0">Relationship</div>
+        <div class="rel-badge rel-complementary">complementary</div>
+      </div>
+
+      <!-- Why they connect -->
+      <div class="synth-section">
+        <div class="synth-section-label">Why These Connect</div>
+        <div class="synth-section-text">These are not variations of the same idea — they each bring a distinct data modality. Together they reveal a coherent design philosophy: lightweight participatory collection as an alternative to centralised institutional data production. The merge creates something none achieves alone.</div>
+      </div>
+
+      <!-- Connected notes -->
+      <div class="sub-label" style="margin:10px 0 7px">Connected Notes · 3</div>
       <div class="connected-note"><div class="connected-dot"></div><div class="connected-title">Satellite imagery archive for agricultural data</div></div>
       <div class="connected-note"><div class="connected-dot"></div><div class="connected-title">Oral history archive for informal sector</div></div>
       <div class="connected-note"><div class="connected-dot"></div><div class="connected-title">Citizen science urban heat island mapping</div></div>
     `;
   } else {
-    synthEl.innerHTML = `<div class="empty-msg">
+    synthEl.innerHTML=`<div class="empty-msg">
       <div class="empty-icon">⬡</div>
       <div class="empty-text">No synthesis yet.<br>Analyze the note first — connections appear here.</div>
     </div>`;
   }
 }
 
-// ── Depth selector ─────────────────────────────────────────
+function openCluster(){ show('screen-cluster'); }
+
 function selDepth(d){
-  ['fast','balanced','deep'].forEach(x=>{
-    document.getElementById('chip-'+x).classList.toggle('sel',x===d);
-  });
+  ['fast','balanced','deep'].forEach(x=>document.getElementById('chip-'+x).classList.toggle('sel',x===d));
 }
 
-// ── Fake analyze demo ──────────────────────────────────────
 function fakeAnalyze(){
-  const btn = document.querySelector('.analyze-btn');
-  btn.innerHTML = '<div style="width:10px;height:10px;border:1.5px solid rgba(212,146,42,0.3);border-top-color:var(--amber);border-radius:50%;animation:spin 1s linear infinite"></div> Analyzing…';
+  const btn=document.querySelector('.analyze-btn');
+  btn.innerHTML='<div style="width:10px;height:10px;border:1.5px solid rgba(212,146,42,0.3);border-top-color:var(--amber);border-radius:50%;animation:spin 1s linear infinite"></div> Analyzing…';
   btn.style.background='var(--surface2)';btn.style.color='var(--amber)';
   switchNoteTab('evaluator');
   document.getElementById('eval-content').innerHTML=`<div class="empty-msg">
     <div style="width:36px;height:36px;border:2px solid var(--surface2);border-top-color:var(--amber);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto"></div>
-    <div class="empty-text">Researching…<br><span style="font-size:11px">This may take 1–3 minutes</span></div>
+    <div class="empty-text">Processing…<br><span style="font-size:11px">Engine is working on your idea.<br>Come back in a moment.</span></div>
   </div>`;
   setTimeout(()=>{
     btn.innerHTML='<span class="analyze-icon">✦</span> Re-analyze';
     btn.style.background=btn.style.color='';
-    document.getElementById('note-appbar-title').textContent='Predictive maintenance…';
     openNote('other');
     switchNoteTab('evaluator');
-  }, 2500);
+  },2500);
 }
 
-// Spin animation
 const style=document.createElement('style');
 style.textContent='@keyframes spin{to{transform:rotate(360deg)}}';
 document.head.appendChild(style);

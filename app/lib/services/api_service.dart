@@ -24,16 +24,14 @@ class ApiService {
     await prefs.setString(_prefKey, url.trimRight().replaceAll(RegExp(r'/$'), ''));
   }
 
-  /// Submits idea for processing, then polls until done. Returns result map.
-  /// Uses submit+poll to avoid mobile network timeouts on 2-minute+ requests.
-  Future<Map<String, dynamic>> processIdea({
+  /// Step 1: Submit idea — returns job_id immediately.
+  Future<String> submitIdea({
     required String rawIdea,
     required List<Idea> pastIdeas,
     String depth    = 'balanced',
     String? category,
   }) async {
-    final url = await baseUrl;
-
+    final url  = await baseUrl;
     final body = jsonEncode({
       'raw_idea':   rawIdea,
       'past_ideas': pastIdeas.map((i) => i.toApiShape()).toList(),
@@ -41,8 +39,7 @@ class ApiService {
       if (category != null) 'category': category,
     });
 
-    // Step 1: submit — returns job_id immediately
-    final submitRes = await http.post(
+    final res = await http.post(
       Uri.parse('$url/process-idea'),
       headers: {'Content-Type': 'application/json'},
       body: body,
@@ -51,33 +48,47 @@ class ApiService {
       onTimeout: () => throw ApiException('Submit timed out'),
     );
 
-    if (submitRes.statusCode != 200) {
-      String detail = 'Server error ${submitRes.statusCode}';
-      try { detail = jsonDecode(submitRes.body)['detail'] ?? detail; } catch (_) {}
-      throw ApiException(detail, statusCode: submitRes.statusCode);
+    if (res.statusCode != 200) {
+      String detail = 'Server error ${res.statusCode}';
+      try { detail = jsonDecode(res.body)['detail'] ?? detail; } catch (_) {}
+      throw ApiException(detail, statusCode: res.statusCode);
     }
 
-    final jobId = jsonDecode(submitRes.body)['job_id'] as String;
+    return jsonDecode(res.body)['job_id'] as String;
+  }
 
-    // Step 2: poll every 5s until completed or failed (max 10 min)
+  /// Step 2: Poll until job completes. Safe to call after app resume.
+  /// Individual poll failures are swallowed — only hard errors (job failed,
+  /// job not found, 10-min deadline) stop the loop.
+  Future<Map<String, dynamic>> pollJob(String jobId) async {
+    final url      = await baseUrl;
     final deadline = DateTime.now().add(const Duration(minutes: 10));
+
     while (DateTime.now().isBefore(deadline)) {
       await Future.delayed(const Duration(seconds: 5));
 
-      final statusRes = await http.get(
-        Uri.parse('$url/idea-status/$jobId'),
-      ).timeout(
-        const Duration(seconds: 15),
-        onTimeout: () => throw ApiException('Status check timed out'),
-      );
+      try {
+        final res = await http.get(
+          Uri.parse('$url/idea-status/$jobId'),
+        ).timeout(const Duration(seconds: 15));
 
-      if (statusRes.statusCode == 200) {
-        final data = Map<String, dynamic>.from(jsonDecode(statusRes.body));
-        if (data['status'] == 'completed') return data;
-        if (data['status'] == 'failed') {
-          throw ApiException(data['error'] as String? ?? 'Processing failed');
+        if (res.statusCode == 200) {
+          final data = Map<String, dynamic>.from(jsonDecode(res.body));
+          if (data['status'] == 'completed') return data;
+          if (data['status'] == 'failed') {
+            throw ApiException(data['error'] as String? ?? 'Processing failed');
+          }
+          // status == 'processing' — keep polling
+        } else if (res.statusCode == 404) {
+          // Job expired (server restarted) — no point continuing
+          throw ApiException('Job expired on server');
         }
-        // still processing — keep polling
+        // Any other HTTP error: swallow and retry next tick
+      } on ApiException {
+        rethrow; // only hard errors bubble up
+      } catch (_) {
+        // Network error on this poll (background restriction, brief disconnect)
+        // Swallow and try again in 5 seconds
       }
     }
 

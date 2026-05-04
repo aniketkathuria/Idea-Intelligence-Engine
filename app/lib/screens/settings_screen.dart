@@ -152,7 +152,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _InfoRow(label: 'App', value: 'Spark Vault'),
-                _InfoRow(label: 'Version', value: '1.0.3'),
+                _InfoRow(label: 'Version', value: '1.0.5'),
                 _InfoRow(label: 'Storage', value: 'Local SQLite (on device)'),
                 _InfoRow(label: 'Processing', value: 'Render backend (cloud)'),
               ],
