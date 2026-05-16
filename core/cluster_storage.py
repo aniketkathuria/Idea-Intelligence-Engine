@@ -1,6 +1,7 @@
 import os
 import json
-from datetime import datetime, UTC
+from datetime import datetime, timezone
+UTC = timezone.utc
 from core.db import SessionLocal
 from core.models import Cluster, Idea
 from core.db import SessionLocal
