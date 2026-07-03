@@ -15,28 +15,31 @@ class EvaluatorView extends StatelessWidget {
       return const _Empty();
     }
 
+    // Engineering/Science schemas omit 'category' from the JSON — fall back to idea.category
+    final category = (ev['category'] as String?) ?? idea.category ?? '';
+
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
-        _Header(ev: ev),
+        _Header(ev: ev, category: category),
         const SizedBox(height: 16),
-        ..._buildSections(ev),
+        ..._buildSections(ev, category),
         _ScoreCards(scores: Map<String, dynamic>.from(ev['scores'] ?? {})),
         _AnalystTake(text: ev['analyst_take'] as String?),
         _Summary(text: (ev['final_summary'] ?? ev['closing']) as String?),
         _Learning(learn: ev['learning'] as Map<String, dynamic>?),
+        _Sources(sources: ev['sources'] as List?),
         const SizedBox(height: 40),
       ],
     );
   }
 
-  List<Widget> _buildSections(Map<String, dynamic> ev) {
-    final cat = ev['category'] as String? ?? '';
-    switch (cat) {
+  List<Widget> _buildSections(Map<String, dynamic> ev, String category) {
+    switch (category) {
       case 'Business':    return _businessSections(ev);
       case 'Technology':  return _techSections(ev);
-      case 'Engineering': return _engSections(ev);
-      case 'Science':     return _sciSections(ev);
+      case 'Engineering': return _narrativeSections(ev);
+      case 'Science':     return _narrativeSections(ev);
       case 'Mathematics': return _mathSections(ev);
       case 'Society':     return _societySections(ev);
       case 'Philosophy':  return _philSections(ev);
@@ -46,85 +49,91 @@ class EvaluatorView extends StatelessWidget {
     }
   }
 
+  // ── Narrative mode (Engineering + Science) ─────────────────────
+  // Schema: hook, core, sections[{title, sub_points:[{label,value}]}], closing, sources[]
+
+  List<Widget> _narrativeSections(Map ev) {
+    final hook     = ev['hook'] as String?;
+    final core     = ev['core'] as String?;
+    final sections = (ev['sections'] as List? ?? []);
+    return [
+      if (hook != null && hook.isNotEmpty)
+        _Section('Hook', [_Field(label: '', value: hook)]),
+      if (core != null && core.isNotEmpty)
+        _Section('Core Mechanism', [_Field(label: '', value: core)]),
+      ...sections.map<Widget>((s) {
+        final title     = s['title']      as String? ?? '';
+        final subPoints = s['sub_points'] as List?;
+        final content   = s['content']    as String?; // fallback for old data
+
+        List<Widget> children;
+        if (subPoints != null && subPoints.isNotEmpty) {
+          children = subPoints.map<Widget>((p) {
+            final label = p['label'] as String? ?? '';
+            final value = p['value'] as String? ?? '';
+            return _Field(label: label, value: value);
+          }).toList();
+        } else if (content != null && content.isNotEmpty) {
+          children = [_Field(label: '', value: content)];
+        } else {
+          children = [const _EmptyField()];
+        }
+        return _Section(title, children);
+      }),
+    ];
+  }
+
+  // ── Structured modes ───────────────────────────────────────────
+
   List<Widget> _businessSections(Map ev) => [
-    _Section('Market Context', _kvMap(ev['market_context'])),
-    _Section('Competitive Landscape', _kvMap(ev['competitive_landscape'])),
-    _Section('Unit Economics', _kvMap(ev['unit_economics'])),
-    _Section('Weakest Links', _kvMap(ev['weakest_links'])),
-    _Section('Idea Positioning', _kvMap(ev['idea_positioning'])),
+    _Section('Market Context',       _kvMap(ev['market_context'])),
+    _Section('Competitive Landscape',_kvMap(ev['competitive_landscape'])),
+    _Section('Unit Economics',       _kvMap(ev['unit_economics'])),
+    _Section('Weakest Links',        _kvMap(ev['weakest_links'])),
+    _Section('Idea Positioning',     _kvMap(ev['idea_positioning'])),
   ];
 
   List<Widget> _techSections(Map ev) => [
-    _Section('Problem Space', _kvMap(ev['problem_space'])),
+    _Section('Problem Space',        _kvMap(ev['problem_space'])),
     _Section('Technical Assessment', _kvMap(ev['technical_assessment'])),
-    _Section('Product Strategy', _kvMap(ev['product_strategy'])),
-    _Section('Competitive Landscape', _kvMap(ev['competitive_landscape'])),
+    _Section('Product Strategy',     _kvMap(ev['product_strategy'])),
+    _Section('Competitive Landscape',_kvMap(ev['competitive_landscape'])),
   ];
 
-  List<Widget> _engSections(Map ev) {
-    final hook = ev['hook'] as String?;
-    final core = ev['core'] as String?;
-    final sections = (ev['sections'] as List? ?? []);
-    return [
-      if (hook != null && hook.isNotEmpty) _Section('Hook', [_Field(label: '', value: hook)]),
-      if (core != null && core.isNotEmpty) _Section('Core Mechanism', [_Field(label: '', value: core)]),
-      ...sections.map<Widget>((s) {
-        final title = s['title'] as String? ?? '';
-        final content = s['content'] as String? ?? '';
-        return _Section(title, [_Field(label: '', value: content)]);
-      }),
-    ];
-  }
-
-  List<Widget> _sciSections(Map ev) {
-    final hook = ev['hook'] as String?;
-    final core = ev['core'] as String?;
-    final sections = (ev['sections'] as List? ?? []);
-    return [
-      if (hook != null && hook.isNotEmpty) _Section('Hook', [_Field(label: '', value: hook)]),
-      if (core != null && core.isNotEmpty) _Section('Core Mechanism', [_Field(label: '', value: core)]),
-      ...sections.map<Widget>((s) {
-        final title = s['title'] as String? ?? '';
-        final content = s['content'] as String? ?? '';
-        return _Section(title, [_Field(label: '', value: content)]);
-      }),
-    ];
-  }
-
   List<Widget> _mathSections(Map ev) => [
-    _Section('Conjecture', _kvMap(ev['conjecture'])),
-    _Section('Prior Art', _kvMap(ev['prior_art'])),
-    _Section('Proof Strategy', _kvMap(ev['proof_strategy'])),
-    _Section('Counterexample Risks', _listSection(ev['counterexample_risks'])),
-    _Section('India Mathematics Context', _kvMap(ev['india_mathematics_context'])),
+    _Section('Conjecture',              _kvMap(ev['conjecture'])),
+    _Section('Prior Art',               _kvMap(ev['prior_art'])),
+    _Section('Proof Strategy',          _kvMap(ev['proof_strategy'])),
+    _Section('Counterexample Risks',    _listSection(ev['counterexample_risks'])),
+    _Section('India Mathematics Context',_kvMap(ev['india_mathematics_context'])),
   ];
 
   List<Widget> _societySections(Map ev) => [
-    _Section('Hypothesis', _kvMap(ev['hypothesis'])),
-    _Section('Prior Art', _kvMap(ev['prior_art'])),
-    _Section('Evidence & Method', _kvMap(ev['evidence_and_method'])),
-    _Section('Confounds & Risks', _kvMap(ev['confounds_and_risks'])),
+    _Section('Hypothesis',           _kvMap(ev['hypothesis'])),
+    _Section('Prior Art',            _kvMap(ev['prior_art'])),
+    _Section('Evidence & Method',    _kvMap(ev['evidence_and_method'])),
+    _Section('Confounds & Risks',    _kvMap(ev['confounds_and_risks'])),
     _Section('India Social Context', _kvMap(ev['india_social_context'])),
   ];
 
   List<Widget> _philSections(Map ev) => [
-    _Section('Argument', _kvMap(ev['argument'])),
-    _Section('Prior Art', _kvMap(ev['prior_art'])),
-    _Section('Argument Analysis', _kvMap(ev['argument_analysis'])),
-    _Section('India Philosophy Context', _kvMap(ev['india_philosophy_context'])),
+    _Section('Argument',                    _kvMap(ev['argument'])),
+    _Section('Prior Art',                   _kvMap(ev['prior_art'])),
+    _Section('Argument Analysis',           _kvMap(ev['argument_analysis'])),
+    _Section('India Philosophy Context',    _kvMap(ev['india_philosophy_context'])),
   ];
 
   List<Widget> _personalSections(Map ev) => [
-    _Section('Core Claim', _kvMap(ev['core_claim'])),
-    _Section('Evidence Base', _kvMap(ev['evidence_base'])),
-    _Section('Implementation', _kvMap(ev['implementation'])),
-    _Section('India Context', _kvMap(ev['india_context'])),
+    _Section('Core Claim',       _kvMap(ev['core_claim'])),
+    _Section('Evidence Base',    _kvMap(ev['evidence_base'])),
+    _Section('Implementation',   _kvMap(ev['implementation'])),
+    _Section('India Context',    _kvMap(ev['india_context'])),
   ];
 
   List<Widget> _otherSections(Map ev) => [
-    _Section('Core Analysis', _kvMap(ev['core_analysis'])),
-    _Section('Prior Context', _kvMap(ev['prior_context'])),
-    _Section('Feasibility', _kvMap(ev['feasibility'])),
+    _Section('Core Analysis',   _kvMap(ev['core_analysis'])),
+    _Section('Prior Context',   _kvMap(ev['prior_context'])),
+    _Section('Feasibility',     _kvMap(ev['feasibility'])),
     _Section('India Relevance', _kvMap(ev['india_relevance'])),
   ];
 
@@ -218,30 +227,30 @@ class _Empty extends StatelessWidget {
 
 class _Header extends StatelessWidget {
   final Map<String, dynamic> ev;
-  const _Header({required this.ev});
+  final String category;
+  const _Header({required this.ev, required this.category});
 
   @override Widget build(BuildContext context) {
-    final title = ev['idea_summary']      as String?
-               ?? ev['conjecture_summary'] as String?
-               ?? ev['hypothesis_summary'] as String?
-               ?? ev['argument_summary']   as String?
-               ?? ev['observation_summary']as String?
+    final title = ev['idea_summary']       as String?
+               ?? ev['conjecture_summary']  as String?
+               ?? ev['hypothesis_summary']  as String?
+               ?? ev['argument_summary']    as String?
+               ?? ev['observation_summary'] as String?
                ?? ev['hook']               as String?
                ?? '';
     final cls = ev['final_classification'] as String? ?? '';
-    final cat = ev['category'] as String? ?? '';
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (cat.isNotEmpty)
+        if (category.isNotEmpty)
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
             decoration: BoxDecoration(
               color: AppColors.amberDim,
               borderRadius: BorderRadius.circular(4),
             ),
-            child: Text(cat, style: const TextStyle(
+            child: Text(category, style: const TextStyle(
               color: AppColors.amber, fontSize: 11, fontWeight: FontWeight.w500,
             )),
           ),
@@ -351,7 +360,7 @@ class _Field extends StatelessWidget {
 }
 
 class _BulletField extends StatelessWidget {
-  final String     label;
+  final String        label;
   final List<dynamic> items;
   const _BulletField({required this.label, required this.items});
 
@@ -435,7 +444,7 @@ class _ScoreCards extends StatelessWidget {
               final label = e.key.replaceAll('_', ' ').split(' ')
                   .map((w) => w.isEmpty ? '' : w[0].toUpperCase() + w.substring(1))
                   .join(' ');
-              final val = e.value;
+              final val   = e.value;
               final isNum = val is num;
               return Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -595,24 +604,77 @@ class _Learning extends StatelessWidget {
               color: AppColors.textDim, fontSize: 11,
             )),
             const SizedBox(height: 6),
-            ...sources.map((s) {
-              final src = s is Map ? s : <String, dynamic>{};
-              final idx   = src['index']?.toString() ?? '';
-              final title = src['title'] as String? ?? '—';
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 6),
-                child: RichText(text: TextSpan(children: [
-                  TextSpan(text: '[$idx] ', style: const TextStyle(
-                    color: AppColors.amber, fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                  )),
-                  TextSpan(text: title, style: const TextStyle(
-                    color: AppColors.textMuted, fontSize: 12, height: 1.4,
-                  )),
-                ])),
-              );
-            }),
+            ..._renderCitedSources(sources),
           ],
+        ],
+      ),
+    );
+  }
+
+  static List<Widget> _renderCitedSources(List<dynamic> sources) =>
+    sources.map((s) {
+      final src   = s is Map ? s : <String, dynamic>{};
+      final idx   = src['index']?.toString() ?? '';
+      final title = src['title'] as String? ?? '—';
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 6),
+        child: RichText(text: TextSpan(children: [
+          if (idx.isNotEmpty) TextSpan(text: '[$idx] ', style: const TextStyle(
+            color: AppColors.amber, fontSize: 12, fontWeight: FontWeight.w600,
+          )),
+          TextSpan(text: title, style: const TextStyle(
+            color: AppColors.textMuted, fontSize: 12, height: 1.4,
+          )),
+        ])),
+      );
+    }).toList();
+}
+
+/// Renders Engineering/Science sources[] — list of {title, url}
+class _Sources extends StatelessWidget {
+  final List? sources;
+  const _Sources({this.sources});
+
+  @override Widget build(BuildContext context) {
+    if (sources == null || sources!.isEmpty) return const SizedBox.shrink();
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text('SOURCES', style: TextStyle(
+            color: AppColors.amber, fontSize: 10,
+            fontWeight: FontWeight.w600, letterSpacing: 1.0,
+          )),
+          const SizedBox(height: 8),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: AppColors.surface,
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: AppColors.border, width: 0.5),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: sources!.asMap().entries.map((entry) {
+                final i   = entry.key + 1;
+                final src = entry.value is Map ? entry.value as Map : {};
+                final title = src['title'] as String? ?? '—';
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 6),
+                  child: RichText(text: TextSpan(children: [
+                    TextSpan(text: '[$i] ', style: const TextStyle(
+                      color: AppColors.amber, fontSize: 12, fontWeight: FontWeight.w600,
+                    )),
+                    TextSpan(text: title, style: const TextStyle(
+                      color: AppColors.textMuted, fontSize: 12, height: 1.4,
+                    )),
+                  ])),
+                );
+              }).toList(),
+            ),
+          ),
         ],
       ),
     );

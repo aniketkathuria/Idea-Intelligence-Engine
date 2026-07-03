@@ -290,7 +290,12 @@ ENGINEERING_SCHEMA = """
   "hook": "",
   "core": "",
   "sections": [
-    {"title": "", "content": ""}
+    {
+      "title": "",
+      "sub_points": [
+        {"label": "", "value": ""}
+      ]
+    }
   ],
   "closing": "",
   "sources": [
@@ -326,6 +331,14 @@ One sentence. Must contain a specific verifiable fact — a real number, a named
 
 3. sections
 3 to 5 sections. Choose titles that reflect what each section actually investigates — not generic labels like "Analysis" or "Overview". Each section is a chapter that builds on the previous one, moving from "what is this mechanism and how do we measure it?" toward "does this idea actually work at the proposed scale?"
+
+Each section must have 3–6 sub_points. Each sub_point has a short label (2–5 words, like "Threshold", "Calculation at 2 km", "Atmospheric loss", "Verdict") and a value (1–3 sentences of precise content). Do NOT write a single long content paragraph — break every section into labeled sub_points.
+
+GOOD sub_points for "The Key Number: Damage Threshold":
+{"label": "Steel damage threshold", "value": "~10 kW/cm² sustained intensity is required to initiate thermal damage on mild steel [3]."},
+{"label": "Calculation at 2 km", "value": "At 30 kW and θ = 0.3 mrad: I = 30,000 / (π × 0.36) ≈ 26.5 kW/cm² in vacuum."},
+{"label": "With atmospheric losses", "value": "In light haze, atmospheric absorption drops this to under 5 kW/cm² — sufficient for drones, not armor."},
+{"label": "Verdict", "value": "The idea works on lightweight UAVs in clear weather. It cannot engage armored targets at any range with current power levels."}
 
 WRITING STYLE — BUILD BEFORE YOU USE:
 Write like an engineering documentary or technical blog, not a report. Every section brings the reader along — starting from a clear question, building the conceptual and quantitative tools needed to answer it, landing on a specific conclusion backed by numbers.
@@ -684,7 +697,12 @@ SCIENCE_SCHEMA = """
   "hook": "",
   "core": "",
   "sections": [
-    {"title": "", "content": ""}
+    {
+      "title": "",
+      "sub_points": [
+        {"label": "", "value": ""}
+      ]
+    }
   ],
   "closing": "",
   "sources": [
@@ -719,6 +737,14 @@ One sentence. Must contain a specific verifiable fact — a named experiment, a 
 
 3. sections
 3 to 5 sections. Choose titles that reflect what each section actually investigates. Each section is a chapter that moves from "what is this phenomenon and how do we measure it?" toward "what does the evidence actually support?" — not a collection of claims, but a building explanation.
+
+Each section must have 3–6 sub_points. Each sub_point has a short label (2–5 words) and a value (1–3 sentences of precise content). Do NOT write a single long content paragraph — break every section into labeled sub_points.
+
+GOOD sub_points for "The Measurement: What Was Actually Found":
+{"label": "Key experiment", "value": "Fleming et al. (2007) measured quantum coherence in the FMO complex at 77K using 2D electronic spectroscopy [2]."},
+{"label": "Measured lifetime", "value": "Coherence persisted for ~660 fs — far longer than classical models predicted for a warm, wet environment."},
+{"label": "Room temperature gap", "value": "At 310K the same complex shows coherence lifetimes of ~25–60 fs [4] — orders of magnitude shorter."},
+{"label": "What this means", "value": "Coherence exists at biological temperatures but likely plays a minor role in energy transfer efficiency versus classical hopping."}
 
 WRITING STYLE — BUILD BEFORE YOU USE:
 Write like a science documentary or science blog, not a lab report. Every section brings the reader along — from a clear question, through the concepts and measurements needed to answer it, to a specific conclusion grounded in evidence.
