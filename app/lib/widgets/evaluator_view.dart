@@ -23,7 +23,7 @@ class EvaluatorView extends StatelessWidget {
         ..._buildSections(ev),
         _ScoreCards(scores: Map<String, dynamic>.from(ev['scores'] ?? {})),
         _AnalystTake(text: ev['analyst_take'] as String?),
-        _Summary(text: ev['final_summary'] as String?),
+        _Summary(text: (ev['final_summary'] ?? ev['closing']) as String?),
         _Learning(learn: ev['learning'] as Map<String, dynamic>?),
         const SizedBox(height: 40),
       ],
@@ -61,20 +61,35 @@ class EvaluatorView extends StatelessWidget {
     _Section('Competitive Landscape', _kvMap(ev['competitive_landscape'])),
   ];
 
-  List<Widget> _engSections(Map ev) => [
-    _Section('Problem Space', _kvMap(ev['problem_space'])),
-    _Section('Engineering Assessment', _kvMap(ev['engineering_assessment'])),
-    _Section('Go to Market', _kvMap(ev['go_to_market'])),
-    _Section('Competitive Landscape', _kvMap(ev['competitive_landscape'])),
-  ];
+  List<Widget> _engSections(Map ev) {
+    final hook = ev['hook'] as String?;
+    final core = ev['core'] as String?;
+    final sections = (ev['sections'] as List? ?? []);
+    return [
+      if (hook != null && hook.isNotEmpty) _Section('Hook', [_Field(label: '', value: hook)]),
+      if (core != null && core.isNotEmpty) _Section('Core Mechanism', [_Field(label: '', value: core)]),
+      ...sections.map<Widget>((s) {
+        final title = s['title'] as String? ?? '';
+        final content = s['content'] as String? ?? '';
+        return _Section(title, [_Field(label: '', value: content)]);
+      }),
+    ];
+  }
 
-  List<Widget> _sciSections(Map ev) => [
-    _Section('Hypothesis', _kvMap(ev['hypothesis'])),
-    _Section('Prior Art', _kvMap(ev['prior_art'])),
-    _Section('Methodology', _kvMap(ev['methodology'])),
-    _Section('Failure Modes', _listSection(ev['failure_modes'])),
-    _Section('India Research Context', _kvMap(ev['india_research_context'])),
-  ];
+  List<Widget> _sciSections(Map ev) {
+    final hook = ev['hook'] as String?;
+    final core = ev['core'] as String?;
+    final sections = (ev['sections'] as List? ?? []);
+    return [
+      if (hook != null && hook.isNotEmpty) _Section('Hook', [_Field(label: '', value: hook)]),
+      if (core != null && core.isNotEmpty) _Section('Core Mechanism', [_Field(label: '', value: core)]),
+      ...sections.map<Widget>((s) {
+        final title = s['title'] as String? ?? '';
+        final content = s['content'] as String? ?? '';
+        return _Section(title, [_Field(label: '', value: content)]);
+      }),
+    ];
+  }
 
   List<Widget> _mathSections(Map ev) => [
     _Section('Conjecture', _kvMap(ev['conjecture'])),
@@ -211,6 +226,7 @@ class _Header extends StatelessWidget {
                ?? ev['hypothesis_summary'] as String?
                ?? ev['argument_summary']   as String?
                ?? ev['observation_summary']as String?
+               ?? ev['hook']               as String?
                ?? '';
     final cls = ev['final_classification'] as String? ?? '';
     final cat = ev['category'] as String? ?? '';
