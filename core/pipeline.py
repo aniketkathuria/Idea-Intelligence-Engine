@@ -56,7 +56,7 @@ def process_idea_stateless(raw_idea: str, past_ideas: list, depth: str = "balanc
 
     # --- Research ---
     logging.info("Stateless: generating queries and researching")
-    queries = generate_search_queries(raw_idea, client)
+    queries = generate_search_queries(raw_idea, client, category=category)
     try:
         research_results = search_duckduckgo(queries, depth)
     except Exception as e:
@@ -148,7 +148,7 @@ def process_idea(raw_idea: str, depth="balanced", idea_id: int = None, category:
     # --- Research ---
     logging.info("Query Generating and Researching")
     try:
-        queries = generate_search_queries(raw_idea, client)
+        queries = generate_search_queries(raw_idea, client, category=category)
 
         try:
             research_results = search_duckduckgo(queries, depth)

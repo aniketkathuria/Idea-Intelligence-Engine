@@ -13,18 +13,190 @@ FETCH_WORKERS    = 6    # parallel fetches
 CONTENT_MAX_CHARS = 2000 # chars kept per article
 
 
-def generate_search_queries(idea, llm_client):
-    india_count  = max(1, DEFAULT_QUERY_COUNT // 3)
-    global_count = DEFAULT_QUERY_COUNT - india_count
+QUERY_INSTRUCTIONS = {
+    "Engineering": """
+Generate {n} search queries to deeply research the following engineering idea.
 
-    prompt = f"""
-Generate {DEFAULT_QUERY_COUNT} search queries to research the following idea.
+Focus ONLY on:
+- The underlying physics, thermodynamics, fluid dynamics, or materials science
+- Prior art: existing systems, patents, or prototypes that attempted something similar
+- Real-world implementations or experiments (what has actually been built or tested)
+- Technical failure modes or constraints (what makes this hard)
+- Relevant academic papers, standards, or engineering analyses
+- ONE query MUST target the governing equation directly: include the formula name, the key variables, and "equation" or "formula" or "derivation" — e.g., "laser beam intensity formula divergence angle calculation watts per cm2" or "Carnot efficiency formula hot cold reservoir equation derivation"
 
-Structure your queries as follows:
-- {global_count} queries covering global market, technology landscape, competitors, and technical feasibility
-- {india_count} queries specifically about the Indian context for this idea: Indian competitors or alternatives, adoption in India, pricing or affordability in India, India-specific use cases, or regulatory/infrastructure constraints in India
+DO NOT generate market size, competitor, India, or business queries.
+Queries must be specific and technical — think like an engineer searching for prior art, not a consultant sizing a market.
+Bad example: "market for pressure-based rocket separation"
+Good example: "pneumatic stage separation rocket cold gas pressure mechanism"
+""",
 
-Return ONLY a JSON array of {DEFAULT_QUERY_COUNT} queries. No comments. Output goes directly to json.loads.
+    "Science": """
+Generate {n} search queries to deeply research the following scientific idea or hypothesis.
+
+Structure your queries to cover ALL of these angles:
+- The KEY EXPERIMENT or measurement: search for the specific named study, paper, or research group that produced the most important quantitative result related to this hypothesis (author + topic + measurement type)
+- The QUANTITATIVE RESULT: search for the actual measured values — effect sizes, rates, concentrations, lifetimes, detection thresholds — not just whether something was studied
+- What is ALREADY PROVEN vs what is STILL OPEN: prior art, replication attempts, contradicting studies
+- The COMPETING THEORY or mechanism: what is the established scientific consensus, and what evidence supports it
+- The BLOCKING CONSTRAINT: what specific instrument sensitivity, sample size, or technical barrier prevents this from being tested more directly
+- ONE query MUST target the governing equation or physical law directly: include the formula name, the key constants or variables, and "equation" or "formula" or "derivation" — e.g., "thermal decoherence time equation Planck constant Boltzmann temperature formula" or "magnetoreception torque equation magnetite crystal magnetic moment formula"
+
+DO NOT generate market, business, or India queries.
+Queries must be precise enough to return primary research papers, not news articles or Wikipedia summaries.
+BAD: "quantum effects in photosynthesis" — too broad, returns news articles
+GOOD: "Fleming FMO complex quantum coherence femtoseconds 2007 site:nature.com OR site:science.org"
+BAD: "magnetoreception humans research"
+GOOD: "Caltech human magnetoreception alpha wave EEG 2019 Kirschvink"
+""",
+
+    "Mathematics": """
+Generate {n} search queries to deeply research the following mathematical idea or conjecture.
+
+Focus ONLY on:
+- Related theorems, proofs, or conjectures already in the literature
+- Mathematicians or research groups working on adjacent problems
+- Computational or algorithmic approaches to exploring this
+- Historical context of the problem
+- Relevant fields of mathematics (number theory, topology, combinatorics, etc.)
+
+DO NOT generate market, business, or India queries.
+""",
+
+    "Philosophy": """
+Generate {n} search queries to research the following philosophical idea using academic sources.
+
+Structure your queries to cover ALL of these angles:
+- ONE query targeting the Stanford Encyclopedia of Philosophy (SEP) entry most relevant to this idea — e.g., "site:plato.stanford.edu discipline virtue ethics" or "site:plato.stanford.edu obsession motivation philosophy"
+- ONE query targeting named philosophers or classic arguments in this domain — include philosopher name + concept + "argument" or "paper" — e.g., "Aristotle eudaimonia discipline habituation virtue ethics"
+- ONE query targeting PhilPapers or JSTOR for academic papers — e.g., "obsession compulsion agency autonomy philosophy paper philpapers"
+- ONE query targeting counterarguments or the strongest objection in the literature — e.g., "critique of willpower discipline philosophy self-control failure counterargument"
+- ONE query for Indian philosophical tradition relevance — e.g., "Nyaya epistemology discipline motivation Indian philosophy" or "Advaita Vedanta self-control obsession consciousness"
+
+DO NOT generate market, business, or self-help blog queries. Queries must return academic philosophy sources, not motivational content.
+BAD: "obsession vs discipline motivation productivity" — returns self-help blogs
+GOOD: "Frankfurt caring obsession agency philosophy paper" — returns academic philosophy
+BAD: "why discipline is important success" — returns lifestyle content
+GOOD: "site:plato.stanford.edu self-control akrasia weakness of will" — returns SEP
+""",
+
+    "Personal": """
+Generate {n} search queries to research the following personal development or behavioural idea using scientific sources.
+
+Structure your queries to cover ALL of these angles:
+- ONE query targeting the specific psychological mechanism by name — e.g., "implementation intention Gollwitzer habit formation RCT" or "identity-based habits Duhigg cue routine reward neuroscience"
+- ONE query targeting the key researcher or lab — e.g., "BJ Fogg Tiny Habits Stanford behavior design study" or "Wendy Wood habit automaticity dual-process"
+- ONE query for the best RCT or empirical study on this specific behaviour — e.g., "walking fat loss RCT heart rate zone comparison calories 2022"
+- ONE query targeting failure modes or contradicting evidence — e.g., "habit formation failure relapse rate willpower depletion ego depletion critique"
+- ONE query for India-specific context — e.g., "exercise habit adherence India urban study" or "sleep deprivation India working hours survey NSSO"
+
+DO NOT generate business, market, or generic motivational queries. Queries must return scientific papers, not self-help articles.
+BAD: "how to build discipline habits" — returns self-help blogs
+GOOD: "Phillippa Lally habit formation 18 days 254 days UCL study 2010" — returns the actual research
+BAD: "walking vs running weight loss tips"
+GOOD: "low intensity exercise fat oxidation zone 2 training RCT heart rate comparison"
+""",
+
+    "Business": """
+Generate {n} search queries to research the following business idea.
+
+Structure your queries to cover ALL of these angles:
+- {n_global} queries covering:
+  - Global market size with a specific data source (name the category, segment, and year)
+  - Existing players and their exact business model — how do they price, who pays, what's the margin?
+  - ONE query targeting unit economics benchmarks: "CAC LTV gross margin [business type]" or "[business type] unit economics payback period"
+- {n_india} queries covering:
+  - Indian competitors or alternatives — name them specifically, not generically
+  - India-specific regulatory or operational constraint (GST, RBI, FSSAI, MSME Act, pricing ceiling)
+  - Adoption evidence: has any similar business succeeded or failed in India? Name it.
+
+Queries must be specific — name the domain, product type, customer segment, and geography.
+BAD: "innovative business idea market"
+GOOD: "B2B SaaS GST reconciliation tool India CA firm pricing 2024"
+BAD: "food delivery India"
+GOOD: "meal kit delivery India urban household CAC retention subscription economics"
+""",
+
+    "Technology": """
+Generate {n} search queries to research the following technology idea.
+
+Structure your queries to cover ALL of these angles:
+- {n_global} queries covering:
+  - Existing tools or platforms doing exactly this — name the specific product category and approach
+  - Technical architecture: what APIs, models, or infrastructure does this require? What are the hard parts?
+  - Open source alternatives or related projects with adoption or GitHub star data
+  - ONE query targeting pricing and unit economics: "[product type] pricing model revenue per user SaaS" or "monetization strategy [product category] developer tool"
+- {n_india} queries covering:
+  - Indian startups or apps in this exact space — name the product or founder if known
+  - India-specific constraint: mobile-first, pricing ceiling (₹499–999/month), latency, language localization, or regulatory requirement
+  - How did similar tools get traction in India?
+
+Queries must be specific and technical — name the exact use case and user persona.
+BAD: "AI productivity tool market"
+GOOD: "LLM-powered async code review GitHub PR latency benchmark 2024"
+BAD: "screen monitoring app India"
+GOOD: "real-time developer screen activity monitoring pricing model India startup 2024"
+""",
+
+    "Society": """
+Generate {n} search queries to research the following social or cultural observation using academic sources.
+
+Structure your queries to cover ALL of these angles:
+- {n_global} queries covering:
+  - ONE query for the closest academic study — name the phenomenon + researcher or journal — e.g., "Putnam social capital bowling alone study 1995" or "norm diffusion social network analysis paper"
+  - ONE query for quantitative data — name the specific dataset or survey — e.g., "IHDS caste mobility income panel data India" or "NFHS-5 gender education attainment district level"
+  - ONE query for the strongest confound or alternative explanation — e.g., "selection bias social mobility India critique reverse causality"
+- {n_india} queries covering:
+  - Named India-specific study, NSSO/NFHS/IHDS/CMIE dataset relevant to this hypothesis
+  - India institutional context — CSDS, NCAER, ICSSR — e.g., "CSDS National Election Study India social trust 2019"
+  - ONE query for a natural experiment or policy change in India relevant to this — e.g., "Mandal Commission caste reservation India social mobility before after study"
+
+DO NOT generate self-help, news, or generic social commentary queries. Queries must return academic sociology, economics, or anthropology papers.
+BAD: "why India has poor social mobility" — returns news opinion
+GOOD: "intergenerational income mobility India IHDS panel caste Emran Shilpi 2015" — returns research paper
+""",
+
+    "Other": """
+Generate {n} search queries to research the following idea, focusing on what already exists and what would need to be true for it to work.
+
+Structure your queries to cover:
+- ONE query for the closest named real-world project or implementation — include project name + outcome — e.g., "Sidewalk Toronto smart city experiment outcome lessons" or "Brazil participatory budgeting Porto Alegre results"
+- ONE query for the critical technical or operational dependency — e.g., "last-mile cold chain India rural village feasibility cost" or "quadratic voting implementation blockchain cost per vote"
+- ONE query for academic or policy research on this domain — include institution or journal — e.g., "MIT Media Lab urban sensing deployment study" or "World Bank community governance India panchayat effectiveness"
+- ONE query targeting failure modes or why similar ideas failed — e.g., "smart city India failure reasons Dholera SIR lessons"
+- ONE query for India-specific actor or programme — e.g., "NITI Aayog urban mobility pilot India smart infrastructure"
+
+DO NOT generate generic "market analysis" queries. Each query must be specific enough to return a named project, paper, or report.
+BAD: "innovative urban infrastructure ideas" — too vague
+GOOD: "Medellín cable car urban mobility low-income area social impact study" — returns specific project analysis
+""",
+}
+
+
+def _strip_site_restrictions(queries: list[str]) -> list[str]:
+    """Remove site: directives from queries for fallback search when original queries return 0 results."""
+    import re
+    simplified = []
+    for q in queries:
+        q = re.sub(r'\s+OR\s+site:\S+', '', q)
+        q = re.sub(r'\s+site:\S+', '', q)
+        simplified.append(q.strip())
+    return simplified
+
+
+def generate_search_queries(idea, llm_client, category=None):
+    n = DEFAULT_QUERY_COUNT
+    n_india = max(1, n // 3)
+    n_global = n - n_india
+
+    template = QUERY_INSTRUCTIONS.get(category, QUERY_INSTRUCTIONS["Other"])
+    instructions = template.format(n=n, n_global=n_global, n_india=n_india)
+
+    prompt = f"""You are a research specialist. Your job is to generate the best possible search queries to find information about the idea below.
+
+{instructions}
+
+Return ONLY a JSON array of exactly {n} strings. No explanation, no markdown. Output goes directly to json.loads().
 
 Idea:
 {idea}
@@ -33,12 +205,20 @@ Idea:
     response = llm_client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[{"role": "user", "content": prompt}],
-        temperature=0
+        temperature=0,
+        response_format={"type": "json_object"}
     )
 
-    from core.parser import parse_json_with_repair
-    raw_output = response.choices[0].message.content
-    return parse_json_with_repair(raw_output)
+    import json
+    raw = response.choices[0].message.content
+    parsed = json.loads(raw)
+    # model returns {"queries": [...]} or just an array — normalise
+    if isinstance(parsed, list):
+        return parsed
+    for v in parsed.values():
+        if isinstance(v, list):
+            return v
+    return list(parsed.values())
 
 
 def _fetch_content(url: str) -> str | None:

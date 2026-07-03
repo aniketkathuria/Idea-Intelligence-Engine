@@ -6,9 +6,16 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
 def _get_summary(ev):
-    for key in ['idea_summary', 'conjecture_summary', 'hypothesis_summary', 'engineering_summary', 'science_summary']:
+    # Named summary fields across all category schemas
+    for key in ['idea_summary', 'conjecture_summary', 'observation_summary', 'argument_summary',
+                'hypothesis_summary', 'engineering_summary', 'science_summary']:
         if key in ev:
             return ev[key]
+    # Engineering and Science use hook + core narrative format (no dedicated summary field)
+    if 'core' in ev:
+        hook = ev.get('hook', '')
+        core = ev.get('core', '')
+        return f"{hook} {core}".strip() or 'No summary available'
     return ev.get('final_summary', 'No summary available')
 
 
