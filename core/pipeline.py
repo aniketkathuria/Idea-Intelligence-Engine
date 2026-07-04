@@ -3,7 +3,7 @@ import logging
 from openai import OpenAI
 
 from core.researcher import generate_search_queries, search_duckduckgo
-from core.evaluator import evaluate_idea_adaptive
+from core.evaluator import evaluate_idea_adaptive, detect_category
 from core.parser import parse_json_with_repair
 from core.embedding import generate_embedding, find_similar_ideas
 from core.storage import load_all_ideas, update_idea_cluster
@@ -66,8 +66,13 @@ def process_idea_stateless(raw_idea: str, past_ideas: list, depth: str = "balanc
 
     # --- Evaluation ---
     logging.info("Stateless: evaluating")
+    if not category:
+        category = detect_category(raw_idea)
     raw_analysis = evaluate_idea_adaptive(raw_idea, research_results, category=category)
     analysis = parse_json_with_repair(raw_analysis)
+    # Inject category so the Flutter app always knows which schema was used
+    if 'category' not in analysis or not analysis['category']:
+        analysis['category'] = category
     logging.info("Stateless: evaluation done ✅")
 
     # --- Embedding ---
