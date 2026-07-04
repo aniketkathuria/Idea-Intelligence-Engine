@@ -1201,11 +1201,10 @@ def evaluate_mathematics(raw_text, research_results):
 def evaluate_science(raw_text, research_results):
     formatted_research = format_research(research_results)
 
-    prompt = SCIENCE_PROMPT.format(
-        raw_idea=raw_text,
-        formatted_research=formatted_research,
-        schema=SCIENCE_SCHEMA
-    )
+    prompt = SCIENCE_PROMPT
+    prompt = prompt.replace('{raw_idea}', raw_text)
+    prompt = prompt.replace('{formatted_research}', formatted_research)
+    prompt = prompt.replace('{schema}', SCIENCE_SCHEMA)
 
     response = client.chat.completions.create(
         model="gpt-4o",
@@ -1219,11 +1218,10 @@ def evaluate_science(raw_text, research_results):
 def evaluate_engineering(raw_text, research_results):
     formatted_research = format_research(research_results)
 
-    prompt = ENGINEERING_PROMPT.format(
-        raw_idea=raw_text,
-        formatted_research=formatted_research,
-        schema=ENGINEERING_SCHEMA
-    )
+    prompt = ENGINEERING_PROMPT
+    prompt = prompt.replace('{raw_idea}', raw_text)
+    prompt = prompt.replace('{formatted_research}', formatted_research)
+    prompt = prompt.replace('{schema}', ENGINEERING_SCHEMA)
 
     response = client.chat.completions.create(
         model="gpt-4o",
