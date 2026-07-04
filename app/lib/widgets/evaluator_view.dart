@@ -37,7 +37,7 @@ class EvaluatorView extends StatelessWidget {
   List<Widget> _buildSections(Map<String, dynamic> ev, String category) {
     switch (category) {
       case 'Business':    return _businessSections(ev);
-      case 'Technology':  return _techSections(ev);
+      case 'Technology':  return _narrativeSections(ev);
       case 'Engineering': return _narrativeSections(ev);
       case 'Science':     return _narrativeSections(ev);
       case 'Mathematics': return _mathSections(ev);

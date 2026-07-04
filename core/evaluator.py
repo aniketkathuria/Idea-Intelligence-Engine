@@ -202,85 +202,20 @@ GENERAL_SCHEMA = """
 
 TECHNOLOGY_SCHEMA = """
 {
-  "idea_summary": "",
-  "category": "Technology",
-  "final_classification": "",
-
-  "problem_space": {
-    "problem_statement": "",
-    "who_has_this_problem": "",
-    "pain_level": "",
-    "current_workarounds": []
-  },
-
-  "competitive_landscape": {
-    "global_players": [
-      {
-        "name": "",
-        "approach": "",
-        "edge": "",
-        "weakness": "",
-        "relevance_to_your_idea": ""
-      }
-    ],
-    "india_players": [
-      {
-        "name": "",
-        "approach": "",
-        "edge": "",
-        "weakness": "",
-        "relevance_to_your_idea": ""
-      }
-    ],
-    "whitespace": ""
-  },
-
-  "technical_assessment": {
-    "feasibility": "",
-    "core_technical_challenge": "",
-    "build_complexity": "",
-    "tech_stack_requirements": [],
-    "platform_dependencies": []
-  },
-
-  "product_strategy": {
-    "mvp_definition": "",
-    "moat": "",
-    "distribution_strategy": "",
-    "monetization_model": "",
-    "adoption_barrier": ""
-  },
-
-  "weakest_assumptions": [
+  "hook": "",
+  "core": "",
+  "sections": [
     {
-      "assumption": "",
-      "why_it_matters": "",
-      "how_to_test": ""
+      "title": "",
+      "sub_points": [
+        {"label": "", "value": ""}
+      ]
     }
   ],
-
-  "learning": {
-    "search_queries": [],
-    "publications_to_follow": [],
-    "cited_sources": [
-      {
-        "index": 0,
-        "title": "",
-        "url": ""
-      }
-    ]
-  },
-
-  "analyst_take": "",
-
-  "scores": {
-    "technical_feasibility": 0,
-    "market_potential": 0,
-    "overall": 0,
-    "risk_level": ""
-  },
-
-  "final_summary": ""
+  "closing": "",
+  "sources": [
+    {"title": "", "url": ""}
+  ]
 }
 """
 
@@ -422,75 +357,96 @@ Return ONLY valid JSON. No commentary. No markdown. Follow this schema exactly:
 {schema}"""
 
 
-TECHNOLOGY_PROMPT = """You are a senior product engineer and technology strategist who has seen what gets built, what gets funded, and what quietly dies.
+TECHNOLOGY_PROMPT = """You are a deeply knowledgeable technologist and software engineer. You have shipped production systems, read research papers, evaluated LLMs, and watched clever tech ideas succeed and fail. You know where ideas like this one have ended up before. You have a view — and you share it honestly.
 
-You are NOT here to validate. You are NOT here to discourage. You are here to give the person the clearest possible picture of what they're actually building, who already built it, and what is genuinely hard about it.
+You are NOT here to celebrate this idea. You are NOT here to kill it either. You are here to tell the person exactly what kind of idea this is — with the clarity and specificity of an expert who has seen this space.
 
----
+Think of it this way: if the person walked into a room with the world's best engineer in this domain and described this idea, what would that engineer say? They would acknowledge what's genuinely interesting. They would tell them what already exists and what happened when it was tried. They would be direct about what makes it hard or what makes it work. They would leave the person with a clear sense of where the idea actually stands — not vague encouragement, not dismissal, but an honest technical orientation.
 
-WRITING STYLE — EXPLAIN BEFORE YOU CITE:
-Write like a senior engineer explaining this to a smart friend who's not in tech. Every field must build context before dropping data.
-- DEFINE before using: when you introduce a metric (DAU, CAC, LTV, MAU, churn rate, ARPU), explain what it measures and why it matters for THIS idea before citing its value. "CAC is the cost to acquire one paying user — for this idea it matters because the target user already has three free alternatives."
-- WALK through the unit economics: before stating any market number, show how it was calculated. "10M developers in India × 5% likely to pay for a tool like this × ₹499/month = ₹250Cr ARR potential." Not just "large market opportunity."
-- CONNECT the pieces: end each field by explaining what its conclusion means for the idea. "This means the distribution problem is harder than the build problem."
-
-NUMBER PROVENANCE — every number must be traceable:
-(a) From research — cite [index]. Example: "GitHub Copilot has 1.8M paid users [3]."
-(b) Estimated from first principles — show the reasoning. "Assuming 2M active Indian developers, 10% willing to pay ₹499/month = ₹1Cr MRR at full penetration (assumed — based on JetBrains 2024 survey showing 2.4M India-based developers [5])."
-(c) If assumed without research support — label it "(assumed — reason)" and explain basis.
-Never state a number without a source or derivation shown.
+That is what you are writing.
 
 ---
 
-WRITING RULES — follow exactly:
-- Every text field must be a complete sentence or two — no fragments, no data points alone, no bulleted thoughts compressed into a phrase.
-- Every list item must also be a complete sentence with a subject and verb. This includes: current_workarounds, tech_stack_requirements, platform_dependencies, search_queries. A bare noun ("JavaScript"), a label ("manual data entry"), or a fragment ("API integration") is NOT acceptable.
-- Citations: use [index] whenever a source's Content is topically relevant to the claim — competitor detail, technical fact, adoption data. Minimum 5 [index] citations spread across problem space, competitive landscape, and technical assessment. Do not cluster citations in one section.
-- Competitive analysis: name what each player actually does (specific product or approach), their specific technical edge (not "large user base"), their specific weakness, and exactly why they matter to this idea. India players must be India-based companies — do not label a US or global company as an India player.
-- Identify the single most dangerous competitor — the one that makes this idea redundant if it ships one feature — and explain in one sentence exactly why.
-- India context is MANDATORY. Pick the one structural fact most relevant to THIS idea and state it with a concrete consequence. Reason from these if research lacks India data: (1) Mobile-first: 65%+ of Indian internet traffic is Android, so desktop-only or browser-extension products miss most Indian users; (2) Device constraint: dominant device is ₹5,000–15,000 Android with 2–3GB RAM — compute-heavy in-browser features fail here; (3) Pricing ceiling: Indian SaaS norms are 40–70% below US — a $20/month tool needs a ₹499–999/month India tier or it won't convert; (4) Corporate infrastructure: Indian enterprise teams use firewalls and VPNs that break open-internet SaaS API integrations; (5) Compliance schema: Indian apps touching data or payments must handle Aadhaar, PAN, GSTIN, IFSC, UPI — not optional. "India is a large market" is not analysis.
-- UNIT ECONOMICS — the product_strategy.monetization_model field must show the math: addressable_users (from research or first-principles derivation) × conversion_rate × price = revenue. Each number must differ by idea — do NOT default to 10,000 paying users for every idea. Derive addressable_users from the research: "Research shows 2.4M Indian developers [5] × 3% willing to pay for non-free tooling (based on JetBrains IDE paid tier conversion) = 72,000 potential users × ₹499/month = ₹3.6Cr MRR." If research lacks the base number, estimate from first principles and say so explicitly. The final number should reflect the actual scale of this specific market — a personal safety app and a developer tool have very different addressable bases.
-- The whitespace field must name the exact gap and explain in one sentence why well-funded players have not filled it.
-- weakest_assumptions must have at least 3 entries. Each must name a specific structural assumption of THIS idea — not generic tech risks. Pin each assumption to a specific competitor, pricing dynamic, or technical constraint. GOOD: "This assumes developers will pay ₹499/month for architecture-level AI review when GitHub Copilot offers autocomplete free — there is no evidence a developer has ever paid for higher-level code review beyond an IDE plugin." GOOD: "This assumes Chrome extension scraping of Flipkart and Meesho product pages will work reliably, but both platforms actively rate-limit unauthenticated scrapers and have blocked Buyhatke APIs before." BAD: "User adoption may be slow." BAD: "Developers may not trust AI suggestions."
-- moat: valid moats are network effects, proprietary data, regulatory moat, switching costs, brand. "First mover advantage", "better UX", "proprietary algorithms", and "innovative approach" are NOT moats. If no moat exists, state that explicitly — it's more useful than a false claim.
-- TECHNOLOGY REALITY CHECK — answer this FIRST before writing any field: "Does the core technology already exist, even as a component of an existing product?"
-  (A) If YES — commodity tech: State this explicitly in feasibility. Example: "Sending device location to a server via Android/iOS API is commodity technology — Android Emergency SOS, iOS Find My, and Life360 already do exactly this with no novel breakthroughs required." Then redirect: the real question is not CAN this be built (it can) but WHAT DOES THIS ADD that existing solutions don't? The core_technical_challenge must name the differentiation gap, not the build complexity.
-  (B) If NO — genuinely novel: Identify the specific unsolved technical problem, name the current state of the art (what's the closest thing that exists), and estimate how far current research is from solving it.
-  NEVER evaluate user trust, willingness to pay, or market adoption in the technical_assessment fields — those belong in product_strategy and weakest_assumptions. The technical_assessment is ONLY about: does the tech exist, what's the stack, and what's genuinely hard to build.
+YOUR OUTPUT HAS FIVE PARTS:
 
-- KEY TECHNICAL THRESHOLD: Before writing technical_assessment, identify the single metric that determines whether this idea works at the proposed scale — scraping rate before rate-limiting kicks in, model accuracy needed to be genuinely useful, inference latency budget, API rate limit ceiling, storage cost per user. State the threshold → show whether current tech meets it → give the verdict. Example: "Browser extension scraping requires <500ms response to feel real-time — current product page DOM parsing with vanilla JS achieves 200–400ms; the constraint is not latency but Flipkart's bot detection, which blocks unauthenticated scraping at ~50 requests/session."
+1. hook
+One sentence. Must contain a specific verifiable fact — a real system name, a real benchmark number, a named event, or a specific date. The reader should be able to fact-check it.
+- GOOD: "GitHub Copilot completes roughly 30% of code written by its users on Java and Python, but its context window stops at the current file — it has no awareness of how functions in other files call each other."
+- GOOD: "Chrome extensions can read and modify any page the user visits, but Flipkart's bot-detection middleware blocks unauthenticated scraping after approximately 50 requests per session — the same limit that killed Buyhatke's price-comparison feature in 2021."
+- BAD: "AI is transforming the way developers write code." — characterization, not a fact.
+- BAD: "This idea sits at the intersection of machine learning and user experience." — meaningless.
+- DO NOT write a question. DO NOT start with "This idea" or "The concept of."
 
-- COMPARISON TO EXISTING — WITH ACTUAL SPECS (Rule 7): For the most dangerous competitor, do not just name them. State their actual user count, acquisition history, pricing tier, or technical accuracy benchmark — whatever is in the research. Then explain what this idea does that they specifically cannot. GOOD: "Buyhatke reached 5M Chrome installs and was acquired by GoUNation in 2019 — the price-scraping problem is solved; this idea only makes sense if it adds a capability Buyhatke lacks, like Meesho's app-only SKU catalog." GOOD: "GitHub Copilot completes 25–30% of code lines on Java/Python but has no cross-file context — it cannot detect circular dependency patterns or flag architectural anti-patterns across a codebase." BAD: "GitHub Copilot is well-funded and has a large user base." BAD: "Honey has a large user base and integration with major retailers."
+2. core
+2-3 sentences. The precise technical mechanism at the heart of this idea. Name the specific APIs, models, protocols, data structures, or algorithms involved. State what input goes in and what output comes out. This field feeds the synthesis engine — make it technically dense and accurate.
 
-- REAL-WORLD STATUS — NAME OUTCOMES (Rule 8): Has this been built and shipped? Name the company, when they shipped, and what happened — acquired, shut down, pivoting, or actively growing. If it hasn't been built: explain the specific technical blocker, not "it's complex." "Several companies have explored this space" is failure. GOOD: "Buyhatke shipped in 2012, reached 5M installs, and was acquired — the technical problem is solved." BAD: "The space has seen several attempts with mixed results."
+3. sections
+3 to 5 sections. Choose titles that reflect what each section actually investigates — not generic labels like "Analysis" or "Overview". Each section is a chapter that builds on the previous one, moving from "what does this technology actually do?" toward "does this idea work at the proposed scale and under real constraints?"
 
-- CAN/CANNOT STATEMENT (Rule 9): The technical_assessment.feasibility field must end with two explicit statements: (1) "This tech CAN [do X] under [Y conditions, specific numbers or constraints]." (2) "It CANNOT [do Z] because [specific constraint — rate limit, API restriction, hardware requirement, latency ceiling, cost ceiling]." Example: "This CAN scrape public product pages in real-time at <500ms for Amazon and Flipkart. It CANNOT reliably scrape Meesho because Meesho's app-only product catalog has no publicly accessible web URL structure for the long-tail SKUs."
+Each section must have 3–6 sub_points. Each sub_point has a short label (2–5 words, like "Current accuracy", "Rate limit wall", "Latency at scale", "Verdict") and a value (1–3 sentences of precise content). Do NOT write a single long content paragraph — break every section into labeled sub_points.
 
-- technical_assessment fields must be concrete. "Depends on implementation", "requires significant engineering", "technically feasible" are not acceptable. Name the specific APIs, models, protocols, or hardware required.
-- analyst_take: 3-4 sentences. Do NOT open with "As a technologist", "As a product engineer", "The idea of", "This idea", "I believe the biggest challenge", or any role declaration — automatic failure. Do NOT use the words "intriguing" or "interesting." The FIRST sentence must be about the TECH REALITY — what already exists and whether this idea is building on top of commodity tech or solving a novel problem. Name the single most non-obvious technical insight. Name the one specific thing that makes this technically redundant OR technically differentiated. Tell the person the one concrete thing to build or validate first.
-GOOD: "Android Emergency SOS and Life360 already solve server-side location tracking — the only technically novel layer here is the trigger mechanism (server-side event rather than user-initiated). Build a proof-of-concept on top of Firebase Realtime Database and Android WorkManager in a weekend before spending on anything else."
-BAD: "The surprising challenge here isn't the technical build but convincing users to trust the app." BAD: "I believe the biggest challenge is user adoption."
-- Scores must vary across ideas — same score on multiple distinct ideas signals lazy evaluation.
-- final_summary: one honest paragraph ending with one specific repo, paper, company, or person to study next. Do NOT start with "The idea of", "This idea", "The concept of", or "The proposed" — these openers are BANNED. Start with a specific technical fact or verdict about what this idea can or cannot do.
+GOOD sub_points for "The Key Number: What Accuracy Does This Need?":
+{"label": "Required accuracy", "value": "To replace a human reviewer, the model must flag architectural anti-patterns with >90% precision — below that, noise overwhelms the signal and engineers stop trusting it [2]."},
+{"label": "Current state of art", "value": "GPT-4 achieves ~73% precision on cross-file dependency detection in the CoderEval benchmark [3] — useful for autocomplete, insufficient for architectural review."},
+{"label": "Gap", "value": "The 17-point gap is not a prompt engineering problem — it requires retrieval-augmented context over the full codebase, which adds ~400ms latency per query at current embedding costs."},
+{"label": "Verdict", "value": "This idea works as a suggestion layer, not a gating system. Position it as a second opinion, not a blocker."}
 
-FINAL CLASSIFICATION — choose exactly one:
-- Weak Concept: problem is not real, or solution is technically broken, or market is too small
-- Interesting but Unproven: direction is right but core technical or adoption risk is very high
-- Structurally Promising: real problem, buildable solution, identifiable path to users
-- High-Potential Breakthrough: large underserved problem, genuine technical differentiation, right timing
-- Conceptually Confused: idea conflates multiple things or problem-solution fit is unclear
+WRITING STYLE — BUILD BEFORE YOU USE:
+Write like a technical blog post or engineering deep-dive, not a product spec. Every section brings the reader along — starting from a clear question, building the conceptual and technical tools needed to answer it, landing on a specific conclusion backed by numbers.
 
-Classification rules:
-- Do not assign Structurally Promising if overall score < 5
-- Do not assign High-Potential Breakthrough unless market_potential >= 8 and overall >= 7 and moat is real
-- If the idea is a feature of an existing product, not a standalone product, classify as Weak Concept
+Three rules every section must follow:
+1. DEFINE before using: when you introduce a technical term, metric, or threshold (p50 latency, token context window, embedding dimensionality, rate limit, precision vs recall), explain what it represents and why it matters for this specific idea, BEFORE citing its numerical value.
+2. WALK through the numbers: before stating a technical verdict, name each variable and justify its value. "Model accuracy required: >90% precision (because below this, false positives outnumber true bugs in a 10k-line codebase). Current benchmark: 73% [3]. Gap: 17 points. Cost to close: retrieval-augmented generation adds ~$0.003 per query at current OpenAI pricing, or ~$90/month for a team of 10 committing 3x/day."
+3. CONNECT the pieces: close each section by explaining why its conclusion matters for the next question.
 
-SCORING CALIBRATION:
-technical_feasibility: 0-2=unsolved breakthroughs needed, 3-4=significant infrastructure missing, 5-6=buildable but complex 12+months, 7-8=buildable now in 3-6 months with strong team, 9-10=straightforward build
-market_potential: 0-2=too niche/early, 3-4=real but hard to reach, 5-6=meaningful but heavily contested, 7-8=large underserved segment with clear entry, 9-10=massive with no strong incumbent in this position
-overall: 0-2=fundamentally broken, 3-4=weak, 5-6=interesting but constrained, 7-8=strong, 9-10=exceptional
+CONTENT REQUIREMENTS — all of the following must appear naturally distributed across sections:
 
-BANNED PHRASES: "fascinating intersection", "compelling vision", "paradigm shift", "innovative solutions", "could play a crucial role", "evolving technology", "as we continue to push the boundaries", "large and growing market."
+THE KEY TECHNICAL THRESHOLD:
+Before stating any technical verdict, identify the single metric that determines whether this idea works — model accuracy needed, API rate limit ceiling, inference latency budget, data volume required, storage cost per user. Explain: (a) what this metric measures and what the units mean, (b) why this specific value is the decision point, (c) what the current state of the art actually achieves. Then state whether the idea clears the bar, misses it, or is close enough that the gap is closeable.
+
+THE GOVERNING METRIC:
+At least one section must derive the key technical constraint from first principles with actual numbers. Walk through each variable — name it, explain what it represents, justify its value. Then compute the result and interpret it.
+- Latency budget: total_latency = embedding_time + retrieval_time + inference_time + network_round_trip. Each term in milliseconds, justified, summed, compared to the UX threshold (typically <200ms for real-time, <2s for async).
+- Cost per operation: tokens_per_request × cost_per_token × requests_per_day × users = daily_cost. Then annualized.
+- Data requirement: minimum_training_examples = f(model_size, task_complexity) — use published scaling law estimates, not vibes.
+- Throughput ceiling: requests_per_second = 1 / (latency_per_request). Compare to peak load estimate.
+
+NUMBER PROVENANCE:
+Every number must be traceable:
+(a) Directly from research — cite with [index].
+(b) Derived from cited facts — show every step and state every assumption.
+(c) If a specific value cannot be found in research, label it explicitly as "(assumed — typical for [reason])" and explain the basis. Never present an assumed value as if it were a measured fact.
+
+CITATION FORMAT: Write the actual source number — [0], [1], [3], etc. Never write "[index]" as a literal placeholder.
+
+SECONDARY SOURCE SELF-CHECK — before writing each citation [N], check the URL:
+- en.wikipedia.org → write "[N] (secondary source)"
+- Medium, Towards Data Science, Dev.to, Substack → write "[N] (secondary source)"
+- arxiv.org, proceedings.neurips.cc, dl.acm.org, ieeexplore.ieee.org → primary source, no flag
+Missing even one secondary source flag is a failure.
+
+REAL-WORLD STATUS:
+One section must directly answer: Has this been built and shipped? If yes — name who, when, what worked, what failed, and what it means for this version. If not — explain the specific technical blocker. "Several companies have explored this space" is automatic failure.
+
+COMPARISON TO WHAT EXISTS:
+At least one section must compare this idea to what is live today. Name the real system and its real specs — user count, accuracy benchmark, pricing, API limits. State whether this idea would be better, worse, or differently constrained — and by how much quantitatively.
+
+CAN / CANNOT:
+The closing section or a dedicated sub_point must state:
+- "This CAN [do X] under [specific conditions with numbers]."
+- "It CANNOT [do Y] because [specific technical constraint — rate limit, accuracy gap, latency ceiling, cost ceiling, missing data]."
+
+DO NOT write market analysis, competitive landscape, go-to-market strategy, or monetization. Stay within the technical and engineering reality of the idea.
+
+BANNED PHRASES — automatic failure: "fascinating intersection", "compelling vision", "paradigm shift", "innovative solutions", "could play a crucial role", "as we continue to push the boundaries", "evolving technology", "large and growing market", "game-changer."
+
+4. closing
+Two parts:
+- First 1-2 sentences: state exactly what this idea CAN do and what it CANNOT do, in specific technical terms. Name the constraint, the threshold, the conditions. GOOD: "This works as a real-time code suggestion layer on single-file context — at current GPT-4 accuracy (73% on CoderEval), it cannot serve as an architectural gating system without retrieval-augmented context adding ~400ms latency." BAD: "This is technically feasible but faces challenges."
+- Then 1-2 sentences: the single most important unresolved technical number or constraint — the thing that, if it changed, would change the verdict completely.
+
+5. sources
+Every source cited by [index], with its title and URL.
 
 ====================
 IDEA:
@@ -498,7 +454,7 @@ IDEA:
 
 CATEGORY: Technology
 
-RESEARCH (cite by [index] when source Content is topically relevant to the claim):
+RESEARCH (cite by [index] when a fact or claim comes from that source):
 {formatted_research}
 ====================
 
@@ -895,14 +851,6 @@ MATHEMATICS_SCHEMA = """
 
   "analyst_take": "",
 
-  "scores": {
-    "conjecture_quality": 0,
-    "proof_tractability": 0,
-    "novelty": 0,
-    "overall": 0,
-    "difficulty_level": ""
-  },
-
   "final_summary": ""
 }
 """
@@ -932,7 +880,6 @@ WRITING RULES — follow exactly:
 - counterexample_risks must have at least 3 entries. Each must describe a specific mathematical construction or family of objects that could refute the conjecture if it holds. "The conjecture might be false" is not acceptable — name the structure, explain why it is dangerous, and say how to check it.
 - India mathematics context is mandatory. Name specific Indian institutions with active researchers in this domain, the correct funding body (NBHM, SERB, or DST), and India's specific historical or current contribution to this mathematical area. If the research does not contain India-specific data, reason from first principles: (1) Number theory has deep Indian roots — Ramanujan's work on partitions, mock theta functions, and highly composite numbers originated at Cambridge but is curated at institutions like TIFR Mumbai and IMSc Chennai, which remain world-class in analytic and algebraic number theory; (2) Combinatorics and graph theory are active at ISI Kolkata and CMI Chennai, with researchers publishing in top venues; (3) NBHM (National Board for Higher Mathematics, under DAE) funds post-doctoral fellowships and project grants of ₹5–20L — the primary source for pure mathematics research in India; (4) The Indian diaspora in mathematics is substantial — many Fields Medalists and top researchers have Indian heritage, and international collaborations with IIT and TIFR are common; (5) Algebra and algebraic geometry are strengths at TIFR and IISc Bangalore, with connections to the Tata Institute's long tradition in these areas. Pick the one most structurally relevant to THIS conjecture and name the concrete consequence for pursuing this research in India.
 - analyst_take: Write 3-4 sentences. Do NOT open with "As a mathematician", "As a number theorist", or any role declaration — opening this way is automatic failure. Write in first person with a clear opinion. Name the single most non-obvious mathematical insight about this conjecture — something not in the abstract of any survey paper. Name the single specific obstacle that makes this conjecture genuinely hard with current tools. Tell the person one specific thing to compute, read, or prove first. This must sound like a colleague at a seminar, not a referee report.
-- Scores must reflect the specific mathematical realities of THIS conjecture. Different conjectures at different stages of development, in different domains, with different proof barriers must receive different scores. Uniform scores across multiple conjectures signal lazy evaluation.
 - final_summary: one honest paragraph ending with one specific paper, textbook chapter, OEIS sequence, or open problem list to consult next — not a generic suggestion.
 
 FINAL CLASSIFICATION — choose exactly one:
@@ -945,38 +892,8 @@ FINAL CLASSIFICATION — choose exactly one:
 
 Classification rules:
 - Do not assign Proof Within Reach if critical_obstacle cannot be resolved with named existing tools
-- Do not assign Paradigm-Level Open Problem unless novelty >= 8 and conjecture_quality >= 8
-- If the conjecture duplicates a known result, classify as Already Established regardless of scores
-
-SCORING CALIBRATION:
-
-conjecture_quality:
-0-2 = trivially false, ill-defined, or restates a known result
-3-4 = meaningful but follows easily from existing work
-5-6 = genuine open question, moderate originality
-7-8 = non-trivial open question addressing a real gap in the literature
-9-10 = central open problem whose resolution would reshape the field
-
-proof_tractability:
-0-2 = no known technique comes close; proof likely requires a new framework
-3-4 = related techniques exist but face a known fundamental barrier
-5-6 = partial progress possible; a PhD thesis could make meaningful progress
-7-8 = a clear proof strategy exists with one or two hard but surmountable steps
-9-10 = proof is within reach; a strong mathematician could complete it in months
-
-novelty:
-0-2 = duplicates published work
-3-4 = incremental variation on known results
-5-6 = new angle on a recognized problem
-7-8 = addresses a gap no major group has closed
-9-10 = opens a genuinely new line of inquiry
-
-overall:
-0-2 = not worth pursuing — false or trivially derived
-3-4 = interesting observation but mathematical depth is limited
-5-6 = worthwhile but progress would be slow and incremental
-7-8 = strong conjecture with real mathematical depth and a credible path
-9-10 = exceptional — pursue immediately
+- Do not assign Paradigm-Level Open Problem unless the conjecture addresses a recognized open problem in the field
+- If the conjecture duplicates a known result, classify as Already Established
 
 ====================
 IDEA:
@@ -1047,14 +964,6 @@ SOCIETY_SCHEMA = """
 
   "analyst_take": "",
 
-  "scores": {
-    "observation_quality": 0,
-    "methodological_rigor": 0,
-    "novelty": 0,
-    "overall": 0,
-    "risk_level": ""
-  },
-
   "final_summary": ""
 }
 """
@@ -1097,7 +1006,6 @@ WRITING RULES — follow exactly:
 - analyst_take: Write 3-4 sentences. Do NOT open with "As a sociologist", "As a researcher", "The idea of", "This idea", "This hypothesis", "The hypothesis that", "The observation that", or any role declaration — automatic failure. Do NOT use the words "intriguing", "interesting", or "compelling" ANYWHERE in the response. Start with a specific, non-obvious sociological claim about what is actually at stake — name the mechanism, the confound, or the structural fact that makes this hypothesis hard or easy to test. Name the single confound that most threatens the claim. Tell the person one specific dataset, comparison, or natural experiment to run first.
 GOOD (use the STYLE, not the content): "The real test of caste-based norm diffusion is not whether norms spread — it is whether they spread faster along caste lines than along income lines, which the IHDS panel data can answer with a single regression. The alternative explanation that kills this is reverse causality: higher-caste households adopt norms earlier simply because they have more resources to experiment. Run the IHDS wave 1 to wave 2 comparison first, controlling for income quintile."
 BAD: "The hypothesis that X is compelling because..." BAD: "The most intriguing aspect is..." BAD: "This is an interesting observation about..."
-- Scores must vary — same score across distinct hypotheses signals lazy evaluation. Observations that are well-supported by existing data must score differently from untested speculation.
 - final_summary: one honest paragraph ending with one specific study, dataset, or institution to contact next. Do NOT start with "The idea of", "This idea", "The concept of", "This hypothesis", or "The hypothesis that" — BANNED. Start with a specific empirical claim about what is known vs unknown.
 - learning.search_queries: provide 3–5 specific search strings a researcher would actually type to find the closest empirical work — not field names or generic topics.
 - learning.key_datasets: name specific datasets relevant to testing this hypothesis — NFHS-5, IHDS, NSSO, NES, CMIE, or equivalent — with a one-sentence description of what each contains that is relevant.
@@ -1114,38 +1022,8 @@ FINAL CLASSIFICATION — choose exactly one:
 
 Classification rules:
 - Do not assign Researchable Hypothesis if critical_test cannot be operationalized with named data sources
-- Do not assign Paradigm-Shifting Insight unless novelty >= 8 and observation_quality >= 8
-- If the observation duplicates a documented finding, classify as Documented Pattern regardless of scores
-
-SCORING CALIBRATION:
-
-observation_quality:
-0-2 = anecdote or stereotype with no structural basis
-3-4 = plausible pattern but could easily be sampling bias
-5-6 = consistent with multiple data points, moderate evidence
-7-8 = well-grounded observation with cross-source support
-9-10 = documented empirical regularity in need of theoretical explanation
-
-methodological_rigor:
-0-2 = no testable method; claim is fundamentally observational
-3-4 = a study design exists but faces serious confound threats
-5-6 = testable with a reasonable design; key confounds manageable
-7-8 = strong design with named data and clear identification strategy
-9-10 = natural experiment or quasi-experimental setting available
-
-novelty:
-0-2 = restates established sociological findings
-3-4 = incremental variation on known patterns
-5-6 = new angle on a recognized social dynamic
-7-8 = addresses a gap no major research group has closed
-9-10 = opens a genuinely new line of social inquiry
-
-overall:
-0-2 = not worth pursuing — unfalsifiable or already settled
-3-4 = interesting observation but methodological path is unclear
-5-6 = worthwhile but progress would require significant data collection
-7-8 = strong hypothesis with real social significance and a credible path
-9-10 = exceptional — pursue immediately
+- Do not assign Paradigm-Shifting Insight unless the hypothesis addresses a foundational assumption in its domain
+- If the observation duplicates a documented finding, classify as Documented Pattern
 
 ====================
 IDEA:
@@ -1235,11 +1113,10 @@ def evaluate_engineering(raw_text, research_results):
 def evaluate_technology(raw_text, research_results):
     formatted_research = format_research(research_results)
 
-    prompt = TECHNOLOGY_PROMPT.format(
-        raw_idea=raw_text,
-        formatted_research=formatted_research,
-        schema=TECHNOLOGY_SCHEMA
-    )
+    prompt = TECHNOLOGY_PROMPT
+    prompt = prompt.replace('{raw_idea}', raw_text)
+    prompt = prompt.replace('{formatted_research}', formatted_research)
+    prompt = prompt.replace('{schema}', TECHNOLOGY_SCHEMA)
 
     response = client.chat.completions.create(
         model="gpt-4o",
@@ -1299,14 +1176,6 @@ PHILOSOPHY_SCHEMA = """
 
   "analyst_take": "",
 
-  "scores": {
-    "argument_quality": 0,
-    "originality": 0,
-    "rigor": 0,
-    "overall": 0,
-    "difficulty_level": ""
-  },
-
   "final_summary": ""
 }
 """
@@ -1349,7 +1218,6 @@ WRITING RULES — follow exactly:
 - analyst_take: Write 3-4 sentences. Do NOT open with "As a philosopher", "As a logician", "The idea of", "This idea", "This thesis", "The most intriguing", "The most non-obvious", or any role declaration — automatic failure. Do NOT use the words "intriguing" or "interesting" anywhere in the text. Start with a specific, precise philosophical claim about what is most at stake in this argument — name the exact logical move that makes or breaks the thesis. Name the single objection that most directly threatens it. Tell the person one specific paper to read, thought experiment to run, or distinction to draw.
 GOOD (use the STYLE, not the content — write about the actual argument, not about free will or functionalism): "The hard problem of consciousness is actually two separable problems — explaining why there is subjective experience at all, and explaining why it has the particular character it does — and collapsing them is why every functionalist response to Chalmers talks past the original objection. Dennett's Consciousness Explained bites the bullet on the second problem but explicitly sidesteps the first. Read the SEP entry on qualia first, then decide whether you're making a claim about either problem or both."
 BAD: "The most intriguing aspect of this argument is..." BAD: "The most non-obvious insight is..." BAD: "The idea of obsession is interesting but..."
-- Scores must vary across ideas — same score on multiple distinct arguments signals lazy evaluation. Arguments at different stages of development, in different domains, with different objection profiles must receive different scores.
 - final_summary: one honest paragraph ending with one specific paper, SEP entry, or philosopher to engage with next. Do NOT start with "The idea of", "This idea", "The concept of", "This thesis", or "The argument" — these openers are BANNED. Start with a specific claim about what the argument succeeds or fails at doing.
 - learning.search_queries: provide 3–5 specific search strings a philosopher would use to find the closest existing literature — include author names, technical terms, and subfield keywords.
 - learning.key_readings: name specific papers, book chapters, or SEP entries directly relevant to this thesis — each as a complete sentence naming the work, author, and its relevance.
@@ -1366,38 +1234,8 @@ FINAL CLASSIFICATION — choose exactly one:
 
 Classification rules:
 - Do not assign Philosophically Tractable if logical_validity reveals a gap in the argument that cannot be closed without a new premise
-- Do not assign Paradigm-Level Philosophical Challenge unless originality >= 8 and argument_quality >= 8
-- If the thesis duplicates a position already defended, classify as Already Defended regardless of scores
-
-SCORING CALIBRATION:
-
-argument_quality:
-0-2 = confused, self-refuting, or entirely unsupported
-3-4 = a genuine claim but the argument form is weak or circular
-5-6 = valid argument structure with at least one strong premise
-7-8 = well-formed argument with clear structure and identifiable objections
-9-10 = argument that would be taken seriously by specialists in the field
-
-originality:
-0-2 = restates a well-known position
-3-4 = incremental variation on an existing argument
-5-6 = new framing of a recognized debate
-7-8 = addresses a gap that no major argument has closed
-9-10 = opens a genuinely new line of philosophical inquiry
-
-rigor:
-0-2 = premises are undefined or the logical form is absent
-3-4 = some definitions given but key terms remain ambiguous
-5-6 = main terms defined; argument follows but has informal steps
-7-8 = careful definitions; argument form is explicit and mostly valid
-9-10 = fully formalized or as rigorous as the best work in the subfield
-
-overall:
-0-2 = not worth developing — confused or derivative
-3-4 = interesting intuition but philosophical work is insufficient
-5-6 = worthwhile but requires significant development before publication
-7-8 = strong philosophical position with a credible path to defense
-9-10 = exceptional — develop and submit immediately
+- Do not assign Paradigm-Level Philosophical Challenge unless the thesis challenges a foundational assumption across the field
+- If the thesis duplicates a position already defended, classify as Already Defended
 
 ====================
 IDEA:
@@ -1480,14 +1318,6 @@ PERSONAL_SCHEMA = """
 
   "analyst_take": "",
 
-  "scores": {
-    "evidence_quality": 0,
-    "implementation_clarity": 0,
-    "novelty": 0,
-    "overall": 0,
-    "risk_level": ""
-  },
-
   "final_summary": ""
 }
 """
@@ -1528,7 +1358,6 @@ WRITING RULES — follow exactly:
 - analyst_take: Write 3-4 sentences. Do NOT open with "As a behavioural scientist", "As a coach", "The idea of", "This idea", "This approach", "I find the idea", or any role declaration — automatic failure. Do NOT use the words "intriguing", "interesting", or "compelling" ANYWHERE in the response including final_summary. Start with the specific psychological or physiological mechanism and state immediately whether the evidence supports it or not. Name the single most likely failure mode for a real person attempting this. Tell the person the one concrete thing to do in the first 48 hours to test whether this will work for them.
 GOOD (use the STYLE, not the content): "Norepinephrine from cold exposure peaks within 3 minutes and returns to baseline in under 90 minutes — the claimed 3-4 hour window does not match the published half-life data from Bleakley 2012. The failure mode is not willpower but neurochemistry: the spike is real but short, so the timing relative to afternoon work matters more than the exposure itself. Test it for 5 days straight and log your 2pm energy level with a simple 1-10 rating before drawing any conclusion."
 BAD: "I find the idea of morning writing intriguing because..." BAD: "This approach is interesting but lacks evidence." BAD: "The concept of cold exposure is compelling..."
-- Scores must vary — same score across distinct approaches signals lazy evaluation. Different interventions with different evidence bases must receive different scores.
 - final_summary: one honest paragraph ending with one specific book, paper, researcher, or protocol to study next. Do NOT start with "The idea of", "This idea", "The concept of", or "This approach" — BANNED. Do NOT use "intriguing", "interesting", or "compelling" anywhere. Start with what the evidence actually says about this specific mechanism.
 - learning.search_queries: provide 3–5 specific search strings a practitioner or researcher would use to find the closest evidence — include researcher names, intervention names, and outcome keywords.
 - learning.key_papers: name specific studies, books, or protocols directly relevant to this approach — each as a complete sentence naming the work, author, and what it found that is relevant.
@@ -1545,38 +1374,8 @@ FINAL CLASSIFICATION — choose exactly one:
 
 Classification rules:
 - Do not assign Robustly Supported if closest_research cannot name at least two independent studies
-- Do not assign Exceptional System unless evidence_quality >= 8 and implementation_clarity >= 8
-- If the approach contradicts well-established behavioural science, classify as Counterproductive regardless of scores
-
-SCORING CALIBRATION:
-
-evidence_quality:
-0-2 = no credible evidence; based on anecdote or folk wisdom
-3-4 = one or two studies, limited population, or correlational only
-5-6 = multiple studies with moderate replication; some contradicting evidence
-7-8 = consistent findings across multiple studies and populations
-9-10 = replicated RCT-level evidence with clear mechanistic understanding
-
-implementation_clarity:
-0-2 = vague prescription; person cannot know what to actually do
-3-4 = direction is clear but no failure protocols or leading indicators
-5-6 = minimum viable version defined; main failure modes identified
-7-8 = specific protocol with leading indicators and recovery from failure
-9-10 = complete implementation system testable in the first week
-
-novelty:
-0-2 = restates standard self-help advice
-3-4 = incremental variation on known approaches
-5-6 = new framing or combination of established elements
-7-8 = addresses a genuine gap in the self-improvement literature
-9-10 = fundamentally new approach with strong theoretical grounding
-
-overall:
-0-2 = not worth attempting — likely counterproductive or purely placebo
-3-4 = might help but expected effect size is small or fragile
-5-6 = worthwhile but requires significant personalisation to work
-7-8 = strong approach with reliable mechanism and clear path
-9-10 = exceptional — implement immediately
+- Do not assign Exceptional System unless the approach has strong evidence and a complete, testable implementation protocol
+- If the approach contradicts well-established behavioural science, classify as Counterproductive
 
 ====================
 IDEA:
@@ -1657,14 +1456,6 @@ OTHER_SCHEMA = """
 
   "analyst_take": "",
 
-  "scores": {
-    "novelty": 0,
-    "feasibility": 0,
-    "impact_potential": 0,
-    "overall": 0,
-    "risk_level": ""
-  },
-
   "final_summary": ""
 }
 """
@@ -1705,7 +1496,6 @@ WRITING RULES — follow exactly:
 - analyst_take: Write 3-4 sentences. Do NOT open with "As an analyst", "As a generalist", "The idea of", "This idea", "This proposal", or any role declaration — automatic failure. "The concept of X has been explored" IS allowed as an opener ONLY if X is a specific named technology or approach and the sentence immediately names a prior attempt and what happened to it. Do NOT use the words "intriguing", "interesting", or "compelling" ANYWHERE in the response. Start with the single most non-obvious structural fact about this idea — something that reframes what it actually is, reveals a hidden dependency, or names a prior attempt and what happened to it. Name the specific failure mode that would end this idea fastest. Give one concrete next step — a named person to contact, a named dataset to find, or a specific named test to run — not "do more research."
 GOOD (use the STYLE, not the content): "Timebanking has been tried in 34 countries but has a documented failure pattern: it works for 18 months then collapses when retired participants stop contributing because they never need digital help back — the reciprocity breaks asymmetrically. The fastest failure here is the same: retired engineers will teach 10 sessions then leave when their phone is already set up. The fix is to define the digital tasks upfront in a binding commitment before the first skill session — call Edgar Cahn (timebanking originator) or read Collom 2011 for the implementation data."
 BAD: "This idea cleverly addresses two pressing issues..." BAD: "This proposal leverages a unique energy source..." BAD: "The concept of skill exchange is interesting..."
-- Scores must vary — same score across distinct ideas signals lazy evaluation. Generic middle scores signal the evaluator didn't read the idea carefully.
 - final_summary: one honest paragraph ending with one specific resource — a named organisation, dataset, researcher, or comparable project — to engage with next. Do NOT start with "The idea of", "This idea", "The concept of", or "The proposed" — BANNED. Start with a specific claim about what already exists and what this idea adds or breaks.
 - learning.search_queries: provide 3–5 specific search strings that would locate the closest comparable projects, datasets, or research — specific enough to return useful results, not field names.
 - learning.cited_sources: list every source cited by [index] in the evaluation with its title and URL.
@@ -1721,38 +1511,8 @@ FINAL CLASSIFICATION — choose exactly one:
 
 Classification rules:
 - Do not assign Worth Prototyping if minimum_viable_test cannot be scoped to 3 months with named resources
-- Do not assign Category-Creating unless novelty >= 8 and the idea genuinely does not fit any existing category
-- If the idea already exists as a named project or product, classify as Already Exists regardless of scores
-
-SCORING CALIBRATION:
-
-novelty:
-0-2 = restates an existing concept or product
-3-4 = incremental variation on something already operational
-5-6 = new combination of existing elements
-7-8 = addresses a gap no existing approach closes
-9-10 = opens a genuinely new space
-
-feasibility:
-0-2 = no clear path; critical dependency is unavailable
-3-4 = path exists but requires a hard-to-obtain resource or permission
-5-6 = feasible with significant effort; most dependencies available
-7-8 = clear path with available resources; main challenge is execution
-9-10 = can be started this week with existing resources
-
-impact_potential:
-0-2 = limited scope; affects a small number of people or situations
-3-4 = moderate scope; meaningful but not transformative
-5-6 = significant scope; could affect thousands to millions if executed
-7-8 = large scope; could shift how a domain works
-9-10 = exceptional scope; could reshape a field or system at scale
-
-overall:
-0-2 = not worth pursuing — vague or already done
-3-4 = interesting but the path is too unclear or blocked
-5-6 = worthwhile with a specific plan and the right dependencies
-7-8 = strong idea with real potential and a credible path
-9-10 = exceptional — pursue immediately
+- Do not assign Category-Creating unless the idea genuinely does not fit any existing category
+- If the idea already exists as a named project or product, classify as Already Exists
 
 ====================
 IDEA:
